@@ -10,15 +10,17 @@ An idea that Mark had was to have configurable "house rules"
 for the game.
 House rules are rules that a user can add to change the gameplay.
 I can think of two ways to do this:
-   * Create a dialog box with a set of pre-defined parameters that the 
-   user can modify.
-   This method would probably require a lower-level of programming expertise
-   to pull off, but would limit the user to only the house rules that we gave
-   them access to.
-   * Create a rules engine.
-   This engine would probably read in and use rules files that would power
-   even the normal gameplay.
-   This could potentially take a lot more time and expertise to pull off.
+
+1.  Create a dialog box with a set of pre-defined parameters that the 
+	user can modify.
+	This method would probably require a lower-level of programming expertise
+	to pull off, but would limit the user to only the house rules that we gave
+	them access to.
+
+2.  Create a rules engine.
+	This engine would probably read in and use rules files that would power
+	even the normal gameplay.
+	This could potentially take a lot more time and expertise to pull off.
 
 The second option, the rules engine, seems to be the option that would need
 mulled over more.
