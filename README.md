@@ -1,6 +1,5 @@
 UWPonopoly!!!
 =============
-__~ a Java-based, UW-Platteville themed Monopoly clone!__
+**~ a Java-based, UW-Platteville themed Monopoly clone!**
 
-
-__what could be better?!??__
+**what could be better?!??**
