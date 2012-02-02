@@ -29,3 +29,28 @@ creating python bindings to the relevant objects?
 Or would we want to create a markup to interpret into already written logic?
 I will investigate the viability of the python binding option.
 -Aaron
+
+----
+The rules engine seems like a bit much...
+...although we could just make _everything_ configurable via XML 
+(or another, more sane document structure [JSON anyone?!]
+, I believe Civ. V does this which allows modders to do a lot with the game, 
+but really, who's going to change the Monopoly rules *that* much?
+
+All we would need is a 'Preferences' class which would define all the default variables needed by the game. 
+From there, we would simply need a dialog box to make it all configurable.
+<pre>
+- Preferences ---------------------------
+|                                       |
+|                                       |
+| Starting Cash: $[    ]                |
+| 'Go' Cash: $[200]                     |
+| Free Parking: [x]                     |
+| Random Seed: [   ] ( Generate )       |
+|                                       |
+|                                       |
+-----------------------------------------
+</pre>
+etc. -- **mark**
+
+--
