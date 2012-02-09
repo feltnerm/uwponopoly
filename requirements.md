@@ -10,6 +10,7 @@
 
 ##User Interface Requirements
 All user interface requirements start with "UIR".  
+
    * UIR-1: The program shall present the user with a graphical representation of a Monopoly board.  
    * UIR-2: The program shall provide a menu of options when it is the user's turn.  
    * UIR-3: The program shall provide a menu of options when the user is offered a bid on a property.  
@@ -22,10 +23,11 @@ All user interface requirements start with "UIR".
    * UIR-8: The program shall have a method for entering a debugging mode where many of the game's
 		parameters can be graphically manipulated during run time.  
 ##Functional Requirements
-All functional Requirements start with "FUN".  
-    * FUN-1: The game shall enforce the basic rules of Monopoly, which are as follows:  
-		1. Each player shall receive a set amount of money each time that they land on the "Go" location.  
-		2. 
+All functional Requirements start with "FUN".   
+
+   * FUN-1: The game shall enforce the basic rules of Monopoly, which are as follows:  
+      1. Each player shall receive a set amount of money each time that they land on the "Go" location.  
+      2. 
 
 ##Non-Functional Requirements
 
