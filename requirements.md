@@ -16,14 +16,16 @@ Requirements Document
     + c. UtilityProperty: A property whose rent is calculated by a combination of owned utilities and a roll of the dice.  
 * Rent: A sum of game money payed from one player who lands on a property to another player who owns the deed to that property.  
 * Deed: An object that signifies ownership of a property. It specifies the rent associated with a property.
+* Bank: A game entity that contains unlimited amounts of game money. No player controls it.
 * ActionSpace: A space that permits or forces the player to perform an action  
-	+ a. "Chance" ActionSpace: (Three total)  
+	+ a. "Chance" ActionSpace: An ActionSpace where a card from a pool of cards is randomly selected. 
+         These cards shall contain an action that is executed by the system. (Three total)  
 	+ b. "CommunityChest" ActionSpace: (Three total)  
 	+ c. "LuxuryTax" ActionSpace: (one total)  
 	+ d. "IncomeTax" ActionSpace: (one total)  
 	+ e. "GO" ActionSpace: The ActionSpace that the players start on.
     Once the game has begun, anytime this space is passed or landed upon by a player, 
-    that player shall receive monetary reimbursement. (one)  
+    that player shall game money from the bank. (one)  
 	+ f. "Jail/Just Visiting" ActionSpace: The ActionSpace that is reserved for holding a player in place until release requirements are met. (one total)  
 	+ g. "Free Parking" ActionSpace: The ActionSpace that gives players the money placed in the center of the table when landed on. (one total)  
 	+ h. "Go to Jail" ActionSpace: Instantly moves the player to jail without collecting the money usually accrued when passing by the "Go" ActionSpace. (one total)  
