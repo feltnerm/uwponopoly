@@ -4,8 +4,6 @@
 
 @todo: Chance, Luxury tax, Income tax, GO, Jail/Just Visiting, Free Parking, and Go To Jail ActionSpaces descriptions.
 
-@todo: Define 'Deed' for a Property
-
 Requirements Document
 =====================
 
@@ -17,6 +15,7 @@ Requirements Document
     + b. RailwayProperty: A property whose rent is calculated based on the total number of railway properties owned.  
     + c. UtilityProperty: A property whose rent is calculated by a combination of owned utilities and a roll of the dice.  
 * Rent: A sum of game money payed from one player who lands on a property to another player who owns the deed to that property.  
+* Deed: An object that signifies ownership of a property. It specifies the rent associated with a property.
 * ActionSpace: A space that permits or forces the player to perform an action  
 	+ a. "Chance" ActionSpace: (Three total)  
 	+ b. "CommunityChest" ActionSpace: (Three total)  
@@ -64,6 +63,11 @@ All game play requirements start with "G".
            i.e. If a player owns all three properties in a set, to improve to level 1, level 1 must be achieved
            for all properties at once.  
 * G-11. Each player shall only be able to purchase one level at a time per property group.  
+* G-12. When a player lands on a property, the system shall automatically charge the rent specified on the deed
+        of the property to the player's account and give it to the owner of the deed.
+    + a. In the event that a player lands on a property that the player holds the deed for, no rent shall be assessed.
+    + b. In the event that no player holds the deed to the property, no rent shall be assessed.
+* G-13. The deed for each property shall specify a price that must be paid to the bank by the player for the player to own a deed.
 
 ##Requirements
 
