@@ -6,8 +6,6 @@
 
 @todo: Define 'Deed' for a Property
 
-@todo: Define 'Rent'
-
 Requirements Document
 =====================
 
@@ -18,6 +16,7 @@ Requirements Document
     + a. StreetProperty: A property that the player can improve by adding Houses and/or Hotels.  
     + b. RailwayProperty: A property whose rent is calculated based on the total number of railway properties owned.  
     + c. UtilityProperty: A property whose rent is calculated by a combination of owned utilities and a roll of the dice.  
+* Rent: A sum of game money payed from one player who lands on a property to another player who owns the deed to that property.  
 * ActionSpace: A space that permits or forces the player to perform an action  
 	+ a. "Chance" ActionSpace: (Three total)  
 	+ b. "CommunityChest" ActionSpace: (Three total)  
