@@ -23,12 +23,10 @@ Requirements Document
 	+ b. "CommunityChest" ActionSpace: (Three total)  
 	+ c. "LuxuryTax" ActionSpace: (one total)  
 	+ d. "IncomeTax" ActionSpace: (one total)  
-	+ e. "GO" ActionSpace: The ActionSpace that the players start on.
-    Once the game has begun, anytime this space is passed or landed upon by a player, 
-    that player shall game money from the bank. (one)  
-	+ f. "Jail/Just Visiting" ActionSpace: The ActionSpace that is reserved for holding a player in place until release requirements are met. (one total)  
-	+ g. "Free Parking" ActionSpace: The ActionSpace that gives players the money placed in the center of the table when landed on. (one total)  
-	+ h. "Go to Jail" ActionSpace: Instantly moves the player to jail without collecting the money usually accrued when passing by the "Go" ActionSpace. (one total)  
+	+ e. "GO" ActionSpace: The ActionSpace that the players start on. See G-14. (one total)  
+	+ f. "Free Parking" ActionSpace: The ActionSpace that gives players the money reserved for Free Parking. See G-15. (one total)  
+	+ g. "Jail/Just Visiting" ActionSpace: The ActionSpace that is reserved for holding a player in place until release requirements are met. See G-16. (one total)  
+	+ h. "Go to Jail" ActionSpace: Sends the player to jail. See G-17. (one total)  
 
 ##Input Output Requirements
 All user interface requirements start with "IO".  
@@ -70,7 +68,26 @@ All game play requirements start with "G".
     + a. In the event that a player lands on a property that the player holds the deed for, no rent shall be assessed.
     + b. In the event that no player holds the deed to the property, no rent shall be assessed.
 * G-13. The deed for each property shall specify a price that must be paid to the bank by the player for the player to own a deed.
+* G-14. Once the game has begun, the bank shall pay to a player a fixed sum of money every time that a player passes the "GO" ActionSpace.
+* G-15. The "Free Parking" ActionSpace:  
+    + a. shall hold a sum of money. This money may be represented graphically by being in the center of the board.
+    + b. shall pay the sum of money to the first player to land on the "Free Parking" ActionSpace.
+    + c. shall have the sum of money be user-configurable.
+    + d. shall give the user an option to make the sum of money be paid to a player each time that player lands on "Free Parking".
+         In this scenario, the "Free Parking" space would have an unlimited supply of game money.
+* G-16. The "Jail/Just Visiting" ActionSpace:  
+    + a. shall do nothing when a player lands on it. In this situation the player would be considered "Just Visiting".  
+    + b. shall hold a player if the player is in jail.  
+    + c. shall only release a player if:  
+        - i. The player pays the fine to the bank.
+        - ii. The player rolls doubles.
+        - iii. After JAIL_ROLLS unsuccessful rolls, the player must pay JAIL_FINE to the bank and be released.
+        - iv. The player uses a "Get Out of Jail Free" Chance or CommunityChest card.
+* G-17. A player may be sent to jail if:
+    + a. the player lands on the "Go to Jail" ActionSpace. The player shall not collect the game money usually associated with passing the "GO" ActionSpace.
+    + b. a "Chance" or "CommunityChest" card instructs the user to go to jail.
 
 ##Requirements
 
-* R-1:  
+* R-1: The system shall consume less than 0.5 GB memory at any given time.  
+* R-2: The system shall occupy no more than 0.25 GB of storage for a default installation.  
