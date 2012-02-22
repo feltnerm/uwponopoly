@@ -32,24 +32,18 @@ Requirements Document
 All user interface requirements start with "IO".  
 
 * IO-1: The program shall present the user with a graphical representation of a Monopoly board.  
-* IO-2: The program shall provide a menu of options when it is the user's turn.  
-* IO-3: The program shall provide a menu of options when the user is offered a bid on a property.  
-* IO-4: The program shall display the positions of the players graphically on the board.  
-* IO-5: When a player lands on a ActionSpace, the program shall present the user with information
+* IO-2: The program shall display the positions of the players graphically on the board.  
+* IO-3: When a player lands on a ActionSpace, the program shall present the user with information
 		relevant to the ActionSpace.  
-* IO-6: The program shall have a menubar that displays proper controls.  
-* IO-7: The program shall have a graphical method for manipulating key game parameters before a game
+* IO-4: The program shall have a graphical method for manipulating key game parameters before a game
 		is started.  
-* IO-8: The program shall have a method for entering a debugging mode where many of the game's
-		parameters can be graphically manipulated during run time.  
    
 ##Game Play Requirements
 All game play requirements start with "G".
 
-* G-1: The game shall enforce the basic rules of Monopoly, which are as follows:  
-* G-1. Each player shall receive a set amount of money at the start of the game based on the difficulty level specified.  
+* G-1. Each player shall receive a set amount of money at the start of the game. This amount of money shall be user-configurable.
 * G-2. Each player shall receive a set amount of money each time that they land on the "Go" ActionSpace.  
-* G-3. Each player shall roll 2 6-sided dice to move their playing piece around the board when it is their turn.  
+* G-3. Each player shall roll two 6-sided dice to move their playing piece around the board when it is their turn.  
 * G-4. Each player shall only roll for movement once per turn.  
 * G-5. Each player shall have the option of purchasing property when landed on, unless it is already owned.  
 * G-6. Each player shall pay the owner of the property they land on the rental prices specified for the property landed on.   
@@ -68,7 +62,7 @@ All game play requirements start with "G".
     + a. In the event that a player lands on a property that the player holds the deed for, no rent shall be assessed.
     + b. In the event that no player holds the deed to the property, no rent shall be assessed.
 * G-13. The deed for each property shall specify a price that must be paid to the bank by the player for the player to own a deed.
-* G-14. Once the game has begun, the bank shall pay to a player a fixed sum of money every time that a player passes the "GO" ActionSpace.
+* G-14. Once the game has begun, the bank shall pay to a player a fixed sum of money every time that a player crosses the "GO" ActionSpace.
 * G-15. The "Free Parking" ActionSpace:  
     + a. shall hold a sum of money. This money may be represented graphically by being in the center of the board.
     + b. shall pay the sum of money to the first player to land on the "Free Parking" ActionSpace.
