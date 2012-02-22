@@ -88,6 +88,4 @@ All game play requirements start with "G".
     + b. a "Chance" or "CommunityChest" card instructs the user to go to jail.
 
 ##Requirements
-
-* R-1: The system shall consume less than 0.5 GB memory at any given time.  
-* R-2: The system shall occupy no more than 0.25 GB of storage for a default installation.  
+None.
