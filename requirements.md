@@ -41,22 +41,16 @@ All user interface requirements start with "IO".
 ##Game Play Requirements
 All game play requirements start with "G".
 
-* G-1. Each player shall receive a set amount of money at the start of the game. This amount of money shall be user-configurable.
+* G-1. Each player shall receive a set amount of money at the start of the game.  
 * G-2. Each player shall receive a set amount of money each time that they land on the "Go" ActionSpace.  
 * G-3. Each player shall roll two 6-sided dice to move their playing piece around the board when it is their turn.  
 * G-4. Each player shall only roll for movement once per turn.  
 * G-5. Each player shall have the option of purchasing property when landed on, unless it is already owned.  
 * G-6. Each player shall pay the owner of the property they land on the rental prices specified for the property landed on.   
-* G-7. Each player shall have the ability to improve their property if a player owns all ActionSpaces in a set for a certain fee.  
-* G-8. Each player shall not improve their properties beyond level 5.  
-* G-9. Each property shall have a level from 0 - 5  
-    + a. Level 0 shall be represented by having no houses/hotels on the property.  
-    + b. Level 1 - 4 shall be represented by having a house on each property for each level it has achieved.  
-    + c. Level 5 shall be represented by having a hotel on the property.  
+* G-7. Each player shall have the ability to improve, for a set sum of money, their property if a player owns all Properties in a set.
+       Improving a property shall increase the value of the rent, and there shall be multiple levels of improvement available.
 * G-10. Each player shall purchase improvements for their property evenly.
-           i.e. If a player owns all three properties in a set, to improve to level 1, level 1 must be achieved
-           for all properties at once.  
-* G-11. Each player shall only be able to purchase one level at a time per property group.  
+* G-11. Each player shall only be able to purchase one improvement level at a time per property group.  
 * G-12. When a player lands on a property, the system shall automatically charge the rent specified on the deed
         of the property to the player's account and give it to the owner of the deed.
     + a. In the event that a player lands on a property that the player holds the deed for, no rent shall be assessed.
@@ -75,11 +69,11 @@ All game play requirements start with "G".
     + c. shall only release a player if:  
         - i. The player pays the fine to the bank.
         - ii. The player rolls doubles.
-        - iii. After JAIL_ROLLS unsuccessful rolls, the player must pay JAIL_FINE to the bank and be released.
+        - iii. After a set number of unsuccessful rolls, the player must pay a set amount of game money to the bank and be released.
         - iv. The player uses a "Get Out of Jail Free" Chance or CommunityChest card.
 * G-17. A player may be sent to jail if:
     + a. the player lands on the "Go to Jail" ActionSpace. The player shall not collect the game money usually associated with passing the "GO" ActionSpace.
     + b. a "Chance" or "CommunityChest" card instructs the user to go to jail.
 
-##Requirements
+##Other Requirements
 None.
