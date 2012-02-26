@@ -35,7 +35,7 @@ All user interface requirements start with "IO".
 * IO-2: The program shall display the positions of the players graphically on the board.  
 * IO-3: When a player lands on a ActionSpace, the program shall present the user with information
 		relevant to the ActionSpace.  
-* IO-4: The program shall have a graphical method for manipulating key game parameters before a game
+* IO-4: The program shall have a method for manipulating key game parameters before a game
 		is started.  
    
 ##Game Play Requirements
@@ -43,7 +43,8 @@ All game play requirements start with "G".
 
 * G-1. Each player shall receive a set amount of money at the start of the game.  
 * G-2. Each player shall receive a set amount of money each time that they land on the "Go" ActionSpace.  
-* G-3. Each player shall roll two 6-sided dice to move their playing piece around the board when it is their turn.  
+* G-3. Each player shall roll two 6-sided dice to move their playing piece around the board when it is their turn.
+       The dice shall be a pseudo-random component of the game.
 * G-4. Each player shall only roll for movement once per turn.  
 * G-5. Each player shall have the option of purchasing property when landed on, unless it is already owned.  
 * G-6. Each player shall pay the owner of the property they land on the rental prices specified for the property landed on.   
