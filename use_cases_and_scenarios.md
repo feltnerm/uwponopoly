@@ -1,10 +1,11 @@
-paying rent, etc.
+Meetings: 
+    - Tuesday Mar 6, Aaron and Jordan
 
 ## Use cases
 
 #A. Move Token
 
-1. Scenario A: Typical Dice roll
+1. Typical Dice roll
 
 2. Player rolls double.
 
@@ -20,7 +21,10 @@ paying rent, etc.
 
 #B. Manage Property
 
-#C. Change Money
+#C. Start Game
+1. Player starts game with default rules against computer player.
+
+2. Player configures house rules and starts game against computer player.
 
 #D. Use Special Card
 
