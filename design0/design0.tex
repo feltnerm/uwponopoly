@@ -18,19 +18,40 @@ input metauml;
 
 % Begin actual document here
 
-% Some testing code
-% borrowed from 
-% http://www.cs.bgu.ac.il/~gwiener/software-engineering/how-to-embed-uml-in-latex/
 \begin{figure}
 \centering
 \begin{emp}[classdiag](20, 20)
-Class.A("A")()();
-Class.B("B")()();
-B.e = A.w + (-20, 0);
-drawObjects(A, B);
-link(inheritance)(B.e -- A.w);
+Class.GameFrame("GameFrame")()();
+Class.UWPonopoly("UWPonopoly")()();
+Class.Dice("Dice")()();
+Class.Board("Board")()();
+Class.Space("Space")()();
+Class.Property("Property")()();
+Class.ActionSpace("ActionSpace")()();
+Class.GamePanel("GamePanel")()();
+
+UWPonopoly.n = GameFrame.s + (0,-50);
+Dice.n = UWPonopoly.s + (0,-50);
+Board.n = UWPonopoly.s + (100,-50);
+
+Property.n = Board.s + (0,-30);
+ActionSpace.n = Board.s + (100,-30);
+
+Space.n = Property.s + (0,-50);
+
+drawObjects(UWPonopoly, GameFrame);
+drawObjects(Dice, Board);
+drawObjects(ActionSpace, Property, Space);
+
+link(inheritance)(UWPonopoly.n -- GameFrame.s);
+clink(association)(Dice, UWPonopoly);
+clink(association)(Board, UWPonopoly);
+clink(association)(Board, Property);
+clink(association)(Board, ActionSpace);
+clink(inheritance)(Property, Space);
+clink(inheritance)(ActionSpace, Space);
 \end{emp}
-\caption{A class diagram}
+\caption{UWPonopoly class diagram}
 \end{figure}
 % End of testing code
 
