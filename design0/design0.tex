@@ -7,6 +7,7 @@
 \usepackage{indentfirst}
 \usepackage{fancyhdr}
 \usepackage{setspace}
+\usepackage{url}
 
 \begin{document}
 
@@ -22,7 +23,7 @@ input metauml;
 \centering
 \begin{emp}[classdiag](20, 20)
 Class.GameFrame("GameFrame")()();
-Class.UWPonopoly("UWPonopoly")()();
+Class.UWPonopoly("UWPonopoly")("main()")();
 Class.Dice("Dice")()();
 Class.Board("Board")()();
 Class.Space("Space")()();
@@ -39,9 +40,11 @@ ActionSpace.n = Board.s + (100,-30);
 
 Space.n = Property.s + (0,-50);
 
+GamePanel.e = Space.w + (-52.5,0);
+
 drawObjects(UWPonopoly, GameFrame);
 drawObjects(Dice, Board);
-drawObjects(ActionSpace, Property, Space);
+drawObjects(ActionSpace, Property, Space, GamePanel);
 
 link(inheritance)(UWPonopoly.n -- GameFrame.s);
 clink(association)(Dice, UWPonopoly);
@@ -50,11 +53,16 @@ clink(association)(Board, Property);
 clink(association)(Board, ActionSpace);
 clink(inheritance)(Property, Space);
 clink(inheritance)(ActionSpace, Space);
+clink(inheritance)(Space, GamePanel);
+clink(inheritance)(Dice, GamePanel);
 \end{emp}
 \caption{UWPonopoly class diagram}
+\label{fig:class}
 \end{figure}
-% End of testing code
-
-
+Figure~\ref{fig:class} shows a proposed class diagram for UWPonopoly.
+GamePanel and GameFrame can be found partially implemented 
+in my "JavaPong" repository at \url{github.com/deckeraa}.
+The events are caught by the GamePanel's and GameFrames and will be polled
+in the main loop.
 \end{empfile}
 \end{document}
