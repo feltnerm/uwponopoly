@@ -25,6 +25,7 @@ Meetings:
 2. Current Player doesn't have a monopoly and tries to improve a property.
 
 #C. Start Game
+TODO: Specify how many players and computer players there are during configuration.
 1. Current Player starts game with default rules against computer player.
 
 2. Current Player configures house rules and starts game against computer player.
