@@ -5,7 +5,7 @@ Meetings:
 
 #A. Move Token
 
-1. Typical Dice roll
+1. Typical Dice roll during Pass'n'Play mode.
 
 2. Player rolls double.
 
