@@ -1,0 +1,39 @@
+\documentclass{article}
+
+% For embedding of MetaPost code
+\usepackage{emp}
+
+% These packages aren't necessary for MetaUML
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+
+\begin{document}
+
+% MetaUML setup
+\begin{empfile}
+\begin{empcmds}
+input metauml;
+\end{empcmds}
+
+% Begin actual document here
+
+% Some testing code
+% borrowed from 
+% http://www.cs.bgu.ac.il/~gwiener/software-engineering/how-to-embed-uml-in-latex/
+\begin{figure}
+\centering
+\begin{emp}[classdiag](20, 20)
+Class.A("A")()();
+Class.B("B")()();
+B.e = A.w + (-20, 0);
+drawObjects(A, B);
+link(inheritance)(B.e -- A.w);
+\end{emp}
+\caption{A class diagram}
+\end{figure}
+% End of testing code
+
+
+\end{empfile}
+\end{document}
