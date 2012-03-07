@@ -1,20 +1,27 @@
-Some scenarios should be 
-what to do when passing go, 
-landing on go to jail, 
-getting out of jail,
-free parking, 
-buying property, 
-simply moving, 
 paying rent, etc.
 
 ## Use cases
 
-# Move Token
+#A. Move Token
 
-Scenario A: Typical Dice roll
+1. Scenario A: Typical Dice roll
 
-Scenario B: Player rolls double.
+2. Player rolls double.
 
-# Manage Property
+3. Player passes the "Go" ActionSpace.
 
-# Change Money
+4. Player land on "Go to Jail ActionSpace"
+
+5. Player is in jail and rolls doubles to get out.
+
+6. Player is in jail and rolls unsuccessfully to get out.
+
+7. Player lands on "Free Parking" and collects the money.
+
+#B. Manage Property
+
+#C. Change Money
+
+#D. Use Special Card
+
+1. Player uses "Get Out of Jail Free" card.
