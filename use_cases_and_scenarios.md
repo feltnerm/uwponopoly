@@ -20,6 +20,9 @@ Meetings:
 7. Player lands on "Free Parking" and collects the money.
 
 #B. Manage Property
+1. Player has a monopoly and starts to improve those properties.
+
+2. Player doesn't have a monopoly and tries to improve a property.
 
 #C. Start Game
 1. Player starts game with default rules against computer player.
