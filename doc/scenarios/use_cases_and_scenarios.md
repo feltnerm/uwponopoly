@@ -35,6 +35,14 @@ Meetings:
     17. The system displays a message of which player's turn it is, and the player grudgingly relinquishes the keyboard.
 
 3. Current Player passes the "Go" ActionSpace.
+    1. The player has set up and started the game with the default "Passing Go" parameter set to $200, and the game is currently in progress.
+    2. It is the beginning of the player's turn and the player's token is three spaces away from the "GO" ActionSpace.
+    3. The player uses the dice control to roll the dice.
+    4. The dice control shows a "five" and a "two".
+    5. The player's token is advanced by seven spaces.
+    6. Since the token passed the "Go" ActionSpace, the player is credited with $200 to the player's game money.
+    7. The token lands on an unbought property.
+    8. The player tells the system that the player is done with the player's turn.
 
 4. Current Player land on "Go to Jail ActionSpace"
 
