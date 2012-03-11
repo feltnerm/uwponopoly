@@ -64,7 +64,7 @@ Meetings:
    2. The player uses the dice control to roll the dice.
    3. The dice control shows a "four" and a "three".
    4. The player's token advances 7 spaces to Free Parking.
-   5. The player's bank get's increased by $350.
+   5. The player's bank gets increased by $350.
    6. The Free Parking is now empty and has a balance of $350.
    7. The player tells the system that the player is done with the player's turn.
 
@@ -90,3 +90,10 @@ TODO: Specify how many players and computer players there are during configurati
 #D. Use Special Card
 
 1. Current Player uses "Get Out of Jail Free" card.
+   1. It is the beginning of the player's turn, the player's token is sitting in jail, and the player has one "Get Out Of Jail Free" card.
+   2. The player decides to use their get out of jail free card by selecting the special card control.
+   3. The player's token is removed from jail and is placed in the just visiting section of the jail space.
+   4. The player uses the dice control to roll the dice.
+   5. The dice control shows a "five" and a "1".
+   6. The player's token is advanced 6 spaces.
+   7. The player tells the system that the player is done with the player's turn.
