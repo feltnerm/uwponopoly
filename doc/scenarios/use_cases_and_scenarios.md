@@ -54,12 +54,19 @@ Meetings:
    5. The player tells the system that the player is done with the player's turn.
 
 6. Current Player is in jail and rolls unsuccessfully to get out.
-   1. It is the beginning of the player's turn, and the player is sitting in jail.
+   1. It is the beginning of the player's turn, and the player's token is sitting in jail.
    2. The player uses the dice control to roll the dice.
    3. The dice control shows a "four" and a "two".
    4. The player tells the system that the player is done with the player's turn.
 
 7. Current Player lands on "Free Parking" and collects the money.
+   1. It is the beginning of the player's turn, the player's token is sitting 7 spaces from the "Free Parking" space, and there is $350 in "Free Parking".
+   2. The player uses the dice control to roll the dice.
+   3. The dice control shows a "four" and a "three".
+   4. The player's token advances 7 spaces to Free Parking.
+   5. The player's bank get's increased by $350.
+   6. The Free Parking is now empty and has a balance of $350.
+   7. The player tells the system that the player is done with the player's turn.
 
 8. Current Player is in jail and rolls unsuccessfully to get out three times in a row.
    1. The player has configured the game to force payment after 3 failed attempts to get out of jail.
