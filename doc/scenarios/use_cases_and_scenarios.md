@@ -47,7 +47,7 @@ Meetings:
 4. Current Player land on "Go to Jail ActionSpace"
 
 5. Current Player is in jail and rolls doubles to get out.
-   1. It is the beginning of the player's turn, and the player is sitting in jail.
+   1. It is the beginning of the player's turn, and the player's token is sitting in jail.
    2. The player uses the dice control to roll the dice.
    3. The dice control shows two "fours".
    4. The player's token advances 8 spaces beyond jail.
@@ -60,6 +60,13 @@ Meetings:
    4. The player tells the system that the player is done with the player's turn.
 
 7. Current Player lands on "Free Parking" and collects the money.
+
+8. Current Player is in jail and rolls unsuccessfully to get out three times in a row.
+   1. The player has configured the game to force payment after 3 failed attempts to get out of jail.
+   2. It is the beginning of the player's turn, and the player is sitting in jail.
+   3. Since the player has failed three times to get out of jail, the player is charged a set sum of money, which is automatically deducted from the player's bank account.
+   4. The player's token is then removed from jail and placed in the "Just Visiting" portion.
+   5. The player tells the system that the player is done with the player's turn.
 
 #B. Manage Property
 1. Current Player has a monopoly and starts to improve those properties.
