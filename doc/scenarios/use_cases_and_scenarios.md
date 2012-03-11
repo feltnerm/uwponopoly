@@ -47,8 +47,17 @@ Meetings:
 4. Current Player land on "Go to Jail ActionSpace"
 
 5. Current Player is in jail and rolls doubles to get out.
+   1. It is the beginning of the player's turn, and the player is sitting in jail.
+   2. The player uses the dice control to roll the dice.
+   3. The dice control shows two "fours".
+   4. The player's token advances 8 spaces beyond jail.
+   5. The player tells the system that the player is done with the player's turn.
 
 6. Current Player is in jail and rolls unsuccessfully to get out.
+   1. It is the beginning of the player's turn, and the player is sitting in jail.
+   2. The player uses the dice control to roll the dice.
+   3. The dice control shows a "four" and a "two".
+   4. The player tells the system that the player is done with the player's turn.
 
 7. Current Player lands on "Free Parking" and collects the money.
 
