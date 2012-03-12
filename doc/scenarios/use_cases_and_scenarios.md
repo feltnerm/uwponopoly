@@ -54,7 +54,8 @@ Meetings:
 
 #B. Manage Property
 1. Current Player has a monopoly and starts to improve those properties.
-
+    1. The game has been set up and started.
+    2. The current player -- who owns all properties in a set of properties such that their color is the same -- has a 'monopoly' on this set.
 2. Current Player doesn't have a monopoly and tries to improve a property.
 
 #C. Start Game
