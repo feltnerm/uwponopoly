@@ -82,7 +82,8 @@ Meetings:
    5. The player tells the system that the player is done with the player's turn.
 
 #B. Manage Property
-    
+
+1. The player wants to improve (i.e., build a hotel or house) on a property.
     1. The game has been set up and started.
     2. Current Player owns the deeds to each property in a set of same-colored properties.
     3. The player selects to improve the property, and based on the cost and amount of money in the player's bank, builds a new improvement on that property. 
@@ -90,14 +91,14 @@ Meetings:
 #C. Start Game
 
 1. Current Player starts game with default settings.
-        1. The game loads the default settings and the user and computer are given default tokens. 
-        2. The player selects the number and type of players.
-        3. The game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
+    1. The game loads the default settings and the user and computer are given default tokens. 
+    2. The player selects the number and type of players.
+    3. The game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
 
 2. Current Player starts game with custom settings. 
-        1. The game loads a form the user can use to manipulate the variables and settings of the game.
-        2. The player selects the number and type of players.
-        3. THe game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
+    1. The game loads a form the user can use to manipulate the variables and settings of the game.
+    2. The player selects the number and type of players.
+    3. THe game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
 
 #D. Use Special Card
 
