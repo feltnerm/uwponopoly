@@ -98,7 +98,7 @@ Meetings:
 2. Current Player starts game with custom settings. 
     1. The game loads a form the user can use to manipulate the variables and settings of the game.
     2. The player selects the number and type of players.
-    3. THe game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
+    3. The game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
 
 #D. Use Special Card
 
