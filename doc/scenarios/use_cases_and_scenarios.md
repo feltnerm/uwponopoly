@@ -53,13 +53,12 @@ Meetings:
 7. Current Player lands on "Free Parking" and collects the money.
 
 #B. Manage Property
-1. Current Player has a monopoly and starts to improve those properties.
+    
     1. The game has been set up and started.
-    2. The current player -- who owns all properties in a set of properties such that their color is the same -- has a 'monopoly' on this set.
-2. Current Player doesn't have a monopoly and tries to improve a property.
+    2. Current Player owns the deeds to each property in a set of same-colored properties.
+    3. The player selects to improve the property, and based on the cost and amount of money in the player's bank, builds a new improvement on that property. 
 
 #C. Start Game
-TODO: Specify how many players and computer players there are during configuration.  
 
 1. Current Player starts game with default settings.
         1. The game loads the default settings and the user and computer are given default tokens. 
