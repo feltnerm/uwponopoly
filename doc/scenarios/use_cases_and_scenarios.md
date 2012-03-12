@@ -44,7 +44,13 @@ Meetings:
     7. The token lands on an unbought property.
     8. The player tells the system that the player is done with the player's turn.
 
-4. Current Player land on "Go to Jail ActionSpace"
+4. Current Player lands on "Go to Jail" ActionSpace.
+    1. The player has set up and started the game and the player's token is two spaces away from the "Go to Jail" ActionSpace.
+    2. It is the player's turn and the player uses the dice control to roll.
+    3. The dice control shows two "ones" and the player's token is advanced two spaces.
+    4. The player's token lands on the "Go to Jail" ActionSpace and is subsequently moved to the "Jail" space. The player's token does not pass the "Go" ActionSpace.
+    5. The dice control is deactivated.
+    6. The player tells the system that the player's move is over.
 
 5. Current Player is in jail and rolls doubles to get out.
 
