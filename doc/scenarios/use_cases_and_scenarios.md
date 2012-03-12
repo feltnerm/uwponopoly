@@ -61,9 +61,15 @@ Meetings:
 #C. Start Game
 TODO: Specify how many players and computer players there are during configuration.  
 
-1. Current Player starts game with default rules against computer player.
+1. Current Player starts game with default settings.
+        1. The game loads the default settings and the user and computer are given default tokens. 
+        2. The player selects the number and type of players.
+        3. The game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
 
-2. Current Player configures house rules and starts game against computer player.
+2. Current Player starts game with custom settings. 
+        1. The game loads a form the user can use to manipulate the variables and settings of the game.
+        2. The player selects the number and type of players.
+        3. THe game begins with the user's and computer's tokens on the 'Start' ActionSpace and the dice control is given to the user.
 
 #D. Use Special Card
 
