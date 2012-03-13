@@ -1,0 +1,2 @@
+all:
+	javac JavaPong.java
