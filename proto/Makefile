@@ -1,2 +1,2 @@
 all:
-	javac JavaPong.java
+	javac UWPonopoly.java
