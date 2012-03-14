@@ -49,6 +49,9 @@ class UWPonopoly implements Runnable
       window.add( gamepanel );
       window.pack();
 
+      // test code
+      testproperty = new Property( backbuffer );
+
      thread = new Thread(this);
      thread.start();
    }
@@ -78,6 +81,7 @@ class UWPonopoly implements Runnable
          // draw
          backbuffer.clear();
          gamepanel.repaint();
+         testproperty.repaint();
 
       }
    }

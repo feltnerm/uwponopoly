@@ -23,7 +23,7 @@ class GameFrame extends JFrame
    MyKeyboardAdapter keyboard_adapter;
 
 
-   GameFrame( String frame_title )
+   public GameFrame( String frame_title )
    {
       super(frame_title);
       // mouse events

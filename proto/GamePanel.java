@@ -23,7 +23,7 @@ class GamePanel extends JPanel
    MyMouseAdapter mouse_adapter;
    MyKeyboardAdapter keyboard_adapter;
 
-   GamePanel( GameBuffer gbuffer)
+   public GamePanel( GameBuffer gbuffer)
    {
       this.gbuffer = gbuffer;
 
