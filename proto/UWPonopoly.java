@@ -16,7 +16,6 @@ class UWPonopoly implements Runnable
 {
 
    private GameFrame window;
-   private GamePanel gamepanel;
    private GameBuffer backbuffer;
    private Thread thread;
 
@@ -26,10 +25,13 @@ class UWPonopoly implements Runnable
    static final int DESIRED_WIDTH = 550;
    static final int DESIRED_HEIGHT = 350;
 
+   // testing code
+   private GamePanel gamepanel;
+   private Property testproperty;
+
    public static void main(String[] args)
    {
       UWPonopoly uwponopoly = new UWPonopoly();
-      // goes to UWPonopoly() constructor from here
    }
 
    UWPonopoly()

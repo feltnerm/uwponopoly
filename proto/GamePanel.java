@@ -16,6 +16,8 @@ class GamePanel extends JPanel
 {
    GameBuffer gbuffer;
    //LinkedList <MouseEvent>mouse_events = new LinkedList<MouseEvent>();
+  
+   // Events
    Queue<MouseEvent> mouse_events;
    Queue<KeyEvent> key_events;
    MyMouseAdapter mouse_adapter;
