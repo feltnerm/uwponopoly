@@ -47,13 +47,15 @@ class UWPonopoly implements Runnable
       // setup gamepanel
       gamepanel = new GamePanel( backbuffer );
       window.add( gamepanel );
-      window.pack();
 
       // test code
       testproperty = new Property( backbuffer );
+      window.add( testproperty );
 
-     thread = new Thread(this);
-     thread.start();
+      window.pack();
+
+      thread = new Thread(this);
+      thread.start();
    }
 
    /** Implemented from Runnable
