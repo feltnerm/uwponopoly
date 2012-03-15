@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.*;
 import java.awt.FlowLayout;
+import java.awt.*;
 import java.util.*;
 
 /**
@@ -16,8 +17,12 @@ import java.util.*;
 class UWPonopoly implements Runnable
 {
 
+   // widgets
    private GameFrame window;
    private GameBuffer backbuffer;
+   private JPanel dashboard;
+
+
    private Thread thread;
 
    static final int TICK_LENGTH_MS = 10;
@@ -44,18 +49,22 @@ class UWPonopoly implements Runnable
       window.setSize(DESIRED_WIDTH,DESIRED_HEIGHT);
       //window.setResizable(false);
       window.setVisible(true);
-      window.setLayout( new FlowLayout() );
+      window.setLayout( new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS) );
 
       // setup gamepanel
       gamepanel = new GamePanel( backbuffer );
       window.getContentPane().add( gamepanel );
 
+      dashboard = new JPanel();
+      dashboard.setLayout( new FlowLayout() );
+
       // test code
       testproperty = new Property( backbuffer );
       window.getContentPane().add( testproperty );
-      window.getContentPane().add( new JSeparator(SwingConstants.VERTICAL) );
-      window.getContentPane().add( new JButton("Placeholder") );
-      window.getContentPane().add( new JButton("Button") );
+      window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL) );
+      window.getContentPane().add( dashboard );
+      dashboard.add( new JButton("Placeholder") );
+      dashboard.add( new JButton("Button") );
       //window.getContentPane().add( new JProgressBar(5,10) );
 
       window.pack();
