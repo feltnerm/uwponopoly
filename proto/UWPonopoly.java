@@ -49,7 +49,8 @@ class UWPonopoly implements Runnable
       window.setSize(DESIRED_WIDTH,DESIRED_HEIGHT);
       //window.setResizable(false);
       window.setVisible(true);
-      window.setLayout( new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS) );
+      //window.setLayout( new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS) );
+      window.setLayout( new BorderLayout() );
 
       // setup gamepanel
       gamepanel = new GamePanel( backbuffer );
@@ -60,9 +61,12 @@ class UWPonopoly implements Runnable
 
       // test code
       testproperty = new Property( backbuffer );
-      window.getContentPane().add( testproperty );
+      /*window.getContentPane().add( testproperty );
       window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL) );
-      window.getContentPane().add( dashboard );
+      window.getContentPane().add( dashboard );*/
+      window.getContentPane().add( testproperty , BorderLayout.NORTH);
+      window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.SOUTH );
+      window.getContentPane().add( dashboard, BorderLayout.SOUTH );
       dashboard.add( new JButton("Placeholder") );
       dashboard.add( new JButton("Button") );
       //window.getContentPane().add( new JProgressBar(5,10) );
