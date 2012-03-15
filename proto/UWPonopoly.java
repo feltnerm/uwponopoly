@@ -66,12 +66,12 @@ class UWPonopoly implements Runnable
       // @todo: make it work (?)
       property_context_panel = new JPanel();
       property_context_panel.setLayout( new BorderLayout());
-      property_context_panel.add( new JLabel("Connecticut Ave."));
-      property_context_panel.add( new JSeparator(SwingConstants.HORIZONTAL));
-      property_context_panel.add( new JButton("Buy"));
+      //property_context_panel.add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.NORTH);
+      property_context_panel.add( new JLabel("Connecticut Ave."), BorderLayout.NORTH);
+      property_context_panel.add( new JButton("Buy"), BorderLayout.WEST);
       sell_button = new JButton("Sell");
       sell_button.setEnabled(false);
-      property_context_panel.add( sell_button ); 
+      property_context_panel.add( sell_button, BorderLayout.EAST ); 
 
       dashboard_panel = new JPanel();
       dashboard_panel.setLayout( new FlowLayout() );
