@@ -23,6 +23,9 @@ class UWPonopoly implements Runnable
    private JPanel dashboard_panel;
    private JPanel dice_panel;
    private JPanel player_stats_panel;
+   private JPanel property_context_panel;
+
+   private JButton sell_button;
 
 
    private Thread thread;
@@ -58,12 +61,26 @@ class UWPonopoly implements Runnable
       gamepanel = new GamePanel( backbuffer );
       //window.getContentPane().add( gamepanel );
 
+      // PROPERTY CONTEXT PANEL - test code
+      // @todo: Separate module
+      // @todo: make it work (?)
+      property_context_panel = new JPanel();
+      property_context_panel.setLayout( new BorderLayout());
+      property_context_panel.add( new JLabel("Connecticut Ave."));
+      property_context_panel.add( new JSeparator(SwingConstants.HORIZONTAL));
+      property_context_panel.add( new JButton("Buy"));
+      sell_button = new JButton("Sell");
+      sell_button.setEnabled(false);
+      property_context_panel.add( sell_button ); 
+
       dashboard_panel = new JPanel();
       dashboard_panel.setLayout( new FlowLayout() );
       dice_panel = new JPanel();
       dice_panel.setLayout( new BorderLayout() );
       player_stats_panel = new JPanel();
       player_stats_panel.setLayout( new BorderLayout() );
+      player_stats_panel.add( new JLabel("Money: $ 314,159,265"), BorderLayout.NORTH );
+      player_stats_panel.add( new JLabel("Current Player: Pat the Pioneer"), BorderLayout.SOUTH );
 
       // test code
       testproperty = new Property( backbuffer );
@@ -76,17 +93,15 @@ class UWPonopoly implements Runnable
       window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.SOUTH );
       window.getContentPane().add( dashboard_panel, BorderLayout.SOUTH );
       //dashboard_panel.add( new JLabel("Current Player: Pat the Pioneer") );
+      dashboard_panel.add( property_context_panel );
       dashboard_panel.add( player_stats_panel );
       dashboard_panel.add( dice_panel );
-
       ImageIcon icon = createImageIcon("images/dice.jpg", "dice");
       //dice_panel.add( new JLabel("Dice", icon, JLabel.CENTER) , BorderLayout.NORTH);
       dice_panel.add( new JLabel(icon), BorderLayout.NORTH );
       dice_panel.add( new JButton("Roll!") , BorderLayout.SOUTH);
       //window.getContentPane().add( new JProgressBar(5,10) );
-     
-      player_stats_panel.add( new JLabel("Money: $ 314,159,265"), BorderLayout.NORTH );
-      player_stats_panel.add( new JLabel("Current Player: Pat the Pioneer"), BorderLayout.SOUTH );
+
 
       window.pack();
 
