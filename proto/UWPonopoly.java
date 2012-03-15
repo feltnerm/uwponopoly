@@ -20,7 +20,8 @@ class UWPonopoly implements Runnable
    // widgets
    private GameFrame window;
    private GameBuffer backbuffer;
-   private JPanel dashboard;
+   private JPanel dashboard_panel;
+   private JPanel dice_panel;
 
 
    private Thread thread;
@@ -56,19 +57,28 @@ class UWPonopoly implements Runnable
       gamepanel = new GamePanel( backbuffer );
       window.getContentPane().add( gamepanel );
 
-      dashboard = new JPanel();
-      dashboard.setLayout( new FlowLayout() );
+      dashboard_panel = new JPanel();
+      dashboard_panel.setLayout( new FlowLayout() );
+      dice_panel = new JPanel();
+      dice_panel.setLayout( new BorderLayout() );
 
       // test code
       testproperty = new Property( backbuffer );
       /*window.getContentPane().add( testproperty );
       window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL) );
-      window.getContentPane().add( dashboard );*/
+      window.getContentPane().add( dashboard_panel );*/
       window.getContentPane().add( testproperty , BorderLayout.NORTH);
       window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.SOUTH );
-      window.getContentPane().add( dashboard, BorderLayout.SOUTH );
-      dashboard.add( new JButton("Placeholder") );
-      dashboard.add( new JButton("Button") );
+      window.getContentPane().add( dashboard_panel, BorderLayout.SOUTH );
+      dashboard_panel.add( new JLabel("Current Player: Pat the Pioneer") );
+      dashboard_panel.add( new JButton("Placeholder") );
+      dashboard_panel.add( new JButton("Button") );
+      dashboard_panel.add( dice_panel );
+
+      ImageIcon icon = createImageIcon("images/dice.jpg", "dice");
+      //dice_panel.add( new JLabel("Dice", icon, JLabel.CENTER) , BorderLayout.NORTH);
+      dice_panel.add( new JLabel(icon), BorderLayout.NORTH );
+      dice_panel.add( new JButton("Roll!") , BorderLayout.SOUTH);
       //window.getContentPane().add( new JProgressBar(5,10) );
 
       window.pack();
@@ -161,6 +171,20 @@ class UWPonopoly implements Runnable
       catch ( java.util.NoSuchElementException exception )
       {
          // no events on queue, so nothing to do
+      }
+   }
+
+   // the following function is copyrighted!
+   // source: http://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
+   /** Returns an ImageIcon, or null if the path was invalid. */
+   protected static ImageIcon createImageIcon(String path,
+         String description) {
+      java.net.URL imgURL = UWPonopoly.class.getResource(path);
+      if (imgURL != null) {
+         return new ImageIcon(imgURL, description);
+      } else {
+         System.err.println("Couldn't find file: " + path);
+         return null;
       }
    }
 
