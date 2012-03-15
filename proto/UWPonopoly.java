@@ -1,10 +1,11 @@
 // Copyright Aaron Decker
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.*;
+import java.awt.FlowLayout;
 import java.util.*;
 
 /**
@@ -43,14 +44,19 @@ class UWPonopoly implements Runnable
       window.setSize(DESIRED_WIDTH,DESIRED_HEIGHT);
       //window.setResizable(false);
       window.setVisible(true);
+      window.setLayout( new FlowLayout() );
 
       // setup gamepanel
       gamepanel = new GamePanel( backbuffer );
-      window.add( gamepanel );
+      window.getContentPane().add( gamepanel );
 
       // test code
       testproperty = new Property( backbuffer );
-      window.add( testproperty );
+      window.getContentPane().add( testproperty );
+      window.getContentPane().add( new JSeparator(SwingConstants.VERTICAL) );
+      window.getContentPane().add( new JButton("Placeholder") );
+      window.getContentPane().add( new JButton("Button") );
+      //window.getContentPane().add( new JProgressBar(5,10) );
 
       window.pack();
 
