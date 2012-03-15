@@ -22,6 +22,7 @@ class UWPonopoly implements Runnable
    private GameBuffer backbuffer;
    private JPanel dashboard_panel;
    private JPanel dice_panel;
+   private JPanel player_stats_panel;
 
 
    private Thread thread;
@@ -61,6 +62,8 @@ class UWPonopoly implements Runnable
       dashboard_panel.setLayout( new FlowLayout() );
       dice_panel = new JPanel();
       dice_panel.setLayout( new BorderLayout() );
+      player_stats_panel = new JPanel();
+      player_stats_panel.setLayout( new BorderLayout() );
 
       // test code
       testproperty = new Property( backbuffer );
@@ -72,7 +75,8 @@ class UWPonopoly implements Runnable
       window.getContentPane().add( new JLabel(board_icon), BorderLayout.NORTH );
       window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.SOUTH );
       window.getContentPane().add( dashboard_panel, BorderLayout.SOUTH );
-      dashboard_panel.add( new JLabel("Current Player: Pat the Pioneer") );
+      //dashboard_panel.add( new JLabel("Current Player: Pat the Pioneer") );
+      dashboard_panel.add( player_stats_panel );
       dashboard_panel.add( dice_panel );
 
       ImageIcon icon = createImageIcon("images/dice.jpg", "dice");
@@ -80,6 +84,9 @@ class UWPonopoly implements Runnable
       dice_panel.add( new JLabel(icon), BorderLayout.NORTH );
       dice_panel.add( new JButton("Roll!") , BorderLayout.SOUTH);
       //window.getContentPane().add( new JProgressBar(5,10) );
+     
+      player_stats_panel.add( new JLabel("Money: $ 314,159,265"), BorderLayout.NORTH );
+      player_stats_panel.add( new JLabel("Current Player: Pat the Pioneer"), BorderLayout.SOUTH );
 
       window.pack();
 
