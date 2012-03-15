@@ -67,8 +67,12 @@ class UWPonopoly implements Runnable
       property_context_panel = new JPanel();
       property_context_panel.setLayout( new BorderLayout());
       //property_context_panel.add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.NORTH);
-      property_context_panel.add( new JLabel("Connecticut Ave."), BorderLayout.NORTH);
+      ImageIcon property_icon = createImageIcon("images/boardwalk.jpg", "deed");
+      property_context_panel.add( new JLabel(property_icon), BorderLayout.NORTH);
       property_context_panel.add( new JButton("Buy"), BorderLayout.WEST);
+      JButton improve_button = new JButton("Improve");
+      improve_button.setEnabled(false);
+      property_context_panel.add( improve_button, BorderLayout.CENTER);
       sell_button = new JButton("Sell");
       sell_button.setEnabled(false);
       property_context_panel.add( sell_button, BorderLayout.EAST ); 
