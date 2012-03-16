@@ -49,7 +49,7 @@ class UWPonopoly implements Runnable
    {
       backbuffer = new GameBuffer(DESIRED_WIDTH,DESIRED_HEIGHT, Color.ORANGE);
       // setup window
-      window = new GameFrame("Java Pong");
+      window = new GameFrame("UWPonopoly");
       window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
       window.setSize(DESIRED_WIDTH,DESIRED_HEIGHT);
       //window.setResizable(false);
