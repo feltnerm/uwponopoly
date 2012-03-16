@@ -1,4 +1,14 @@
 #!/usr/bin/env sh
+#
+# Usage:
+#   ./run.sh [type]
+#
+#   ./run.sh
+#       - Compiles with the verbose flag
+#
+#   ./run.sh p
+#       - Compiles with no verbosity
+
 
 if [ -e UWPonopoly.class ]
 then
