@@ -104,11 +104,12 @@ class UWPonopoly implements Runnable
       dashboard_panel.add( dice_panel );
 
       // GAME BOARD
-      ImageIcon board_icon = createImageIcon("images/monopoly-board.png","board");
-      window.getContentPane().add( new JLabel(board_icon), BorderLayout.WEST);
+      //ImageIcon board_icon = createImageIcon("images/monopoly-board.png","board");
+      //window.getContentPane().add( new JLabel(board_icon), BorderLayout.WEST);
 
       // Properties
       testproperty = new Property( backbuffer );
+      window.getContentPane().add( testproperty );
       /*
       window.getContentPane().add( testproperty );
       window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL) );
