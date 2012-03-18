@@ -65,7 +65,7 @@ class UWPonopoly implements Runnable
 
       // DASHBOARD
       dashboard_panel = new JPanel();
-      dashboard_panel.setLayout( new FlowLayout() );
+      dashboard_panel.setLayout( new BoxLayout(dashboard_panel, BoxLayout.PAGE_AXIS) );
 
       // Property Context Panel
       property_context_panel = new JPanel();
@@ -105,7 +105,7 @@ class UWPonopoly implements Runnable
 
       // GAME BOARD
       ImageIcon board_icon = createImageIcon("images/monopoly-board.png","board");
-      window.getContentPane().add( new JLabel(board_icon), BorderLayout.NORTH );
+      window.getContentPane().add( new JLabel(board_icon), BorderLayout.WEST);
 
       // Properties
       testproperty = new Property( backbuffer );
@@ -117,8 +117,8 @@ class UWPonopoly implements Runnable
       //window.getContentPane().add( testproperty , BorderLayout.NORTH);
       
       // Dashboard Panel
-      window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.SOUTH );
-      window.getContentPane().add( dashboard_panel, BorderLayout.SOUTH );
+      //window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.SOUTH );
+      window.getContentPane().add( dashboard_panel, BorderLayout.EAST );
       //dashboard_panel.add( new JLabel("Current Player: Pat the Pioneer") );
       //dice_panel.add( new JLabel("Dice", icon, JLabel.CENTER) , BorderLayout.NORTH);
 
