@@ -24,8 +24,11 @@ class UWPonopoly implements Runnable
    // Game Board
    private GameFrame window;
    private GameBuffer backbuffer;
-   private GamePanel gamepanel;
+   private GameBuffer testbuffer;
+   //private GamePanel gamepanel;
+   //private GamePanel testpanel;
    private Property testproperty;
+   private Property testproperty2;
 
    // Player Stats Panel
    private JPanel dashboard_panel;
@@ -37,7 +40,7 @@ class UWPonopoly implements Runnable
 
    static final int TICK_LENGTH_MS = 10;
 
-   // Height & Width of the Board
+   // Height & Width of the Window
    static final int DESIRED_WIDTH = 550;
    static final int DESIRED_HEIGHT = 350;
 
@@ -48,7 +51,8 @@ class UWPonopoly implements Runnable
 
    UWPonopoly()
    {
-      backbuffer = new GameBuffer(DESIRED_WIDTH, DESIRED_HEIGHT, Color.ORANGE);
+      backbuffer = new GameBuffer(75, 75, Color.WHITE);
+      testbuffer = new GameBuffer(75, 75, Color.WHITE);
       
       // GAME WINDOW
       window = new GameFrame("UWPonopoly");
@@ -57,11 +61,16 @@ class UWPonopoly implements Runnable
       //window.setResizable(false);
       window.setVisible(true);
       //window.setLayout( new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS) );
-      window.setLayout( new BorderLayout() );
+      //window.setLayout( new BorderLayout() );
+      window.setLayout( new FlowLayout() );
 
       // GAME PANEL
-      gamepanel = new GamePanel( backbuffer );
-      //window.getContentPane().add( gamepanel );
+      /*gamepanel = new GamePanel( backbuffer );
+      gamepanel.add( new JButton("GamePanel") );
+      testpanel = new GamePanel( testbuffer );
+      testpanel.add( new JButton("TestPanel") );*/
+     // window.getContentPane().add( gamepanel );
+      //window.getContentPane().add( testpanel );
 
       // DASHBOARD
       dashboard_panel = new JPanel();
@@ -109,21 +118,17 @@ class UWPonopoly implements Runnable
 
       // Properties
       testproperty = new Property( backbuffer );
-      window.getContentPane().add( testproperty );
-      /*
-      window.getContentPane().add( testproperty );
-      window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL) );
-      window.getContentPane().add( dashboard_panel );
-      */
-      //window.getContentPane().add( testproperty , BorderLayout.NORTH);
-      
-      // Dashboard Panel
-      //window.getContentPane().add( new JSeparator(SwingConstants.HORIZONTAL), BorderLayout.SOUTH );
-      window.getContentPane().add( dashboard_panel, BorderLayout.EAST );
-      //dashboard_panel.add( new JLabel("Current Player: Pat the Pioneer") );
-      //dice_panel.add( new JLabel("Dice", icon, JLabel.CENTER) , BorderLayout.NORTH);
+      testproperty.setPreferredSize( new Dimension(75,75) );
+      testproperty2 = new Property( testbuffer );
+      testproperty2.setPreferredSize( new Dimension(75,75) );
 
-      //window.getContentPane().add( new JProgressBar(5,10) );
+      /*window.getContentPane().add( testproperty, BorderLayout.NORTH );
+      window.getContentPane().add( testproperty2, BorderLayout.SOUTH);
+      window.getContentPane().add( dashboard_panel, BorderLayout.EAST );*/
+
+      window.getContentPane().add( testproperty );
+      window.getContentPane().add( testproperty2 );
+      window.getContentPane().add( dashboard_panel );
 
       // Pack it and Start the Thread
       window.pack();
@@ -155,8 +160,8 @@ class UWPonopoly implements Runnable
 
          // draw
          backbuffer.clear();
-         gamepanel.repaint();
          testproperty.repaint();
+         testproperty2.repaint();
 
       }
    }
@@ -165,7 +170,7 @@ class UWPonopoly implements Runnable
    {
       try
       {
-         MouseEvent e = gamepanel.getNextMouseEvent();
+         MouseEvent e = testproperty.getNextMouseEvent();
          if( e.getID() == MouseEvent.MOUSE_RELEASED )
          {
          }
