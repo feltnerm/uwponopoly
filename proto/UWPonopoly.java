@@ -23,12 +23,6 @@ class UWPonopoly implements Runnable
 
    // Game Board
    private GameFrame window;
-   //private GameBuffer backbuffer;
-   //private GameBuffer testbuffer;
-   //private GamePanel gamepanel;
-   //private GamePanel testpanel;
-   //private Property testproperty;
-   //private Property testproperty2;
    private Board board;
 
    // Player Stats Panel
@@ -53,8 +47,6 @@ class UWPonopoly implements Runnable
    UWPonopoly()
    {
       board = new Board();
-      //testbuffer = new GameBuffer(75, 75, Color.WHITE);
-      //backbuffer = new GameBuffer(75, 75, Color.WHITE);
       
       // GAME WINDOW
       window = new GameFrame("UWPonopoly");
@@ -65,14 +57,6 @@ class UWPonopoly implements Runnable
       //window.setLayout( new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS) );
       //window.setLayout( new BorderLayout() );
       window.setLayout( new FlowLayout() );
-
-      // GAME PANEL
-      /*gamepanel = new GamePanel( backbuffer );
-      gamepanel.add( new JButton("GamePanel") );
-      testpanel = new GamePanel( testbuffer );
-      testpanel.add( new JButton("TestPanel") );*/
-     // window.getContentPane().add( gamepanel );
-      //window.getContentPane().add( testpanel );
 
       // DASHBOARD
       dashboard_panel = new JPanel();
@@ -114,22 +98,6 @@ class UWPonopoly implements Runnable
       dashboard_panel.add( player_stats_panel );
       dashboard_panel.add( dice_panel );
 
-      // GAME BOARD
-      //ImageIcon board_icon = createImageIcon("images/monopoly-board.png","board");
-      //window.getContentPane().add( new JLabel(board_icon), BorderLayout.WEST);
-
-      // Properties
-      //testproperty = new Property( );
-      //testproperty.setPreferredSize( new Dimension(75,75) );
-      //testproperty2 = new Property( );
-      //testproperty2.setPreferredSize( new Dimension(75,75) );
-
-      /*window.getContentPane().add( testproperty, BorderLayout.NORTH );
-      window.getContentPane().add( testproperty2, BorderLayout.SOUTH);
-      window.getContentPane().add( dashboard_panel, BorderLayout.EAST );*/
-
-      //window.getContentPane().add( testproperty2 );
-      //window.getContentPane().add( testproperty );
       window.getContentPane().add( board );
       window.getContentPane().add( dashboard_panel );
 
@@ -162,8 +130,6 @@ class UWPonopoly implements Runnable
          handleKeyEvents();
 
          // draw
-         //testproperty.repaint();
-         //testproperty2.repaint();
          board.repaint();
 
       }
