@@ -23,8 +23,8 @@ class UWPonopoly implements Runnable
 
    // Game Board
    private GameFrame window;
-   private GameBuffer backbuffer;
-   private GameBuffer testbuffer;
+   //private GameBuffer backbuffer;
+   //private GameBuffer testbuffer;
    //private GamePanel gamepanel;
    //private GamePanel testpanel;
    private Property testproperty;
@@ -51,8 +51,8 @@ class UWPonopoly implements Runnable
 
    UWPonopoly()
    {
-      testbuffer = new GameBuffer(75, 75, Color.WHITE);
-      backbuffer = new GameBuffer(75, 75, Color.WHITE);
+      //testbuffer = new GameBuffer(75, 75, Color.WHITE);
+      //backbuffer = new GameBuffer(75, 75, Color.WHITE);
       
       // GAME WINDOW
       window = new GameFrame("UWPonopoly");
@@ -117,10 +117,10 @@ class UWPonopoly implements Runnable
       //window.getContentPane().add( new JLabel(board_icon), BorderLayout.WEST);
 
       // Properties
-      testproperty = new Property( backbuffer );
-      testproperty.setPreferredSize( new Dimension(75,75) );
-      testproperty2 = new Property( testbuffer );
-      testproperty2.setPreferredSize( new Dimension(75,75) );
+      testproperty = new Property( );
+      //testproperty.setPreferredSize( new Dimension(75,75) );
+      testproperty2 = new Property( );
+      //testproperty2.setPreferredSize( new Dimension(75,75) );
 
       /*window.getContentPane().add( testproperty, BorderLayout.NORTH );
       window.getContentPane().add( testproperty2, BorderLayout.SOUTH);

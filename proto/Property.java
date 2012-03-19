@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
+import java.awt.*;
 
 /**
  * Property: Represents a UWPonopoly Property
@@ -10,23 +11,27 @@ import java.awt.BasicStroke;
 class Property extends Space
 {
    // magic numbers for drawing the property
+   static int DESIRED_WIDTH  = 75;
+   static int DESIRED_HEIGHT = 75;
    static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
    static int BORDER_THICKNESS = 2;
    
-   private GameBuffer gbuffer;
-
    public Property( GameBuffer gbuffer )
    {
       super( gbuffer );
-      this.gbuffer = gbuffer;
       setSize(50,50);
+   }
+
+   public Property()
+   {
+      super( DESIRED_WIDTH,DESIRED_HEIGHT, Color.WHITE );
+      setPreferredSize( new Dimension(DESIRED_WIDTH,DESIRED_HEIGHT) );
    }
 
    @Override
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
-      gbuffer.clear();
       Graphics2D g2d = (Graphics2D) g;
       g.drawImage(gbuffer.getBuffer(),0,0,this);
       g.setColor(Color.BLUE);

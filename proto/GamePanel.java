@@ -41,6 +41,25 @@ class GamePanel extends JPanel
       addKeyListener(keyboard_adapter);
    }
 
+   public GamePanel( int width, int height, Color color )
+   {
+      gbuffer = new GameBuffer(width, height, color);
+
+      // mouse events
+      mouse_events = new LinkedList<MouseEvent>();
+
+      mouse_adapter = new MyMouseAdapter();
+      addMouseListener(mouse_adapter);
+      addMouseMotionListener(mouse_adapter);
+
+      // keyboard events
+      key_events = new LinkedList<KeyEvent>();
+
+      keyboard_adapter = new MyKeyboardAdapter();
+      addKeyListener(keyboard_adapter);
+
+   }
+
 
    /**
     * Draws the GamePanel
@@ -48,6 +67,7 @@ class GamePanel extends JPanel
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
+      gbuffer.clear();
       g.drawImage(gbuffer.getBuffer(),0,0,this);
    }
 
