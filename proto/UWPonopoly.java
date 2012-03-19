@@ -27,8 +27,8 @@ class UWPonopoly implements Runnable
    //private GameBuffer testbuffer;
    //private GamePanel gamepanel;
    //private GamePanel testpanel;
-   private Property testproperty;
-   private Property testproperty2;
+   //private Property testproperty;
+   //private Property testproperty2;
    private Board board;
 
    // Player Stats Panel
@@ -119,17 +119,18 @@ class UWPonopoly implements Runnable
       //window.getContentPane().add( new JLabel(board_icon), BorderLayout.WEST);
 
       // Properties
-      testproperty = new Property( );
+      //testproperty = new Property( );
       //testproperty.setPreferredSize( new Dimension(75,75) );
-      testproperty2 = new Property( );
+      //testproperty2 = new Property( );
       //testproperty2.setPreferredSize( new Dimension(75,75) );
 
       /*window.getContentPane().add( testproperty, BorderLayout.NORTH );
       window.getContentPane().add( testproperty2, BorderLayout.SOUTH);
       window.getContentPane().add( dashboard_panel, BorderLayout.EAST );*/
 
-      window.getContentPane().add( testproperty2 );
-      window.getContentPane().add( testproperty );
+      //window.getContentPane().add( testproperty2 );
+      //window.getContentPane().add( testproperty );
+      window.getContentPane().add( board );
       window.getContentPane().add( dashboard_panel );
 
       // Pack it and Start the Thread
@@ -161,8 +162,9 @@ class UWPonopoly implements Runnable
          handleKeyEvents();
 
          // draw
-         testproperty.repaint();
-         testproperty2.repaint();
+         //testproperty.repaint();
+         //testproperty2.repaint();
+         board.repaint();
 
       }
    }
@@ -171,7 +173,7 @@ class UWPonopoly implements Runnable
    {
       try
       {
-         MouseEvent e = testproperty.getNextMouseEvent();
+         MouseEvent e = board.getNextMouseEvent();
          if( e.getID() == MouseEvent.MOUSE_RELEASED )
          {
          }
