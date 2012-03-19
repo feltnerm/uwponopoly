@@ -29,6 +29,7 @@ class UWPonopoly implements Runnable
    //private GamePanel testpanel;
    private Property testproperty;
    private Property testproperty2;
+   private Board board;
 
    // Player Stats Panel
    private JPanel dashboard_panel;
@@ -51,6 +52,7 @@ class UWPonopoly implements Runnable
 
    UWPonopoly()
    {
+      board = new Board();
       //testbuffer = new GameBuffer(75, 75, Color.WHITE);
       //backbuffer = new GameBuffer(75, 75, Color.WHITE);
       
