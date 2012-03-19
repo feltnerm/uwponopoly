@@ -51,8 +51,8 @@ class UWPonopoly implements Runnable
 
    UWPonopoly()
    {
-      backbuffer = new GameBuffer(75, 75, Color.WHITE);
       testbuffer = new GameBuffer(75, 75, Color.WHITE);
+      backbuffer = new GameBuffer(75, 75, Color.WHITE);
       
       // GAME WINDOW
       window = new GameFrame("UWPonopoly");
@@ -126,8 +126,8 @@ class UWPonopoly implements Runnable
       window.getContentPane().add( testproperty2, BorderLayout.SOUTH);
       window.getContentPane().add( dashboard_panel, BorderLayout.EAST );*/
 
-      window.getContentPane().add( testproperty );
       window.getContentPane().add( testproperty2 );
+      window.getContentPane().add( testproperty );
       window.getContentPane().add( dashboard_panel );
 
       // Pack it and Start the Thread
@@ -159,7 +159,6 @@ class UWPonopoly implements Runnable
          handleKeyEvents();
 
          // draw
-         backbuffer.clear();
          testproperty.repaint();
          testproperty2.repaint();
 

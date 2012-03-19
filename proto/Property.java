@@ -12,10 +12,13 @@ class Property extends Space
    // magic numbers for drawing the property
    static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
    static int BORDER_THICKNESS = 2;
+   
+   private GameBuffer gbuffer;
 
    public Property( GameBuffer gbuffer )
    {
       super( gbuffer );
+      this.gbuffer = gbuffer;
       setSize(50,50);
    }
 
@@ -23,6 +26,7 @@ class Property extends Space
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
+      gbuffer.clear();
       Graphics2D g2d = (Graphics2D) g;
       g.drawImage(gbuffer.getBuffer(),0,0,this);
       g.setColor(Color.BLUE);
