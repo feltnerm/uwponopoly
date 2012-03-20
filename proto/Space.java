@@ -15,8 +15,8 @@ import java.awt.Dimension;
 class Space extends GamePanel
 {
    // defaults and magic numbers
-   private static int DESIRED_WIDTH  = 75;
-   private static int DESIRED_HEIGHT = 75;
+   public static int SPACE_WIDTH  = 50; // Board uses this
+   public static int SPACE_HEIGHT = 50; // Board uses this
    private static int TITLE_FONT_SIZE = 10;
    private static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
    protected static int BORDER_THICKNESS = 2;
@@ -29,8 +29,8 @@ class Space extends GamePanel
 
    public Space() // no-parameter testing constructor
    {
-      super( DESIRED_WIDTH,DESIRED_HEIGHT, Color.WHITE );
-      setPreferredSize( new Dimension(DESIRED_WIDTH,DESIRED_HEIGHT) );
+      super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
+      setPreferredSize( new Dimension(SPACE_WIDTH,SPACE_HEIGHT) );
       title=("Default");
 
    }

@@ -7,15 +7,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 class Board extends GamePanel
 {
    // defaults
-   private static int DEFAULT_WIDTH = 500;
-   private static int DEFAULT_HEIGHT = 500;
+   private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
+   private static int DEFAULT_WIDTH = Space.SPACE_WIDTH * DEFAULT_NUMBER_SPACES;
+   private static int DEFAULT_HEIGHT = Space.SPACE_HEIGHT * DEFAULT_NUMBER_SPACES;
    private static Color DEFAULT_COLOR = Color.WHITE;
    //private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
-   private static int DEFAULT_NUMBER_SPACES = 16; // standard monopoly board
 
    private int num_spaces;
    private Space[] spaces;
@@ -82,6 +83,7 @@ class Board extends GamePanel
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
+      //draw spaces
       for( int i = 0; i < num_spaces - 1; i++)
       {
          if( spaces[i] != null )
@@ -91,6 +93,10 @@ class Board extends GamePanel
             System.out.println("spaces[ " + i + "] in Board is null");
          }
       }
+
+      // draw strings in middle of board for testing
+      Font font = new Font("Helvetica", Font.PLAIN, 24);
+      g.drawString( "hi", 250,250);
    }
 
 }
