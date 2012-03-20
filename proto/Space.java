@@ -11,7 +11,7 @@ import java.awt.event.*;
 
 class Space extends GamePanel
 {
-   protected static int BORDER_THICKNESS = 3;
+   protected static int BORDER_THICKNESS = 2;
    private static Color BORDER_COLOR_DEFAULT = Color.BLACK;
    private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
    private Color border_color;
@@ -28,10 +28,17 @@ class Space extends GamePanel
    }
 
    @Override
-   protected boolean handleMousePressed(MouseEvent e)
+   protected boolean handleMouseEntered(MouseEvent e)
    {
-      super.handleMousePressed(e);
+      //super.handleMousePressed(e);
       border_color = BORDER_COLOR_HIGHLIGHT;
+      return true;
+   }
+
+   @Override
+   protected boolean handleMouseExited(MouseEvent e)
+   {
+      border_color = BORDER_COLOR_DEFAULT;
       return true;
    }
 

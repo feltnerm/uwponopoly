@@ -95,6 +95,9 @@ class GamePanel extends JPanel
    protected boolean handleMouseDragged(MouseEvent e) { return false; }
    protected boolean handleMousePressed(MouseEvent e) { return false; }
    protected boolean handleMouseReleased(MouseEvent e) { return false; }
+   protected boolean handleMouseEntered(MouseEvent e) { return false; }
+   protected boolean handleMouseExited(MouseEvent e) { return false; }
+   protected boolean handleMouseClicked(MouseEvent e) { return false; }
    
    class MyMouseAdapter extends MouseAdapter
    {
@@ -114,6 +117,24 @@ class GamePanel extends JPanel
       {
          if( !handleMouseReleased( e ) )
             mouse_events.offer(e);
+      }
+
+      public void mouseEntered(MouseEvent e)
+      {
+         if( !handleMouseEntered( e ) )
+               mouse_events.offer(e);
+      }
+
+      public void mouseExited(MouseEvent e)
+      {
+         if( !handleMouseExited( e ) )
+               mouse_events.offer(e);
+      }
+
+      public void mouseClicked(MouseEvent e)
+      {
+         if( !handleMouseClicked( e ) )
+               mouse_events.offer(e);
       }
 
    };
