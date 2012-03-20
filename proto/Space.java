@@ -25,6 +25,7 @@ class Space extends GamePanel
 
    private Color border_color;
    private String title;
+   private int x_coor,y_coor; // x and y coordinates for placing on board
 
    public Space() // no-parameter testing constructor
    {
@@ -90,5 +91,11 @@ class Space extends GamePanel
    {
       this.title = title;
    }
+   
+   public void setXCoor( int x ) { x_coor = x; }
+   public void setYCoor( int y ) { y_coor = y; }
+   public int getXCoor() { return x_coor; }
+   public int getYCoor() { return y_coor; }
+
 
 }
