@@ -5,6 +5,8 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 
 class Board extends GamePanel
 {
@@ -13,7 +15,7 @@ class Board extends GamePanel
    private static int DEFAULT_HEIGHT = 500;
    private static Color DEFAULT_COLOR = Color.WHITE;
    //private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
-   private static int DEFAULT_NUMBER_SPACES = 4; // standard monopoly board
+   private static int DEFAULT_NUMBER_SPACES = 8; // standard monopoly board
 
    private int num_spaces;
    private Space[] spaces;
@@ -25,10 +27,15 @@ class Board extends GamePanel
    Board()
    {
       super( DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR );
+      setLayout(new GridLayout(3,3));
       num_spaces = DEFAULT_NUMBER_SPACES;
       spaces = new Space[num_spaces];
-      for(int i = 0; i < 4; i++)
+      for(int i = 0; i < DEFAULT_NUMBER_SPACES; i++)
       {
+         if( i == 4)
+         {
+            add( new JLabel("")  );// empty cell
+         }
          spaces[i] = new Space();
          spaces[i].setTitle("Property " + i);
          add( spaces[i] );
