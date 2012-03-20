@@ -14,7 +14,6 @@ class Property extends Space
    static int DESIRED_WIDTH  = 75;
    static int DESIRED_HEIGHT = 75;
    static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
-   static int BORDER_THICKNESS = 2;
    
    public Property( GameBuffer gbuffer )
    {
@@ -32,15 +31,16 @@ class Property extends Space
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
-      Graphics2D g2d = (Graphics2D) g;
-      g.drawImage(gbuffer.getBuffer(),0,0,this);
+      //Graphics2D g2d = (Graphics2D) g;
+      //g.drawImage(gbuffer.getBuffer(),0,0,this);
       g.setColor(Color.BLUE);
-      g.fillRect(0,0, gbuffer.getWidth(), (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
+      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth(), (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
+      // Moved to paintComponent in Space.java,, because all spaces have an outline -- Aaron
       // draw outline
-      g2d.setColor(Color.BLACK);
+      /*g2d.setColor(Color.BLACK);
       BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
       g2d.setStroke(bs1);
-      g2d.drawRect(0,0, gbuffer.getWidth(), gbuffer.getHeight() );
+      g2d.drawRect(0,0, gbuffer.getWidth(), gbuffer.getHeight() );*/
    }
 }

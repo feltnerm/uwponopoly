@@ -87,22 +87,33 @@ class GamePanel extends JPanel
          return true;
       return false;
    }
+
+   // The following classes are for overriding in subclasses
+   // to handle the events that are wanted.
+   // Return false from the method to have the event put on the queue.
+
+   protected boolean handleMouseDragged(MouseEvent e) { return false; }
+   protected boolean handleMousePressed(MouseEvent e) { return false; }
+   protected boolean handleMouseReleased(MouseEvent e) { return false; }
    
    class MyMouseAdapter extends MouseAdapter
    {
       public void mouseDragged(MouseEvent e)
       {
-         mouse_events.offer(e);
+         if( !handleMouseDragged( e ) )
+               mouse_events.offer(e);
       }
 
       public void mousePressed(MouseEvent e)
       {
-         mouse_events.offer(e);
+         if( !handleMousePressed( e ) )
+            mouse_events.offer(e);
       }
 
       public void mouseReleased(MouseEvent e)
       {
-         mouse_events.offer(e);
+         if( !handleMouseReleased( e ) )
+            mouse_events.offer(e);
       }
 
    };
