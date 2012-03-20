@@ -1,4 +1,5 @@
 all:
+	rm *.class
 	javac UWPonopoly.java
 
 clean:
