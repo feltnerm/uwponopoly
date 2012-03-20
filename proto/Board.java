@@ -29,8 +29,8 @@ class Board extends GamePanel
       spaces = new Space[num_spaces];
       for(int i = 0; i < 4; i++)
       {
-         spaces[i] = new Property();
-         ((Property)spaces[i]).setTitle("Property " + i);
+         spaces[i] = new Space();
+         spaces[i].setTitle("Property " + i);
          add( spaces[i] );
       }
    }
