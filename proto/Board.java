@@ -43,35 +43,32 @@ class Board extends GamePanel
       int side = (num_spaces/4) + 1; // length, in Spaces, of a side of the board
       int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
       setLayout(new GridLayout(side,side));
+      
+      // construct the spaces
+      for( int i = 0; i < num_spaces; i++)
+      {
+         spaces[i] = new Space();
+         spaces[i].setTitle("Property " + i);
+      }
       for( int i = 0; i < side; i++) // draw the top row
       {
-         spaces[i] = new Space();
-         spaces[i].setTitle("Property " + i);
          add( spaces[i] );
       }
-      for( int i = side; i < num_spaces - side; i++) // draw everything in the middle
+      for( int i = side; i < side + side_empty; i++) // draw everything in the middle
       {
-         // add Space on one side
-         spaces[i] = new Space();
-         spaces[i].setTitle("Property " + i);
-         add( spaces[i] );
+         add( spaces[ num_spaces - (i - side) - 1 ] );
 
          // fill in the gaps with empty JLabels
          for( int j = 0; j < side_empty; j++)
             add( new JLabel("") );
 
          // add Space to the other side
-         i++;
-         spaces[i] = new Space();
-         spaces[i].setTitle("Property " + i);
+         //i++;
          add( spaces[i] );
       }
-      for( int i = num_spaces - side; i < num_spaces; i++) // draw bottom row
+      for( int i = num_spaces - side_empty - 1; i >= side + side_empty;  i--) // draw bottom row
       {
-         spaces[i] = new Space();
-         spaces[i].setTitle("Property " + i);
          add( spaces[i] );
-
       }
 
    }
