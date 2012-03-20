@@ -30,7 +30,6 @@ class Space extends GamePanel
    @Override
    protected boolean handleMouseEntered(MouseEvent e)
    {
-      //super.handleMousePressed(e);
       border_color = BORDER_COLOR_HIGHLIGHT;
       return true;
    }
