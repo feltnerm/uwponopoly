@@ -43,7 +43,8 @@ class Space extends GamePanel
       title=("Default");
 
    }
-   public Space( GameBuffer gbuffer )
+
+   /*public Space( GameBuffer gbuffer )
    {
       super( gbuffer );
       deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
@@ -56,7 +57,7 @@ class Space extends GamePanel
       super( width, height, color );
       deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
       drawDeed();
-   }
+   }*/
 
    // Implement begin selected
    @Override
