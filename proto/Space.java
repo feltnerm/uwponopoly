@@ -22,10 +22,12 @@ class Space extends GamePanel
    protected static int BORDER_THICKNESS = 2;
    private static Color BORDER_COLOR_DEFAULT = Color.BLACK;
    private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
+   private static Color BORDER_COLOR_SELECTED = Color.RED;
 
    private Color border_color;
    private String title;
    private int x_coor,y_coor; // x and y coordinates for placing on board
+   private boolean selected; // whether or not it is selected
 
    public Space() // no-parameter testing constructor
    {
@@ -45,11 +47,20 @@ class Space extends GamePanel
       super( width, height, color );
    }
 
+   // Implement begin selected
+   @Override
+   protected boolean handleMouseClicked(MouseEvent e)
+   {
+      setSelected(true);
+      return true;
+   }
+
    // Implements highlighting on mouse-over
    @Override
    protected boolean handleMouseEntered(MouseEvent e)
    {
-      border_color = BORDER_COLOR_HIGHLIGHT;
+      if( !isSelected() )
+         border_color = BORDER_COLOR_HIGHLIGHT;
       return true;
    }
 
@@ -57,7 +68,8 @@ class Space extends GamePanel
    @Override
    protected boolean handleMouseExited(MouseEvent e)
    {
-      border_color = BORDER_COLOR_DEFAULT;
+      if( !isSelected() )
+         border_color = BORDER_COLOR_DEFAULT;
       return true;
    }
 
@@ -96,6 +108,16 @@ class Space extends GamePanel
    public void setYCoor( int y ) { y_coor = y; }
    public int getXCoor() { return x_coor; }
    public int getYCoor() { return y_coor; }
+
+   public boolean isSelected() { return selected; }
+   public void setSelected( boolean selected ) 
+   { 
+      this.selected = selected; 
+      if( selected )
+         border_color = BORDER_COLOR_SELECTED;
+      else
+         border_color = BORDER_COLOR_DEFAULT;
+   }
 
 
 }

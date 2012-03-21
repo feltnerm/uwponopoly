@@ -21,6 +21,8 @@ class Board extends GamePanel
    private int num_spaces;
    private Space[] spaces;
 
+   private int selected_space; // index location of the currently selected space
+
    /**
     * Testing constructor.
     * Generates a standard board where each Space is individually numbered.
@@ -78,6 +80,27 @@ class Board extends GamePanel
    {
       super( DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR );
    }
+
+   /**
+    * Takes the milliseconds since the last time it was called as a parameter.
+    * Useful for animation, things that need updated, etc.
+    */
+   public void tick( int milliseconds ) // like a run() function for board
+   {
+      // update which space is selected
+      //setSeletedSpace(-1); // clear the selected space
+      for( int i = 0; i < num_spaces; i++)
+      {
+         // new selection?
+         if( spaces[i].isSelected() && selected_space != i )
+            setSeletedSpace(i);
+      }
+      for( int i = 0; i < num_spaces; i++)
+      {
+         if( i != selected_space )
+            spaces[i].setSelected( false );
+      }
+   }
    
    @Override
    public void paintComponent(Graphics g)
@@ -94,9 +117,16 @@ class Board extends GamePanel
          }
       }
 
+
+
       // draw strings in middle of board for testing
       Font font = new Font("Helvetica", Font.PLAIN, 24);
-      g.drawString( "hi", 250,250);
+      g.drawString( Integer.toString(selected_space),250,250);
+   }
+
+   void setSeletedSpace( int space )
+   {
+      selected_space = space;
    }
 
 }
