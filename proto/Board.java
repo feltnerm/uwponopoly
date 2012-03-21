@@ -46,7 +46,7 @@ class Board extends GamePanel
       }*/
       int side = (num_spaces/4) + 1; // length, in Spaces, of a side of the board
       int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
-      setLayout(new GridLayout(side,side));
+      setLayout(new GridLayout(side,side,1,1));
       
       // construct the spaces
       for( int i = 0; i < num_spaces; i++)
