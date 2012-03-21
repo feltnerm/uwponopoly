@@ -52,6 +52,8 @@ class Board extends GamePanel
       {
          spaces[i] = new Space();
          spaces[i].setTitle("Property " + i);
+         spaces[i].setBoard(this);
+         spaces[i].setBoardIndex(i);
       }
       for( int i = 0; i < side; i++) // draw the top row
       {
@@ -89,7 +91,7 @@ class Board extends GamePanel
    {
       // update which space is selected
       //setSeletedSpace(-1); // clear the selected space
-      for( int i = 0; i < num_spaces; i++)
+      /*for( int i = 0; i < num_spaces; i++)
       {
          // new selection?
          if( spaces[i].isSelected() && selected_space != i )
@@ -99,7 +101,7 @@ class Board extends GamePanel
       {
          if( i != selected_space )
             spaces[i].setSelected( false );
-      }
+      }*/
    }
    
    @Override
@@ -126,7 +128,11 @@ class Board extends GamePanel
 
    void setSeletedSpace( int space )
    {
-      selected_space = space;
+      if( space > 0 && space < num_spaces ) // check for validity
+      {
+         spaces[space].setSelected( false ); // turn last selected space off
+         selected_space = space;
+      }
    }
 
 }

@@ -27,7 +27,9 @@ class Space extends GamePanel
    private Color border_color;
    private String title;
    private int x_coor,y_coor; // x and y coordinates for placing on board
-   private boolean selected; // whether or not it is selected
+   private boolean selected;
+   private Board board;
+   private int board_index;
 
    public Space() // no-parameter testing constructor
    {
@@ -52,6 +54,7 @@ class Space extends GamePanel
    protected boolean handleMouseClicked(MouseEvent e)
    {
       setSelected(true);
+      board.setSeletedSpace( board_index );
       return true;
    }
 
@@ -68,8 +71,7 @@ class Space extends GamePanel
    @Override
    protected boolean handleMouseExited(MouseEvent e)
    {
-      if( !isSelected() )
-         border_color = BORDER_COLOR_DEFAULT;
+      border_color = BORDER_COLOR_DEFAULT;
       return true;
    }
 
@@ -110,7 +112,7 @@ class Space extends GamePanel
    public int getYCoor() { return y_coor; }
 
    public boolean isSelected() { return selected; }
-   public void setSelected( boolean selected ) 
+   public void setSelected( boolean selected )
    { 
       this.selected = selected; 
       if( selected )
@@ -118,6 +120,9 @@ class Space extends GamePanel
       else
          border_color = BORDER_COLOR_DEFAULT;
    }
+
+   public void setBoard( Board board ) { this.board = board; }
+   public void setBoardIndex( int index ) { board_index = index; }
 
 
 }
