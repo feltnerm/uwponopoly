@@ -60,6 +60,8 @@ class GamePanel extends JPanel
 
    }
 
+   public void setGameBuffer( GameBuffer gbuffer ) { this.gbuffer = gbuffer; }
+
 
    /**
     * Draws the GamePanel

@@ -17,6 +17,8 @@ class Space extends GamePanel
    // defaults and magic numbers
    public static int SPACE_WIDTH  = 50; // Board uses this
    public static int SPACE_HEIGHT = 50; // Board uses this
+   public static int DEED_WIDTH = 100;
+   public static int DEED_HEIGHT = 100;
    private static int TITLE_FONT_SIZE = 10;
    private static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
    protected static int BORDER_THICKNESS = 2;
@@ -30,10 +32,13 @@ class Space extends GamePanel
    private boolean selected;
    private Board board;
    private int board_index;
+   private GameBuffer deed_buffer;
 
    public Space() // no-parameter testing constructor
    {
       super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
+      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.RED );
+      drawDeed();
       setPreferredSize( new Dimension(SPACE_WIDTH,SPACE_HEIGHT) );
       title=("Default");
 
@@ -41,12 +46,16 @@ class Space extends GamePanel
    public Space( GameBuffer gbuffer )
    {
       super( gbuffer );
+      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.RED );
+      drawDeed();
       border_color = BORDER_COLOR_DEFAULT;
    }
 
    public Space( int width, int height, Color color)
    {
       super( width, height, color );
+      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.RED );
+      drawDeed();
    }
 
    // Implement begin selected
@@ -101,6 +110,20 @@ class Space extends GamePanel
       g.drawString( title, (int)(gbuffer.getWidth()/2) - (int)(rect.getWidth()/2) , 
                            (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
    }
+
+   private void drawDeed()
+   {
+      if(deed_buffer == null)
+         return;
+      Graphics g = deed_buffer.getGraphics();
+      // dummy testing code 
+      g.setColor(Color.BLUE);
+      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth(), (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
+      g.setColor(Color.BLACK);
+      Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
+      g.drawString( "in deed", 0, 0);
+      //deed_buffer.repaint();
+   }
    
    public void setTitle( String title)
    {
@@ -125,5 +148,6 @@ class Space extends GamePanel
    public void setBoard( Board board ) { this.board = board; }
    public void setBoardIndex( int index ) { board_index = index; }
 
+   public GameBuffer getDeedBuffer() { return deed_buffer; }
 
 }

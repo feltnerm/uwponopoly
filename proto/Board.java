@@ -22,6 +22,7 @@ class Board extends GamePanel
    private Space[] spaces;
 
    private int selected_space; // index location of the currently selected space
+   private GamePanel deed_panel;
 
    /**
     * Testing constructor.
@@ -107,8 +108,6 @@ class Board extends GamePanel
          }
       }
 
-
-
       // draw strings in middle of board for testing
       Font font = new Font("Helvetica", Font.PLAIN, 24);
       g.drawString( Integer.toString(selected_space),250,250);
@@ -121,8 +120,12 @@ class Board extends GamePanel
          spaces[selected_space].setSelected( false ); // turn last selected space off
          selected_space = space;
          spaces[selected_space].setSelected( true ); // turn new selection on
+         if( deed_panel != null )
+            deed_panel.setGameBuffer( spaces[selected_space].getDeedBuffer() );
       }
    }
+
+   void setDeedPanel( GamePanel panel) { deed_panel = panel; }
 
 }
 

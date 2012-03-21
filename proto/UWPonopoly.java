@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.*;
 import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.*;
 import java.util.*;
 
@@ -30,6 +31,7 @@ class UWPonopoly implements Runnable
    private JPanel dice_panel;
    private JPanel player_stats_panel;
    private JPanel property_context_panel;
+   private GamePanel deed_panel;
 
    private JButton sell_button;
 
@@ -46,7 +48,6 @@ class UWPonopoly implements Runnable
 
    UWPonopoly()
    {
-      board = new Board();
       
       // GAME WINDOW
       window = new GameFrame("UWPonopoly");
@@ -58,6 +59,9 @@ class UWPonopoly implements Runnable
       //window.setLayout( new BorderLayout() );
       window.setLayout( new FlowLayout() );
 
+      // Game Board
+      board = new Board();
+
       // DASHBOARD
       dashboard_panel = new JPanel();
       dashboard_panel.setLayout( new BoxLayout(dashboard_panel, BoxLayout.PAGE_AXIS) );
@@ -66,7 +70,10 @@ class UWPonopoly implements Runnable
       property_context_panel = new JPanel();
       property_context_panel.setLayout( new BorderLayout());
 
-      ImageIcon property_icon = createImageIcon("images/boardwalk.jpg", "deed");
+      //ImageIcon property_icon = createImageIcon("images/boardwalk.jpg", "deed");
+      deed_panel = new GamePanel(500,100, Color.WHITE); // we don't need the default GameBuffer
+      deed_panel.setPreferredSize( new Dimension(Space.DEED_WIDTH,Space.DEED_HEIGHT) );
+      board.setDeedPanel( deed_panel );
       
       JButton improve_button  = new JButton("Improve");
       improve_button.setEnabled(false);
@@ -74,7 +81,8 @@ class UWPonopoly implements Runnable
       JButton sell_button     = new JButton("Sell");
       sell_button.setEnabled(false);
 
-      property_context_panel.add( new JLabel(property_icon), BorderLayout.NORTH);
+      //property_context_panel.add( new JLabel(property_icon), BorderLayout.NORTH);
+      property_context_panel.add( deed_panel, BorderLayout.NORTH);
       property_context_panel.add( buy_button, BorderLayout.WEST);
       property_context_panel.add( improve_button, BorderLayout.CENTER);
       property_context_panel.add( sell_button, BorderLayout.EAST );
@@ -131,6 +139,7 @@ class UWPonopoly implements Runnable
 
          board.tick( TICK_LENGTH_MS );
          board.repaint();
+         deed_panel.repaint();
 
       }
    }
