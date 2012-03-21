@@ -17,8 +17,8 @@ class Space extends GamePanel
    // defaults and magic numbers
    public static int SPACE_WIDTH  = 50; // Board uses this
    public static int SPACE_HEIGHT = 50; // Board uses this
-   public static int DEED_WIDTH = 100;
-   public static int DEED_HEIGHT = 100;
+   public static int DEED_WIDTH = 250;
+   public static int DEED_HEIGHT = 250;
    private static int TITLE_FONT_SIZE = 10;
    private static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
    protected static int BORDER_THICKNESS = 2;
@@ -38,12 +38,13 @@ class Space extends GamePanel
    public Space() // no-parameter testing constructor
    {
       super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
-      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
-      property_color = Color.BLUE; // senseless default
-      drawDeed();
+      property_color = Color.YELLOW; // senseless default
+      border_color = BORDER_COLOR_DEFAULT;
       setPreferredSize( new Dimension(SPACE_WIDTH,SPACE_HEIGHT) );
       title=("Default");
 
+      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
+      drawDeed();
    }
 
    /*public Space( GameBuffer gbuffer )
@@ -102,7 +103,7 @@ class Space extends GamePanel
      
       // draw color strip
       g.setColor(property_color);
-      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth(), (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
+      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth()-BORDER_THICKNESS, (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
       // Draw Property title
       Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
@@ -124,8 +125,19 @@ class Space extends GamePanel
       // dummy testing code 
       //clear the buffer
       deed_buffer.clear();
+
+      // draw outline
+      Graphics2D g2d = (Graphics2D) g;
+      g2d.setColor(border_color);
+      BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
+      g2d.setStroke(bs1);
+      g2d.drawRect(0,0, deed_buffer.getWidth(), deed_buffer.getHeight() );
+
+      // draw color strip
       g.setColor(property_color);
-      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, deed_buffer.getWidth(), (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
+      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, deed_buffer.getWidth()-BORDER_THICKNESS, (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
+
+      // draw punny string
       g.setColor(Color.BLACK);
       Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
       g.drawString( "in deed", 20, 20);
