@@ -63,7 +63,7 @@ class Space extends GamePanel
    protected boolean handleMouseClicked(MouseEvent e)
    {
       setSelected(true);
-      board.setSeletedSpace( board_index );
+      board.setSelectedSpace( board_index );
       return true;
    }
 

@@ -76,8 +76,8 @@ class Board extends GamePanel
       {
          add( spaces[i] );
       }
-      
-      setSeletedSpace(0);
+     
+      setSelectedSpace(0);
    }
 
    Board( String filename )
@@ -113,7 +113,7 @@ class Board extends GamePanel
       g.drawString( Integer.toString(selected_space),250,250);
    }
 
-   void setSeletedSpace( int space )
+   void setSelectedSpace( int space )
    {
       if( space >= 0 && space < num_spaces ) // check for validity
       {
@@ -125,7 +125,11 @@ class Board extends GamePanel
       }
    }
 
-   void setDeedPanel( GamePanel panel) { deed_panel = panel; }
+   void setDeedPanel( GamePanel panel) 
+   { 
+      deed_panel = panel; 
+      deed_panel.setGameBuffer( spaces[selected_space].getDeedBuffer() );
+   }
 
 }
 
