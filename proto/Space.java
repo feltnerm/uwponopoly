@@ -44,7 +44,7 @@ class Space extends GamePanel
       title=("Default");
 
       deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
-      drawDeed();
+      //drawDeed();
    }
 
    /*public Space( GameBuffer gbuffer )
@@ -113,6 +113,7 @@ class Space extends GamePanel
       g.setFont(font);
       g.drawString( title, (int)(gbuffer.getWidth()/2) - (int)(rect.getWidth()/2) , 
                            (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
+
    }
 
    private void drawDeed()
@@ -128,7 +129,7 @@ class Space extends GamePanel
 
       // draw outline
       Graphics2D g2d = (Graphics2D) g;
-      g2d.setColor(border_color);
+      g2d.setColor(BORDER_COLOR_DEFAULT);
       BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
       g2d.setStroke(bs1);
       g2d.drawRect(0,0, deed_buffer.getWidth(), deed_buffer.getHeight() );
@@ -137,10 +138,13 @@ class Space extends GamePanel
       g.setColor(property_color);
       g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, deed_buffer.getWidth()-BORDER_THICKNESS, (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
-      // draw punny string
+      // draw Property title
       g.setColor(Color.BLACK);
       Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
-      g.drawString( "in deed", 20, 20);
+      FontMetrics fm   = g.getFontMetrics(font);
+      java.awt.geom.Rectangle2D rect = fm.getStringBounds(title + " Deed", g);
+      g.drawString( title + " Deed", (int)(deed_buffer.getWidth()/2) - (int)(rect.getWidth()/2) , 
+                                     (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
       //deed_buffer.repaint();
    }
    
@@ -159,7 +163,10 @@ class Space extends GamePanel
    { 
       this.selected = selected; 
       if( selected )
+      {
+         drawDeed(); // regenerate the deed
          border_color = BORDER_COLOR_SELECTED;
+      }
       else
          border_color = BORDER_COLOR_DEFAULT;
    }

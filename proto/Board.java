@@ -121,7 +121,10 @@ class Board extends GamePanel
          selected_space = space;
          spaces[selected_space].setSelected( true ); // turn new selection on
          if( deed_panel != null )
+         {
             deed_panel.setGameBuffer( spaces[selected_space].getDeedBuffer() );
+            deed_panel.repaint();
+         }
       }
    }
 
