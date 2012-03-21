@@ -64,7 +64,7 @@ class Space extends GamePanel
 
    // Implement begin selected
    @Override
-   protected boolean handleMouseClicked(MouseEvent e)
+   protected boolean handleMousePressed(MouseEvent e)
    {
       setSelected(true);
       board.setSelectedSpace( board_index );
