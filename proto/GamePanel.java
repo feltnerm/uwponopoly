@@ -16,6 +16,7 @@ class GamePanel extends JPanel
 {
    GameBuffer gbuffer;
    //LinkedList <MouseEvent>mouse_events = new LinkedList<MouseEvent>();
+   private boolean is_static; // true if image is not redrawn i.e. do not clear on repaint()
   
    // Events
    Queue<MouseEvent> mouse_events;
@@ -39,6 +40,7 @@ class GamePanel extends JPanel
 
       keyboard_adapter = new MyKeyboardAdapter();
       addKeyListener(keyboard_adapter);
+      is_static = false;
    }
 
    public GamePanel( int width, int height, Color color )
@@ -57,7 +59,7 @@ class GamePanel extends JPanel
 
       keyboard_adapter = new MyKeyboardAdapter();
       addKeyListener(keyboard_adapter);
-
+      is_static = false;
    }
 
    public void setGameBuffer( GameBuffer gbuffer ) { this.gbuffer = gbuffer; }
@@ -69,7 +71,8 @@ class GamePanel extends JPanel
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
-      gbuffer.clear();
+      if(!is_static)
+         gbuffer.clear();
       g.drawImage(gbuffer.getBuffer(),0,0,this);
    }
 
@@ -159,4 +162,9 @@ class GamePanel extends JPanel
          key_events.offer(e);
       }
    };
+
+   public void setStatic( boolean is_static )
+   {
+      this.is_static = is_static;
+   }
 };

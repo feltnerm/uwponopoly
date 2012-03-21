@@ -37,7 +37,7 @@ class Space extends GamePanel
    public Space() // no-parameter testing constructor
    {
       super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
-      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.RED );
+      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
       drawDeed();
       setPreferredSize( new Dimension(SPACE_WIDTH,SPACE_HEIGHT) );
       title=("Default");
@@ -46,7 +46,7 @@ class Space extends GamePanel
    public Space( GameBuffer gbuffer )
    {
       super( gbuffer );
-      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.RED );
+      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
       drawDeed();
       border_color = BORDER_COLOR_DEFAULT;
    }
@@ -54,7 +54,7 @@ class Space extends GamePanel
    public Space( int width, int height, Color color)
    {
       super( width, height, color );
-      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.RED );
+      deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
       drawDeed();
    }
 
@@ -116,12 +116,16 @@ class Space extends GamePanel
       if(deed_buffer == null)
          return;
       Graphics g = deed_buffer.getGraphics();
+
+
       // dummy testing code 
+      //clear the buffer
+      deed_buffer.clear();
       g.setColor(Color.BLUE);
-      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth(), (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
+      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, deed_buffer.getWidth(), (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
       g.setColor(Color.BLACK);
       Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
-      g.drawString( "in deed", 0, 0);
+      g.drawString( "in deed", 20, 20);
       //deed_buffer.repaint();
    }
    

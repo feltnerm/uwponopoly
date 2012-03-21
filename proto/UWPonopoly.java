@@ -72,6 +72,7 @@ class UWPonopoly implements Runnable
 
       //ImageIcon property_icon = createImageIcon("images/boardwalk.jpg", "deed");
       deed_panel = new GamePanel(500,100, Color.WHITE); // we don't need the default GameBuffer
+      deed_panel.setStatic(true); // no clear() on redraw
       deed_panel.setPreferredSize( new Dimension(Space.DEED_WIDTH,Space.DEED_HEIGHT) );
       board.setDeedPanel( deed_panel );
       
@@ -139,7 +140,7 @@ class UWPonopoly implements Runnable
 
          board.tick( TICK_LENGTH_MS );
          board.repaint();
-         deed_panel.repaint();
+      //   deed_panel.repaint();
 
       }
    }
