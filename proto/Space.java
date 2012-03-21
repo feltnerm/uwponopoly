@@ -27,6 +27,7 @@ class Space extends GamePanel
    private static Color BORDER_COLOR_SELECTED = Color.RED;
 
    private Color border_color;
+   private Color property_color;
    private String title;
    private int x_coor,y_coor; // x and y coordinates for placing on board
    private boolean selected;
@@ -38,6 +39,7 @@ class Space extends GamePanel
    {
       super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
       deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
+      property_color = Color.BLUE; // senseless default
       drawDeed();
       setPreferredSize( new Dimension(SPACE_WIDTH,SPACE_HEIGHT) );
       title=("Default");
@@ -99,7 +101,7 @@ class Space extends GamePanel
       g2d.drawRect(0,0, gbuffer.getWidth(), gbuffer.getHeight() );
      
       // draw color strip
-      g.setColor(Color.BLUE);
+      g.setColor(property_color);
       g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth(), (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
       // Draw Property title
@@ -122,7 +124,7 @@ class Space extends GamePanel
       // dummy testing code 
       //clear the buffer
       deed_buffer.clear();
-      g.setColor(Color.BLUE);
+      g.setColor(property_color);
       g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, deed_buffer.getWidth(), (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
       g.setColor(Color.BLACK);
       Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
