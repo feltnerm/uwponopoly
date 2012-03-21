@@ -75,7 +75,8 @@ class Board extends GamePanel
       {
          add( spaces[i] );
       }
-
+      
+      setSeletedSpace(0);
    }
 
    Board( String filename )
@@ -128,10 +129,11 @@ class Board extends GamePanel
 
    void setSeletedSpace( int space )
    {
-      if( space > 0 && space < num_spaces ) // check for validity
+      if( space >= 0 && space < num_spaces ) // check for validity
       {
-         spaces[space].setSelected( false ); // turn last selected space off
+         spaces[selected_space].setSelected( false ); // turn last selected space off
          selected_space = space;
+         spaces[selected_space].setSelected( true ); // turn new selection on
       }
    }
 

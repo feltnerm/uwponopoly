@@ -71,7 +71,8 @@ class Space extends GamePanel
    @Override
    protected boolean handleMouseExited(MouseEvent e)
    {
-      border_color = BORDER_COLOR_DEFAULT;
+      if( !isSelected() )
+         border_color = BORDER_COLOR_DEFAULT;
       return true;
    }
 
