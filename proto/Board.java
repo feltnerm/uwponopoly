@@ -51,7 +51,7 @@ class Board extends GamePanel
       for( int i = 0; i < num_spaces; i++)
       {
          spaces[i] = new Space();
-         spaces[i].setTitle("Property " + i);
+         spaces[i].setTitle("Space: " + i);
          spaces[i].setBoard(this);
          spaces[i].setBoardIndex(i);
       }
@@ -90,19 +90,6 @@ class Board extends GamePanel
     */
    public void tick( int milliseconds ) // like a run() function for board
    {
-      // update which space is selected
-      //setSeletedSpace(-1); // clear the selected space
-      /*for( int i = 0; i < num_spaces; i++)
-      {
-         // new selection?
-         if( spaces[i].isSelected() && selected_space != i )
-            setSeletedSpace(i);
-      }
-      for( int i = 0; i < num_spaces; i++)
-      {
-         if( i != selected_space )
-            spaces[i].setSelected( false );
-      }*/
    }
    
    @Override
