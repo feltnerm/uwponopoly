@@ -20,7 +20,7 @@ class Space extends GamePanel
    public static int DEED_WIDTH = 250;
    public static int DEED_HEIGHT = 250;
    private static int DEED_FONT_SIZE = 12;
-   private static int DEED_TEXT_Y_INCREMENT = DEED_FONT_SIZE*1;
+   private static int DEED_TEXT_Y_INCREMENT = (int)(DEED_FONT_SIZE * 1.2);
    private static int NUMBER_OF_RENT_GRADES = 5;
    private static int TITLE_FONT_SIZE = 10;
    private static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
@@ -28,7 +28,7 @@ class Space extends GamePanel
    private static Color BORDER_COLOR_DEFAULT = Color.BLACK;
    private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
    private static Color BORDER_COLOR_SELECTED = Color.RED;
-   private static int MAX_NUM_IMPROVEMENTS = 5; // maximum number of building improvements.
+   public static int MAX_NUM_IMPROVEMENTS = 6; // maximum number of building improvements minus one, for the base case.
 
    private Color border_color;
    private Color property_color;
@@ -153,13 +153,23 @@ class Space extends GamePanel
       FontMetrics fm   = g.getFontMetrics(font);
 
       // deed title
-      java.awt.geom.Rectangle2D rect = fm.getStringBounds(title + " Deed", g);
-      previous_y = (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight());
-      g.drawString( title + " Deed", (int)(deed_buffer.getWidth()/2) - (int)(rect.getWidth()/2), previous_y);
+      java.awt.geom.Rectangle2D title_rect = fm.getStringBounds(title + " Deed", g);
+      previous_y = (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(title_rect.getHeight());
+      g.drawString( title + " Deed", (int)(deed_buffer.getWidth()/2) - (int)(title_rect.getWidth()/2), previous_y);
 
       // rent 
       for( int i = 0; i < MAX_NUM_IMPROVEMENTS; i++)
       {
+         previous_y += DEED_TEXT_Y_INCREMENT;
+         String rent_string;
+         if( i == 0)
+            rent_string = "Rent: $" + Integer.toString( getRent(i) );
+         else if ( i == MAX_NUM_IMPROVEMENTS - 1)
+            rent_string = "Hotel: $" + Integer.toString( getRent(i) );
+         else
+            rent_string = i + " houses: $" + Integer.toString( getRent(i) );
+         java.awt.geom.Rectangle2D rent_rect = fm.getStringBounds(rent_string, g);
+         g.drawString( rent_string, (int)(deed_buffer.getWidth()/2) - (int)(rent_rect.getWidth()/2), previous_y);
       }
       //deed_buffer.repaint();
    }

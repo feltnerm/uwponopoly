@@ -55,6 +55,8 @@ class Board extends GamePanel
          spaces[i].setTitle("Space: " + i);
          spaces[i].setBoard(this);
          spaces[i].setBoardIndex(i);
+         for( int j = 0; j < Space.MAX_NUM_IMPROVEMENTS; j++) // fill in some random rents
+            spaces[i].setRent( 1 + i*(j+1), j);
       }
       for( int i = 0; i < side; i++) // draw the top row
       {
