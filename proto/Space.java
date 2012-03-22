@@ -19,12 +19,16 @@ class Space extends GamePanel
    public static int SPACE_HEIGHT = 50; // Board uses this
    public static int DEED_WIDTH = 250;
    public static int DEED_HEIGHT = 250;
+   private static int DEED_FONT_SIZE = 12;
+   private static int DEED_TEXT_Y_INCREMENT = DEED_FONT_SIZE*1;
+   private static int NUMBER_OF_RENT_GRADES = 5;
    private static int TITLE_FONT_SIZE = 10;
    private static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
    protected static int BORDER_THICKNESS = 2;
    private static Color BORDER_COLOR_DEFAULT = Color.BLACK;
    private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
    private static Color BORDER_COLOR_SELECTED = Color.RED;
+   private static int MAX_NUM_IMPROVEMENTS = 5; // maximum number of building improvements.
 
    private Color border_color;
    private Color property_color;
@@ -34,6 +38,7 @@ class Space extends GamePanel
    private Board board;
    private int board_index;
    private GameBuffer deed_buffer;
+   private int rent[]; // rent for each improvement level plus the base rent level
 
    public Space() // no-parameter testing constructor
    {
@@ -42,6 +47,7 @@ class Space extends GamePanel
       border_color = BORDER_COLOR_DEFAULT;
       setPreferredSize( new Dimension(SPACE_WIDTH,SPACE_HEIGHT) );
       title=("Default");
+      rent = new int[MAX_NUM_IMPROVEMENTS + 1];
 
       deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
       //drawDeed();
@@ -139,12 +145,22 @@ class Space extends GamePanel
       g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, deed_buffer.getWidth()-BORDER_THICKNESS, (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
       // draw Property title
+      int previous_y = 0; // what was the y value of the previous line of text?
+
+      // font set-up
       g.setColor(Color.BLACK);
       Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
       FontMetrics fm   = g.getFontMetrics(font);
+
+      // deed title
       java.awt.geom.Rectangle2D rect = fm.getStringBounds(title + " Deed", g);
-      g.drawString( title + " Deed", (int)(deed_buffer.getWidth()/2) - (int)(rect.getWidth()/2) , 
-                                     (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
+      previous_y = (int)(deed_buffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight());
+      g.drawString( title + " Deed", (int)(deed_buffer.getWidth()/2) - (int)(rect.getWidth()/2), previous_y);
+
+      // rent 
+      for( int i = 0; i < MAX_NUM_IMPROVEMENTS; i++)
+      {
+      }
       //deed_buffer.repaint();
    }
    
@@ -175,5 +191,30 @@ class Space extends GamePanel
    public void setBoardIndex( int index ) { board_index = index; }
 
    public GameBuffer getDeedBuffer() { return deed_buffer; }
+
+   /**
+    * Set the amount of rent for a particular improvement level
+    * @param rent_amount , the monetary value of the rent
+    * @param improvement_level , the level of improvement the property is at,
+    * "0" is the base improvement level, "1" is one house, etc.
+    */
+   public void setRent( int rent_amount, int improvement_level)
+   {
+      if( 0 <= improvement_level && improvement_level < rent.length )
+         rent[improvement_level] = rent_amount;
+   }
+
+   /**
+    * Get the amount of rent for a particular improvement level
+    * @param improvement_level , the level of improvement the property is at,
+    * "0" is the base improvement level, "1" is one house, etc.
+    * @return the amount of rent, -1 if the improvement_level passed is invalid
+    */
+   public int getRent( int improvement_level )
+   {
+      if( 0 <= improvement_level && improvement_level < rent.length )
+         return rent[improvement_level];
+      return -1;
+   }
 
 }
