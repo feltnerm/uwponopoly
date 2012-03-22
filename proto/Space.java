@@ -15,8 +15,8 @@ import java.awt.Dimension;
 class Space extends GamePanel
 {
    // defaults and magic numbers
-   public static int SPACE_WIDTH  = 50; // Board uses this
-   public static int SPACE_HEIGHT = 50; // Board uses this
+   public static int SPACE_WIDTH  = 55; // Board uses this
+   public static int SPACE_HEIGHT = 55; // Board uses this
    public static int DEED_WIDTH = 250;
    public static int DEED_HEIGHT = 250;
    private static int DEED_FONT_SIZE = 12;
