@@ -26,6 +26,10 @@ class UWPonopoly implements Runnable
    private GameFrame window;
    private Board board;
 
+   private JMenuBar menuBar;
+   private JMenu fileMenu, aboutMenu;
+   private JMenuItem newMenuItem, quitMenuItem, creditsMenuItem;
+
    // Player Stats Panel
    private JPanel dashboard_panel;
    private JPanel dice_panel;
@@ -61,6 +65,21 @@ class UWPonopoly implements Runnable
 
       // Game Board
       board = new Board();
+
+      // Menu Bar
+      menuBar = new JMenuBar();
+      fileMenu = new JMenu("File");
+      newMenuItem = new JMenuItem("New");
+      quitMenuItem = new JMenuItem("Quit");
+      fileMenu.add(newMenuItem);
+      fileMenu.add(quitMenuItem);
+      aboutMenu = new JMenu("About");
+      creditsMenuItem = new JMenuItem("Credits");
+      aboutMenu.add(creditsMenuItem);
+      menuBar.add(fileMenu);
+      menuBar.add(aboutMenu);
+
+      window.setJMenuBar(menuBar);
 
       // DASHBOARD
       dashboard_panel = new JPanel();
