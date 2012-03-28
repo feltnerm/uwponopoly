@@ -15,6 +15,8 @@ class Board extends GamePanel
    private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
    private static int DEFAULT_WIDTH = Space.SPACE_WIDTH * DEFAULT_NUMBER_SPACES;
    private static int DEFAULT_HEIGHT = Space.SPACE_HEIGHT * DEFAULT_NUMBER_SPACES;
+   private static int SCALED_UP_SPACE_X = Space.SPACE_WIDTH + 50;
+   private static int SCALED_UP_SPACE_Y = Space.SPACE_HEIGHT + 50;
    private static Color DEFAULT_COLOR = Color.WHITE;
    //private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
 
@@ -113,6 +115,9 @@ class Board extends GamePanel
       // draw strings in middle of board for testing
       Font font = new Font("Helvetica", Font.PLAIN, 24);
       g.drawString( Integer.toString(selected_space),250,250);
+
+      // draw the blown-up version of the space that is currently highlighted
+      g.drawImage(spaces[selected_space].drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
    }
 
    void setSelectedSpace( int space )

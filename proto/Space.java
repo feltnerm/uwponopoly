@@ -21,6 +21,7 @@ class Space extends GamePanel
    public static int DEED_HEIGHT = 250;
    private static int DEED_FONT_SIZE = 12;
    private static int DEED_TEXT_Y_INCREMENT = (int)(DEED_FONT_SIZE * 1.2);
+   public static int SCALED_UP_SCALE = 2;
    private static int NUMBER_OF_RENT_GRADES = 5;
    private static int TITLE_FONT_SIZE = 10;
    private static float COLOR_STRIP_HEIGHT_RATIO = 0.2F;
@@ -41,8 +42,7 @@ class Space extends GamePanel
    private int rent[]; // rent for each improvement level plus the base rent level
 
    public Space() // no-parameter testing constructor
-   {
-      super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
+   { super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
       property_color = Color.YELLOW; // senseless default
       border_color = BORDER_COLOR_DEFAULT;
       setPreferredSize( new Dimension(SPACE_WIDTH,SPACE_HEIGHT) );
@@ -172,6 +172,38 @@ class Space extends GamePanel
          g.drawString( rent_string, (int)(deed_buffer.getWidth()/2) - (int)(rent_rect.getWidth()/2), previous_y);
       }
       //deed_buffer.repaint();
+   }
+
+   /**
+    * Returns a GameBuffer containing a larger version of a Space
+    */
+   public GameBuffer drawScaledUp()
+   {
+      GameBuffer scaledUpBuffer = new GameBuffer(SPACE_WIDTH * SCALED_UP_SCALE, SPACE_HEIGHT * SCALED_UP_SCALE, Color.WHITE);
+      scaledUpBuffer.clear();
+      Graphics g = scaledUpBuffer.getGraphics();
+
+      // draw outline
+      Graphics2D g2d = (Graphics2D) g;
+      g2d.setColor(BORDER_COLOR_DEFAULT);
+      BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
+      g2d.setStroke(bs1);
+      g2d.drawRect(0,0, SPACE_WIDTH * SCALED_UP_SCALE, SPACE_HEIGHT * SCALED_UP_SCALE);
+
+      // draw color strip
+      g.setColor(property_color);
+      g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, SPACE_WIDTH * SCALED_UP_SCALE - BORDER_THICKNESS, (int)(SPACE_HEIGHT * SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO));
+
+      // Draw Property title
+      Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE * SCALED_UP_SCALE);
+      FontMetrics fm   = g.getFontMetrics(font);
+      java.awt.geom.Rectangle2D rect = fm.getStringBounds(title, g);
+      g.setColor(Color.BLACK);
+      g.setFont(font);
+      g.drawString( title, (int)(SPACE_WIDTH * SCALED_UP_SCALE/2) - (int)(rect.getWidth()/2) , 
+                           (int)(SPACE_HEIGHT * SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
+
+      return scaledUpBuffer;
    }
    
    public void setTitle( String title)
