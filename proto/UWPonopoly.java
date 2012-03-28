@@ -38,6 +38,7 @@ class UWPonopoly implements Runnable
    private GamePanel deed_panel;
 
    private JButton sell_button;
+   private JButton roll_button;
 
    static final int TICK_LENGTH_MS = 10;
 
@@ -112,7 +113,9 @@ class UWPonopoly implements Runnable
       dice_panel.setLayout( new BorderLayout() );
       ImageIcon icon = createImageIcon("images/dice.jpg", "dice");
       dice_panel.add( new JLabel(icon), BorderLayout.NORTH );
-      dice_panel.add( new JButton("Roll!") , BorderLayout.SOUTH);
+      roll_button = new JButton("Roll!");
+      roll_button.setPreferredSize(new Dimension(25,50));
+      dice_panel.add(roll_button, BorderLayout.SOUTH);
 
       // Player Stats
       player_stats_panel = new JPanel();
