@@ -1,6 +1,6 @@
 all:
 	rm -f *.class
-	javac dice.java
+	javac dicetester.java
 
 clean:
 	rm *.class
