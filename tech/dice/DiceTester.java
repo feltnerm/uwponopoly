@@ -11,5 +11,7 @@ class DiceTester
       window.setVisible(true);
       
       GUIDice dice = new GUIDice();
+      window.add( dice );
+      window.pack();
    }
 }
