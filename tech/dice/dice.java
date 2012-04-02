@@ -1,3 +1,4 @@
+import java.util.Random;
 
 /**
  * Simulates rolling two dice, as used in Monopoly.
@@ -5,6 +6,19 @@
  */
 class Dice
 {
+   private int dice1, dice2;
+
+
+   public Dice()
+   {
+   }
+
+   public void roll()
+   {
+   }
+
+   // returns true if the roll is doubles
+   public boolean isDoubles() { return dice1 == dice2; }
 
    // testbed main
    public static void main( String[] args )
