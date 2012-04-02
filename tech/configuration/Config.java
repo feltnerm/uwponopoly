@@ -1,4 +1,5 @@
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -20,38 +21,32 @@ class Config
     Properties config = new Properties();
 
     public Config() {
-        this.readConfig(CONFIG_PATH);
+        // Default constructor
+        loadConfig(CONFIG_PATH);
     }
 
     public Config(String config_path) {
+        // Parameterized constructor for custom configurations
         this.CONFIG_PATH = config_path;
-        this.readConfig(config_path);
+        loadConfig(config_path);
     }
 
-    public void readConfig(String path) {
-
-        File config_file = new File(CONFIG_PATH);
-
-        if !(config_file.canRead()) {
-            System.out.println('Cannot find configuration file.')''
+    public void loadConfig(String path) {
+        try {
+            this.config.load(new FileInputStream(path));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else {
-            
-        }
-
     }
 
-    public String get(String value) {
-    /** Retrive a single configuration value. */
 
-        return "";
-    }
 
     public static void main(String[] args){
 
         // Instantiate our configuration
         Config c = new Config();
-        System.out.println(c.CONFIG_PATH);
+        System.out.println(c.get("DEBUG"));
+        System.out.println(c.get("PLAYERS"));
 
     }
 
