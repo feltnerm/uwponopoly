@@ -13,17 +13,23 @@ class Dice
    public Dice()
    {
       random = new Random();
+      roll(); // otherwise both die would be zeroes.
    }
 
    public void roll()
    {
-      // a note on the method used:
+      // A note on the method used:
       // According to http://docs.oracle.com/javase/6/docs/api/java/util/Random.html,
-      //  nextInt( n ) "returns a pseudorandom, uniformly distributed int value between 0 (inclusive) 
-      //  and the specified value (exclusive), drawn from this random number generator's sequence."
-      //  Thus we add one to nextInt( 6 ) ( for a six-sided die ) to get a random number 1-6.
+      //    nextInt( n ) "returns a pseudorandom, uniformly distributed int value between 0 (inclusive) 
+      //    and the specified value (exclusive), drawn from this random number generator's sequence."
+      // Thus we add one to nextInt( 6 ) ( for a six-sided die ) to get a random number 1-6.
       dice1 = random.nextInt( HIGH_NUMBER ) + 1;
       dice2 = random.nextInt( HIGH_NUMBER ) + 1;
+   }
+
+   public int getTotal()
+   {
+      return dice1 + dice2;
    }
 
    // formats the dice as a Cartesian coordinate (x,y)
@@ -35,6 +41,9 @@ class Dice
 
    // returns true if the roll is doubles
    public boolean isDoubles() { return dice1 == dice2; }
+
+   public int getFirstDie() { return dice1; }
+   public int getSecondDie() { return dice2; }
 
    // testbed main
    public static void main( String[] args )
@@ -50,7 +59,7 @@ class Dice
       for( int i = 0; i < 10; i++ )
       {
          d.roll();
-         System.out.println( d.toString() + " | " + d.isDoubles() );
+         System.out.format( d.toString() + " | %2d | " + d.isDoubles() + "\n", d.getTotal() );
       }
 
    }
