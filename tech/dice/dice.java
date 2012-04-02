@@ -6,7 +6,6 @@ import java.util.Random;
  */
 class Dice
 {
-   private static int LOW_NUMBER = 1; // lowest number on die
    private static int HIGH_NUMBER = 6; // highest number on die
    private int dice1, dice2;
    private Random random;
@@ -18,7 +17,13 @@ class Dice
 
    public void roll()
    {
-
+      // a note on the method used:
+      // According to http://docs.oracle.com/javase/6/docs/api/java/util/Random.html,
+      //  nextInt( n ) "returns a pseudorandom, uniformly distributed int value between 0 (inclusive) 
+      //  and the specified value (exclusive), drawn from this random number generator's sequence."
+      //  Thus we add one to nextInt( 6 ) ( for a six-sided die ) to get a random number 1-6.
+      dice1 = random.nextInt( HIGH_NUMBER ) + 1;
+      dice2 = random.nextInt( HIGH_NUMBER ) + 1;
    }
 
    // formats the dice as a Cartesian coordinate (x,y)
