@@ -40,8 +40,8 @@ class GUIDice extends JPanel
       g2d.drawRect(0 + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
       g2d.drawRect(0 + DICE_SIZE + DICE_PADDING + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
 
-      drawDiceNumber( 1, WIDGET_PADDING, WIDGET_PADDING, g);
-      drawDiceNumber( 2, WIDGET_PADDING + DICE_SIZE + DICE_PADDING, WIDGET_PADDING, g);
+      drawDiceNumber( 5, WIDGET_PADDING, WIDGET_PADDING, g);
+      drawDiceNumber( 6, WIDGET_PADDING + DICE_SIZE + DICE_PADDING, WIDGET_PADDING, g);
 
    }
 
@@ -67,6 +67,36 @@ class GUIDice extends JPanel
       if( num == 2 )
       {
          g.fillOval( left_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+      }
+      if( num == 3 )
+      {
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( center_x - DOT_RADIUS/2, center_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+      }
+      if( num == 4 )
+      {
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+      }
+      if( num == 5 )
+      {  
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( center_x - DOT_RADIUS/2, center_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+      }
+      if( num == 6 )
+      {
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, center_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, center_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
          g.fillOval( right_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
       }
 
