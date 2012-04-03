@@ -13,10 +13,18 @@ class GUIDice extends JPanel
    private static int WIDGET_PADDING = 5; // padding around the dice as a whole in pixels
    private static int DOT_RADIUS = 10; // radius of the dots on the dice in pixels
 
+   private Dice dice;
+
    GUIDice()
    {
       super();
       setPreferredSize( new Dimension( DICE_SIZE*2 + DICE_PADDING + 2*WIDGET_PADDING, DICE_SIZE + 2*WIDGET_PADDING) );
+      dice = new Dice();
+   }
+
+   public void roll()
+   {
+      dice.roll();
    }
 
    /**
@@ -40,8 +48,8 @@ class GUIDice extends JPanel
       g2d.drawRect(0 + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
       g2d.drawRect(0 + DICE_SIZE + DICE_PADDING + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
 
-      drawDiceNumber( 5, WIDGET_PADDING, WIDGET_PADDING, g);
-      drawDiceNumber( 6, WIDGET_PADDING + DICE_SIZE + DICE_PADDING, WIDGET_PADDING, g);
+      drawDiceNumber( dice.getFirstDie(), WIDGET_PADDING, WIDGET_PADDING, g);
+      drawDiceNumber( dice.getSecondDie(), WIDGET_PADDING + DICE_SIZE + DICE_PADDING, WIDGET_PADDING, g);
 
    }
 
