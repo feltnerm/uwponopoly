@@ -17,9 +17,9 @@ class GUIDice extends JPanel implements Runnable
 
    private Thread animation_thread;
    private Dice animation_dice;
-   private static int FRAME_RATE = 5;
+   private static int FRAME_RATE = 15;
    private static int ANIMATION_DURATION = 3; // animation duration in seconds
-   private static int MAX_FRAMES = ANIMATION_DURATION / FRAME_RATE;
+   private static int MAX_FRAMES = ANIMATION_DURATION * FRAME_RATE;
    private static int FRAME_SLEEP_MS = 1000 / FRAME_RATE;
    private int current_frame_number;
 
@@ -55,6 +55,7 @@ class GUIDice extends JPanel implements Runnable
 
          // check for ending conditions
          current_frame_number++;
+         System.out.println( current_frame_number + "/" + MAX_FRAMES);
          if( animation_thread != null && current_frame_number >= MAX_FRAMES )
          {
             System.out.println("Going to stop soon.");
@@ -63,8 +64,8 @@ class GUIDice extends JPanel implements Runnable
             //animation_thread.stop();
             animation_thread = null;
          }
-         //try { Thread.sleep(20); }
-         //catch ( InterruptedException e ) { /* do nothing */ }
+         try { Thread.sleep(FRAME_SLEEP_MS); }
+         catch ( InterruptedException e ) { /* do nothing */ }
       }
 
    }
@@ -84,7 +85,10 @@ class GUIDice extends JPanel implements Runnable
 
       // draw outlines
       Graphics2D g2d = (Graphics2D) g;
-      g2d.setColor( Color.BLACK );
+      if( animation_thread == null )
+         g2d.setColor( Color.BLACK );
+      else
+         g2d.setColor( Color.RED ); // red outlines when dice are not yet settled during animation
       BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
       g2d.setStroke(bs1);
 
