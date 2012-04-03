@@ -34,7 +34,6 @@ class GUIDice extends JPanel implements Runnable
 
    public void roll()
    {
-      System.out.println("roll");
       dice.roll();
       if( animation_thread == null )
       {
@@ -51,16 +50,12 @@ class GUIDice extends JPanel implements Runnable
       {
          animation_dice.roll();
          repaint();
-         System.out.println("running");
 
          // check for ending conditions
          current_frame_number++;
-         System.out.println( current_frame_number + "/" + MAX_FRAMES);
          if( animation_thread != null && current_frame_number >= MAX_FRAMES )
          {
-            System.out.println("Going to stop soon.");
             animation_dice.setEqualTo( dice ); // set the animation dice equal to the official dice
-            System.out.println("stopped");
             //animation_thread.stop();
             animation_thread = null;
          }
