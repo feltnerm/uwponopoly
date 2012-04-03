@@ -11,7 +11,7 @@ class GUIDice extends JPanel
    private static int BORDER_THICKNESS = 2; // border thickness of dice in pixels
    private static int DICE_PADDING = 15; // space between dice in pixels
    private static int WIDGET_PADDING = 5; // padding around the dice as a whole in pixels
-   private static int DOT_RADIUS = 5; // radius of the dots on the dice in pixels
+   private static int DOT_RADIUS = 10; // radius of the dots on the dice in pixels
 
    GUIDice()
    {
@@ -26,6 +26,11 @@ class GUIDice extends JPanel
    {
       super.paintComponent(g);
 
+      // draw white dice backgrounds
+      g.setColor( Color.WHITE );
+      g.fillRect( 0 + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
+      g.fillRect(0 + DICE_SIZE + DICE_PADDING + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
+
       // draw outlines
       Graphics2D g2d = (Graphics2D) g;
       g2d.setColor( Color.BLACK );
@@ -36,6 +41,7 @@ class GUIDice extends JPanel
       g2d.drawRect(0 + DICE_SIZE + DICE_PADDING + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
 
       drawDiceNumber( 1, WIDGET_PADDING, WIDGET_PADDING, g);
+      drawDiceNumber( 2, WIDGET_PADDING + DICE_SIZE + DICE_PADDING, WIDGET_PADDING, g);
 
    }
 
@@ -47,7 +53,22 @@ class GUIDice extends JPanel
       g.setColor( Color.BLACK );
       int center_x = x + DICE_SIZE/2;
       int center_y = y + DICE_SIZE/2;
+      /*int left_fourth_x = center_x/2;
+      int right_fourth_x = center_x + center_x/2;
+      int left_fourth_y = center_y/2;
+      int right_fourth_y = center_y + center_y/2;*/
+      int left_fourth_x = x + DICE_SIZE/4;
+      int right_fourth_x = x + 3*DICE_SIZE/4;
+      int left_fourth_y = y + DICE_SIZE/4;
+      int right_fourth_y = y + 3*DICE_SIZE/4;
+
       if( num == 1 )
-         g.drawOval( center_x - DOT_RADIUS/2, center_y - DOT_RADIUS/2, center_x + DOT_RADIUS/2, center_y + DOT_RADIUS/2);
+         g.fillOval( center_x - DOT_RADIUS/2, center_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+      if( num == 2 )
+      {
+         g.fillOval( left_fourth_x - DOT_RADIUS/2, left_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+         g.fillOval( right_fourth_x - DOT_RADIUS/2, right_fourth_y - DOT_RADIUS/2, DOT_RADIUS, DOT_RADIUS);
+      }
+
    }
 }
