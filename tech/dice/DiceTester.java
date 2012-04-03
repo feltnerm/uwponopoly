@@ -19,15 +19,16 @@ class DiceTester
       window.add( dice, BorderLayout.NORTH );
 
       JButton roll_button = new JButton("Roll");
-      roll_button.addActionListener(new ActionListener()
-            {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-            dice.roll(); // calls the method with code.
-            System.out.println("hello");
-            }
-            } );
+      roll_button.addActionListener
+      (   new ActionListener()
+          {
+             @Override
+             public void actionPerformed(ActionEvent e)
+             {
+                dice.roll(); // calls the method with code.
+             }
+          }
+      );
       window.add( roll_button, BorderLayout.SOUTH );
       window.pack();
      

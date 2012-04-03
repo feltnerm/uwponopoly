@@ -32,6 +32,15 @@ class Dice
       return dice1 + dice2;
    }
 
+   /**
+    * Copies the values of another dice to this dice.
+    */
+   public void setEqualTo( Dice dice )
+   {
+      this.dice1 = dice.dice1;
+      this.dice2 = dice.dice2;
+   }
+
    // formats the dice as a Cartesian coordinate (x,y)
    @Override
    public String toString()

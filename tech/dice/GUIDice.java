@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.BasicStroke;
 import java.awt.Dimension;
 
-class GUIDice extends JPanel
+class GUIDice extends JPanel implements Runnable
 {
    private static int DICE_SIZE = 50; // size of one side of the square dice in pixels
    private static int BORDER_THICKNESS = 2; // border thickness of dice in pixels
@@ -15,18 +15,61 @@ class GUIDice extends JPanel
 
    private Dice dice;
 
+   private Thread animation_thread;
+   private Dice animation_dice;
+   private static int FRAME_RATE = 5;
+   private static int ANIMATION_DURATION = 3; // animation duration in seconds
+   private static int MAX_FRAMES = ANIMATION_DURATION / FRAME_RATE;
+   private static int FRAME_SLEEP_MS = 1000 / FRAME_RATE;
+   private int current_frame_number;
+
    GUIDice()
    {
       super();
       setPreferredSize( new Dimension( DICE_SIZE*2 + DICE_PADDING + 2*WIDGET_PADDING, DICE_SIZE + 2*WIDGET_PADDING) );
       dice = new Dice();
+      animation_thread = null;
+      animation_dice = new Dice();
    }
 
    public void roll()
    {
+      System.out.println("roll");
       dice.roll();
+      if( animation_thread == null )
+      {
+         current_frame_number = 0;
+         animation_thread = new Thread( this );
+         animation_thread.start();
+      }
    }
 
+   // Threading for animation
+   public void run()
+   {
+      while( animation_thread != null )
+      {
+         animation_dice.roll();
+         repaint();
+         System.out.println("running");
+
+         // check for ending conditions
+         current_frame_number++;
+         if( animation_thread != null && current_frame_number >= MAX_FRAMES )
+         {
+            System.out.println("Going to stop soon.");
+            animation_dice.setEqualTo( dice ); // set the animation dice equal to the official dice
+            System.out.println("stopped");
+            //animation_thread.stop();
+            animation_thread = null;
+         }
+         //try { Thread.sleep(20); }
+         //catch ( InterruptedException e ) { /* do nothing */ }
+      }
+
+   }
+
+      
    /**
     * The ugly paint routine that draws the dice
     */
@@ -48,8 +91,8 @@ class GUIDice extends JPanel
       g2d.drawRect(0 + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
       g2d.drawRect(0 + DICE_SIZE + DICE_PADDING + WIDGET_PADDING, 0 + WIDGET_PADDING, DICE_SIZE, DICE_SIZE);
 
-      drawDiceNumber( dice.getFirstDie(), WIDGET_PADDING, WIDGET_PADDING, g);
-      drawDiceNumber( dice.getSecondDie(), WIDGET_PADDING + DICE_SIZE + DICE_PADDING, WIDGET_PADDING, g);
+      drawDiceNumber( animation_dice.getFirstDie(), WIDGET_PADDING, WIDGET_PADDING, g);
+      drawDiceNumber( animation_dice.getSecondDie(), WIDGET_PADDING + DICE_SIZE + DICE_PADDING, WIDGET_PADDING, g);
 
    }
 
