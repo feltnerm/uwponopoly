@@ -17,6 +17,11 @@ import java.util.Hashtable;
 
 */
 
+class GUIConfig extends JPanel implements Runnable {
+
+    
+}
+
 class Config extends Properties
 {
 
