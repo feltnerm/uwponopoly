@@ -25,6 +25,7 @@ class UWPonopoly implements Runnable
    // Game Board
    private GameFrame window;
    private Board board;
+   private GUIDice dice;
 
    private JMenuBar menuBar;
    private JMenu fileMenu, aboutMenu;
@@ -66,6 +67,9 @@ class UWPonopoly implements Runnable
 
       // Game Board
       board = new Board();
+
+      // Dice
+      dice = new GUIDice();
 
       // Menu Bar
       menuBar = new JMenuBar();
@@ -111,10 +115,21 @@ class UWPonopoly implements Runnable
       // Dice Control
       dice_panel = new JPanel();
       dice_panel.setLayout( new BorderLayout() );
-      ImageIcon icon = createImageIcon("images/dice.jpg", "dice");
-      dice_panel.add( new JLabel(icon), BorderLayout.NORTH );
+      //ImageIcon icon = createImageIcon("images/dice.jpg", "dice");
+      //dice_panel.add( new JLabel(icon), BorderLayout.NORTH );
+      dice_panel.add( dice, BorderLayout.NORTH );
       roll_button = new JButton("Roll!");
       roll_button.setPreferredSize(new Dimension(25,50));
+      roll_button.addActionListener // make the roll button roll the dice
+         (   new ActionListener()
+             {
+             @Override
+             public void actionPerformed(ActionEvent e)
+             {
+             dice.roll(); 
+             }
+             }
+         );
       dice_panel.add(roll_button, BorderLayout.SOUTH);
 
       // Player Stats
