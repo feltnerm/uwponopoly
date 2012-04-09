@@ -175,8 +175,8 @@ class UWPonopoly implements Runnable
          handleMouseEvents();
          handleKeyEvents();
 
-         board.tick( TICK_LENGTH_MS );
-         board.repaint();
+         //board.tick( TICK_LENGTH_MS );
+   //      board.repaint();
       //   deed_panel.repaint();
 
       }

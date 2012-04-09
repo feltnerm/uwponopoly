@@ -9,7 +9,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-class Board extends GamePanel
+class Board extends GamePanel implements Runnable
 {
    // defaults
    private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
@@ -20,17 +20,23 @@ class Board extends GamePanel
    private static Color DEFAULT_COLOR = Color.WHITE;
    //private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
 
+   // animation constants
+   private static int FRAME_RATE = 15;
+   private static int FRAME_SLEEP_MS = 1000 / FRAME_RATE;
+
    private int num_spaces;
    private Space[] spaces;
 
    private int selected_space; // index location of the currently selected space
    private GamePanel deed_panel;
 
+   private Thread animation_thread;
+
    /**
     * Testing constructor.
     * Generates a standard board where each Space is individually numbered.
     */
-   Board()
+   Board() 
    {
       super( DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR );
       num_spaces = DEFAULT_NUMBER_SPACES;
@@ -82,6 +88,9 @@ class Board extends GamePanel
       }
      
       setSelectedSpace(0);
+
+      animation_thread = new Thread(this);
+      animation_thread.start();
    }
 
    Board( String filename )
@@ -90,11 +99,18 @@ class Board extends GamePanel
    }
 
    /**
-    * Takes the milliseconds since the last time it was called as a parameter.
-    * Useful for animation, things that need updated, etc.
+    * run() is from the Runnable interface.
+    * animation_thread calls this constantly when it is running.
     */
-   public void tick( int milliseconds ) // like a run() function for board
+   public void run()
    {
+      while( animation_thread != null )
+      {
+         repaint();
+
+         try { Thread.sleep(FRAME_SLEEP_MS); }
+         catch ( InterruptedException e ) { /* do nothing */ }
+      }
    }
    
    @Override
