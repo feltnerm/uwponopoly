@@ -50,9 +50,14 @@ class Player
    private GameBuffer generateTokenFromChar( char token_char )
    {
       GameBuffer gbuffer = new GameBuffer( TOKEN_SIZE, TOKEN_SIZE, Color.WHITE);
+      gbuffer.clear();
       Graphics g = gbuffer.getGraphics();
+      g.setColor( Color.BLACK );
       Font font = new Font("Helvetica", Font.PLAIN, TOKEN_FONT_SIZE);
-      g.drawString( Character.toString(token_char) ,250,250);
+      g.setFont( font );
+      g.drawString( Character.toString(token_char), 0, 10);
+      //g.drawString( "Banana", 0, 10);
+      g.fillRect( 0,0,1,1);
       return gbuffer;
    }
 

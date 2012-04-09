@@ -168,7 +168,7 @@ class Board extends GamePanel implements Runnable
       if( space >= num_spaces )
          space = space % num_spaces; // rollover
       player.setPosition( space ); // SIDE EFFECT
-      //spaces[space].addPlayer( player );
+      spaces[space].addPlayer( player );
    }
 
    public void removePlayerFromSpace( int space )
