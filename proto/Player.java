@@ -22,10 +22,12 @@ class Player
       token = generateTokenFromChar( token_char );
    }
 
+   /* I don't think that this method is appropriate -- Aaron
    public void advance( int num_spaces )
    {
       // can't implement this until the Config is available
    }
+   */
 
    public int getAmountOfMoney( ) { return money; }
    public void creditMoney( int amount ) { money += amount; }
@@ -50,5 +52,8 @@ class Player
       Font font = new Font("Helvetica", Font.PLAIN, TOKEN_FONT_SIZE);
       g.drawString( token_char,250,250);
    }
+
+   public int getPosition() { return position; }
+   public void setPosition( int new_positition ) { position = new_positition; }
 
 }
