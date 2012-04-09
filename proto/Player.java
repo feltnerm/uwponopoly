@@ -6,6 +6,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
+import java.awt.FontMetrics;
 
 class Player
 {
@@ -53,11 +54,14 @@ class Player
       gbuffer.clear();
       Graphics g = gbuffer.getGraphics();
       g.setColor( Color.BLACK );
+
+      // generate font
       Font font = new Font("Helvetica", Font.PLAIN, TOKEN_FONT_SIZE);
+      FontMetrics fm = g.getFontMetrics(font);
+      java.awt.geom.Rectangle2D rect = fm.getStringBounds( Character.toString(token_char), g);
       g.setFont( font );
-      g.drawString( Character.toString(token_char), 0, 10);
-      //g.drawString( "Banana", 0, 10);
-      g.fillRect( 0,0,1,1);
+
+      g.drawString( Character.toString(token_char), 0, (int)(3*rect.getHeight()/4) );
       return gbuffer;
    }
 
