@@ -4,6 +4,8 @@
  */
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Font;
 
 class Player
 {
@@ -50,10 +52,12 @@ class Player
       GameBuffer gbuffer = new GameBuffer( TOKEN_SIZE, TOKEN_SIZE, Color.WHITE);
       Graphics g = gbuffer.getGraphics();
       Font font = new Font("Helvetica", Font.PLAIN, TOKEN_FONT_SIZE);
-      g.drawString( token_char,250,250);
+      g.drawString( Character.toString(token_char) ,250,250);
+      return gbuffer;
    }
 
    public int getPosition() { return position; }
    public void setPosition( int new_positition ) { position = new_positition; }
+   public GameBuffer getToken() { return token; }
 
 }

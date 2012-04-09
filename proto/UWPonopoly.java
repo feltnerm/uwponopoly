@@ -47,6 +47,9 @@ class UWPonopoly implements Runnable
    static final int DESIRED_WIDTH = 550;
    static final int DESIRED_HEIGHT = 350;
 
+   // Testing code
+   Player test_player;
+
    public static void main(String[] args)
    {
       UWPonopoly uwponopoly = new UWPonopoly();
@@ -151,6 +154,9 @@ class UWPonopoly implements Runnable
       window.pack();
       thread = new Thread(this);
       thread.start();
+
+      test_player = new Player('A');
+      board.addPlayerToSpace( 3, test_player );
    }
 
    /** Implemented from Runnable

@@ -36,7 +36,7 @@ class Board extends GamePanel implements Runnable
     * Testing constructor.
     * Generates a standard board where each Space is individually numbered.
     */
-   Board() 
+   Board() //{{{
    {
       super( DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR );
       num_spaces = DEFAULT_NUMBER_SPACES;
@@ -91,7 +91,7 @@ class Board extends GamePanel implements Runnable
 
       animation_thread = new Thread(this);
       animation_thread.start();
-   }
+   }//}}}
 
    Board( String filename )
    {
@@ -136,7 +136,7 @@ class Board extends GamePanel implements Runnable
       g.drawImage(spaces[selected_space].drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
    }
 
-   void setSelectedSpace( int space )
+   public void setSelectedSpace( int space )
    {
       if( space >= 0 && space < num_spaces ) // check for validity
       {
@@ -151,10 +151,31 @@ class Board extends GamePanel implements Runnable
       }
    }
 
-   void setDeedPanel( GamePanel panel) 
+   public void setDeedPanel( GamePanel panel) 
    { 
       deed_panel = panel; 
       deed_panel.setGameBuffer( spaces[selected_space].getDeedBuffer() );
+   }
+
+   /**
+    * WARNING! SIDE EFFECT: the player's position is set to the position of the space.
+    * This means that the position may get rolled over.
+    */
+   public void addPlayerToSpace( int space, Player player )
+   {
+      if( space < 0 )
+         return;
+      if( space >= num_spaces )
+         space = space % num_spaces; // rollover
+      player.setPosition( space ); // SIDE EFFECT
+      //spaces[space].addPlayer( player );
+   }
+
+   public void removePlayerFromSpace( int space )
+   {
+      if( space < 0 || space >= num_spaces )
+         return;
+      //spaces[space].removePlayer();
    }
 
 }

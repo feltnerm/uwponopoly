@@ -7,6 +7,8 @@ import java.awt.event.*;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Dimension;
+import java.util.LinkedList;
+import java.util.Iterator;
 
 /**
  * Abstracts a space in UWPonopoly.
@@ -40,6 +42,7 @@ class Space extends GamePanel
    private int board_index;
    private GameBuffer deed_buffer;
    private int rent[]; // rent for each improvement level plus the base rent level
+   private LinkedList<Player> players;
 
    public Space() // no-parameter testing constructor
    { super( SPACE_WIDTH,SPACE_HEIGHT, Color.WHITE );
@@ -50,6 +53,7 @@ class Space extends GamePanel
       rent = new int[MAX_NUM_IMPROVEMENTS + 1];
 
       deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
+      players = new LinkedList<Player>();
       //drawDeed();
    }
 
@@ -120,9 +124,16 @@ class Space extends GamePanel
       g.drawString( title, (int)(gbuffer.getWidth()/2) - (int)(rect.getWidth()/2) , 
                            (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
 
+      // Draw Players
+      Iterator<Player> itr = players.iterator();
+      while( itr.hasNext() )
+      {
+         g.drawImage( itr.next().getToken().getBuffer(), 0, 0, this);
+      }
+
    }
 
-   private void drawDeed()
+   private void drawDeed()//{{{
    {
       if(deed_buffer == null)
          return;
@@ -172,12 +183,12 @@ class Space extends GamePanel
          g.drawString( rent_string, (int)(deed_buffer.getWidth()/2) - (int)(rent_rect.getWidth()/2), previous_y);
       }
       //deed_buffer.repaint();
-   }
+   }//}}}
 
    /**
     * Returns a GameBuffer containing a larger version of a Space
     */
-   public GameBuffer drawScaledUp()
+   public GameBuffer drawScaledUp()//{{{
    {
       GameBuffer scaledUpBuffer = new GameBuffer(SPACE_WIDTH * SCALED_UP_SCALE, SPACE_HEIGHT * SCALED_UP_SCALE, Color.WHITE);
       scaledUpBuffer.clear();
@@ -204,7 +215,7 @@ class Space extends GamePanel
                            (int)(SPACE_HEIGHT * SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
 
       return scaledUpBuffer;
-   }
+   }//}}}
    
    public void setTitle( String title)
    {
@@ -257,6 +268,16 @@ class Space extends GamePanel
       if( 0 <= improvement_level && improvement_level < rent.length )
          return rent[improvement_level];
       return -1;
+   }
+
+   public void addPlayer( Player player )
+   {
+      players.add(player);
+   }
+
+   public void removePlayer( Player player )
+   {
+      // TODO
    }
 
 }
