@@ -1,0 +1,54 @@
+/**
+ * The Player class describes one player in a game of UWPonopoly
+ * Copyright Aaron Decker 2012
+ */
+
+import java.awt.Color;
+
+class Player
+{
+   private static int TOKEN_SIZE = 15;
+   private static int TOKEN_FONT_SIZE = 15;
+   private int money;
+   private int position;
+   private GameBuffer token;
+
+   public Player()
+   {
+   }
+
+   public Player( char token_char )
+   {
+      token = generateTokenFromChar( token_char );
+   }
+
+   public void advance( int num_spaces )
+   {
+      // can't implement this until the Config is available
+   }
+
+   public int getAmountOfMoney( ) { return money; }
+   public void creditMoney( int amount ) { money += amount; }
+
+   /**
+    * If an amount of money is charged which causes the player to go bankrupt,
+    * the full amount is not paid.
+    * Instead, all of the remaining money is paid.
+    */
+   public int debitMoney( int amount )
+   {
+      if( money - amount > 0 )
+         return money;
+      else
+         return money - amount;
+   }
+
+   private GameBuffer generateTokenFromChar( char token_char )
+   {
+      GameBuffer gbuffer = new GameBuffer( TOKEN_SIZE, TOKEN_SIZE, Color.WHITE);
+      Graphics g = gbuffer.getGraphics();
+      Font font = new Font("Helvetica", Font.PLAIN, TOKEN_FONT_SIZE);
+      g.drawString( token_char,250,250);
+   }
+
+}
