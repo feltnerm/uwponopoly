@@ -49,6 +49,11 @@ class UWPonopoly implements Runnable
 
    // Testing code
    Player test_player;
+   Player test_b;
+   Player test_c;
+   Player test_d;
+   Player test_e;
+   Player test_f;
 
    public static void main(String[] args)
    {
@@ -156,7 +161,17 @@ class UWPonopoly implements Runnable
       thread.start();
 
       test_player = new Player('A');
+      test_b = new Player('B');
+      test_c = new Player('C');
+      test_d = new Player('D');
+      test_e = new Player('E');
+      test_f = new Player('F');
       board.addPlayerToSpace( 3, test_player );
+      board.addPlayerToSpace( 3, test_b );
+      board.addPlayerToSpace( 3, test_c );
+      board.addPlayerToSpace( 3, test_d );
+      board.addPlayerToSpace( 3, test_e );
+      board.addPlayerToSpace( 3, test_f );
    }
 
    /** Implemented from Runnable

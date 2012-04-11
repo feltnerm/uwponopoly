@@ -32,6 +32,8 @@ class Space extends GamePanel
    private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
    private static Color BORDER_COLOR_SELECTED = Color.RED;
    public static int MAX_NUM_IMPROVEMENTS = 6; // maximum number of building improvements minus one, for the base case.
+   private static int TOKEN_PADDING = 8; // distance from tokens to sides of space
+   private static int TOKEN_BETWEEN_PADDING = 4; // distance between tokens
 
    private Color border_color;
    private Color property_color;
@@ -124,11 +126,20 @@ class Space extends GamePanel
       g.drawString( title, (int)(gbuffer.getWidth()/2) - (int)(rect.getWidth()/2) , 
                            (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
 
-      // Draw Players
+      // Draw Player tokens
       Iterator<Player> itr = players.iterator();
+      // positioning for tokens
+      int token_x = TOKEN_PADDING;
+      int token_y = (int)(SPACE_HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
       while( itr.hasNext() )
       {
-         g.drawImage( itr.next().getToken().getBuffer(), 0, 0, this);
+         if( token_x + Player.TOKEN_SIZE + TOKEN_PADDING >= SPACE_WIDTH )
+         {
+            token_x = TOKEN_PADDING;
+            token_y += TOKEN_BETWEEN_PADDING + Player.TOKEN_SIZE;
+         }
+         g.drawImage( itr.next().getToken().getBuffer(), token_x, token_y, this);
+         token_x += TOKEN_BETWEEN_PADDING+ Player.TOKEN_SIZE;
       }
 
    }

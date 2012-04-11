@@ -10,8 +10,8 @@ import java.awt.FontMetrics;
 
 class Player
 {
-   private static int TOKEN_SIZE = 15;
-   private static int TOKEN_FONT_SIZE = 15;
+   public static int TOKEN_SIZE = 10;
+   private static int TOKEN_FONT_SIZE = 10;
    private int money;
    private int position;
    private GameBuffer token;
