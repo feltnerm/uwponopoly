@@ -15,6 +15,8 @@ class Player
    private int money;
    private int position;
    private GameBuffer token;
+   private char token_char; // even with a custom GameBuffer,
+                            // the token_char is used for equals()
 
    public Player()
    {
@@ -68,5 +70,16 @@ class Player
    public int getPosition() { return position; }
    public void setPosition( int new_positition ) { position = new_positition; }
    public GameBuffer getToken() { return token; }
+
+   @Override
+   public boolean equals( Object o )
+   { 
+      if( o instanceof  Player )
+      {
+         Player p = (Player) o;
+         return p.token_char == token_char; 
+      }
+      return false;
+   }
 
 }
