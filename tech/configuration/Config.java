@@ -1,6 +1,6 @@
 import java.util.Enumeration;
 import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Hashtable;
@@ -17,43 +17,67 @@ import java.util.Hashtable;
 
 */
 
+class GUIConfig extends JPanel implements Runnable {
+
+    
+}
+
 class Config extends Properties
 {
 
     // Path to default configuration file.
-    private String CONFIG_PATH = "uwponopoly.conf";
-    private FileReader config_file;
+    private static String CONFIG_PATH = "uwponopoly.conf";
+    private static FileReader config_file_reader;
+    private static FileOutputStream config_file_writer;
 
     public Config() {
-        // Default constructor
         super();
-        this.load(CONFIG_PATH);
     }
 
-    public Config(String config_path) {
-        // Parameterized constructor for custom configurations
-        super();
-        this.CONFIG_PATH = config_path;
-        this.load(config_path);
-    }
-
-    /**
-    public Config(String config_path, Map<String k, String v> config) {
-        super();
-        this.CONFIG_PATH = config_path;
-        this.putAll(config);
-        FileWriter file = new FileWriter(this.CONFIG_PATH);
-        this.store(file, "DERP");
-    }
-    */
-
-    private void load(String path){
+    public void load() {
+        // Default loader of a configuration file
         try {
-            this.config_file = new FileReader(path);
-            super.load(this.config_file);
+            config_file_reader = new FileReader(CONFIG_PATH);
+            super.load(config_file_reader);
         } catch (IOException e) {
-            System.out.println(path + " not found.");
+            System.out.println("Configuration file at "+CONFIG_PATH+" not found");
         }
+    }
+
+    public void load(String path) {
+        CONFIG_PATH = path;
+        load();
+    }
+
+    public void loadFromArgs(String args) {
+        load();
+    }
+
+    public void loadFromArgs(String args, String path) {
+        CONFIG_PATH = path;
+        load();
+    }
+
+    public void save() {
+        try {
+            config_file_writer = new FileOutputStream(CONFIG_PATH);
+            super.store(config_file_writer, "");
+        } catch (IOException e) {
+            System.out.println("Could not write to config file at "+CONFIG_PATH);
+        } 
+    }
+
+    public void save(String path) {
+        CONFIG_PATH = path;
+        save();
+    }
+
+    public String get(String key) {
+        return super.getProperty(key);
+    }
+
+    public Object set(String key, String value) {
+        return super.setProperty(key, value);
     }
 
     public void print() {
@@ -64,33 +88,6 @@ class Config extends Properties
             System.out.println(key + ":" + value);
         }
 
-    }
-
-    public static void main(String[] args){
-
-        // Instantiate our configuration
-        Config c = new Config();
-        
-        // Print the Configuration
-        c.print();
-
-        // Get values
-        System.out.println("DEBUG: "+c.get("DEBUG"));
-        System.out.println("PLAYERS: "+c.get("PLAYERS"));
-
-        // Declare custom configuration
-        Config c1 = new Config("uwponopoly.conf");
-        c1.print();
-
-        // Error handling
-        Config c2 = new Config("derp");
-        System.out.println("DERP: "+c.get("HERP"));
-
-        // Saving a new config
-        Hashtable opts = new Hashtable();
-        opts.put("DEBUG", "True");
-        opts.put("PLAYERS", "2");
-        Config c3 = new Config("test.conf", opts);
     }
 
 }
