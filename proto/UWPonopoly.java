@@ -60,7 +60,7 @@ class UWPonopoly implements Runnable
       UWPonopoly uwponopoly = new UWPonopoly();
    }
 
-   UWPonopoly()
+   UWPonopoly()//{{{
    {
       
       // GAME WINDOW
@@ -172,12 +172,12 @@ class UWPonopoly implements Runnable
       board.addPlayerToSpace( 3, test_d );
       board.addPlayerToSpace( 3, test_e );
       board.addPlayerToSpace( 3, test_f );
-   }
+   }//}}}
 
    /** Implemented from Runnable
     *
     */
-   public void run()
+   public void run()//{{{
    {
       Thread current = Thread.currentThread();
 
@@ -201,9 +201,9 @@ class UWPonopoly implements Runnable
       //   deed_panel.repaint();
 
       }
-   }
+   }//}}}
 
-   public void handleMouseEvents()
+   public void handleMouseEvents()//{{{
    {
       try
       {
@@ -217,9 +217,9 @@ class UWPonopoly implements Runnable
       {
          // no events on queue, so nothing to do
       }
-   }
+   }//}}}
 
-   public void handleKeyEvents()
+   public void handleKeyEvents()//{{{
    {
       try
       {
@@ -258,20 +258,6 @@ class UWPonopoly implements Runnable
       {
          // no events on queue, so nothing to do
       }
-   }
-
-   // the following function is copyrighted!
-   // source: http://docs.oracle.com/javase/tutorial/uiswing/examples/components/LabelDemoProject/src/components/LabelDemo.java
-   /** Returns an ImageIcon, or null if the path was invalid. */
-   protected static ImageIcon createImageIcon(String path,
-         String description) {
-      java.net.URL imgURL = UWPonopoly.class.getResource(path);
-      if (imgURL != null) {
-         return new ImageIcon(imgURL, description);
-      } else {
-         System.err.println("Couldn't find file: " + path);
-         return null;
-      }
-   }
+   }//}}}
 
 };
