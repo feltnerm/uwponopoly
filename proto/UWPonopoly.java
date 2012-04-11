@@ -47,6 +47,9 @@ class UWPonopoly implements Runnable
    static final int DESIRED_WIDTH = 550;
    static final int DESIRED_HEIGHT = 350;
 
+   // Event and game state variables
+   Player current_player;
+
    // Testing code
    Player test_player;
    Player test_b;
@@ -134,7 +137,7 @@ class UWPonopoly implements Runnable
              @Override
              public void actionPerformed(ActionEvent e)
              {
-             dice.roll(); 
+                doRoll(); 
              }
              }
          );
@@ -160,6 +163,7 @@ class UWPonopoly implements Runnable
       thread = new Thread(this);
       thread.start();
 
+      // testing code
       test_player = new Player('A');
       test_b = new Player('B');
       test_c = new Player('C');
@@ -172,8 +176,35 @@ class UWPonopoly implements Runnable
       board.addPlayerToSpace( 3, test_d );
       board.addPlayerToSpace( 3, test_e );
       board.addPlayerToSpace( 3, test_f );
+
+      // testing code
+      current_player = test_player;
    }//}}}
 
+   /**
+    * Event handler called whenever the dice roll button is pushed.
+    */
+   private void doRoll()
+   {
+      dice.roll();
+
+      // remove the player from current location
+      if( !board.isValidPosition( current_player.getPosition() ) )
+      {
+         System.out.println("Player " + current_player.getTokenChar() + " has an invalid position");
+         return;
+      }
+      board.getSpace( current_player.getPosition() ).removePlayer( current_player );
+
+      // calculate the new position and add the player to it
+      int new_position = current_player.getPosition() + dice.getTotal();
+      if( new_position >= board.getNumberOfSpaces() ) // handle board wrap-around
+      {
+         // TODO credit the player with the "Passing Go" salary
+         new_position = new_position % board.getNumberOfSpaces();
+      }
+      current_player.setPosition( new_position );
+   }
    /** Implemented from Runnable
     *
     */

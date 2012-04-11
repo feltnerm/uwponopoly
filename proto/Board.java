@@ -178,5 +178,26 @@ class Board extends GamePanel implements Runnable
       //spaces[space].removePlayer();
    }
 
+   /**
+    * Basic sanity-checking on position numbers
+    */
+   public boolean isValidPosition( int position_num )
+   {
+      return position_num >= 0 && position_num < num_spaces;
+   }
+
+   public int getNumberOfSpaces()
+   {
+      return num_spaces;
+   }
+
+   public Space getSpace( int position_num )
+   {
+      // TODO do real error handling
+      if( !isValidPosition( position_num ) )
+         return null;
+      return spaces[position_num];
+   }
+
 }
 

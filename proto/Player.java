@@ -68,7 +68,7 @@ class Player
    }
 
    public int getPosition() { return position; }
-   public void setPosition( int new_positition ) { position = new_positition; }
+   public void setPosition( int new_position ) { position = new_position; }
    public GameBuffer getToken() { return token; }
 
    @Override
@@ -81,5 +81,7 @@ class Player
       }
       return false;
    }
+
+   public char getTokenChar() { return token_char; }
 
 }
