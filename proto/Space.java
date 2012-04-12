@@ -283,6 +283,12 @@ class Space extends GamePanel
 
    public void addPlayer( Player player )
    {
+      Iterator<Player> itr = players.iterator();
+      while( itr.hasNext() )
+      {
+         if( itr.next().getTokenChar() == player.getTokenChar() )
+            return; // player is already on space, get out of here
+      }
       players.add(player);
    }
 

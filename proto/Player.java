@@ -24,6 +24,7 @@ class Player
 
    public Player( char token_char )
    {
+      this.token_char = token_char;
       token = generateTokenFromChar( token_char );
    }
 
