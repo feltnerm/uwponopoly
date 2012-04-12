@@ -294,7 +294,12 @@ class Space extends GamePanel
 
    public void removePlayer( Player player )
    {
-      // TODO
+      Iterator<Player> itr = players.iterator();
+      while( itr.hasNext() )
+      {
+         if( itr.next().getTokenChar() == player.getTokenChar() )
+            itr.remove();
+      }
    }
 
 }
