@@ -33,10 +33,10 @@ class Board extends GamePanel implements Runnable
    // Animation variables
    private Thread animation_thread;
    // Token-moving animation
-   private Thread move_player_thread;
-   private int final_token_space;
-   private int current_token_space;
-   private Player current_animation_player;
+   //private Thread move_player_thread;
+   //private int final_token_space;
+   //private int current_token_space;
+   //private Player current_animation_player;
    private static int ANIMATION_DELAY_MS = 250;
 
    /**
@@ -111,7 +111,7 @@ class Board extends GamePanel implements Runnable
     */
    public void run()
    {
-      while( move_player_thread != null)
+      /*while( move_player_thread != null)
       {
          if( current_animation_player == null )
             move_player_thread = null;
@@ -130,8 +130,8 @@ class Board extends GamePanel implements Runnable
          
 
          try { Thread.sleep( ANIMATION_DELAY_MS ); }
-         catch ( InterruptedException e ) { /* do nothing */ }
-      }
+         catch ( InterruptedException e ) { /* do nothing */ //}
+      //}
       while( animation_thread != null )
       {
          repaint();
@@ -194,12 +194,14 @@ class Board extends GamePanel implements Runnable
       if( space < 0 )
          return;
       validizePosition( space );
-      current_token_space = player.getPosition();
+      int current_token_space = player.getPosition();
+      int final_token_space = space;
       player.setPosition( space ); // SIDE EFFECT
-      current_animation_player = player;
+      /*current_animation_player = player;
       final_token_space = space;
       move_player_thread = new Thread( this );
-      move_player_thread.start();
+      move_player_thread.start();*/
+      BoardAnimation b = new BoardAnimation( current_token_space, final_token_space, player);
    }
 
    public void removePlayerFromSpace( int space )
@@ -250,14 +252,19 @@ class Board extends GamePanel implements Runnable
          this.current_token_space = current_token_space;
          this.final_token_space = final_token_space;
          this.current_animation_player = current_animation_player;
-
-         Thread move_player_thread = new Thread( this );
+    
+         move_player_thread = new Thread( this );
+         System.out.println( move_player_thread );
+         move_player_thread.start();
+         System.out.println( move_player_thread );
       }
 
       public void run()
       {
+         System.out.println("run()");
          while( move_player_thread != null)
          {
+            System.out.println("derp");
             if( current_animation_player == null )
                move_player_thread = null;
 

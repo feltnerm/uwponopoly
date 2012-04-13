@@ -171,11 +171,11 @@ class UWPonopoly implements Runnable
       test_e = new Player('E');
       test_f = new Player('F');
       board.addPlayerToSpace( 3, test_player );
-      board.addPlayerToSpace( 3, test_b );
-      board.addPlayerToSpace( 3, test_c );
-      board.addPlayerToSpace( 3, test_d );
-      board.addPlayerToSpace( 3, test_e );
-      board.addPlayerToSpace( 3, test_f );
+      //board.addPlayerToSpace( 3, test_b );
+      //board.addPlayerToSpace( 3, test_c );
+      //board.addPlayerToSpace( 3, test_d );
+      //board.addPlayerToSpace( 3, test_e );
+      //board.addPlayerToSpace( 3, test_f );
 
       // testing code
       current_player = test_player;
