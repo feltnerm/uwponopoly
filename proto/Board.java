@@ -30,7 +30,14 @@ class Board extends GamePanel implements Runnable
    private int selected_space; // index location of the currently selected space
    private GamePanel deed_panel;
 
+   // Animation variables
    private Thread animation_thread;
+   // Token-moving animation
+   //private Thread move_player_thread;
+   //private int final_token_space;
+   //private int current_token_space;
+   //private Player current_animation_player;
+   private static int ANIMATION_DELAY_MS = 250;
 
    /**
     * Testing constructor.
@@ -104,6 +111,27 @@ class Board extends GamePanel implements Runnable
     */
    public void run()
    {
+      /*while( move_player_thread != null)
+      {
+         if( current_animation_player == null )
+            move_player_thread = null;
+
+         System.out.println("current: " + current_token_space + "  final: " + final_token_space );
+         spaces[current_token_space].removePlayer( current_animation_player );
+         spaces[final_token_space].addPlayer( current_animation_player );
+
+         current_token_space++;
+         validizePosition( current_token_space );
+         if( current_token_space > final_token_space )
+         {
+            current_animation_player = null;
+            move_player_thread = null;
+         }
+         
+
+         try { Thread.sleep( ANIMATION_DELAY_MS ); }
+         catch ( InterruptedException e ) { /* do nothing */ //}
+      //}
       while( animation_thread != null )
       {
          repaint();
@@ -114,7 +142,7 @@ class Board extends GamePanel implements Runnable
    }
    
    @Override
-   public void paintComponent(Graphics g)
+   public void paintComponent(Graphics g)//{{{
    {
       super.paintComponent(g);
       //draw spaces
@@ -134,7 +162,7 @@ class Board extends GamePanel implements Runnable
 
       // draw the blown-up version of the space that is currently highlighted
       g.drawImage(spaces[selected_space].drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
-   }
+   }//}}}
 
    public void setSelectedSpace( int space )
    {
@@ -165,10 +193,17 @@ class Board extends GamePanel implements Runnable
    {
       if( space < 0 )
          return;
-      if( space >= num_spaces )
-         space = space % num_spaces; // rollover
+      space = returnValidPosition( space );
+      int current_token_space = player.getPosition();
+      int final_token_space = space;
       player.setPosition( space ); // SIDE EFFECT
-      spaces[space].addPlayer( player );
+      spaces[current_token_space].removePlayer( player );
+      spaces[final_token_space].addPlayer( player );
+      /*current_animation_player = player;
+      final_token_space = space;
+      move_player_thread = new Thread( this );
+      move_player_thread.start();*/
+      //BoardAnimation b = new BoardAnimation( current_token_space, final_token_space, player);
    }
 
    public void removePlayerFromSpace( int space )
@@ -186,6 +221,14 @@ class Board extends GamePanel implements Runnable
       return position_num >= 0 && position_num < num_spaces;
    }
 
+   /**
+    * Takes a position number and maps it onto the board.
+    */
+   public int returnValidPosition( int position_num )
+   {
+      return position_num % num_spaces; // rollover
+   }
+
    public int getNumberOfSpaces()
    {
       return num_spaces;
@@ -197,6 +240,49 @@ class Board extends GamePanel implements Runnable
       if( !isValidPosition( position_num ) )
          return null;
       return spaces[position_num];
+   }
+
+   class BoardAnimation implements Runnable
+   {
+      private Thread move_player_thread;
+      private int final_token_space;
+      private int current_token_space;
+      private Player current_animation_player;
+
+      BoardAnimation( int current_token_space, int final_token_space, Player current_animation_player )
+      {
+         this.current_token_space = current_token_space;
+         this.final_token_space = final_token_space;
+         this.current_animation_player = current_animation_player;
+    
+         move_player_thread = new Thread( this );
+         move_player_thread.start();
+      }
+
+      public void run()
+      {
+         while( move_player_thread != null)
+         {
+            if( current_animation_player == null )
+               move_player_thread = null;
+
+            System.out.println("current: " + current_token_space + "  final: " + final_token_space );
+            spaces[current_token_space].removePlayer( current_animation_player );
+            spaces[final_token_space].addPlayer( current_animation_player );
+
+            current_token_space++;
+            current_token_space = returnValidPosition( current_token_space );
+            if( current_token_space > final_token_space )
+            {
+               current_animation_player = null;
+               move_player_thread = null;
+            }
+
+
+            try { Thread.sleep( ANIMATION_DELAY_MS ); }
+            catch ( InterruptedException e ) { /* do nothing */ }
+         }
+      }
    }
 
 }
