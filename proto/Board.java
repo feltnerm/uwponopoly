@@ -238,5 +238,47 @@ class Board extends GamePanel implements Runnable
       return spaces[position_num];
    }
 
+   class BoardAnimation implements Runnable
+   {
+      private Thread move_player_thread;
+      private int final_token_space;
+      private int current_token_space;
+      private Player current_animation_player;
+
+      BoardAnimation( int current_token_space, int final_token_space, Player current_animation_player )
+      {
+         this.current_token_space = current_token_space;
+         this.final_token_space = final_token_space;
+         this.current_animation_player = current_animation_player;
+
+         Thread move_player_thread = new Thread( this );
+      }
+
+      public void run()
+      {
+         while( move_player_thread != null)
+         {
+            if( current_animation_player == null )
+               move_player_thread = null;
+
+            System.out.println("current: " + current_token_space + "  final: " + final_token_space );
+            spaces[current_token_space].removePlayer( current_animation_player );
+            spaces[final_token_space].addPlayer( current_animation_player );
+
+            current_token_space++;
+            validizePosition( current_token_space );
+            if( current_token_space > final_token_space )
+            {
+               current_animation_player = null;
+               move_player_thread = null;
+            }
+
+
+            try { Thread.sleep( ANIMATION_DELAY_MS ); }
+            catch ( InterruptedException e ) { /* do nothing */ }
+         }
+      }
+   }
+
 }
 
