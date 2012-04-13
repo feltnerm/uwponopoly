@@ -201,8 +201,8 @@ class UWPonopoly implements Runnable
       if( new_position >= board.getNumberOfSpaces() ) // handle board wrap-around
       {
          // TODO credit the player with the "Passing Go" salary
-         new_position = new_position % board.getNumberOfSpaces();
       }
+      new_position = board.returnValidPosition( new_position );
       //current_player.setPosition( new_position );
       //board.getSpace( current_player.getPosition() ).addPlayer( current_player );
       board.addPlayerToSpace( new_position, current_player);

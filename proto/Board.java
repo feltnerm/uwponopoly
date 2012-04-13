@@ -193,15 +193,17 @@ class Board extends GamePanel implements Runnable
    {
       if( space < 0 )
          return;
-      validizePosition( space );
+      space = returnValidPosition( space );
       int current_token_space = player.getPosition();
       int final_token_space = space;
       player.setPosition( space ); // SIDE EFFECT
+      spaces[current_token_space].removePlayer( player );
+      spaces[final_token_space].addPlayer( player );
       /*current_animation_player = player;
       final_token_space = space;
       move_player_thread = new Thread( this );
       move_player_thread.start();*/
-      BoardAnimation b = new BoardAnimation( current_token_space, final_token_space, player);
+      //BoardAnimation b = new BoardAnimation( current_token_space, final_token_space, player);
    }
 
    public void removePlayerFromSpace( int space )
@@ -222,9 +224,9 @@ class Board extends GamePanel implements Runnable
    /**
     * Takes a position number and maps it onto the board.
     */
-   public int validizePosition( int position_num )
+   public int returnValidPosition( int position_num )
    {
-         return position_num = position_num % num_spaces; // rollover
+      return position_num % num_spaces; // rollover
    }
 
    public int getNumberOfSpaces()
@@ -254,17 +256,13 @@ class Board extends GamePanel implements Runnable
          this.current_animation_player = current_animation_player;
     
          move_player_thread = new Thread( this );
-         System.out.println( move_player_thread );
          move_player_thread.start();
-         System.out.println( move_player_thread );
       }
 
       public void run()
       {
-         System.out.println("run()");
          while( move_player_thread != null)
          {
-            System.out.println("derp");
             if( current_animation_player == null )
                move_player_thread = null;
 
@@ -273,7 +271,7 @@ class Board extends GamePanel implements Runnable
             spaces[final_token_space].addPlayer( current_animation_player );
 
             current_token_space++;
-            validizePosition( current_token_space );
+            current_token_space = returnValidPosition( current_token_space );
             if( current_token_space > final_token_space )
             {
                current_animation_player = null;
