@@ -1,6 +1,6 @@
 all:
 	rm -f *.class
-	javac test.java
+	javac JSONBoard.java
 
 clean:
 	rm *.class
