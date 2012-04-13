@@ -85,4 +85,9 @@ class Config extends Properties
 
     }
 
+    public static void main(String[] args){
+        Config config = new Config();
+        config.load();
+        config.print();
+    }
 }
