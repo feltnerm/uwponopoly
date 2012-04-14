@@ -3,5 +3,6 @@
 *.swp
 *.out
 
+build/*
 *.class
 
