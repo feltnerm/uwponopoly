@@ -272,7 +272,7 @@ class Board extends GamePanel implements Runnable
             if( current_animation_player == null )
                move_player_thread = null;
 
-            System.out.println("current: " + current_token_space + "  final: " + final_token_space );
+            //System.out.println("current: " + current_token_space + "  final: " + final_token_space );
             if( current_token_space < final_token_space || final_is_lesser_than_current )
             {
 
