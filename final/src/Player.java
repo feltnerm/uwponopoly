@@ -15,8 +15,12 @@ class Player
    private int money;
    private int position;
    private GameBuffer token;
+   private GameBuffer animating_token;
    private char token_char; // even with a custom GameBuffer,
                             // the token_char is used for equals()
+   private boolean is_moving; // true if the player's token is currently in animated transit
+                              // this was needed so that the token could flash red etc. during
+                              // animation
 
    public Player()
    {
@@ -25,7 +29,8 @@ class Player
    public Player( char token_char )
    {
       this.token_char = token_char;
-      token = generateTokenFromChar( token_char );
+      token = generateTokenFromChar( token_char, Color.BLACK );
+      animating_token = generateTokenFromChar( token_char, Color.RED );
    }
 
    /* I don't think that this method is appropriate -- Aaron
@@ -51,12 +56,12 @@ class Player
          return money - amount;
    }
 
-   private GameBuffer generateTokenFromChar( char token_char )
+   private GameBuffer generateTokenFromChar( char token_char, Color color )
    {
       GameBuffer gbuffer = new GameBuffer( TOKEN_SIZE, TOKEN_SIZE, Color.WHITE);
       gbuffer.clear();
       Graphics g = gbuffer.getGraphics();
-      g.setColor( Color.BLACK );
+      g.setColor( color );
 
       // generate font
       Font font = new Font("Helvetica", Font.PLAIN, TOKEN_FONT_SIZE);
@@ -70,7 +75,15 @@ class Player
 
    public int getPosition() { return position; }
    public void setPosition( int new_position ) { position = new_position; }
-   public GameBuffer getToken() { return token; }
+   public boolean isMoving() { return is_moving; }
+   public void setIsMoving( boolean moving ) { is_moving = moving; }
+
+   public GameBuffer getToken()
+   {
+      if(! is_moving )
+         return token; 
+      return animating_token;
+   }
 
    @Override
    public boolean equals( Object o )
