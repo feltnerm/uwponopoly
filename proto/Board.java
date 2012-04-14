@@ -111,27 +111,6 @@ class Board extends GamePanel implements Runnable
     */
    public void run()
    {
-      /*while( move_player_thread != null)
-      {
-         if( current_animation_player == null )
-            move_player_thread = null;
-
-         System.out.println("current: " + current_token_space + "  final: " + final_token_space );
-         spaces[current_token_space].removePlayer( current_animation_player );
-         spaces[final_token_space].addPlayer( current_animation_player );
-
-         current_token_space++;
-         validizePosition( current_token_space );
-         if( current_token_space > final_token_space )
-         {
-            current_animation_player = null;
-            move_player_thread = null;
-         }
-         
-
-         try { Thread.sleep( ANIMATION_DELAY_MS ); }
-         catch ( InterruptedException e ) { /* do nothing */ //}
-      //}
       while( animation_thread != null )
       {
          repaint();
@@ -265,7 +244,7 @@ class Board extends GamePanel implements Runnable
          move_player_thread.start();
       }
 
-      public void run()
+      public void run()//{{{
       {
          while( move_player_thread != null)
          {
@@ -298,7 +277,7 @@ class Board extends GamePanel implements Runnable
             try { Thread.sleep( ANIMATION_DELAY_MS ); }
             catch ( InterruptedException e ) { /* do nothing */ }
          }
-      }
+      }//}}}
    }
 
 }
