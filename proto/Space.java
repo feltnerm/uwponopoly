@@ -133,12 +133,13 @@ class Space extends GamePanel
       int token_y = (int)(SPACE_HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
       while( itr.hasNext() )
       {
+         Player p = itr.next();
          if( token_x + Player.TOKEN_SIZE + TOKEN_PADDING >= SPACE_WIDTH )
          {
             token_x = TOKEN_PADDING;
             token_y += TOKEN_BETWEEN_PADDING + Player.TOKEN_SIZE;
          }
-         g.drawImage( itr.next().getToken().getBuffer(), token_x, token_y, this);
+         g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
          token_x += TOKEN_BETWEEN_PADDING+ Player.TOKEN_SIZE;
       }
 
