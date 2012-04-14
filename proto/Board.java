@@ -197,13 +197,13 @@ class Board extends GamePanel implements Runnable
       int current_token_space = player.getPosition();
       int final_token_space = space;
       player.setPosition( space ); // SIDE EFFECT
-      spaces[current_token_space].removePlayer( player );
-      spaces[final_token_space].addPlayer( player );
+      //spaces[current_token_space].removePlayer( player );
+      //spaces[final_token_space].addPlayer( player );
       /*current_animation_player = player;
       final_token_space = space;
       move_player_thread = new Thread( this );
       move_player_thread.start();*/
-      //BoardAnimation b = new BoardAnimation( current_token_space, final_token_space, player);
+      BoardAnimation b = new BoardAnimation( current_token_space, final_token_space, player);
    }
 
    public void removePlayerFromSpace( int space )
@@ -254,6 +254,8 @@ class Board extends GamePanel implements Runnable
          this.current_token_space = current_token_space;
          this.final_token_space = final_token_space;
          this.current_animation_player = current_animation_player;
+
+         System.out.println("Animate: " + current_token_space + " " + final_token_space);
     
          move_player_thread = new Thread( this );
          move_player_thread.start();
@@ -268,13 +270,14 @@ class Board extends GamePanel implements Runnable
 
             System.out.println("current: " + current_token_space + "  final: " + final_token_space );
             spaces[current_token_space].removePlayer( current_animation_player );
-            spaces[final_token_space].addPlayer( current_animation_player );
 
             current_token_space++;
             current_token_space = returnValidPosition( current_token_space );
+
+            spaces[current_token_space].addPlayer( current_animation_player );
             if( current_token_space > final_token_space )
             {
-               current_animation_player = null;
+               //current_animation_player = null;
                move_player_thread = null;
             }
 
