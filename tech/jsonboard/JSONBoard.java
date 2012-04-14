@@ -54,6 +54,7 @@ class Test {
         JSONBoard jb = new JSONBoard();
         Board b = new Gson().fromJson(jb.json, Board.class);
         System.out.println("TEST");
+        //Board b = new Board();
         System.out.println(b);
     }
 }
