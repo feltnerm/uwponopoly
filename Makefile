@@ -8,4 +8,4 @@ clean:
 	rm -rf ./build/*
 dev:
 	clean
-	javac -verbose -sourcepath src -classpath lib/ src/UWPonopoly.java -d build
+	javac -verbose -sourcepath src -classpath lib/ src/UWPonopoly2.java -d build
