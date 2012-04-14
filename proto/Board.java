@@ -255,7 +255,9 @@ class Board extends GamePanel implements Runnable
          this.final_token_space = final_token_space;
          this.current_animation_player = current_animation_player;
 
-         System.out.println("Animate: " + current_token_space + " " + final_token_space);
+         current_animation_player.setIsMoving( true );
+
+         //System.out.println("Animate: " + current_token_space + " " + final_token_space);
     
          move_player_thread = new Thread( this );
          move_player_thread.start();
@@ -268,7 +270,7 @@ class Board extends GamePanel implements Runnable
             if( current_animation_player == null )
                move_player_thread = null;
 
-            System.out.println("current: " + current_token_space + "  final: " + final_token_space );
+            //System.out.println("current: " + current_token_space + "  final: " + final_token_space );
             spaces[current_token_space].removePlayer( current_animation_player );
 
             current_token_space++;
@@ -278,6 +280,7 @@ class Board extends GamePanel implements Runnable
             if( current_token_space > final_token_space )
             {
                //current_animation_player = null;
+               current_animation_player.setIsMoving( false );
                move_player_thread = null;
             }
 
