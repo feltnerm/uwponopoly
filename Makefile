@@ -1,8 +1,11 @@
+.PHONY: all clean dev
+
 all:
-	rm -rf build/*.class
+	clean
 	javac -sourcepath src -classpath lib/ src/UWPonopoly2.java -d build/
 clean: 
-	rm -rf build/*.class
+	rm -rf ./bin/*
+	rm -rf ./build/*
 dev:
 	clean
 	javac -verbose -sourcepath src -classpath lib/ src/UWPonopoly.java -d build
