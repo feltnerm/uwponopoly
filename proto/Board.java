@@ -248,12 +248,14 @@ class Board extends GamePanel implements Runnable
       private int final_token_space;
       private int current_token_space;
       private Player current_animation_player;
+      private boolean final_is_lesser_than_current; // used for situations when moving past the zeroth space.
 
       BoardAnimation( int current_token_space, int final_token_space, Player current_animation_player )
       {
          this.current_token_space = current_token_space;
          this.final_token_space = final_token_space;
          this.current_animation_player = current_animation_player;
+         final_is_lesser_than_current = ( final_token_space < current_token_space );
 
          current_animation_player.setIsMoving( true );
 
@@ -275,9 +277,11 @@ class Board extends GamePanel implements Runnable
 
             current_token_space++;
             current_token_space = returnValidPosition( current_token_space );
+            if( current_token_space == 0 )
+               final_is_lesser_than_current = false;
 
             spaces[current_token_space].addPlayer( current_animation_player );
-            if( current_token_space > final_token_space )
+            if( current_token_space >= final_token_space && !final_is_lesser_than_current)
             {
                //current_animation_player = null;
                current_animation_player.setIsMoving( false );
