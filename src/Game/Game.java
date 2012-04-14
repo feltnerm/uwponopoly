@@ -7,8 +7,10 @@ import java.util.LinkedList;
 import Config.Config;
 import Player.Player;
 
-public class Game 
+public class Game implements runnable
 {
+   private Thread gamethread;
+
    private static int SPACES = 40;
    private static int NUM_PLAYERS = 2;
    private static int STARTING_CASH = 200;
