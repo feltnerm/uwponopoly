@@ -1,5 +1,10 @@
 // Copyright Aaron Decker
 
+import Player.Player;
+import Board.Space;
+import GUI.GamePanel;
+import GUI.GameFrame;
+import Board.Board;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
