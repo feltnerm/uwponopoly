@@ -37,7 +37,7 @@ class Board extends GamePanel implements Runnable
    //private int final_token_space;
    //private int current_token_space;
    //private Player current_animation_player;
-   private static int ANIMATION_DELAY_MS = 250;
+   private static int ANIMATION_DELAY_MS = 150;
 
    /**
     * Testing constructor.
@@ -272,17 +272,23 @@ class Board extends GamePanel implements Runnable
             if( current_animation_player == null )
                move_player_thread = null;
 
-            //System.out.println("current: " + current_token_space + "  final: " + final_token_space );
-            spaces[current_token_space].removePlayer( current_animation_player );
-
-            current_token_space++;
-            current_token_space = returnValidPosition( current_token_space );
-            if( current_token_space == 0 )
-               final_is_lesser_than_current = false;
-
-            spaces[current_token_space].addPlayer( current_animation_player );
-            if( current_token_space >= final_token_space && !final_is_lesser_than_current)
+            System.out.println("current: " + current_token_space + "  final: " + final_token_space );
+            if( current_token_space < final_token_space || final_is_lesser_than_current )
             {
+
+               spaces[current_token_space].removePlayer( current_animation_player );
+
+               current_token_space++;
+               current_token_space = returnValidPosition( current_token_space );
+               if( current_token_space == 0 )
+                  final_is_lesser_than_current = false;
+
+               spaces[current_token_space].addPlayer( current_animation_player );
+            }
+            //if( current_token_space >= final_token_space && !final_is_lesser_than_current)
+            else
+            {
+               spaces[final_token_space].addPlayer( current_animation_player );
                //current_animation_player = null;
                current_animation_player.setIsMoving( false );
                move_player_thread = null;
