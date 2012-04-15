@@ -5,13 +5,17 @@
 
 import config.Config;
 import game.Game;
-import GUI.GUIGame;
+import gui.GUIGame;
 
 public class UWPonopoly2 
 {
+	private boolean GUI;
+	private boolean DEBUG;
 
    public UWPonopoly2(boolean gui, boolean debug) {
       
+	   this.GUI = gui;
+	   this.DEBUG = debug;
       if (gui)
       {
          GUIGame game = new GUIGame(debug);
@@ -22,13 +26,26 @@ public class UWPonopoly2
       }
       
    }
+   
+   public void play()
+   {
+	   if (this.GUI)
+	   {
+		   GUIGame game = new GUIGame(this.DEBUG);
+		   game.gameStart();
+	   } else {
+		   Game game = new Game(this.DEBUG);
+		   game.gameStart();
+	   }
 
-   public static void main(String[] args)
+   }
+
+   public static int main(String[] args)
    {
 
       boolean gui = false;
       boolean debug = false;
-
+      
       if (args[0] == "help")
       {
          System.out.println("% java UWPonopoly2 [gui] [debug]");
@@ -46,5 +63,8 @@ public class UWPonopoly2
       }
 
       UWPonopoly2 uwponopoly = new UWPonopoly2(gui, debug); 
+      uwponopoly.play();
+      
+      return 0;
    }
 }
