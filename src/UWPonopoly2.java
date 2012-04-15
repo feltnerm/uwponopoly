@@ -3,7 +3,6 @@
  @author UWP_User 
 */
 
-import config.Config;
 import game.Game;
 import gui.GUIGame;
 

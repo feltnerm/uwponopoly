@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="GUI/" kind="src" path="src"/>
-	<classpathentry kind="src" path="src/GUI"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
 	<classpathentry kind="lib" path="lib/gson/gson-2.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/gson/gson-2.1-sources.jar"/>

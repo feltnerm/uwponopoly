@@ -6,7 +6,8 @@ import player.Player;
  * Abstracts a Space in UWPonopoly.
  */
 
-public class Space
+
+public abstract class Space
 {
    // defaults
    private String title;

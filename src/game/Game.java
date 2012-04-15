@@ -53,7 +53,6 @@ public class Game implements Runnable
 
    public Game(boolean debug, Config config)
    {
-      this.GUI = gui;
       this.config = config;
       this.board = new Board();
       this.dice = new Dice();
@@ -72,11 +71,6 @@ public class Game implements Runnable
 
          // do stuff...
          this.gameUpdate();
-
-         if (GUI)
-         {
-            //
-         }
 
          try {
             Thread.sleep(10);
@@ -106,7 +100,6 @@ public class Game implements Runnable
    {
       //end game
       this.running = false;
-      this.gamethread.stop();
    }
 
    private void gameUpdate()
@@ -119,8 +112,10 @@ public class Game implements Runnable
       }
 
       else {
-         handlSpace(this.board.getSpace(this.current_player.position));
+         handlSpace(this.board.getSpace(this.current_player.getPosition()));
       }
+      
+      roll();
 
    }
    
