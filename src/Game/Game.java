@@ -41,30 +41,19 @@ public class Game implements Runnable
    private static int INCOME_TAX_CASH;
    private static float INCOME_TAX_PERCENT;
 
-   public Game()
-   {
-      this(false, new Config());
-   }
 
-   public Game(boolean gui)
+   public Game(boolean debug)
    {
       this(gui, new Config());
    }
 
-   public Game(boolean gui, Config config)
+   public Game(boolean debug, Config config)
    {
       this.GUI = gui;
       this.config = config;
       this.board = new Board();
       this.dice = new Dice();
-
-      if (gui)
-      {
-       // initialize GUI elements
-      }
-      gameInit();
-      gameStart();
-
+      gameInit();      
    }
 
    public void run()
@@ -102,7 +91,7 @@ public class Game implements Runnable
       this.gamethread = new Thread(this);
    }
 
-   private void gameStart()
+   public void gameStart()
    {
       //start game; loop it
       this.running = true;
