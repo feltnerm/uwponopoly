@@ -13,7 +13,7 @@ import Board.Space;
 class JSONBoard
 {
 
-    private static String PATH = "monopoly.json";
+    private static String PATH = "../etc/monopoly.json";
 
     private Gson gson = new Gson();
     private String json;
