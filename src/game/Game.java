@@ -111,10 +111,8 @@ public class Game implements Runnable
          // winner!
       }
 
-      else {
-         handlSpace(this.board.getSpace(this.current_player.getPosition()));
-      }
-      
+         Space current_space = this.board.getSpace(this.current_player.getPosition()));
+         
       roll();
 
    }
