@@ -3,7 +3,7 @@
  @author UWP_User 
 */
 
-package Game;
+package game;
 
 import java.util.EventObject;
 import java.util.EventListener;

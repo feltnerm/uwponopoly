@@ -3,9 +3,9 @@
  @author UWP_User 
 */
 
-import Config.Config;
-import Game.Game;
-import GUIGame.GUIGame;
+import config.Config;
+import game.Game;
+import GUI.GUIGame;
 
 public class UWPonopoly2 
 {
@@ -15,11 +15,12 @@ public class UWPonopoly2
       if (gui)
       {
          GUIGame game = new GUIGame(debug);
+         game.gameStart();
       } else {
          Game game = new Game(debug);
-         //game.gameStart();
+         game.gameStart();
       }
-      game.gameStart();
+      
    }
 
    public static void main(String[] args)
@@ -45,4 +46,5 @@ public class UWPonopoly2
       }
 
       UWPonopoly2 uwponopoly = new UWPonopoly2(gui, debug); 
+   }
 }

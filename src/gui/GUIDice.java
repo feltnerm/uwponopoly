@@ -1,7 +1,9 @@
 package GUI;
 
-import Dice.Dice;
 import javax.swing.JPanel;
+
+import dice.Dice;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

@@ -1,8 +1,9 @@
-package Player;
+package player;
 
 import java.util.ArrayList;
 
-import Board.Space;
+import board.Space;
+
 
 /**
  * The Player class describes one player in a game of UWPonopoly

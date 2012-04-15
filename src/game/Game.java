@@ -2,16 +2,20 @@
 
  @author UWP_User 
 */
-package Game;
+package game;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-import Board.Board;
-import Board.Space;
-import Config.Config;
-import Dice.Dice;
-import Player.Player;
+import board.Board;
+import board.Space;
+
+import config.Config;
+
+import dice.Dice;
+
+import player.Player;
+
 
 
 public class Game implements Runnable

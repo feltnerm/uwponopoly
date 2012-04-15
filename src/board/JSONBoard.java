@@ -1,14 +1,15 @@
-package Board;
+package board;
 
 import java.io.FileReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import board.Space;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import Board.Space;
 
 class JSONBoard
 {

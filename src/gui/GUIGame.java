@@ -1,6 +1,6 @@
 package GUI;
 
-import Config.Config;
+import config.Config;
 
 public class GUIGame 
 {

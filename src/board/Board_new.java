@@ -1,4 +1,4 @@
-package Board;
+package board;
 /**  
 
  @author UWP_User 

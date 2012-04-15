@@ -1,17 +1,18 @@
 // Copyright Aaron Decker
 
-import Player.Player;
-import Board.Space;
 import GUI.GamePanel;
 import GUI.GameFrame;
-import Board.Board;
 import javax.swing.*;
+
+import board.Board;
+import board.Space;
+
+import player.Player;
+
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.*;
-import java.awt.FlowLayout;
-import java.awt.Dimension;
 import java.awt.*;
 import java.util.*;
 

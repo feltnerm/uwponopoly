@@ -1,4 +1,4 @@
-package Dice;
+package dice;
 
 import GUI.GUIDice;
 import javax.swing.JFrame;

@@ -1,6 +1,6 @@
-package Board;
+package board;
 
-import Player.Player;
+import player.Player;
 
 /**
  * Abstracts a Space in UWPonopoly.

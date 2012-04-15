@@ -1,4 +1,4 @@
-package Board;
+package board;
 
 /**
  * Board: Contains and displays Spaces in a board configuration.
@@ -7,9 +7,11 @@ package Board;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import Board.JSONBoard;
-import Board.Space;
-import Player.Player;
+import board.JSONBoard;
+import board.Space;
+
+import player.Player;
+
 
 
 public class Board
