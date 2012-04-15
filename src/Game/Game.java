@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 import Board.Board;
+import Board.Space;
 import Config.Config;
 import Dice.Dice;
 import Player.Player;
@@ -121,12 +122,12 @@ public class Game implements Runnable
       //update game state
       if (this.players.size() == 1)
       {
-         
+         // winner!
       }
-      //if (this.current_player.isJailed())
-      //
-       //handle jail
-      //}
+
+      else {
+         handlSpace(this.board.getSpace(this.current_player.position));
+      }
 
    }
    
