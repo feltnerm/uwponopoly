@@ -45,12 +45,3 @@ class JSONBoard
     }
 
 }
-
-class Test {
-    public static void main(String[] args){
-        JSONBoard jb = new JSONBoard();
-        Board b = new Board();
-        b.init();
-        System.out.println(b);
-    }
-}

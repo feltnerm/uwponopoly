@@ -2,15 +2,34 @@
 
  @author UWP_User 
 */
-import java.util.LinkedList;
+package Game;
 
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+import Board.Board;
 import Config.Config;
+import Dice.Dice;
 import Player.Player;
 
-public class Game implements runnable
-{
-   private Thread gamethread;
 
+public class Game implements Runnable
+{
+   private static boolean GUI = false;
+   private static boolean DEBUG = false;
+
+   private Thread gamethread;
+   private boolean running = false;
+
+   private Board board;
+   private Dice dice;
+
+   private LinkedList<Player> players;
+   private ListIterator<Player> players_iter;
+   private Player current_player;
+
+   private Config config;
+   
    private static int SPACES = 40;
    private static int NUM_PLAYERS = 2;
    private static int STARTING_CASH = 200;
@@ -21,23 +40,98 @@ public class Game implements runnable
    private static int INCOME_TAX_CASH;
    private static float INCOME_TAX_PERCENT;
 
-   private boolean running = false;
-
-   private LinkedList<Player> players;
-
-   Config config;
-
    public Game()
    {
-      initPlayers();
+      this(false, new Config());
    }
 
-   public Game(Config config)
+   public Game(boolean gui)
    {
-      // Get configuration
-      this.config = config;
+      this(gui, new Config());
+   }
 
-      // Set defaults
+   public Game(boolean gui, Config config)
+   {
+      this.GUI = gui;
+      this.config = config;
+      this.board = new Board();
+      this.dice = new Dice();
+
+      if (gui)
+      {
+       // initialize GUI elements
+      }
+      gameInit();
+      gameStart();
+
+   }
+
+   public void run()
+   {
+      Thread current = Thread.currentThread();
+      long lastLoopTime = System.currentTimeMillis();
+
+      while (this.running)
+      {
+         long delta = System.currentTimeMillis() - lastLoopTime;
+         lastLoopTime = System.currentTimeMillis();
+
+         // do stuff...
+         this.gameUpdate();
+
+         if (GUI)
+         {
+            //
+         }
+
+         try {
+            Thread.sleep(10);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      }
+
+   }
+
+   private void gameInit()
+   {
+      initRules();
+      initPlayers();
+      this.running = false;
+      this.gamethread = new Thread(this);
+   }
+
+   private void gameStart()
+   {
+      //start game; loop it
+      this.running = true;
+      this.gamethread.start();
+   }
+
+   private void gameShutdown()
+   {
+      //end game
+      this.running = false;
+      this.gamethread.stop();
+   }
+
+   private void gameUpdate()
+   {
+      // RULES!
+      //update game state
+      if (this.players.size() == 1)
+      {
+         
+      }
+      //if (this.current_player.isJailed())
+      //
+       //handle jail
+      //}
+
+   }
+   
+   private void initRules()
+   {
       this.SPACES = Integer.parseInt(config.get("SPACES"));
       this.NUM_PLAYERS = Integer.parseInt(config.get("NUM_PLAYERS"));
       this.STARTING_CASH = Integer.parseInt(config.get("STARTING_CASH"));
@@ -47,31 +141,30 @@ public class Game implements runnable
       this.JAIL_FINE = Integer.parseInt(config.get("JAIL_FINE"));
       this.JAIL_FEE = Integer.parseInt(config.get("JAIL_FEE"));
       this.FREE_PARKING = Boolean.parseBoolean(config.get("FREE_PARKING"));
-
-      initPlayers();
    }
 
    private void initPlayers()
    {
+      this.players = new LinkedList<Player>();
+      this.players_iter = players.listIterator(0);
       for (int p = 0; p < this.NUM_PLAYERS; p++)
       {
          Player player = new Player();
-         this.players.add(p, player);
+         players_iter.add(player);
       }
+      this.current_player = players_iter.next();
    }
 
-   public void run() {
-      if (!this.running)
+   private void roll()
+   {
+      dice.roll();
+      int new_position = dice.total + this.current_player.getPosition();
+      board.movePlayer(this.current_player, new_position);
+
+      if (!dice.isDoubles())
       {
-         // run the game!
+         this.current_player = players_iter.next();
       }
    }
-
-   public void run_console() {
-
-   }
-
-   public void run_gui() {
-      
-   }
+   
 }

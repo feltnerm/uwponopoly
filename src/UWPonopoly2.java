@@ -4,20 +4,24 @@
 */
 
 import Config.Config;
+import Game.Game;
 
 public class UWPonopoly2 
 {
-   public Config config;
 
-   public UWPonopoly2() {
-      this.config = new Config();
-      Game game = new Game(this.config);
-      game.run();
+   public UWPonopoly2(boolean gui) {
+      if (gui)
+      {
+         // do things
+         // Game game = new Game(gui);
+      } else {
+         Game game = new Game();
+         //game.gameStart();
+      }
    }
 
    public static void main(String[] args)
    {
-      // Get configuration
-      UWPonopoly2 uwponpoly = new UWPonopoly2();
+      UWPonopoly2 uwponpoly = new UWPonopoly2(false);
    }
 }

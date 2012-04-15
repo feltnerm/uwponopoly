@@ -5,20 +5,22 @@ package Board;
  * Creates the Spaces from a file.
  */
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import Board.JSONBoard;
 import Board.Space;
 import Player.Player;
 
 
-class Board
+public class Board
 {
    // defaults
    private JSONBoard jsonboard = new JSONBoard();
 
    private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
    public int num_spaces;
-   private ArrayList<Space> spaces;
+   public ArrayList<Space> spaces;
+   public ListIterator<Space> spaces_iter;
 
    private int selected_space; // index location of the currently selected space
    
@@ -26,12 +28,26 @@ class Board
    {
       this.num_spaces = DEFAULT_NUMBER_SPACES;
       this.spaces = jsonboard.getSpaces();
+      this.spaces_iter = spaces.listIterator(0);
+   }
+
+   /**
+    * Move a player on the board.
+    * @param player A player to move.
+    * @param index The position on the board to move the player to.
+    */
+   public void movePlayer(Player player, int index)
+   {
+      if (this.isValidPosition(index))
+      {
+         player.setPosition(index);
+      }
    }
 
    /**
     * Basic sanity-checking on position numbers
     */
-   public boolean isValidPosition(int position)
+   private boolean isValidPosition(int position)
    {
       return position >= 0 && position < this.num_spaces;
    }
@@ -39,12 +55,12 @@ class Board
    /**
     * Takes a position number and maps it onto the board.
     */
-   public int returnValidPosition(int position_num)
+   private int returnValidPosition(int position_num)
    {
       return position_num % num_spaces; // rollover
    }
 
-   public Space getSpace(int index )
+   public Space getSpace(int index)
    {
       if(!isValidPosition(index))
          return null;

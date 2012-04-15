@@ -11,6 +11,8 @@ public class Dice
    private static int HIGH_NUMBER = 6; // highest number on die
    private int dice1, dice2;
    private Random random;
+   public int total;
+   public boolean doubles;
 
    public Dice()
    {
@@ -27,6 +29,8 @@ public class Dice
       // Thus we add one to nextInt( 6 ) ( for a six-sided die ) to get a random number 1-6.
       dice1 = random.nextInt( HIGH_NUMBER ) + 1;
       dice2 = random.nextInt( HIGH_NUMBER ) + 1;
+      this.total = this.getTotal();
+      this.doubles = this.isDoubles();
    }
 
    public int getTotal()
