@@ -18,12 +18,11 @@ import player.Player;
 
 
 
-public class Game implements Runnable
+public class Game
 {
    private static boolean GUI = false;
    private static boolean DEBUG = false;
 
-   private Thread gamethread;
    private boolean running = false;
 
    private Board board;
@@ -48,75 +47,23 @@ public class Game implements Runnable
 
    public Game(boolean debug)
    {
-      this(gui, new Config());
+      this(debug, new Config());
    }
 
    public Game(boolean debug, Config config)
    {
+	  this.running = false;
       this.config = config;
       this.board = new Board();
-      this.dice = new Dice();
-      gameInit();      
+      this.dice = new Dice(); 
    }
 
-   public void run()
+   public void initGame()
    {
-      Thread current = Thread.currentThread();
-      long lastLoopTime = System.currentTimeMillis();
-
-      while (this.running)
-      {
-         long delta = System.currentTimeMillis() - lastLoopTime;
-         lastLoopTime = System.currentTimeMillis();
-
-         // do stuff...
-         this.gameUpdate();
-
-         try {
-            Thread.sleep(10);
-         } catch (InterruptedException e) {
-            e.printStackTrace();
-         }
-      }
-
-   }
-
-   private void gameInit()
-   {
-      initRules();
+	  initRules();
       initPlayers();
-      this.running = false;
-      this.gamethread = new Thread(this);
    }
 
-   public void gameStart()
-   {
-      //start game; loop it
-      this.running = true;
-      this.gamethread.start();
-   }
-
-   private void gameShutdown()
-   {
-      //end game
-      this.running = false;
-   }
-
-   private void gameUpdate()
-   {
-      // RULES!
-      //update game state
-      if (this.players.size() == 1)
-      {
-         // winner!
-      }
-
-         Space current_space = this.board.getSpace(this.current_player.getPosition()));
-         
-      roll();
-
-   }
-   
    private void initRules()
    {
       this.SPACES = Integer.parseInt(config.get("SPACES"));
@@ -140,6 +87,32 @@ public class Game implements Runnable
          players_iter.add(player);
       }
       this.current_player = players_iter.next();
+   }
+   
+   public void startGame()
+   {
+      //start game; loop it
+      this.running = true;
+   }
+
+   private void shutdownGame()
+   {
+      //end game
+      this.running = false;
+   }
+
+   private void updateGame()
+   {
+      // RULES!
+      //update game state
+      if (this.players.size() == 1)
+      {
+         // winner!
+      }
+         Space current_space = this.board.getSpace(this.current_player.getPosition());
+         
+      roll();
+
    }
 
    private void roll()

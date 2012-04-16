@@ -14,16 +14,7 @@ public class UWPonopoly2
    public UWPonopoly2(boolean gui, boolean debug) {
       
 	   this.GUI = gui;
-	   this.DEBUG = debug;
-      if (gui)
-      {
-         GUIGame game = new GUIGame(debug);
-         game.gameStart();
-      } else {
-         Game game = new Game(debug);
-         game.gameStart();
-      }
-      
+	   this.DEBUG = debug;      
    }
    
    public void play()
@@ -31,10 +22,11 @@ public class UWPonopoly2
 	   if (this.GUI)
 	   {
 		   GUIGame game = new GUIGame(this.DEBUG);
-		   game.gameStart();
+		   game.initGame();
+		   game.startGame();
 	   } else {
 		   Game game = new Game(this.DEBUG);
-		   game.gameStart();
+		   game.startGame();
 	   }
 
    }

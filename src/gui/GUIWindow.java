@@ -3,7 +3,13 @@
  @author UWP_User 
 */
 
-public class GUIWindow 
+import GameFrame;
+
+public class GUIWindow extends GameFrame
 {
 
+	public GUIWindow()
+	{
+		super();
+	}
 }
