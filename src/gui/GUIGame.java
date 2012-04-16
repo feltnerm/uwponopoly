@@ -82,7 +82,6 @@ public class GUIGame implements Runnable
     	this.createWindow();
     	this.createBoard();
     	this.createDice();
-    	this.createMenu();
     	this.createDashboard();
     	this.createContextPanel();
     	this.createPlayerStats();
@@ -92,26 +91,19 @@ public class GUIGame implements Runnable
     
     private void createWindow()
     {
-    	// this.window = new GUIWindow();
-    	this.window = new GameFrame(this.TITLE);
-    	this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.window.setSize(this.DESIRED_WIDTH, this.DESIRED_HEIGHT);
-    	this.window.setLayout(new FlowLayout());
+    	this.window = new GUIWindow();
     }
     
     private void createBoard()
     {
-    	this.board = new GUIBoard();
+    	this.guiBoard = new GUIBoard();
+    	
+    	this.window.getContentPanel.add(this.guiBoard);
     }
     
     private void createDice()
     {
     	
-    }
-    
-    private void createMenu()
-    {
-
     }
     
     private void createDashboard()
