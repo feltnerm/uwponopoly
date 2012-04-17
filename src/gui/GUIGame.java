@@ -1,10 +1,10 @@
-package GUI;
+package gui;
 
 import game.Game;
 
-import GUIDice;
-import GameFrame;
-import GamePanel;
+//import GUIDice;
+//import GameFrame;
+//import GamePanel;
 
 import java.awt.AWTEvent;
 import java.awt.EventQueue;

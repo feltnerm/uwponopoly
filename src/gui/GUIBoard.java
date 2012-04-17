@@ -1,6 +1,6 @@
-package GUI;
+package gui;
 
-import GUI.GamePanel;
+import //GamePanel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
