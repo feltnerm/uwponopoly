@@ -1,6 +1,8 @@
 package gui;
 
-import //GamePanel;
+//import GamePanel;
+import player.Player;
+import board.Space;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -41,7 +43,7 @@ class GUIBoard extends GamePanel implements Runnable
     * Testing constructor.
     * Generates a standard board where each Space is individually numbered.
     */
-   Board() //{{{
+   public GUIBoard() //{{{
    {
       super( DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR );
       num_spaces = DEFAULT_NUMBER_SPACES;
@@ -98,7 +100,7 @@ class GUIBoard extends GamePanel implements Runnable
       animation_thread.start();
    }//}}}
 
-   Board( String filename )
+   GUIBoard( String filename )
    {
       super( DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR );
    }

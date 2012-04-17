@@ -94,5 +94,5 @@ class GameFrame extends JFrame
       {
          key_events.offer(e);
       }
-   };
-};
+   }
+}

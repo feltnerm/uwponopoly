@@ -1,8 +1,8 @@
-package GUI;
+package gui;
 
 // Copyright Aaron Decker 2012
 
-import GUI.GameBuffer;
+//import GUI.GameBuffer;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -170,4 +170,4 @@ public class GamePanel extends JPanel
    {
       this.is_static = is_static;
    }
-};
+}
