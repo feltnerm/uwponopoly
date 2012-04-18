@@ -91,7 +91,7 @@ public class GUIGame implements Runnable
     
     private void createWindow()
     {
-    	this.window = new GUIWindow();
+    	this.window = new GUIWindow("UWPonopoly", DESIRED_WIDTH, DESIRED_HEIGHT);
     }
     
     private void createBoard()

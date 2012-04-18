@@ -226,7 +226,7 @@ class GUIBoard extends GamePanel implements Runnable
       private Thread move_player_thread;
       private int final_token_space;
       private int current_token_space;
-      private Player current_animation_player;
+      private GUIPlayer current_animation_player;
       private boolean final_is_lesser_than_current; // used for situations when moving past the zeroth space.
 
       BoardAnimation( int current_token_space, int final_token_space, Player current_animation_player )

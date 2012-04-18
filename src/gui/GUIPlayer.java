@@ -1,11 +1,11 @@
-package GUI;
+package gui;
 
 /**
  * The Player class describes one player in a game of UWPonopoly
  * Copyright Aaron Decker 2012
  */
 
-import GUI.GameBuffer;
+import gui.GameBuffer;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
