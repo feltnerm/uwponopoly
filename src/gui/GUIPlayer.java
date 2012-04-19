@@ -91,7 +91,7 @@ public class GUIPlayer
    @Override
    public boolean equals( Object o )
    {
-      if( o instanceof  Player )
+      if( o instanceof  GUIPlayer )
       {
          GUIPlayer p = (GUIPlayer) o;
          return p.token_char == token_char;

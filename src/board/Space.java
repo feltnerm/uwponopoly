@@ -15,6 +15,7 @@ public abstract class Space
    private int position;
    public int price;
    private String property_color;
+   public static int MAX_NUM_IMPROVEMENTS = 6;
 
    // Property attributes
    private int mortgage;
@@ -97,6 +98,19 @@ public abstract class Space
    public int getRent()
    {
       return this.rents[this.level];
+   }
+
+   /**
+    * Get the amount of rent for a particular improvement level
+    * @param improvement_level , the level of improvement the property is at,
+    * "0" is the base improvement level, "1" is one house, etc.
+    * @return the amount of rent, -1 if the improvement_level passed is invalid
+    */
+   public int getRentAtLevel( int improvement_level )
+   {
+      if( 0 <= improvement_level && improvement_level < rent.length )
+         return rents[improvement_level];
+      return -1;
    }
 
    public void downgrade()

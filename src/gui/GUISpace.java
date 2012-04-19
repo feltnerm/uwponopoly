@@ -2,9 +2,9 @@
 
  @author UWP_User 
 */
-package GUI;
+package gui;
 
-import Board.Space;
+import board.Space;
 
 import java.awt.Graphics;
 import java.awt.Color;
@@ -18,8 +18,8 @@ import java.awt.Dimension;
 import java.util.LinkedList;
 import java.util.Iterator;
 
-import GUI.GamePanel;
-import GUI.GameBuffer;
+//import GUI.GamePanel;
+//import GUI.GameBuffer;
 
 public class GUISpace extends GamePanel
 {
@@ -41,12 +41,15 @@ public class GUISpace extends GamePanel
    private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
    private static Color BORDER_COLOR_SELECTED = Color.RED;
 
-   public static int MAX_NUM_IMPROVEMENTS = 6; // maximum number of building improvements minus one, for the base case.
+   // Moved to Space
+   //public static int MAX_NUM_IMPROVEMENTS = 6; // maximum number of building improvements minus one, for the base case.
 
    private static int TOKEN_PADDING = 8; // distance from tokens to sides of space
    private static int TOKEN_BETWEEN_PADDING = 4; // distance between tokens
 
-    private int x_coor,y_coor; // x and y coordinates for placing on board
+   private int x_coor,y_coor; // x and y coordinates for placing on board
+   private LinkedList<GUIPlayer> players;
+   private GameBuffer deed_buffer;
 
    public GUISpace()
    {
@@ -59,7 +62,7 @@ public class GUISpace extends GamePanel
       rent = new int[MAX_NUM_IMPROVEMENTS + 1];
 
       deed_buffer = new GameBuffer( DEED_WIDTH, DEED_HEIGHT, Color.WHITE);
-      players = new LinkedList<Player>();
+      players = new LinkedList<GUIPlayer>();
       //drawDeed();
    }
 
@@ -251,28 +254,16 @@ public class GUISpace extends GamePanel
     * @param improvement_level , the level of improvement the property is at,
     * "0" is the base improvement level, "1" is one house, etc.
     */
-   public void setRent( int rent_amount, int improvement_level)
+   /*public void setRent( int rent_amount, int improvement_level)
    {
       if( 0 <= improvement_level && improvement_level < rent.length )
          rent[improvement_level] = rent_amount;
-   }
+   }*/
 
-   /**
-    * Get the amount of rent for a particular improvement level
-    * @param improvement_level , the level of improvement the property is at,
-    * "0" is the base improvement level, "1" is one house, etc.
-    * @return the amount of rent, -1 if the improvement_level passed is invalid
-    */
-   public int getRent( int improvement_level )
-   {
-      if( 0 <= improvement_level && improvement_level < rent.length )
-         return rent[improvement_level];
-      return -1;
-   }
 
    public void addPlayer( Player player )
    {
-      Iterator<Player> itr = players.iterator();
+      Iterator<GUIPlayer> itr = players.iterator();
       while( itr.hasNext() )
       {
          if( itr.next().getTokenChar() == player.getTokenChar() )
@@ -283,7 +274,7 @@ public class GUISpace extends GamePanel
 
    public void removePlayer( Player player )
    {
-      Iterator<Player> itr = players.iterator();
+      Iterator<GUIPlayer> itr = players.iterator();
       while( itr.hasNext() )
       {
          if( itr.next().getTokenChar() == player.getTokenChar() )

@@ -17,6 +17,7 @@ import java.awt.Font;
 
 class GUIBoard extends GamePanel implements Runnable
 {
+   private Board board;
    // defaults
    private static int DEFAULT_WIDTH = Space.SPACE_WIDTH * DEFAULT_NUMBER_SPACES;
    private static int DEFAULT_HEIGHT = Space.SPACE_HEIGHT * DEFAULT_NUMBER_SPACES;
@@ -46,8 +47,8 @@ class GUIBoard extends GamePanel implements Runnable
    public GUIBoard() //{{{
    {
       super( DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR );
-      num_spaces = DEFAULT_NUMBER_SPACES;
-      spaces = new Space[num_spaces];
+      int num_spaces = DEFAULT_NUMBER_SPACES;
+      board.spaces = new Space[num_spaces];
 
       /*for(int i = 0; i < DEFAULT_NUMBER_SPACES; i++)
       {
@@ -66,20 +67,20 @@ class GUIBoard extends GamePanel implements Runnable
       // construct the spaces
       for( int i = 0; i < num_spaces; i++)
       {
-         spaces[i] = new Space();
-         spaces[i].setTitle("Space: " + i);
-         spaces[i].setBoard(this);
-         spaces[i].setBoardIndex(i);
+         board.spaces[i] = new GUISpace();
+         board.spaces[i].setTitle("Space: " + i);
+         board.spaces[i].setBoard(this);
+         board.spaces[i].setBoardIndex(i);
          for( int j = 0; j < Space.MAX_NUM_IMPROVEMENTS; j++) // fill in some random rents
-            spaces[i].setRent( 1 + i*(j+1), j);
+            board.spaces[i].setRent( 1 + i*(j+1), j);
       }
       for( int i = 0; i < side; i++) // draw the top row
       {
-         add( spaces[i] );
+         add( board.spaces[i] );
       }
       for( int i = side; i < side + side_empty; i++) // draw everything in the middle
       {
-         add( spaces[ num_spaces - (i - side) - 1 ] );
+         add( board.spaces[ num_spaces - (i - side) - 1 ] );
 
          // fill in the gaps with empty JLabels
          for( int j = 0; j < side_empty; j++)
@@ -87,11 +88,11 @@ class GUIBoard extends GamePanel implements Runnable
 
          // add Space to the other side
          //i++;
-         add( spaces[i] );
+         add( board.spaces[i] );
       }
       for( int i = num_spaces - side_empty - 1; i >= side + side_empty;  i--) // draw bottom row
       {
-         add( spaces[i] );
+         add( board.spaces[i] );
       }
 
       setSelectedSpace(0);
@@ -125,10 +126,10 @@ class GUIBoard extends GamePanel implements Runnable
    {
       super.paintComponent(g);
       //draw spaces
-      for( int i = 0; i < num_spaces - 1; i++)
+      for( int i = 0; i < board.getNumberOfSpaces() - 1; i++)
       {
-         if( spaces[i] != null )
-            spaces[i].repaint();
+         if( board.spaces[i] != null )
+            board.spaces[i].repaint();
          else
          {
             System.out.println("spaces[ " + i + "] in Board is null");
@@ -137,22 +138,22 @@ class GUIBoard extends GamePanel implements Runnable
 
       // draw strings in middle of board for testing
       Font font = new Font("Helvetica", Font.PLAIN, 24);
-      g.drawString( Integer.toString(selected_space),250,250);
+      g.drawString( Integer.toString(board.getSelectedSpace()),250,250);
 
       // draw the blown-up version of the space that is currently highlighted
-      g.drawImage(spaces[selected_space].drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
+      g.drawImage(board.spaces[board.getSelectedSpace].drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
    }//}}}
 
    public void setSelectedSpace( int space )
    {
-      if( space >= 0 && space < num_spaces ) // check for validity
+      if( space >= 0 && space < board.getNumberOfSpaces() ) // check for validity
       {
-         spaces[selected_space].setSelected( false ); // turn last selected space off
-         selected_space = space;
-         spaces[selected_space].setSelected( true ); // turn new selection on
+         board.spaces[board.getSelectedSpace()].setSelected( false ); // turn last selected space off
+         board.setSelectedSpace(space);
+         board.spaces[board.getSelectedSpace()].setSelected( true ); // turn new selection on
          if( deed_panel != null )
          {
-            deed_panel.setGameBuffer( spaces[selected_space].getDeedBuffer() );
+            deed_panel.setGameBuffer( board.spaces[board.getSelectedSpace()].getDeedBuffer() );
             deed_panel.repaint();
          }
       }
@@ -161,14 +162,14 @@ class GUIBoard extends GamePanel implements Runnable
    public void setDeedPanel( GamePanel panel)
    {
       deed_panel = panel;
-      deed_panel.setGameBuffer( spaces[selected_space].getDeedBuffer() );
+      deed_panel.setGameBuffer( board.spaces[board.getSelectedSpace()].getDeedBuffer() );
    }
 
    /**
     * WARNING! SIDE EFFECT: the player's position is set to the position of the space.
     * This means that the position may get rolled over.
     */
-   public void addPlayerToSpace( int space, Player player )
+   public void addPlayerToSpace( int space, GUIPlayer player )
    {
       if( space < 0 )
          return;
@@ -187,9 +188,9 @@ class GUIBoard extends GamePanel implements Runnable
 
    public void removePlayerFromSpace( int space )
    {
-      if( space < 0 || space >= num_spaces )
+      if( space < 0 || space >= board.getNumberOfSpaces() )
          return;
-      //spaces[space].removePlayer();
+      //board.spaces[space].removePlayer();
    }
 
    /**
@@ -197,7 +198,7 @@ class GUIBoard extends GamePanel implements Runnable
     */
    public boolean isValidPosition( int position_num )
    {
-      return position_num >= 0 && position_num < num_spaces;
+      return position_num >= 0 && position_num < board.getNumberOfSpaces();
    }
 
    /**
@@ -205,12 +206,12 @@ class GUIBoard extends GamePanel implements Runnable
     */
    public int returnValidPosition( int position_num )
    {
-      return position_num % num_spaces; // rollover
+      return position_num % board.getNumberOfSpaces(); // rollover
    }
 
    public int getNumberOfSpaces()
    {
-      return num_spaces;
+      return board.getNumberOfSpaces();
    }
 
    public Space getSpace( int position_num )
@@ -218,7 +219,7 @@ class GUIBoard extends GamePanel implements Runnable
       // TODO do real error handling
       if( !isValidPosition( position_num ) )
          return null;
-      return spaces[position_num];
+      return board.spaces[position_num];
    }
 
    class BoardAnimation implements Runnable
@@ -229,7 +230,7 @@ class GUIBoard extends GamePanel implements Runnable
       private GUIPlayer current_animation_player;
       private boolean final_is_lesser_than_current; // used for situations when moving past the zeroth space.
 
-      BoardAnimation( int current_token_space, int final_token_space, Player current_animation_player )
+      BoardAnimation( int current_token_space, int final_token_space, GUIPlayer current_animation_player )
       {
          this.current_token_space = current_token_space;
          this.final_token_space = final_token_space;
@@ -255,19 +256,19 @@ class GUIBoard extends GamePanel implements Runnable
             if( current_token_space < final_token_space || final_is_lesser_than_current )
             {
 
-               spaces[current_token_space].removePlayer( current_animation_player );
+               board.spaces[current_token_space].removePlayer( current_animation_player );
 
                current_token_space++;
                current_token_space = returnValidPosition( current_token_space );
                if( current_token_space == 0 )
                   final_is_lesser_than_current = false;
 
-               spaces[current_token_space].addPlayer( current_animation_player );
+               board.spaces[current_token_space].addPlayer( current_animation_player );
             }
             //if( current_token_space >= final_token_space && !final_is_lesser_than_current)
             else
             {
-               spaces[final_token_space].addPlayer( current_animation_player );
+               board.spaces[final_token_space].addPlayer( current_animation_player );
                //current_animation_player = null;
                current_animation_player.setIsMoving( false );
                move_player_thread = null;

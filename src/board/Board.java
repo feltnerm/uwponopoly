@@ -74,5 +74,15 @@ public class Board
       return num_spaces;
    }
 
+   public int getSelectedSpace()
+   {
+      return selected_space;
+   }
+
+   public void setSelectedSpace( int space )
+   {
+      selected_space = space;
+   }
+
 }
 
