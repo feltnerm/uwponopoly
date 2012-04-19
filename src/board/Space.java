@@ -7,7 +7,7 @@ import player.Player;
  */
 
 
-public abstract class Space
+public class Space
 {
    // defaults
    private String title;

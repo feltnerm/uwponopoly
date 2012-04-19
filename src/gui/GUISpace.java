@@ -42,6 +42,7 @@ public class GUISpace extends GamePanel
    private static Color BORDER_COLOR_SELECTED = Color.RED;
    private Color border_color;
    private boolean selected;
+   private Space space;
 
    // Moved to Space
    //public static int MAX_NUM_IMPROVEMENTS = 6; // maximum number of building improvements minus one, for the base case.
@@ -56,6 +57,7 @@ public class GUISpace extends GamePanel
    public GUISpace()
    {
       super(SPACE_WIDTH, SPACE_HEIGHT, )
+      space = new Space();
 
       property_color = Color.YELLOW; // senseless default
       border_color = BORDER_COLOR_DEFAULT;
