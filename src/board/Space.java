@@ -131,4 +131,6 @@ public abstract class Space
       }
    }
 
+   public String getTitle() { return title; }
+
 }

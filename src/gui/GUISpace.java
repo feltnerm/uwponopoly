@@ -40,6 +40,8 @@ public class GUISpace extends GamePanel
    private static Color BORDER_COLOR_DEFAULT = Color.BLACK;
    private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
    private static Color BORDER_COLOR_SELECTED = Color.RED;
+   private Color border_color;
+   private boolean selected;
 
    // Moved to Space
    //public static int MAX_NUM_IMPROVEMENTS = 6; // maximum number of building improvements minus one, for the base case.
@@ -220,10 +222,10 @@ public class GUISpace extends GamePanel
       return scaledUpBuffer;
    }//}}}
 
-   public void setTitle( String title)
+   /*public void setTitle( String title)
    {
       this.title = title;
-   }
+   }*/
 
    public void setXCoor( int x ) { x_coor = x; }
    public void setYCoor( int y ) { y_coor = y; }
@@ -243,8 +245,8 @@ public class GUISpace extends GamePanel
          border_color = BORDER_COLOR_DEFAULT;
    }
 
-   public void setBoard( Board_new board ) { this.board = board; }
-   public void setBoardIndex( int index ) { board_index = index; }
+   //public void setBoard( Board_new board ) { this.board = board; }
+   //public void setBoardIndex( int index ) { board_index = index; }
 
    public GameBuffer getDeedBuffer() { return deed_buffer; }
 
