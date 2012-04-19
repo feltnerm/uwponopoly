@@ -1,34 +1,36 @@
+package gui;
 /**  
 
  @author UWP_User 
 */
 
-import gui.GameFrame;
-
+// Import Java Packages
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+// Import GUI Mechanics
+import gui.GameFrame;
+
 public class GUIWindow extends GameFrame
 {
+	private static String TITLE = "UWPonopoly";
 	
-	private FlowLayout LAYOUT;
+    // Height & Width of the Window
+    final int WINDOW_WIDTH = 550;
+    final int WINDOW_HEIGHT = 350;
+    final FlowLayout layout = new FlowLayout();
+
 	private JMenuBar menuBar;
 	
-	public GUIWindow(String title, int height, int width)
+	public GUIWindow()
 	{
-		super(title);
-		init(height, width);
-
-	}
-	
-	private void init(int height, int width)
-	{
+		super(TITLE);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(height, width);
-		this.setLayout(this.LAYOUT);
+		this.setSize(this.WINDOW_HEIGHT, this.WINDOW_WIDTH);
+		this.setLayout(this.layout);
 		
 		this.menuBar = new JMenuBar();
 			JMenu fileMenu = new JMenu("File");
@@ -39,6 +41,7 @@ public class GUIWindow extends GameFrame
 			aboutMenu.add(new JMenuItem("Credits"));
 		this.menuBar.add(fileMenu);
 		this.menuBar.add(aboutMenu);
+
 	}
 	
 }

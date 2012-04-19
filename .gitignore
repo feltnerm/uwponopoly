@@ -7,4 +7,5 @@ build/*
 *.class
 
 .project
+.classpath
 *.externalToolBuilders/*

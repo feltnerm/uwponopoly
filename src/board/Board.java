@@ -20,7 +20,7 @@ public class Board
    private JSONBoard jsonboard = new JSONBoard();
 
    private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
-   public int num_spaces;
+   private int num_spaces;
    public ArrayList<Space> spaces;
    public ListIterator<Space> spaces_iter;
 
@@ -59,19 +59,29 @@ public class Board
     */
    private int returnValidPosition(int position_num)
    {
-      return position_num % num_spaces; // rollover
+      return position_num % this.num_spaces; // rollover
    }
 
    public Space getSpace(int index)
    {
       if(!isValidPosition(index))
          return null;
-      return spaces.get(index);
+      return this.spaces.get(index);
    }
 
-   public int getNumberOfSpaces()
+   public int getNumSpaces()
    {
-      return num_spaces;
+      return this.num_spaces;
+   }
+
+   public int getSelectedSpace()
+   {
+      return this.selected_space;
+   }
+
+   public void setSelectedSpace( int space )
+   {
+      selected_space = space;
    }
 
 }

@@ -56,6 +56,7 @@ class UWPonopoly implements Runnable
 
    private JButton sell_button;
    private JButton roll_button;
+   private JButton done_with_turn_button;
 
    static final int TICK_LENGTH_MS = 10;
 
@@ -164,6 +165,8 @@ class UWPonopoly implements Runnable
       player_stats_panel.setLayout( new BorderLayout() );
       player_stats_panel.add( new JLabel("Money: $ 314,159,265"), BorderLayout.NORTH );
       player_stats_panel.add( new JLabel("Current Player: Pat the Pioneer"), BorderLayout.SOUTH );
+
+      // Done with turn button
 
 
       // Add Panels to Dashboard
