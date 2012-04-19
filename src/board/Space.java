@@ -94,6 +94,11 @@ public class Space
 
       }
    }
+   
+   public String getColor()
+   {
+	   return this.property_color;
+   }
 
    public int getRent()
    {
@@ -108,11 +113,16 @@ public class Space
     */
    public int getRentAtLevel( int improvement_level )
    {
-      if( 0 <= improvement_level && improvement_level < rent.length )
+      if( 0 <= improvement_level && improvement_level < this.rents[this.rents.length - 1] )
          return rents[improvement_level];
       return -1;
    }
-
+   
+   public int getPosition()
+   {
+	   return this.position;
+   }
+   
    public void downgrade()
    {
       if (this.level > 0)
@@ -121,7 +131,7 @@ public class Space
       }
    }
    
-   private int numHouses()
+   public int numHouses()
    {
       if (this.level == 6)
       {
@@ -131,6 +141,6 @@ public class Space
       }
    }
 
-   public String getTitle() { return title; }
+   public String getTitle() { return this.title; }
 
 }

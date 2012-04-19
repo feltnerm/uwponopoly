@@ -22,50 +22,53 @@ public class GamePanel extends JPanel
    private boolean is_static; // true if image is not redrawn i.e. do not clear on repaint()
   
    // Events
-   Queue<MouseEvent> mouse_events;
-   Queue<KeyEvent> key_events;
-   MyMouseAdapter mouse_adapter;
-   MyKeyboardAdapter keyboard_adapter;
+   Queue<MouseEvent> mouseEvents;
+   Queue<KeyEvent> keyEvents;
+   MyMouseAdapter mouseAdapter;
+   MyKeyboardAdapter keyboardAdapter;
 
-   public GamePanel( GameBuffer gbuffer)
+   public GamePanel(GameBuffer gbuffer)
    {
       this.gbuffer = gbuffer;
 
       // mouse events
-      mouse_events = new LinkedList<MouseEvent>();
+      mouseEvents = new LinkedList<MouseEvent>();
 
-      mouse_adapter = new MyMouseAdapter();
-      addMouseListener(mouse_adapter);
-      addMouseMotionListener(mouse_adapter);
+      mouseAdapter = new MyMouseAdapter();
+      addMouseListener(mouseAdapter);
+      addMouseMotionListener(mouseAdapter);
 
       // keyboard events
-      key_events = new LinkedList<KeyEvent>();
+      keyEvents = new LinkedList<KeyEvent>();
 
-      keyboard_adapter = new MyKeyboardAdapter();
-      addKeyListener(keyboard_adapter);
+      keyboardAdapter = new MyKeyboardAdapter();
+      addKeyListener(keyboardAdapter);
       is_static = false;
    }
 
-   public GamePanel( int width, int height, Color color )
+   public GamePanel(int width, int height, Color color )
    {
       gbuffer = new GameBuffer(width, height, color);
 
       // mouse events
-      mouse_events = new LinkedList<MouseEvent>();
+      mouseEvents = new LinkedList<MouseEvent>();
 
-      mouse_adapter = new MyMouseAdapter();
-      addMouseListener(mouse_adapter);
-      addMouseMotionListener(mouse_adapter);
+      mouseAdapter = new MyMouseAdapter();
+      addMouseListener(mouseAdapter);
+      addMouseMotionListener(mouseAdapter);
 
       // keyboard events
-      key_events = new LinkedList<KeyEvent>();
+      keyEvents = new LinkedList<KeyEvent>();
 
-      keyboard_adapter = new MyKeyboardAdapter();
-      addKeyListener(keyboard_adapter);
+      keyboardAdapter = new MyKeyboardAdapter();
+      addKeyListener(keyboardAdapter);
       is_static = false;
    }
 
-   public void setGameBuffer( GameBuffer gbuffer ) { this.gbuffer = gbuffer; }
+   public void setGameBuffer( GameBuffer gbuffer ) 
+   { 
+	   this.gbuffer = gbuffer; 
+   }
 
 
    /**
@@ -81,17 +84,17 @@ public class GamePanel extends JPanel
 
    public MouseEvent getNextMouseEvent()
    {
-      return mouse_events.remove();
+      return mouseEvents.remove();
    }
 
    public KeyEvent getNextKeyEvent()
    {
-      return key_events.remove();
+      return keyEvents.remove();
    }
 
    public boolean areMouseEventsLeft()
    {
-      if( mouse_events.size() > 0 )
+      if( mouseEvents.size() > 0 )
          return true;
       return false;
    }
@@ -112,37 +115,37 @@ public class GamePanel extends JPanel
       public void mouseDragged(MouseEvent e)
       {
          if( !handleMouseDragged( e ) )
-               mouse_events.offer(e);
+               mouseEvents.offer(e);
       }
 
       public void mousePressed(MouseEvent e)
       {
          if( !handleMousePressed( e ) )
-            mouse_events.offer(e);
+            mouseEvents.offer(e);
       }
 
       public void mouseReleased(MouseEvent e)
       {
          if( !handleMouseReleased( e ) )
-            mouse_events.offer(e);
+            mouseEvents.offer(e);
       }
 
       public void mouseEntered(MouseEvent e)
       {
          if( !handleMouseEntered( e ) )
-               mouse_events.offer(e);
+               mouseEvents.offer(e);
       }
 
       public void mouseExited(MouseEvent e)
       {
          if( !handleMouseExited( e ) )
-               mouse_events.offer(e);
+               mouseEvents.offer(e);
       }
 
       public void mouseClicked(MouseEvent e)
       {
          if( !handleMouseClicked( e ) )
-               mouse_events.offer(e);
+               mouseEvents.offer(e);
       }
 
    };
@@ -151,18 +154,18 @@ public class GamePanel extends JPanel
    {
       public void keyPressed(KeyEvent e)
       {
-         key_events.offer(e);
+         keyEvents.offer(e);
          System.out.println( e.getKeyCode() );
       }
 
       public void keyReleased(KeyEvent e)  
       {
-         key_events.offer(e);
+         keyEvents.offer(e);
       }
 
       public void keyTyped(KeyEvent e)
       {
-         key_events.offer(e);
+         keyEvents.offer(e);
       }
    };
 

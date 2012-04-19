@@ -1,63 +1,60 @@
 package gui;
 
-import game.Game;
-
-//import GUIDice;
-//import GameFrame;
-//import GamePanel;
+// Import Java packages
+import java.util.List;
+import java.util.LinkedList;
 
 import java.awt.AWTEvent;
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
-import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
+import javax.swing.*;
 
-import player.Player;
-import board.Board;
+// Import Game Mechanics
+import game.Game;
 import config.Config;
+
+// Import GUI Mechanics
+import gui.GUIBoard;
+import gui.GUIDice;
+import gui.GUIWindow;
+import gui.GUIPlayer;
 
 public class GUIGame implements Runnable
 {
-    private static boolean DEBUG;
+    private boolean DEBUG;
 
+    // Game Elements
     private Config config;
     private Game game;
     
+    // Events and Threads
+    static final int TICK_LENGTH_MS = 10;
+    private boolean running = false;
     private Thread gamethread = new Thread();
-    
     private EventQueue events;
     
-    private String TITLE = "UWPonopoly";
-    
- // Game Board
-    private GameFrame window;
+    // GUI Elements
+    private GUIWindow guiWindow;
     private GUIBoard guiBoard;
-    private GUIDice dice;
-
-    private JMenuBar menuBar;
-    private JMenu fileMenu, aboutMenu;
-    private JMenuItem newMenuItem, quitMenuItem, creditsMenuItem;
-
-    // Player Stats Panel
-    private JPanel dashboard_panel;
-    private JPanel dice_panel;
-    private JPanel player_stats_panel;
-    private JPanel property_context_panel;
-    private GamePanel deed_panel;
-
-    private JButton sell_button;
-    private JButton roll_button;
-
-    static final int TICK_LENGTH_MS = 10;
-
-    // Height & Width of the Window
-    static final int DESIRED_WIDTH = 550;
-    static final int DESIRED_HEIGHT = 350;
+    private GUIDice guiDice;
+    private GUIPlayer guiPlayer;
+    private List<GUIPlayer> guiPlayers;
+    
+    // Panels
+    private JPanel dashboardPanel;
+    private JPanel dicePanel;
+    private JPanel playerStatsPanel;
+    private JPanel propertyContextPanel;
+    private GamePanel deedPanel;
+    
+    // Buttons
+    private JButton sellButton;
+    private JButton rollButton;
+    private JButton endTurnButton;
+    private JButton improveButton;
+    
 
     public GUIGame(boolean debug)
     {
@@ -74,6 +71,7 @@ public class GUIGame implements Runnable
     {
     	this.game = new Game(this.DEBUG, this.config);
     	this.game.initGame();
+    	
     	this.initGui();
     }
     
@@ -86,39 +84,47 @@ public class GUIGame implements Runnable
     	this.createContextPanel();
     	this.createPlayerStats();
     	
-    	this.window.setVisible(true);
+    	this.guiWindow.setVisible(true);
     }
     
     private void createWindow()
     {
-    	this.window = new GUIWindow("UWPonopoly", DESIRED_WIDTH, DESIRED_HEIGHT);
+    	this.guiWindow = new GUIWindow();
     }
     
     private void createBoard()
     {
     	this.guiBoard = new GUIBoard();
     	
-    	this.window.getContentPanel.add(this.guiBoard);
     }
     
     private void createDice()
     {
-    	
+    	this.guiDice = new GUIDice();
     }
     
     private void createDashboard()
     {
-    	
+    	dashboardPanel = new JPanel();
+    	dashboardPanel.setLayout(new BoxLayout(dashboardPanel, BoxLayout.PAGE_AXIS));
     }
     
     private void createContextPanel()
     {
+    	propertyContextPanel = new JPanel();
+    	propertyContextPanel.setLayout(new BorderLayout());
     	
+    	deedPanel = new GamePanel(500, 100, Color.WHITE);
+    	deedPanel.setStatic(true);
+    	//@TODO:
+    	//deedPanel.setPreferredSize(new Dimension(this.guiSpace.WIDTH, this.guiSpace.HEIGHT));
+    	
+    	this.guiBoard.setDeedPanel(deedPanel);
     }
     
     private void createPlayerStats()
     {
-    
+    	
     }
     
     public void startGame()
