@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="UWPonopoly.java" kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="lib/gson/gson-2.1.jar"/>
+	<classpathentry excluding="UWPonopoly.java" kind="src" path="src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/mark/Projects/uwponopoly/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="lib/gson/gson-2.1.jar" sourcepath="lib/gson/gson-2.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/uwponopoly/lib/gson/gson-2.1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
-	<classpathentry kind="lib" path="lib/gson/gson-2.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/gson/gson-2.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/junit_4/junit-4.5-src.jar"/>
 	<classpathentry kind="lib" path="lib/junit_4/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="lib/junit/junit-3.8.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
