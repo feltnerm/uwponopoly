@@ -142,5 +142,6 @@ public class Space
    }
 
    public String getTitle() { return this.title; }
+   public String getPropertyColorString() { return property_color; }
 
 }

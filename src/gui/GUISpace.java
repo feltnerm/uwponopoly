@@ -140,20 +140,20 @@ public class GUISpace extends GamePanel
 
 		// Draw Player tokens
 		// drawTokens();
-		Iterator<Player> itr = players.iterator();
+		Iterator<GUIPlayer> itr = players.iterator();
 		// positioning for tokens
 		int token_x = TOKEN_PADDING;
 		int token_y = (int)(HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
 		while( itr.hasNext() )
 		{
-			Player p = itr.next();
-			if( token_x + Player.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
+			GUIPlayer p = itr.next();
+			if( token_x + GUIPlayer.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
 			{
 				token_x = TOKEN_PADDING;
-				token_y += TOKEN_BETWEEN_PADDING + Player.TOKEN_SIZE;
+				token_y += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
 			}
 			g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
-			token_x += TOKEN_BETWEEN_PADDING+ Player.TOKEN_SIZE;
+			token_x += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
 		}
 
 	}
@@ -191,7 +191,7 @@ public class GUISpace extends GamePanel
 		// deed title
 		java.awt.geom.Rectangle2D title_rect = fm.getStringBounds(this.space.getTitle() + " Deed", g);
 		previous_y = (int)(this.deedBuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(title_rect.getHeight());
-		g.drawString( title + " Deed", (int)(this.deedBuffer.getWidth()/2) - (int)(title_rect.getWidth()/2), previous_y);
+		g.drawString( space.getTitle() + " Deed", (int)(this.deedBuffer.getWidth()/2) - (int)(title_rect.getWidth()/2), previous_y);
 
 		// rent
 		/**
@@ -229,16 +229,16 @@ public class GUISpace extends GamePanel
 		g2d.drawRect(0,0, WIDTH * SCALED_UP_SCALE, HEIGHT * SCALED_UP_SCALE);
 
 		// draw color strip
-		g.setColor(property_color);
+		g.setColor( getPropertyColor() );
 		g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, WIDTH * SCALED_UP_SCALE - BORDER_THICKNESS, (int)(HEIGHT * SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO));
 
 		// Draw Property title
 		Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE * SCALED_UP_SCALE);
 		FontMetrics fm   = g.getFontMetrics(font);
-		java.awt.geom.Rectangle2D rect = fm.getStringBounds(title, g);
+		java.awt.geom.Rectangle2D rect = fm.getStringBounds(space.getTitle(), g);
 		g.setColor(Color.BLACK);
 		g.setFont(font);
-		g.drawString( title, (int)(WIDTH * SCALED_UP_SCALE/2) - (int)(rect.getWidth()/2) ,
+		g.drawString( space.getTitle(), (int)(WIDTH * SCALED_UP_SCALE/2) - (int)(rect.getWidth()/2) ,
 				(int)(HEIGHT * SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
 
 		return scaledUpBuffer;
@@ -270,7 +270,7 @@ public class GUISpace extends GamePanel
 	//public void setBoard( Board_new board ) { this.board = board; }
 	//public void setBoardIndex( int index ) { board_index = index; }
 
-	public GameBuffer getDeedBuffer() { return deed_buffer; }
+	public GameBuffer getDeedBuffer() { return deedBuffer; }
 
 	/**
 	 * Set the amount of rent for a particular improvement level
@@ -285,7 +285,7 @@ public class GUISpace extends GamePanel
    }*/
 
 
-	public void addPlayer(Player player )
+	public void addPlayer(GUIPlayer player )
 	{
 		Iterator<GUIPlayer> itr = players.iterator();
 		while( itr.hasNext() )
@@ -296,7 +296,7 @@ public class GUISpace extends GamePanel
 		players.add(player);
 	}
 
-	public void removePlayer(Player player )
+	public void removePlayer(GUIPlayer player )
 	{
 		Iterator<GUIPlayer> itr = players.iterator();
 		while( itr.hasNext() )
@@ -305,5 +305,18 @@ public class GUISpace extends GamePanel
 				itr.remove();
 		}
 	}
+
+    public Color getPropertyColor()
+    {
+       String str_color = space.getPropertyColorString();
+       if( str_color.equals("RED") )
+          return Color.RED;
+       if( str_color.equals("YELLOW") )
+          return Color.YELLOW;
+       if( str_color.equals("BLACK") )
+          return Color.BLACK;
+       if( str_color.equals("WHITE") )
+          return Color.WHITE;
+    }
 
 }

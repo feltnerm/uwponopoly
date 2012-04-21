@@ -296,7 +296,7 @@ class GUIBoard extends GamePanel implements Runnable
 				//if( current_token_space >= final_token_space && !final_is_lesser_than_current)
 				else
 				{
-					board.spaces[final_token_space].addPlayer( current_animation_player );
+					board.spaces.get(final_token_space).addPlayer( current_animation_player );
 					//current_animation_player = null;
 					current_animation_player.setIsMoving( false );
 					move_player_thread = null;
