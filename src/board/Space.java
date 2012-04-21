@@ -1,6 +1,7 @@
 package board;
 
 import player.Player;
+import java.util.LinkedList;
 
 /**
  * Abstracts a Space in UWPonopoly.
@@ -29,7 +30,8 @@ public class Space
    private int level = 0;
    public int[] rents;
 
-   private Player owner;
+   protected Player owner;
+   protected LinkedList<Player> players;
 
    // Property states
    private boolean mortaged;
@@ -144,4 +146,27 @@ public class Space
    public String getTitle() { return this.title; }
    public String getPropertyColorString() { return property_color; }
 
+   public void addPlayer(Player player )
+   {
+      Iterator<Player> itr = players.iterator();
+      while( itr.hasNext() )
+      {
+         if( itr.next().getTokenChar() == player.getTokenChar() )
+            return; // player is already on space, get out of here
+      }
+      players.add(player);
+   }
+
+   public void removePlayer(Player player )
+   {
+      Iterator<Player> itr = players.iterator();
+      while( itr.hasNext() )
+      {
+         if( itr.next().getTokenChar() == player.getTokenChar() )
+            itr.remove();
+      }
+   }
+
+   public Player getOwner() { return owner; }
+   public LinkedList<Players> getPlayers() { return players; }
 }

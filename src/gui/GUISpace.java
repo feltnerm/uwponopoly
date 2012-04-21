@@ -26,6 +26,7 @@ import board.Space;
 // Import GUI Mechanics
 import gui.GamePanel;
 import gui.GUIPlayer;
+import player.Player;
 
 public class GUISpace extends GamePanel
 {
@@ -61,7 +62,6 @@ public class GUISpace extends GamePanel
 	private static int TOKEN_BETWEEN_PADDING = 4; // distance between tokens
 
 	private int x_coor,y_coor; // x and y coordinates for placing on board
-	private LinkedList<GUIPlayer> players;
 	private GameBuffer deedBuffer;
 
 	public GUISpace(Space space)
@@ -140,20 +140,20 @@ public class GUISpace extends GamePanel
 
 		// Draw Player tokens
 		// drawTokens();
-		Iterator<GUIPlayer> itr = players.iterator();
+		Iterator<Player> itr = space.getPlayers().iterator();
 		// positioning for tokens
 		int token_x = TOKEN_PADDING;
 		int token_y = (int)(HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
 		while( itr.hasNext() )
 		{
-			GUIPlayer p = itr.next();
-			if( token_x + GUIPlayer.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
-			{
-				token_x = TOKEN_PADDING;
-				token_y += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
-			}
-			g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
-			token_x += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
+			Player p = itr.next();
+            if( token_x + GUIPlayer.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
+            {
+               token_x = TOKEN_PADDING;
+               token_y += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
+            }
+            g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
+            token_x += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
 		}
 
 	}
@@ -285,26 +285,7 @@ public class GUISpace extends GamePanel
    }*/
 
 
-	public void addPlayer(GUIPlayer player )
-	{
-		Iterator<GUIPlayer> itr = players.iterator();
-		while( itr.hasNext() )
-		{
-			if( itr.next().getTokenChar() == player.getTokenChar() )
-				return; // player is already on space, get out of here
-		}
-		players.add(player);
-	}
-
-	public void removePlayer(GUIPlayer player )
-	{
-		Iterator<GUIPlayer> itr = players.iterator();
-		while( itr.hasNext() )
-		{
-			if( itr.next().getTokenChar() == player.getTokenChar() )
-				itr.remove();
-		}
-	}
+	
 
     public Color getPropertyColor()
     {

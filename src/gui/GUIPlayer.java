@@ -11,7 +11,7 @@ import java.awt.Graphics;
 import java.awt.Font;
 import java.awt.FontMetrics;
 
-public class GUIPlayer
+public class GUIPlayer extends Player
 {
    public static int TOKEN_SIZE = 10;
    private static int TOKEN_FONT_SIZE = 10;
@@ -19,8 +19,6 @@ public class GUIPlayer
    private int position;
    private GameBuffer token;
    private GameBuffer animating_token;
-   private char token_char; // even with a custom GameBuffer,
-                            // the token_char is used for equals()
    private boolean is_moving; // true if the player's token is currently in animated transit
                               // this was needed so that the token could flash red etc. during
                               // animation
@@ -87,18 +85,5 @@ public class GUIPlayer
          return token;
       return animating_token;
    }
-
-   @Override
-   public boolean equals( Object o )
-   {
-      if( o instanceof  GUIPlayer )
-      {
-         GUIPlayer p = (GUIPlayer) o;
-         return p.token_char == token_char;
-      }
-      return false;
-   }
-
-   public char getTokenChar() { return token_char; }
 
 }
