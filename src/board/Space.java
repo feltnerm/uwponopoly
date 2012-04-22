@@ -1,6 +1,7 @@
 package board;
 
 import player.Player;
+//import gui.GameBuffer;
 import java.util.LinkedList;
 import java.util.Iterator;
 
@@ -80,6 +81,8 @@ public class Space
       this.property_color = property_color;
       this.rents = rents;
     }
+
+   //public GameBuffer getDeedBuffer() { return deedBuffer; }
 
    public void setOwner(Player p)
    {

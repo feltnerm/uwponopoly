@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ListIterator;
 
 // Import Game Mechanics
 import board.Board;
@@ -81,7 +82,7 @@ class GUIBoard extends GamePanel implements Runnable
 		this.board = board;
 		this.num_spaces = board.getNumSpaces();
 		drawSpaces();
-		board.spaces = new Space[num_spaces];
+		//board.spaces = new Space[num_spaces];
 
 		/*for(int i = 0; i < DEFAULT_NUMBER_SPACES; i++)
       {
@@ -98,7 +99,8 @@ class GUIBoard extends GamePanel implements Runnable
 		setLayout(new GridLayout(side,side,1,1));
 
 		// construct the spaces
-		for( int i = 0; i < num_spaces; i++)
+        //ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
+		/*for( int i = 0; i < num_spaces; i++)
 		{
 			board.spaces[i] = new GUISpace();
 			board.spaces[i].setTitle("Space: " + i);
@@ -106,8 +108,17 @@ class GUIBoard extends GamePanel implements Runnable
 			board.spaces[i].setBoardIndex(i);
 			for( int j = 0; j < Space.MAX_NUM_IMPROVEMENTS; j++) // fill in some random rents
 				board.spaces[i].setRent( 1 + i*(j+1), j);
-		}
-		for( int i = 0; i < side; i++) // draw the top row
+		}*/
+        /*for( int i = 0; i < num_spaces; i++)
+		{
+			board.spaces[i] = new GUISpace();
+			board.spaces[i].setTitle("Space: " + i);
+			board.spaces[i].setBoard(this);
+			board.spaces[i].setBoardIndex(i);
+			for( int j = 0; j < Space.MAX_NUM_IMPROVEMENTS; j++) // fill in some random rents
+				board.spaces[i].setRent( 1 + i*(j+1), j);
+		}*/
+		/*for( int i = 0; i < side; i++) // draw the top row
 		{
 			add( board.spaces[i] );
 		}
@@ -126,7 +137,7 @@ class GUIBoard extends GamePanel implements Runnable
 		for( int i = num_spaces - side_empty - 1; i >= side + side_empty;  i--) // draw bottom row
 		{
 			add( board.spaces[i] );
-		}
+		}*/
 
 		setSelectedSpace(0);
 
@@ -156,12 +167,14 @@ class GUIBoard extends GamePanel implements Runnable
 		//draw spaces
 		for( int i = 0; i < board.getNumSpaces() - 1; i++)
 		{
-			if( board.spaces[i] != null )
+            GUISpace gs = new GUISpace( board.spaces.get( board.getSelectedSpace() ) );
+            gs.repaint();
+			/*if( board.spaces[i] != null )
 				board.spaces[i].repaint();
 			else
 			{
 				System.out.println("spaces[ " + i + "] in Board is null");
-			}
+			}*/
 		}
 
 		// draw strings in middle of board for testing
@@ -169,20 +182,26 @@ class GUIBoard extends GamePanel implements Runnable
 		g.drawString( Integer.toString(board.getSelectedSpace()),250,250);
 
 		// draw the blown-up version of the space that is currently highlighted
-		g.drawImage(board.spaces[board.getSelectedSpace].drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
+        GUISpace gs = new GUISpace( board.spaces.get( board.getSelectedSpace() ) );
+		g.drawImage(gs.drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
 	}//}}}
 
 	public void setSelectedSpace( int space )
 	{
 		if( space >= 0 && space < board.getNumSpaces() ) // check for validity
 		{
-			board.spaces[board.getSelectedSpace()].setSelected( false ); // turn last selected space off
+            GUISpace gs = new GUISpace( board.spaces.get( board.getSelectedSpace() ) );
+			gs.setSelected( false ); // turn last selected space off
 			board.setSelectedSpace(space);
-			board.spaces[board.getSelectedSpace()].setSelected( true ); // turn new selection on
+			gs.setSelected( true ); // turn new selection on
 			if( deedPanel != null )
 			{
-				deedPanel.setGameBuffer( board.spaces[board.getSelectedSpace()].getDeedBuffer() );
-				deedPanel.repaint();
+               //if( board.spaces.get( board.getSelectedSpace() ) instanceof GUISpace )
+                //{
+				   //deedPanel.setGameBuffer( board.spaces.get(board.getSelectedSpace()).getDeedBuffer() );
+				   deedPanel.setGameBuffer( gs.getDeedBuffer() );
+                   deedPanel.repaint();
+                //}
 			}
 		}
 	}
@@ -190,7 +209,8 @@ class GUIBoard extends GamePanel implements Runnable
 	public void setDeedPanel( GamePanel panel)
 	{
 		deedPanel = panel;
-		deedPanel.setGameBuffer( board.spaces[board.getSelectedSpace()].getDeedBuffer() );
+        GUISpace gs = new GUISpace( board.spaces.get( board.getSelectedSpace() ) );
+		deedPanel.setGameBuffer( gs.getDeedBuffer() );
 	}
 
 	/**
