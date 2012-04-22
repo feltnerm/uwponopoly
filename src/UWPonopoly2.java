@@ -31,7 +31,7 @@ public class UWPonopoly2
 
    }
 
-   public static int main(String[] args)
+   public static void main(String[] args)
    {
 
       boolean gui = false;
@@ -55,7 +55,5 @@ public class UWPonopoly2
 
       UWPonopoly2 uwponopoly = new UWPonopoly2(gui, debug); 
       uwponopoly.play();
-      
-      return 0;
    }
 }
