@@ -2,6 +2,7 @@ package board;
 
 import player.Player;
 import java.util.LinkedList;
+import java.util.Iterator;
 
 /**
  * Abstracts a Space in UWPonopoly.
@@ -168,5 +169,5 @@ public class Space
    }
 
    public Player getOwner() { return owner; }
-   public LinkedList<Players> getPlayers() { return players; }
+   public LinkedList<Player> getPlayers() { return players; }
 }

@@ -154,7 +154,7 @@ class GUIBoard extends GamePanel implements Runnable
 	{
 		super.paintComponent(g);
 		//draw spaces
-		for( int i = 0; i < board.getNumberOfSpaces() - 1; i++)
+		for( int i = 0; i < board.getNumSpaces() - 1; i++)
 		{
 			if( board.spaces[i] != null )
 				board.spaces[i].repaint();
@@ -174,7 +174,7 @@ class GUIBoard extends GamePanel implements Runnable
 
 	public void setSelectedSpace( int space )
 	{
-		if( space >= 0 && space < board.getNumberOfSpaces() ) // check for validity
+		if( space >= 0 && space < board.getNumSpaces() ) // check for validity
 		{
 			board.spaces[board.getSelectedSpace()].setSelected( false ); // turn last selected space off
 			board.setSelectedSpace(space);
@@ -216,7 +216,7 @@ class GUIBoard extends GamePanel implements Runnable
 
 	public void removePlayerFromSpace( int space )
 	{
-		if( space < 0 || space >= board.getNumberOfSpaces() )
+		if( space < 0 || space >= board.getNumSpaces() )
 			return;
 		//board.spaces[space].removePlayer();
 	}
@@ -226,7 +226,7 @@ class GUIBoard extends GamePanel implements Runnable
 	 */
 	public boolean isValidPosition( int position_num )
 	{
-		return position_num >= 0 && position_num < board.getNumberOfSpaces();
+		return position_num >= 0 && position_num < board.getNumSpaces();
 	}
 
 	/**
@@ -234,20 +234,20 @@ class GUIBoard extends GamePanel implements Runnable
 	 */
 	public int returnValidPosition( int position_num )
 	{
-		return position_num % board.getNumberOfSpaces(); // rollover
+		return position_num % board.getNumSpaces(); // rollover
 	}
 
-	public int getNumberOfSpaces()
+	/*public int getNumberOfSpaces()
 	{
-		return board.getNumberOfSpaces();
-	}
+		return board.getNumSpaces();
+	}*/
 
 	public Space getSpace( int position_num )
 	{
 		// TODO do real error handling
 		if( !isValidPosition( position_num ) )
 			return null;
-		return board.spaces[position_num];
+		return board.spaces.get(position_num);
 	}
 
 	class BoardAnimation implements Runnable
@@ -284,14 +284,14 @@ class GUIBoard extends GamePanel implements Runnable
 				if( current_token_space < final_token_space || final_is_lesser_than_current )
 				{
 
-					board.spaces[current_token_space].removePlayer( current_animation_player );
+					board.spaces.get(current_token_space).removePlayer( current_animation_player );
 
 					current_token_space++;
 					current_token_space = returnValidPosition( current_token_space );
 					if( current_token_space == 0 )
 						final_is_lesser_than_current = false;
 
-					board.spaces[current_token_space].addPlayer( current_animation_player );
+					board.spaces.get(current_token_space).addPlayer( current_animation_player );
 				}
 				//if( current_token_space >= final_token_space && !final_is_lesser_than_current)
 				else

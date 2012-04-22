@@ -13,13 +13,13 @@ import gui.GameBuffer;
 
 public class Player
 {
-   private int money = 1500;
-   private int position;
-   private String name;
-   private char token_char; // even with a custom GameBuffer,
+   protected int money = 1500; // might be a bug, do you really want it constant? --Aaron
+   protected int position;
+   protected String name;
+   protected char token_char; // even with a custom GameBuffer,
                             // the token_char is used for equals()
 
-   private ArrayList<Space> properties = new ArrayList<Space>();
+   protected ArrayList<Space> properties = new ArrayList<Space>();
 
    public Player()
    {

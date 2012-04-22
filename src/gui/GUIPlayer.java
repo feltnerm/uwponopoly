@@ -6,10 +6,12 @@ package gui;
  */
 
 import gui.GameBuffer;
+import player.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
 import java.awt.FontMetrics;
+
 
 public class GUIPlayer extends Player
 {
