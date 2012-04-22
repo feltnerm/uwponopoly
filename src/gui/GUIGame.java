@@ -8,6 +8,7 @@ import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Color;
 
 import javax.swing.*;
 
@@ -20,6 +21,8 @@ import gui.GUIBoard;
 import gui.GUIDice;
 import gui.GUIWindow;
 import gui.GUIPlayer;
+
+import board.Board; // needed to construct GUIBoard
 
 public class GUIGame implements Runnable
 {
@@ -94,7 +97,7 @@ public class GUIGame implements Runnable
     
     private void createBoard()
     {
-    	this.guiBoard = new GUIBoard();
+    	this.guiBoard = new GUIBoard( new Board() );
     	
     }
     
@@ -144,7 +147,7 @@ public class GUIGame implements Runnable
           lastLoopTime = System.currentTimeMillis();
 
           // do stuff...
-          this.gameUpdate();
+          game.updateGame();
 
           try {
              Thread.sleep(10);

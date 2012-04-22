@@ -95,13 +95,13 @@ public class Game
       this.running = true;
    }
 
-   private void shutdownGame()
+   public void shutdownGame()
    {
       //end game
       this.running = false;
    }
 
-   private void updateGame()
+   public void updateGame()
    {
       // RULES!
       //update game state
@@ -115,7 +115,7 @@ public class Game
 
    }
 
-   private void roll()
+   public void roll()
    {
       dice.roll();
       int new_position = dice.total + this.current_player.getPosition();

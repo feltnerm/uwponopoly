@@ -298,6 +298,7 @@ public class GUISpace extends GamePanel
           return Color.BLACK;
        if( str_color.equals("WHITE") )
           return Color.WHITE;
+       return Color.BLACK;
     }
 
 }
