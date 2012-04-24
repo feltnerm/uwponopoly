@@ -16,14 +16,17 @@ then
     make clean
 fi
 
-if [ "$1" == "p" ]
-then
-    echo 'Making...'
-    make 
-else
-    echo 'Making...'
-    make verbose
-fi
+#if [ "$1" == "p" ]
+#then
+#    echo 'Making...'
+#    make 
+#else
+#    echo 'Making...'
+#    make verbose
+#fi
+echo 'Making...'
+make all
 
-echo '$ java UWPonopoly'
-java UWPonopoly
+echo 'Starting... '
+cd ./build
+java -cp .:com/google/gson/gson-2.1.jar UWPonopoly2
