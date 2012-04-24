@@ -36,20 +36,26 @@ public class UWPonopoly2
 
       boolean gui = false;
       boolean debug = false;
-      
-      if (args[0] == "help")
-      {
-         System.out.println("% java UWPonopoly2 [gui] [debug]");
-      } else
-      {
-         if (args[0] == "gui")
-         {
-            gui = true;
-         }
 
-         if (args[1] == "debug")
+      if( args.length > 0)
+      {
+         if (args[0] == "help")
          {
-            debug = true;
+            System.out.println("% java UWPonopoly2 [gui] [debug]");
+         } else
+         {
+            if (args[0] == "gui")
+            {
+               gui = true;
+            }
+
+            if( args.length > 1)
+            {
+               if (args[1] == "debug")
+               {
+                  debug = true;
+               }
+            }
          }
       }
 
