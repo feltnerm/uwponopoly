@@ -1,4 +1,4 @@
-{"cells":[
+[
         {
                 "type":"Board",
                 "board_index":0,
@@ -6,7 +6,7 @@
                 "pass_over":[
                         "addMoney:200"
                 ],
-                "land_onF":[
+                "land_on":[
                         "addMoney:200"
                 ]
         },
@@ -347,4 +347,4 @@
                 "pass_over" : [],
                 "land_on" : []
         }
-]}
+]
