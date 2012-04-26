@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.*;
 
@@ -82,9 +83,9 @@ public class GUIGame implements Runnable
     {
     	this.createBoard();
     	this.createDice();
-    	this.createDashboard();
     	this.createContextPanel();
     	this.createPlayerStats();
+    	this.createDashboard();
     	this.createWindow();
     	
     	this.guiWindow.setVisible(true);
@@ -93,9 +94,8 @@ public class GUIGame implements Runnable
     private void createWindow()
     {
     	this.guiWindow = new GUIWindow();
-        guiWindow.add( guiBoard );
-        guiWindow.add( propertyContextPanel );
-        guiWindow.add( dashboardPanel );
+        guiWindow.getContentPane().add( guiBoard );
+        guiWindow.getContentPane().add( dashboardPanel );
         guiWindow.pack();
     }
     
@@ -108,12 +108,30 @@ public class GUIGame implements Runnable
     private void createDice()
     {
     	this.guiDice = new GUIDice();
+        dicePanel = new JPanel();
+        dicePanel.setLayout( new BorderLayout() );
+        dicePanel.add( guiDice, BorderLayout.NORTH );
+        JButton roll_button = new JButton("Roll!");
+        roll_button.setPreferredSize(new Dimension(25,50));
+        /*roll_button.addActionListener // make the roll button roll the dice
+           (   new ActionListener()
+               {
+               @Override
+               public void actionPerformed(ActionEvent e)
+               {
+               doRoll();
+               }
+               }
+           );*/
+        dicePanel.add(roll_button, BorderLayout.SOUTH);
     }
     
     private void createDashboard()
     {
     	dashboardPanel = new JPanel();
     	dashboardPanel.setLayout(new BoxLayout(dashboardPanel, BoxLayout.PAGE_AXIS));
+        dashboardPanel.add( propertyContextPanel );
+        dashboardPanel.add( dicePanel );
     }
     
     private void createContextPanel()

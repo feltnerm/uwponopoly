@@ -21,7 +21,7 @@ public class GUIWindow extends GameFrame
     // Height & Width of the Window
     final int WINDOW_WIDTH = 550;
     final int WINDOW_HEIGHT = 350;
-    final FlowLayout layout = new FlowLayout();
+    //final FlowLayout layout = new FlowLayout();
 
 	private JMenuBar menuBar;
 	
@@ -30,7 +30,7 @@ public class GUIWindow extends GameFrame
 		super(TITLE);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(this.WINDOW_HEIGHT, this.WINDOW_WIDTH);
-		this.setLayout(this.layout);
+		this.setLayout( new FlowLayout() );
 		
 		this.menuBar = new JMenuBar();
 			JMenu fileMenu = new JMenu("File");
