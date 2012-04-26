@@ -30,7 +30,7 @@ class JSONBoard
 
     public JSONBoard()
     {
-    	this(PATH);
+    //	this(PATH);
     }
     
     public JSONBoard(String filepath)
@@ -41,7 +41,8 @@ class JSONBoard
     
     public ArrayList<Space> getSpaces(InputStream in) throws IOException
     {
-    	FileInputStream jsonBoardStream = new FileInputStream(this.JSONBoardFile.)
+    //	FileInputStream jsonBoardStream = new FileInputStream(this.JSONBoardFile.)
+       return null; //testing code
     }
     
     public ArrayList<Space> readJsonStream(InputStream in) throws IOException {
@@ -62,7 +63,7 @@ class JSONBoard
     	reader.beginArray();
     	while (reader.hasNext())
     	{
-    		Spaces.add(readSpace(reader));
+    //		Spaces.add(readSpace(reader));
     	}
     	reader.endArray();
     	return Spaces;

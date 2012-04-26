@@ -17,7 +17,7 @@ import player.Player;
 public class Board
 {
    // defaults
-   private JSONBoard jsonboard = new JSONBoard();
+   //private JSONBoard jsonboard = new JSONBoard(); // bug -- don't initialize here
 
    private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
    private int num_spaces;
@@ -29,7 +29,12 @@ public class Board
    public Board()
    {
       this.num_spaces = DEFAULT_NUMBER_SPACES;
-      this.spaces = jsonboard.getSpaces();
+      //this.spaces = jsonboard.getSpaces();
+      this.spaces = new ArrayList<Space>();
+      for( int i = 0; i < DEFAULT_NUMBER_SPACES; i++ )
+      {
+         spaces.add( new Space("test", "property", i) );
+      }
       this.spaces_iter = spaces.listIterator(0);
    }
 
