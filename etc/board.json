@@ -1,117 +1,329 @@
- [
-        {
-                "title": "GO",
-                "type": "GO",
-                "position": 0,
-                "property_color": ""
-        },
-        {
-                "title": "JAIL",
-                "type": "JAIL",
-                "position": 10,
-                "property_color": ""
-
-        },
-        {
-                "title": "FREE PARKING",
-                "type": "FREE_PARKING",
-                "position": 20,
-                "property_color": ""
-        },
-        {
-                "title": "GO TO JAIL",
-                "type": "GO_TO_JAIL",
-                "position": 30,
-                "property_color": ""
-        },
-
-
-        {
-            "hotel_cost": 80,
-            "house_cost": 40,
-            "mortgage": 25.0,
-            "position": 1,
-            "price": 50,
-            "property_color": "purple",
-            "rents": [
-                40,
-                80,
-                120,
-                160,
-                200,
-                240
-            ],
-            "title": "Mediterranean Avenue",
-            "type": "PROPERTY"
-        },
-
-        {
-            "hotel_cost": 180,
-            "house_cost": 90,
-            "mortgage": 50.0,
-            "position": 2,
-            "price": 100,
-            "property_color": "purple",
-            "rents": [
-                90,
-                180,
-                270,
-                360,
-                450,
-                540
-            ],
-            "title": "Community Chest 1",
-            "type": "PROPERTY"
-        },
-
-        {
-            "hotel_cost": 280,
-            "house_cost": 140,
-            "mortgage": 75.0,
-            "position": 3,
-            "price": 150,
-            "property_color": "purple",
-            "rents": [
-                140,
-                280,
-                420,
-                560,
-                700,
-                840
-            ],
-            "title": "Baltic Avenue",
-            "type": "PROPERTY"
-        },
-
-        {    hotel_cost: 380,    house_cost: 190,    mortgage: 100.0,    position: 4,    price: 200,    property_color: purple,    rents: [        190,        380,        570,        760,        950,        1140    ],    title: Income Tax 1,    type: PROPERTY},
-        {    hotel_cost: 480,    house_cost: 240,    mortgage: 125.0,    position: 5,    price: 250,    property_color: railroad,    rents: [        240,        480,        720,        960,        1200,        1440    ],    title: Reading Railroad,    type: PROPERTY},
-        {    hotel_cost: 580,    house_cost: 290,    mortgage: 150.0,    position: 6,    price: 300,    property_color: lblue,    rents: [        290,        580,        870,        1160,        1450,        1740    ],    title: Oriental Avenue,    type: PROPERTY},
-        {    hotel_cost: 680,    house_cost: 340,    mortgage: 175.0,    position: 7,    price: 350,    property_color: lblue,    rents: [        340,        680,        1020,        1360,        1700,        2040    ],    title: Chance 1,    type: PROPERTY},
-        {    hotel_cost: 780,    house_cost: 390,    mortgage: 200.0,    position: 8,    price: 400,    property_color: lblue,    rents: [        390,        780,        1170,        1560,        1950,        2340    ],    title: Vermont Avenue,    type: PROPERTY},
-        {    hotel_cost: 880,    house_cost: 440,    mortgage: 225.0,    position: 9,    price: 450,    property_color: lblue,    rents: [        440,        880,        1320,        1760,        2200,        2640    ],    title: Connecticut Avenue,    type: PROPERTY},
-        {    hotel_cost: 1080,    house_cost: 540,    mortgage: 275.0,    position: 11,    price: 550,    property_color: fuschia,    rents: [        540,        1080,        1620,        2160,        2700,        3240    ],    title: St. Charles Place,    type: PROPERTY},
-        {    hotel_cost: 1180,    house_cost: 590,    mortgage: 300.0,    position: 12,    price: 600,    property_color: electric,    rents: [        590,        1180,        1770,        2360,        2950,        3540    ],    title: Electric Company,    type: PROPERTY},
-{    hotel_cost: 1280,    house_cost: 640,    mortgage: 325.0,    position: 13,    price: 650,    property_color: fuschia,    rents: [        640,        1280,        1920,        2560,        3200,        3840    ],    title: States Avenue,    type: PROPERTY},
-{    hotel_cost: 1380,    house_cost: 690,    mortgage: 350.0,    position: 14,    price: 700,    property_color: fuschia,    rents: [        690,        1380,        2070,        2760,        3450,        4140    ],    title: Virginia Place,    type: PROPERTY},
-{    hotel_cost: 1480,    house_cost: 740,    mortgage: 375.0,    position: 15,    price: 750,    property_color: railroad,    rents: [        740,        1480,        2220,        2960,        3700,        4440    ],    title: Pennsylvania Railroad,    type: PROPERTY},
-{    hotel_cost: 1580,    house_cost: 790,    mortgage: 400.0,    position: 16,    price: 800,    property_color: orange,    rents: [        790,        1580,        2370,        3160,        3950,        4740    ],    title: St. James Place,    type: PROPERTY},
-{    hotel_cost: 1680,    house_cost: 840,    mortgage: 425.0,    position: 17,    price: 850,    property_color: ,    rents: [        840,        1680,        2520,        3360,        4200,        5040    ],    title: Community Chest 2,    type: PROPERTY},
-{    hotel_cost: 1780,    house_cost: 890,    mortgage: 450.0,    position: 18,    price: 900,    property_color: orange,    rents: [        890,        1780,        2670,        3560,        4450,        5340    ],    title: Tennessee Avenue,    type: PROPERTY},
-{    hotel_cost: 1880,    house_cost: 940,    mortgage: 475.0,    position: 19,    price: 950,    property_color: orange,    rents: [        940,        1880,        2820,        3760,        4700,        5640    ],    title: New York Avenue,    type: PROPERTY},
-{    hotel_cost: 2080,    house_cost: 1040,    mortgage: 525.0,    position: 21,    price: 1050,    property_color: red,    rents: [        1040,        2080,        3120,        4160,        5200,        6240    ],    title: Kentucky Avenue,    type: PROPERTY},
-{    hotel_cost: 2180,    house_cost: 1090,    mortgage: 550.0,    position: 22,    price: 1100,    property_color: chance,    rents: [        1090,        2180,        3270,        4360,        5450,        6540    ],    title: Chance 2,    type: PROPERTY},
-{    hotel_cost: 2280,    house_cost: 1140,    mortgage: 575.0,    position: 23,    price: 1150,    property_color: red,    rents: [        1140,        2280,        3420,        4560,        5700,        6840    ],    title: Indiana Avenue,    type: PROPERTY},
-{    hotel_cost: 2380,    house_cost: 1190,    mortgage: 600.0,    position: 24,    price: 1200,    property_color: red,    rents: [        1190,        2380,        3570,        4760,        5950,        7140    ],    title: Illinois Avenue,    type: PROPERTY},
-{    hotel_cost: 480,    house_cost: 240,    mortgage: 125.0,    position: 25,    price: 250,    property_color: railroad,    rents: [        240,        480,        720,        960,        1200,        1440    ],    title: BO Railroad,    type: PROPERTY},
-{    hotel_cost: 2580,    house_cost: 1290,    mortgage: 650.0,    position: 26,    price: 1300,    property_color: yellow,    rents: [        1290,        2580,        3870,        5160,        6450,        7740    ],    title: Atlantic Avenue,    type: PROPERTY},
-{    hotel_cost: 2680,    house_cost: 1340,    mortgage: 675.0,    position: 27,    price: 1350,    property_color: yellow,    rents: [        1340,        2680,        4020,        5360,        6700,        8040    ],    title: Ventnor Avenue,    type: PROPERTY},
-{    hotel_cost: 2780,    house_cost: 1390,    mortgage: 700.0,    position: 28,    price: 1400,    property_color: utility,    rents: [        1390,        2780,        4170,        5560,        6950,        8340    ],    title: Water Works,    type: PROPERTY},
-{    hotel_cost: 2880,    house_cost: 1440,    mortgage: 725.0,    position: 29,    price: 1450,    property_color: yellow,    rents: [        1440,        2880,        4320,        5760,        7200,        8640    ],    title: Marvin Gardens,    type: PROPERTY},
-{    hotel_cost: 3080,    house_cost: 1540,    mortgage: 775.0,    position: 31,    price: 1550,    property_color: green,    rents: [        1540,        3080,        4620,        6160,        7700,        9240    ],    title: Pacific Avenue,    type: PROPERTY},
-{    hotel_cost: 3080,    house_cost: 1540,    mortgage: 775.0,    position: 32,    price: 1550,    property_color: green,    rents: [        1540,        3080,        4620,        6160,        7700,        9240    ],    title: North Carolina Avenue,    type: PROPERTY},
-{    hotel_cost: 3080,    house_cost: 1540,    mortgage: 775.0,    position: 33,    price: 1550,    property_color: community,    rents: [        1540,        3080,        4620,        6160,        7700,        9240    ],    title: Community Chest,    type: PROPERTY},
+[{
+    "title": "GO",
+    "type": "GO",
+    "position": 0,
+    "property_color": ""
+}, {
+    "title": "JAIL",
+    "type": "JAIL",
+    "position": 10,
+    "property_color": ""
+}, {
+    "title": "FREE PARKING",
+    "type": "FREE_PARKING",
+    "position": 20,
+    "property_color": ""
+}, {
+    "title": "GO TO JAIL",
+    "type": "GO_TO_JAIL",
+    "position": 30,
+    "property_color": ""
+}, 
 
 {
+    "hotel_cost": 80,
+    "house_cost": 40,
+    "mortgage": 25.0,
+    "position": 1,
+    "price": 50,
+    "property_color": "purple",
+    "rents": [
+    40, 80, 120, 160, 200, 240],
+    "title": "Mediterranean Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 180,
+    "house_cost": 90,
+    "mortgage": 50.0,
+    "position": 2,
+    "price": 100,
+    "property_color": "white",
+    "rents": [
+    90, 180, 270, 360, 450, 540],
+    "title": "Community Chest 1",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 280,
+    "house_cost": 140,
+    "mortgage": 75.0,
+    "position": 3,
+    "price": 150,
+    "property_color": "purple",
+    "rents": [
+    140, 280, 420, 560, 700, 840],
+    "title": "Baltic Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 380,
+    "house_cost": 190,
+    "mortgage": 100.0,
+    "position": 4,
+    "price": 200,
+    "property_color": "white",
+    "rents": [190, 380, 570, 760, 950, 1140],
+    "title": "Income Tax 1",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 480,
+    "house_cost": 240,
+    "mortgage": 125.0,
+    "position": 5,
+    "price": 250,
+    "property_color": "railroad",
+    "rents": [240, 480, 720, 960, 1200, 1440],
+    "title": "Reading Railroad",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 580,
+    "house_cost": 290,
+    "mortgage": 150.0,
+    "position": 6,
+    "price": 300,
+    "property_color": "lblue",
+    "rents": [290, 580, 870, 1160, 1450, 1740],
+    "title": "Oriental Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 680,
+    "house_cost": 340,
+    "mortgage": 175.0,
+    "position": 7,
+    "price": 350,
+    "property_color": "white",
+    "rents": [340, 680, 1020, 1360, 1700, 2040],
+    "title": "Chance 1",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 780,
+    "house_cost": 390,
+    "mortgage": 200.0,
+    "position": 8,
+    "price": 400,
+    "property_color": "lblue",
+    "rents": [390, 780, 1170, 1560, 1950, 2340],
+    "title": "Vermont Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 880,
+    "house_cost": 440,
+    "mortgage": 225.0,
+    "position": 9,
+    "price": 450,
+    "property_color": "lblue",
+    "rents": [440, 880, 1320, 1760, 2200, 2640],
+    "title": "Connecticut Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1080,
+    "house_cost": 540,
+    "mortgage": 275.0,
+    "position": 11,
+    "price": 550,
+    "property_color": "fuschia",
+    "rents": [540, 1080, 1620, 2160, 2700, 3240],
+    "title": "St.Charles Place",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1180,
+    "house_cost": 590,
+    "mortgage": 300.0,
+    "position": 12,
+    "price": 600,
+    "property_color": "utility",
+    "rents": [590, 1180, 1770, 2360, 2950, 3540],
+    "title": "Electric Company",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1280,
+    "house_cost": 640,
+    "mortgage": 325.0,
+    "position": 13,
+    "price": 650,
+    "property_color": "fuschia",
+    "rents": [640, 1280, 1920, 2560, 3200, 3840],
+    "title": "States Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1380,
+    "house_cost": 690,
+    "mortgage": 350.0,
+    "position": 14,
+    "price": 700,
+    "property_color": "fuschia",
+    "rents": [690, 1380, 2070, 2760, 3450, 4140],
+    "title": "Virginia Place",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1480,
+    "house_cost": 740,
+    "mortgage": 375.0,
+    "position": 15,
+    "price": 750,
+    "property_color": "railroad",
+    "rents": [740, 1480, 2220, 2960, 3700, 4440],
+    "title": "Pennsylvania Railroad",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1580,
+    "house_cost": 790,
+    "mortgage": 400.0,
+    "position": 16,
+    "price": 800,
+    "property_color": "orange",
+    "rents": [790, 1580, 2370, 3160, 3950, 4740],
+    "title": "St.James Place",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1680,
+    "house_cost": 840,
+    "mortgage": 425.0,
+    "position": 17,
+    "price": 850,
+    "property_color": "white" ,
+    "rents": [840, 1680, 2520, 3360, 4200, 5040],
+    "title": "Community Chest 2",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1780,
+    "house_cost": 890,
+    "mortgage": 450.0,
+    "position": 18,
+    "price": 900,
+    "property_color": "orange",
+    "rents": [890, 1780, 2670, 3560, 4450, 5340],
+    "title": "Tennessee Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 1880,
+    "house_cost": 940,
+    "mortgage": 475.0,
+    "position": 19,
+    "price": 950,
+    "property_color": "orange",
+    "rents": [940, 1880, 2820, 3760, 4700, 5640],
+    "title": "New York Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2080,
+    "house_cost": 1040,
+    "mortgage": 525.0,
+    "position": 21,
+    "price": 1050,
+    "property_color": "red",
+    "rents": [1040, 2080, 3120, 4160, 5200, 6240],
+    "title": "Kentucky Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2180,
+    "house_cost": 1090,
+    "mortgage": 550.0,
+    "position": 22,
+    "price": 1100,
+    "property_color": "white",
+    "rents": [1090, 2180, 3270, 4360, 5450, 6540],
+    "title": "Chance 2",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2280,
+    "house_cost": 1140,
+    "mortgage": 575.0,
+    "position": 23,
+    "price": 1150,
+    "property_color": "red",
+    "rents": [1140, 2280, 3420, 4560, 5700, 6840],
+    "title": "Indiana Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2380,
+    "house_cost": 1190,
+    "mortgage": 600.0,
+    "position": 24,
+    "price": 1200,
+    "property_color": "red",
+    "rents": [1190, 2380, 3570, 4760, 5950, 7140],
+    "title": "Illinois Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 480,
+    "house_cost": 240,
+    "mortgage": 125.0,
+    "position": 25,
+    "price": 250,
+    "property_color": "railroad",
+    "rents": [240, 480, 720, 960, 1200, 1440],
+    "title": "BO Railroad",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2580,
+    "house_cost": 1290,
+    "mortgage": 650.0,
+    "position": 26,
+    "price": 1300,
+    "property_color": "yellow",
+    "rents": [1290, 2580, 3870, 5160, 6450, 7740],
+    "title": "Atlantic Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2680,
+    "house_cost": 1340,
+    "mortgage": 675.0,
+    "position": 27,
+    "price": 1350,
+    "property_color": "yellow",
+    "rents": [1340, 2680, 4020, 5360, 6700, 8040],
+    "title": "Ventnor Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2780,
+    "house_cost": 1390,
+    "mortgage": 700.0,
+    "position": 28,
+    "price": 1400,
+    "property_color": "utility",
+    "rents": [1390, 2780, 4170, 5560, 6950, 8340],
+    "title": "Water Works",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 2880,
+    "house_cost": 1440,
+    "mortgage": 725.0,
+    "position": 29,
+    "price": 1450,
+    "property_color": "yellow",
+    "rents": [1440, 2880, 4320, 5760, 7200, 8640],
+    "title": "Marvin Gardens",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 3080,
+    "house_cost": 1540,
+    "mortgage": 775.0,
+    "position": 31,
+    "price": 1550,
+    "property_color": "green",
+    "rents": [1540, 3080, 4620, 6160, 7700, 9240],
+    "title": "Pacific Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 3080,
+    "house_cost": 1540,
+    "mortgage": 775.0,
+    "position": 32,
+    "price": 1550,
+    "property_color": "green",
+    "rents": [1540, 3080, 4620, 6160, 7700, 9240],
+    "title": "North Carolina Avenue",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 3080,
+    "house_cost": 1540,
+    "mortgage": 775.0,
+    "position": 33,
+    "price": 1550,
+    "property_color": "white",
+    "rents": [1540, 3080, 4620, 6160, 7700, 9240],
+    "title": "Community Chest",
+    "type": "PROPERTY"
+}, {
     "hotel_cost": 3380,
     "house_cost": 1690,
     "mortgage": 850.0,
@@ -119,17 +331,10 @@
     "price": 1700,
     "property_color": "green",
     "rents": [
-        1690,
-        3380,
-        5070,
-        6760,
-        8450,
-        10140
-    ],
+    1690, 3380, 5070, 6760, 8450, 10140],
     "title": "Pennsylvania Avenue",
     "type": "PROPERTY"
-},
-{
+}, {
     "hotel_cost": 3480,
     "house_cost": 1740,
     "mortgage": 875.0,
@@ -137,37 +342,48 @@
     "price": 1750,
     "property_color": "railroad",
     "rents": [
-        1740,
-        3480,
-        5220,
-        6960,
-        8700,
-        10440
-    ],
+    1740, 3480, 5220, 6960, 8700, 10440],
     "title": "Short Line Railroad",
     "type": "PROPERTY"
-},
-{
+}, {
     "hotel_cost": 3580,
     "house_cost": 1790,
     "mortgage": 900.0,
     "position": 36,
     "price": 1800,
-    "property_color": "chance",
+    "property_color": "white",
     "rents": [
-        1790,
-        3580,
-        5370,
-        7160,
-        8950,
-        10740
-    ],
+    1790, 3580, 5370, 7160, 8950, 10740],
     "title": "Chance 3",
     "type": "PROPERTY"
-},
-
-{    hotel_cost: 3680,    house_cost: 1840,    mortgage: 925.0,    position: 37,    price: 1850,    property_color: dblue,    rents: [        1840,        3680,        5520,        7360,        9200,        11040    ],    title: Park Place,    type: PROPERTY},
-{    hotel_cost: 3780,    house_cost: 1890,    mortgage: 950.0,    position: 38,    price: 1900,    property_color: luxurytax,    rents: [        1890,        3780,        5670,        7560,        9450,        11340    ],    title: Luxury Tax ,    type: PROPERTY},
-{    hotel_cost: 3880,    house_cost: 1940,    mortgage: 975.0,    position: 39,    price: 1950,    property_color: dblue,    rents: [        1940,        3880,        5820,        7760,        9700,        11640    ],    title: Boardwalk,    type: PROPERTY},
-]
-
+}, {
+    "hotel_cost": 3680,
+    "house_cost": 1840,
+    "mortgage": 925.0,
+    "position": 37,
+    "price": 1850,
+    "property_color": "dblue",
+    "rents": [1840, 3680, 5520, 7360, 9200, 11040],
+    "title": "Park Place",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 3780,
+    "house_cost": 1890,
+    "mortgage": 950.0,
+    "position": 38,
+    "price": 1900,
+    "property_color": "white",
+    "rents": [1890, 3780, 5670, 7560, 9450, 11340],
+    "title": "Luxury Tax",
+    "type": "PROPERTY"
+}, {
+    "hotel_cost": 3880,
+    "house_cost": 1940,
+    "mortgage": 975.0,
+    "position": 39,
+    "price": 1950,
+    "property_color": "dblue",
+    "rents": [1940, 3880, 5820, 7760, 9700, 11640],
+    "title": "Boardwalk",
+    "type": "PROPERTY"
+}, ]
