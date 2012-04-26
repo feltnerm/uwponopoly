@@ -30,7 +30,7 @@ public class Board
    {
       this.num_spaces = DEFAULT_NUMBER_SPACES;
       this.spaces = jsonboard.getSpaces();
-      this.spaces_iter = spaces.listIterator(0);
+      //this.spaces_iter = spaces.listIterator(0);
    }
 
    /**

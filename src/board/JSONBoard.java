@@ -20,7 +20,7 @@ class JSONBoard
 {
 
 	// game /etc, system /etc, ~
-    private static String PATH = "../etc/monopoly.json";
+    private static String PATH = "../etc/board.json";
  	private File JSONBoardFile;
 
     private Gson gson = new Gson();
@@ -39,49 +39,17 @@ class JSONBoard
     	File JSONBoardFile = new File(this.PATH);
     }
     
-    public ArrayList<Space> getSpaces(InputStream in) throws IOException
-    {
-    	FileInputStream jsonBoardStream = new FileInputStream(this.JSONBoardFile.)
-    }
-    
-    public ArrayList<Space> readJsonStream(InputStream in) throws IOException {
-    	JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-    	try {
-    		return readSpaceArray(reader);
-    	} finally {
-    		reader.close();
-    	}
-    	
-    }
-    
-    
-    public ArrayList<Space> readSpaceArray(JsonReader reader) throws IOException
-    {
-    	ArrayList<Space> Spaces = new ArrayList<Space>();
-    	
-    	reader.beginArray();
-    	while (reader.hasNext())
-    	{
-    		Spaces.add(readSpace(reader));
-    	}
-    	reader.endArray();
-    	return Spaces;
-    }
-    
-    public ArrayList<Space> getSpaces(String json)
-    {
-    	Type spaceCollectionType = new TypeToken<ArrayList<Space>>(){}.getType();
-    	ArrayList<Space> Spaces = gson.fromJson(json, spaceCollectionType);
-		return Spaces;
-    	
-    }
-    
-    /**
     public ArrayList<Space> getSpaces()
     {
        ArrayList<Space> spaces = gson.fromJson(this.json, new TypeToken<ArrayList<Space>>(){}.getType());
        return spaces;
     }
-    */
+
+    public static void main(String[] args) {
+        JSONBoard j = new JSONBoard();
+        ArrayList<Space> spaces = new ArrayList<Space>();
+        spaces = j.getSpaces();
+        spaces.toString();
+    }
 
 }
