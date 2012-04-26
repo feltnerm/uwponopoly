@@ -35,7 +35,7 @@ public class GUIGame implements Runnable
     // Events and Threads
     static final int TICK_LENGTH_MS = 10;
     private boolean running = false;
-    private Thread gamethread = new Thread();
+    private Thread gamethread;
     private EventQueue events;
     
     // GUI Elements
@@ -132,12 +132,16 @@ public class GUIGame implements Runnable
     
     public void startGame()
     {
+        System.out.println("startGame");
         // start the game!
     	this.game.startGame();
+        gamethread = new Thread( this );
+        gamethread.start();
     }
     
     public void run()
     {
+       System.out.println("running");
        Thread current = Thread.currentThread();
        long lastLoopTime = System.currentTimeMillis();
 
