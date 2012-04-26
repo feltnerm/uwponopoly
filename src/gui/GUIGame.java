@@ -80,12 +80,12 @@ public class GUIGame implements Runnable
     
     private void initGui()
     {
-    	this.createWindow();
     	this.createBoard();
     	this.createDice();
     	this.createDashboard();
     	this.createContextPanel();
     	this.createPlayerStats();
+    	this.createWindow();
     	
     	this.guiWindow.setVisible(true);
     }
@@ -93,6 +93,10 @@ public class GUIGame implements Runnable
     private void createWindow()
     {
     	this.guiWindow = new GUIWindow();
+        guiWindow.add( guiBoard );
+        guiWindow.add( propertyContextPanel );
+        guiWindow.add( dashboardPanel );
+        guiWindow.pack();
     }
     
     private void createBoard()
@@ -132,7 +136,6 @@ public class GUIGame implements Runnable
     
     public void startGame()
     {
-        System.out.println("startGame");
         // start the game!
     	this.game.startGame();
         gamethread = new Thread( this );
@@ -141,7 +144,6 @@ public class GUIGame implements Runnable
     
     public void run()
     {
-       System.out.println("running");
        Thread current = Thread.currentThread();
        long lastLoopTime = System.currentTimeMillis();
 
@@ -153,6 +155,7 @@ public class GUIGame implements Runnable
           // do stuff...
           game.updateGame();
 
+          guiWindow.repaint();
           try {
              Thread.sleep(10);
           } catch (InterruptedException e) {

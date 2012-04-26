@@ -41,7 +41,7 @@ public class GUIWindow extends GameFrame
 			aboutMenu.add(new JMenuItem("Credits"));
 		this.menuBar.add(fileMenu);
 		this.menuBar.add(aboutMenu);
-
+        setJMenuBar(menuBar);
 	}
 	
 }

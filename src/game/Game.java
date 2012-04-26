@@ -111,7 +111,7 @@ public class Game
       {
          // winner!
       }
-         Space current_space = this.board.getSpace(this.current_player.getPosition());
+      Space current_space = this.board.getSpace(this.current_player.getPosition());
          
       roll();
 
