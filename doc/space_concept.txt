@@ -1,0 +1,34 @@
+Below is my idea for the Space class, in quasi-UML.
+
+/------------------------------------\
+|               Space                |
+|------------------------------------|
+| int                 rent[]         |
+| LinkedList<players> players        |
+| int                 level          |
+| String              property_color |
+| int                 house_cost     |
+| int                 hotel_cost     |
+| int                 special_action | \\ part of an enum
+| int                 title          |
+| Player              owner          |
+|------------------------------------|
+| landsOn( Player )                  |
+| addPlayer( Player )                |
+| removePlayer( Player )             |
+| upgradeProperty()                  |
+| executeSpecialEvent( Player )      |
+\------------------------------------/
+
+executeSpecialEvent( Player p)
+{
+   switch( special_action )
+   {
+      case GO:
+         p.credit( Config.getGoAmount() );
+         break;
+      case JAIL:
+         p.setInJail( true );
+         break;
+   }
+}
