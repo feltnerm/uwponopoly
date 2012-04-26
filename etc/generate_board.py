@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import json
+import os
 from pprint import pprint
 
 
@@ -19,6 +20,7 @@ p = {
 }
 
 for i in range(1, 41):
+    print 'ON SPACE #: %d' % i
     title = raw_input("Title: ")
     property_color = raw_input("Color: ")
     price = i * 50
@@ -37,4 +39,9 @@ for i in range(1, 41):
     p['rents'] = rents
 
     s = json.dumps(p, sort_keys=True, indent=4)
-    print '\n'.join([l.rstrip() for l in s.splitlines()])
+    s2 = '\n'.join([l.rstrip() for l in s.splitlines()])
+    s2 = s2 + ','
+    print s2
+
+    cmd = 'echo "%s" | tr -d "\n" | pbcopy' % s2
+    os.system(cmd)
