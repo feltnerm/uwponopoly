@@ -140,21 +140,24 @@ public class GUISpace extends GamePanel
 
 		// Draw Player tokens
 		// drawTokens();
-		Iterator<Player> itr = space.getPlayers().iterator();
-		// positioning for tokens
-		int token_x = TOKEN_PADDING;
-		int token_y = (int)(HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
-		while( itr.hasNext() )
-		{
-			Player p = itr.next();
-            if( token_x + GUIPlayer.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
-            {
-               token_x = TOKEN_PADDING;
-               token_y += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
-            }
-            g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
-            token_x += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
-		}
+        if( space.getPlayers() != null )
+        {
+           Iterator<Player> itr = space.getPlayers().iterator();
+           // positioning for tokens
+           int token_x = TOKEN_PADDING;
+           int token_y = (int)(HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
+           while( itr.hasNext() )
+           {
+              Player p = itr.next();
+              if( token_x + GUIPlayer.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
+              {
+                 token_x = TOKEN_PADDING;
+                 token_y += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
+              }
+              g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
+              token_x += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
+           }
+        }
 
 	}
 
@@ -290,6 +293,8 @@ public class GUISpace extends GamePanel
     public Color getPropertyColor()
     {
        String str_color = space.getPropertyColorString();
+       if( str_color == null )
+          return Color.BLACK;
        if( str_color.equals("RED") )
           return Color.RED;
        if( str_color.equals("YELLOW") )

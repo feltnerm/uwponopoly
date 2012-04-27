@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ListIterator;
+import java.awt.Dimension;
 
 // Import Game Mechanics
 import board.Board;
@@ -79,6 +80,7 @@ class GUIBoard extends GamePanel implements Runnable
 	public GUIBoard(Board board) //{{{
 	{
 		super(GUISpace.WIDTH * board.getNumSpaces(), GUISpace.HEIGHT * board.getNumSpaces(), DEFAULT_COLOR);
+    	setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.board = board;
 		this.num_spaces = board.getNumSpaces();
 		drawSpaces();
@@ -98,6 +100,12 @@ class GUIBoard extends GamePanel implements Runnable
 		int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
 		setLayout(new GridLayout(side,side,1,1));
 
+        ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
+        while( spaces_iter.hasNext() )
+        {
+           add( new GUISpace( spaces_iter.next() ) );
+        }
+        
 		// construct the spaces
         //ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
 		/*for( int i = 0; i < num_spaces; i++)

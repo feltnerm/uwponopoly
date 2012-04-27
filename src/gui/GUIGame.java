@@ -96,6 +96,7 @@ public class GUIGame implements Runnable
     	this.guiWindow = new GUIWindow();
         guiWindow.getContentPane().add( guiBoard );
         guiWindow.getContentPane().add( dashboardPanel );
+        guiWindow.getContentPane().add( deedPanel );
         guiWindow.pack();
     }
     
@@ -129,9 +130,9 @@ public class GUIGame implements Runnable
     private void createDashboard()
     {
     	dashboardPanel = new JPanel();
-    	dashboardPanel.setLayout(new BoxLayout(dashboardPanel, BoxLayout.PAGE_AXIS));
-        dashboardPanel.add( propertyContextPanel );
+    	dashboardPanel.setLayout(new BoxLayout(dashboardPanel, BoxLayout.Y_AXIS));
         dashboardPanel.add( dicePanel );
+        dashboardPanel.add( propertyContextPanel );
     }
     
     private void createContextPanel()
@@ -141,8 +142,7 @@ public class GUIGame implements Runnable
     	
     	deedPanel = new GamePanel(500, 100, Color.WHITE);
     	deedPanel.setStatic(true);
-    	//@TODO:
-    	//deedPanel.setPreferredSize(new Dimension(this.guiSpace.WIDTH, this.guiSpace.HEIGHT));
+    	deedPanel.setPreferredSize(new Dimension(GUISpace.DEED_WIDTH, GUISpace.DEED_HEIGHT));
     	
     	this.guiBoard.setDeedPanel(deedPanel);
     }
