@@ -25,12 +25,13 @@ fi
 #    make verbose
 #fi
 echo 'Making...'
-make all
-
-echo 'Starting... '
-if [! -d ./build ]
+if [ ! -d ./build ]
 then
    mkdir ./build
 fi
+
+make all
+
+echo 'Starting... '
 cd ./build
 java -cp .:com/google/gson/gson-2.1.jar UWPonopoly2 gui
