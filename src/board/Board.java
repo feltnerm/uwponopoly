@@ -29,13 +29,8 @@ public class Board
    public Board()
    {
       this.num_spaces = DEFAULT_NUMBER_SPACES;
-      //this.spaces = jsonboard.getSpaces();
-      this.spaces = new ArrayList<Space>();
-      for( int i = 0; i < DEFAULT_NUMBER_SPACES; i++ )
-      {
-         spaces.add( new Space("test", "property", i) );
-      }
-      this.spaces_iter = spaces.listIterator(0);
+      this.spaces = jsonboard.getSpaces();
+      //this.spaces_iter = spaces.listIterator(0);
    }
 
    /**
