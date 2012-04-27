@@ -23,7 +23,7 @@ class JSONBoard
 {
 
 	// game /etc, system /etc, ~
-    private String PATH = "etc/board.json";
+    private String PATH = "../etc/board.json";
     private File JSONBoardFile;
 
 

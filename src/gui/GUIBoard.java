@@ -199,7 +199,12 @@ class GUIBoard extends GamePanel implements Runnable
         // draw the board
         int side = (board.getNumSpaces()/4) + 1; // length, in Spaces, of a side of the board
 		int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
-
+		//int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
+        ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
+        while( spaces_iter.hasNext() ) // add me back in
+        {
+           add( new GUISpace( spaces_iter.next() ) );
+        }
 	}//}}}
 
 	public void setSelectedSpace( int space )
