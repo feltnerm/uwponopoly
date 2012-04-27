@@ -11,7 +11,9 @@ Developed for SE-2730 by:_
 Build Instructions
 ------------------
 In the shell, simply run:
+    
     $ ./run.sh
 
 To compile:
+    
     $ make
