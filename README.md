@@ -3,7 +3,7 @@ UWPonopoly
 
 A UW-Platteville themed Monopoly clone
 
-Developed for SE-2730 by:_
+Developed for SE2730 by:
 * Mark Feltner
 * Aaron Decker
 * Jordan Trulen
