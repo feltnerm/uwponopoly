@@ -203,7 +203,7 @@ class GUIBoard extends GamePanel implements Runnable
         ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
         while( spaces_iter.hasNext() ) // add me back in
         {
-           add( new GUISpace( spaces_iter.next() ) );
+           GUISpace casted_space = new GUISpace( spaces_iter.next() );
         }
 	}//}}}
 

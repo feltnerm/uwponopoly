@@ -114,48 +114,50 @@ public class GUISpace extends GamePanel
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-
-		// draw outline
-		// drawOutline(g);
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(this.borderColor);
-		BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
-		g2d.setStroke(bs1);
-		g2d.drawRect(0,0, gbuffer.getWidth(), gbuffer.getHeight() );
-
-		// draw color strip
-		// drawColor(g);
-		g.setColor(this.spaceColor);
-		g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth()-BORDER_THICKNESS, (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
-
-		// Draw Property title
-		// drawTitle(g);
-		Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
-		FontMetrics fm   = g.getFontMetrics(font);
-		java.awt.geom.Rectangle2D rect = fm.getStringBounds(this.space.getTitle(), g);
-		g.setColor(Color.BLACK);
-		g.setFont(font);
-		g.drawString( this.space.getTitle(), (int)(gbuffer.getWidth()/2) - (int)(rect.getWidth()/2) ,
-				(int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
-
-		// Draw Player tokens
-		// drawTokens();
-        if( space.getPlayers() != null )
+        if( this.space != null )
         {
-           Iterator<Player> itr = space.getPlayers().iterator();
-           // positioning for tokens
-           int token_x = TOKEN_PADDING;
-           int token_y = (int)(HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
-           while( itr.hasNext() )
+           // draw outline
+           // drawOutline(g);
+           Graphics2D g2d = (Graphics2D) g;
+           g2d.setColor(this.borderColor);
+           BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
+           g2d.setStroke(bs1);
+           g2d.drawRect(0,0, gbuffer.getWidth(), gbuffer.getHeight() );
+
+           // draw color strip
+           // drawColor(g);
+           g.setColor(this.spaceColor);
+           g.fillRect(BORDER_THICKNESS/2,BORDER_THICKNESS/2, gbuffer.getWidth()-BORDER_THICKNESS, (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
+
+           // Draw Property title
+           // drawTitle(g);
+           Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
+           FontMetrics fm   = g.getFontMetrics(font);
+           java.awt.geom.Rectangle2D rect = fm.getStringBounds(this.space.getTitle(), g);
+           g.setColor(Color.BLACK);
+           g.setFont(font);
+           g.drawString( this.space.getTitle(), (int)(gbuffer.getWidth()/2) - (int)(rect.getWidth()/2) ,
+                 (int)(gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO) + (int)(rect.getHeight()) );
+
+           // Draw Player tokens
+           // drawTokens();
+           if( space.getPlayers() != null )
            {
-              Player p = itr.next();
-              if( token_x + GUIPlayer.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
+              Iterator<Player> itr = space.getPlayers().iterator();
+              // positioning for tokens
+              int token_x = TOKEN_PADDING;
+              int token_y = (int)(HEIGHT * COLOR_STRIP_HEIGHT_RATIO) + TITLE_FONT_SIZE + TOKEN_PADDING;
+              while( itr.hasNext() )
               {
-                 token_x = TOKEN_PADDING;
-                 token_y += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
+                 Player p = itr.next();
+                 if( token_x + GUIPlayer.TOKEN_SIZE + TOKEN_PADDING >= WIDTH )
+                 {
+                    token_x = TOKEN_PADDING;
+                    token_y += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
+                 }
+                 g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
+                 token_x += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
               }
-              g.drawImage( p.getToken().getBuffer(), token_x, token_y, this);
-              token_x += TOKEN_BETWEEN_PADDING + GUIPlayer.TOKEN_SIZE;
            }
         }
 
