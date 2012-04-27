@@ -79,8 +79,11 @@ class GUIBoard extends GamePanel implements Runnable
 	 */
 	public GUIBoard(Board board) //{{{
 	{
-		super(GUISpace.WIDTH * board.getNumSpaces(), GUISpace.HEIGHT * board.getNumSpaces(), DEFAULT_COLOR);
-    	setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		//super(GUISpace.WIDTH * board.getNumSpaces(), GUISpace.HEIGHT * board.getNumSpaces(), DEFAULT_COLOR);
+    	//setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+        super(800, 800, DEFAULT_COLOR);
+    	setPreferredSize(new Dimension(800, 800));
+
 		this.board = board;
 		this.num_spaces = board.getNumSpaces();
 		drawSpaces();
@@ -100,11 +103,11 @@ class GUIBoard extends GamePanel implements Runnable
 		int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
 		setLayout(new GridLayout(side,side,1,1));
 
-        ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
-        while( spaces_iter.hasNext() )
+        /*ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
+        while( spaces_iter.hasNext() ) // add me back in
         {
            add( new GUISpace( spaces_iter.next() ) );
-        }
+        }*/
         
 		// construct the spaces
         //ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
@@ -192,6 +195,11 @@ class GUIBoard extends GamePanel implements Runnable
 		// draw the blown-up version of the space that is currently highlighted
         GUISpace gs = new GUISpace( board.spaces.get( board.getSelectedSpace() ) );
 		g.drawImage(gs.drawScaledUp().getBuffer() ,SCALED_UP_SPACE_X, SCALED_UP_SPACE_Y,this);
+
+        // draw the board
+        int side = (board.getNumSpaces()/4) + 1; // length, in Spaces, of a side of the board
+		int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
+
 	}//}}}
 
 	public void setSelectedSpace( int space )
