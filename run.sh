@@ -28,5 +28,8 @@ echo 'Making...'
 make all
 
 echo 'Starting... '
+if [! -d ./build ]
+   mkdir ./build
+fi
 cd ./build
 java -cp .:com/google/gson/gson-2.1.jar UWPonopoly2 gui
