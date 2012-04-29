@@ -164,6 +164,8 @@ public class GUISpace extends GamePanel
 
     public GameBuffer paintOnBuffer()
     {
+       if( this.space == null )
+          return null; // how do we deal with a GUISpace with no space? We can't.
        GameBuffer gb = new GameBuffer( WIDTH, HEIGHT, Color.WHITE );
        gb.clear();
        Graphics g = gb.getGraphics();

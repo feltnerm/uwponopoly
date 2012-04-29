@@ -19,6 +19,7 @@ import player.Player;
 // Import GUI Mechanics
 import gui.GamePanel;
 import gui.GUISpace;
+import gui.GameBuffer;
 
 /** 
 
@@ -205,10 +206,26 @@ class GUIBoard extends GamePanel implements Runnable
         while( spaces_iter.hasNext() )
         {
            GUISpace casted_space = new GUISpace( spaces_iter.next() );
-           //g.drawImage( casted_space.paintOnBuffer(), GUISpace.WIDTH, GUISpace.HEIGHT, g);
-           if( space_number < side )
-              g.drawImage( casted_space.paintOnBuffer().getBuffer(), space_number * GUISpace.WIDTH, 0, this);
-           space_number++;
+           if( casted_space != null )
+           {
+              GameBuffer game_buffer = casted_space.paintOnBuffer().getBuffer();
+              if( game_buffer != null )
+              {
+                 //g.drawImage( casted_space.paintOnBuffer(), GUISpace.WIDTH, GUISpace.HEIGHT, g);
+                 if( space_number < side )
+                    g.drawImage( game_buffer, space_number * GUISpace.WIDTH, 0, this);
+                 else if( space_number < board.getNumSpaces() )
+                 {
+                    if( space_number % 2 == 0 )
+                       g.drawImage( game_buffer, 0, (space_number - side + 1) * GUISpace.HEIGHT , this);
+                    else
+                       g.drawImage( game_buffer, side * GUISpace.WIDTH, (space_number - side) * GUISpace.HEIGHT , this);
+                 }
+                 else
+                    g.drawImage( game_buffer, (space_number - (board.getNumSpaces() - side) ) * GUISpace.WIDTH, side * GUISpace.HEIGHT, this);
+                 space_number++;
+              }
+           }
         }
 	}//}}}
 
