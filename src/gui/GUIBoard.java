@@ -99,9 +99,9 @@ class GUIBoard extends GamePanel implements Runnable
          spaces[i].setTitle("Property " + i);
          add( spaces[i] );
       }*/
-		int side = (num_spaces/4) + 1; // length, in Spaces, of a side of the board
-		int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
-		setLayout(new GridLayout(side,side,1,1));
+		//int side = (num_spaces/4) + 1; // length, in Spaces, of a side of the board
+		//int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
+		//setLayout(new GridLayout(side,side,1,1));
 
         /*ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
         while( spaces_iter.hasNext() ) // add me back in
@@ -199,11 +199,16 @@ class GUIBoard extends GamePanel implements Runnable
         // draw the board
         int side = (board.getNumSpaces()/4) + 1; // length, in Spaces, of a side of the board
 		int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
+        int space_number = 0;
 		//int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
         ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
-        while( spaces_iter.hasNext() ) // add me back in
+        while( spaces_iter.hasNext() )
         {
            GUISpace casted_space = new GUISpace( spaces_iter.next() );
+           //g.drawImage( casted_space.paintOnBuffer(), GUISpace.WIDTH, GUISpace.HEIGHT, g);
+           if( space_number < side )
+              g.drawImage( casted_space.paintOnBuffer().getBuffer(), space_number * GUISpace.WIDTH, 0, this);
+           space_number++;
         }
 	}//}}}
 
