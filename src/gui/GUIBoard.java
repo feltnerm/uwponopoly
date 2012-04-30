@@ -208,21 +208,21 @@ class GUIBoard extends GamePanel implements Runnable
            GUISpace casted_space = new GUISpace( spaces_iter.next() );
            if( casted_space != null )
            {
-              GameBuffer game_buffer = casted_space.paintOnBuffer().getBuffer();
+              GameBuffer game_buffer = casted_space.paintOnBuffer();
               if( game_buffer != null )
               {
                  //g.drawImage( casted_space.paintOnBuffer(), GUISpace.WIDTH, GUISpace.HEIGHT, g);
                  if( space_number < side )
-                    g.drawImage( game_buffer, space_number * GUISpace.WIDTH, 0, this);
-                 else if( space_number < board.getNumSpaces() )
+                    g.drawImage( game_buffer.getBuffer(), space_number * GUISpace.WIDTH, 0, this);
+                 else if( space_number < board.getNumSpaces() - 1 )
                  {
                     if( space_number % 2 == 0 )
-                       g.drawImage( game_buffer, 0, (space_number - side + 1) * GUISpace.HEIGHT , this);
+                       g.drawImage( game_buffer.getBuffer(), 0, ((space_number - side)/2 + 1) * GUISpace.HEIGHT , this);
                     else
-                       g.drawImage( game_buffer, side * GUISpace.WIDTH, (space_number - side) * GUISpace.HEIGHT , this);
+                       g.drawImage( game_buffer.getBuffer(), side * GUISpace.WIDTH, (space_number-side)/2 * GUISpace.HEIGHT , this);
                  }
                  else
-                    g.drawImage( game_buffer, (space_number - (board.getNumSpaces() - side) ) * GUISpace.WIDTH, side * GUISpace.HEIGHT, this);
+                    g.drawImage( game_buffer.getBuffer(), (space_number - (board.getNumSpaces() - side) ) * GUISpace.WIDTH, side * GUISpace.HEIGHT, this);
                  space_number++;
               }
            }
