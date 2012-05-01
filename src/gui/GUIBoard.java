@@ -199,6 +199,7 @@ class GUIBoard extends GamePanel implements Runnable
 
         // draw the board
         int side = (board.getNumSpaces()/4) + 1; // length, in Spaces, of a side of the board
+        //System.out.println("Side: " + side);
 		int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
         int space_number = 0;
 		//int side_empty = side - 2; // length, in Spaces, of a side of the "donut hole" of the board
@@ -212,17 +213,14 @@ class GUIBoard extends GamePanel implements Runnable
               if( game_buffer != null )
               {
                  //g.drawImage( casted_space.paintOnBuffer(), GUISpace.WIDTH, GUISpace.HEIGHT, g);
-                 if( space_number < side )
+                 if( space_number < 1 * side ) // top side
                     g.drawImage( game_buffer.getBuffer(), space_number * GUISpace.WIDTH, 0, this);
-                 else if( space_number < board.getNumSpaces() - 1 )
-                 {
-                    if( space_number % 2 == 0 )
-                       g.drawImage( game_buffer.getBuffer(), 0, ((space_number - side)/2 + 1) * GUISpace.HEIGHT , this);
-                    else
-                       g.drawImage( game_buffer.getBuffer(), side * GUISpace.WIDTH, (space_number-side)/2 * GUISpace.HEIGHT , this);
-                 }
-                 else
-                    g.drawImage( game_buffer.getBuffer(), (space_number - (board.getNumSpaces() - side) ) * GUISpace.WIDTH, side * GUISpace.HEIGHT, this);
+                 else if( space_number < 2 * side ) // right side1
+                    g.drawImage( game_buffer.getBuffer(), (side - 1) * GUISpace.WIDTH, ((space_number - side) ) * GUISpace.HEIGHT , this);
+                 else if( space_number < 3 * side ) // bottom side
+                    g.drawImage( game_buffer.getBuffer(), (3*side + -1*space_number - 1) * GUISpace.WIDTH, (side-1) * GUISpace.HEIGHT , this);
+                 else // left side
+                    g.drawImage( game_buffer.getBuffer(), 0, (4*side + -1*space_number - 3) * GUISpace.HEIGHT, this);
                  space_number++;
               }
            }
