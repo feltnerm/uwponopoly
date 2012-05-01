@@ -346,7 +346,7 @@ public class GUISpace extends GamePanel
     {
        String str_color = space.getPropertyColorString();
        if( str_color == null )
-          return Color.BLACK;
+          return Color.PINK; // this way it can be noticed easily
        if( str_color.equals("RED") )
           return Color.RED;
        if( str_color.equals("YELLOW") )
@@ -355,7 +355,12 @@ public class GUISpace extends GamePanel
           return Color.BLACK;
        if( str_color.equals("WHITE") )
           return Color.WHITE;
-       return Color.BLACK;
+       if( str_color.equals("PURPLE") )
+          return Color.MAGENTA;
+       if( str_color.equals("orange") )
+          return Color.ORANGE;
+
+       return Color.PINK; // this way it can be noticed easily
     }
 
 }
