@@ -8,7 +8,6 @@ all: 	clean doc
 clean: 
 	rm -rf ./bin/*
 	rm -rf ./build/*
-	rm -rf ./doc/*
 	
 doc:
 	rm -rf ./doc/javadoc/*
