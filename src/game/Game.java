@@ -54,13 +54,14 @@ public class Game
    {
 	  this.running = false;
       this.config = config;
+      this.initRules();
+
       this.board = new Board();
       this.dice = new Dice(); 
    }
 
    public void initGame()
    {
-	  initRules();
       initPlayers();
    }
 
