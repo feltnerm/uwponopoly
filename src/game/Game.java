@@ -54,6 +54,7 @@ public class Game
    {
 	  this.running = false;
       this.config = config;
+      this.config.load();
       this.board = new Board();
       this.dice = new Dice(); 
    }
