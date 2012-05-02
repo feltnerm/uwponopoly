@@ -12,7 +12,7 @@ clean:
 	
 doc:
 	rm -rf ./doc/*
-	javadoc -classpath ./lib/gson/gson-2.1.jar -sourcepath ./src/ -author -d ./doc/ -doctitle UWPonopoly -author -version -subpackages board,gui,player,game,config,dice -source 1.6 src/UWPonopoly2.java
+	javadoc -classpath ./lib/gson/gson-2.1.jar -sourcepath ./src/ -author -d ./doc/javadoc -doctitle UWPonopoly -author -version -subpackages board,gui,player,game,config,dice -source 1.6 src/UWPonopoly2.java
 
 q: 	clean
 	javac -sourcepath ./src -classpath .:lib/gson/gson-2.1.jar -d ./build src/UWPonopoly2.java
