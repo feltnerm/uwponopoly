@@ -19,8 +19,7 @@ public class Board
    // defaults
    private JSONBoard jsonboard = new JSONBoard(); // bug -- don't initialize here
 
-   private static int DEFAULT_NUMBER_SPACES = 40; // standard monopoly board
-   private int num_spaces;
+   private static int NUM_SPACES = 40; // standard monopoly board
    public ArrayList<Space> spaces;
    public ListIterator<Space> spaces_iter;
 
@@ -28,7 +27,6 @@ public class Board
    
    public Board()
    {
-      this.num_spaces = DEFAULT_NUMBER_SPACES;
       this.spaces = jsonboard.getSpaces();
       //this.spaces_iter = spaces.listIterator(0);
    }
@@ -51,7 +49,7 @@ public class Board
     */
    private boolean isValidPosition(int position)
    {
-      return position >= 0 && position < this.num_spaces;
+      return position >= 0 && position < this.NUM_SPACES;
    }
 
    /**
@@ -59,7 +57,7 @@ public class Board
     */
    private int returnValidPosition(int position_num)
    {
-      return position_num % this.num_spaces; // rollover
+      return position_num % this.NUM_SPACES; // rollover
    }
 
    public Space getSpace(int index)
@@ -71,7 +69,7 @@ public class Board
 
    public int getNumSpaces()
    {
-      return this.num_spaces;
+      return this.NUM_SPACES;
    }
 
    public int getSelectedSpace()
