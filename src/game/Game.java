@@ -34,7 +34,6 @@ public class Game
 
    private Config config;
    
-   private static int SPACES = 40;
    private static int NUM_PLAYERS = 2;
    private static int STARTING_CASH = 200;
    private static int JAIL_FINE = 200;
@@ -68,7 +67,6 @@ public class Game
    private void initRules()
    {
 	  this.config.load();
-      this.SPACES = Integer.parseInt(config.get("SPACES"));
       this.NUM_PLAYERS = Integer.parseInt(config.get("NUM_PLAYERS"));
       this.STARTING_CASH = Integer.parseInt(config.get("STARTING_CASH"));
       this.GO_AMOUNT = Integer.parseInt(config.get("GO_AMOUNT"));
