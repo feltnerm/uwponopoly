@@ -34,4 +34,4 @@ make all
 
 echo 'Starting... '
 cd ./build
-java -cp .:com/google/gson/gson-2.1.jar UWPonopoly2 gui
+java -cp .:com/google/gson/gson-2.1.jar UWPonopoly gui
