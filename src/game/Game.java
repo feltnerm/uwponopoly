@@ -66,8 +66,7 @@ public class Game
 
    private void initRules()
    {
-	  //this.config.load();
-      /*
+	  this.config.load();
       this.SPACES = Integer.parseInt(config.get("SPACES"));
       this.NUM_PLAYERS = Integer.parseInt(config.get("NUM_PLAYERS"));
       this.STARTING_CASH = Integer.parseInt(config.get("STARTING_CASH"));
@@ -77,7 +76,6 @@ public class Game
       this.JAIL_FINE = Integer.parseInt(config.get("JAIL_FINE"));
       this.JAIL_FEE = Integer.parseInt(config.get("JAIL_FEE"));
       this.FREE_PARKING = Boolean.parseBoolean(config.get("FREE_PARKING"));
-      */
    }
 
    private void initPlayers()
