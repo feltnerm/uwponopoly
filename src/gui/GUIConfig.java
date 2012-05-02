@@ -38,7 +38,7 @@ public class GUIConfig extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUIConfig(Config config) {
+	public GUIConfig() {
 		this.config = config;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
