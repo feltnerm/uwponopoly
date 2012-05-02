@@ -46,15 +46,6 @@ public class Config extends Properties
         load();
     }
 
-    public void loadFromArgs(String args) {
-        load();
-    }
-
-    public void loadFromArgs(String args, String path) {
-        CONFIG_PATH = path;
-        load();
-    }
-
     public void save() {
         try {
             config_file_writer = new FileOutputStream(CONFIG_PATH);
