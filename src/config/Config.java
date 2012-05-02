@@ -23,7 +23,7 @@ public class Config extends Properties
 {
 
     // Path to default configuration file.
-    private static String CONFIG_PATH = "../../etc/uwponopoly.conf";
+    private static String CONFIG_PATH = "etc/uwponopoly.conf";
     private static FileReader config_file_reader;
     private static FileOutputStream config_file_writer;
 
