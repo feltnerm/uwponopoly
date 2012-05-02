@@ -54,7 +54,6 @@ public class Game
    {
 	  this.running = false;
       this.config = config;
-      this.config.load();
       this.board = new Board();
       this.dice = new Dice(); 
    }
@@ -67,6 +66,7 @@ public class Game
 
    private void initRules()
    {
+	  //this.config.load();
       /*
       this.SPACES = Integer.parseInt(config.get("SPACES"));
       this.NUM_PLAYERS = Integer.parseInt(config.get("NUM_PLAYERS"));
