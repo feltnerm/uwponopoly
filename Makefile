@@ -11,7 +11,7 @@ clean:
 	rm -rf ./doc/*
 	
 doc:
-	rm -rf ./doc/*
+	rm -rf ./doc/javadoc/*
 	javadoc -classpath ./lib/gson/gson-2.1.jar -sourcepath ./src/ -author -d ./doc/javadoc -doctitle UWPonopoly -author -version -subpackages board,gui,player,game,config,dice -source 1.6 src/UWPonopoly2.java
 
 q: 	clean
