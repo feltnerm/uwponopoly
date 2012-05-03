@@ -41,6 +41,7 @@ public class GUIGame implements Runnable
     
     // GUI Elements
     private GUIWindow guiWindow;
+    private GUIConfig guiConfig;
     private GUIBoard guiBoard;
     private GUIDice guiDice;
     private GUIPlayer guiPlayer;
