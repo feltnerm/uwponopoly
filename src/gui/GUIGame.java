@@ -63,7 +63,7 @@ public class GUIGame implements Runnable
 
     public GUIGame(boolean debug)
     {
-        this(debug, new Config());
+        this(debug, new Config(debug));
     }
 
     public GUIGame(boolean debug, Config config)
@@ -103,7 +103,7 @@ public class GUIGame implements Runnable
     
     private void createBoard()
     {
-    	this.guiBoard = new GUIBoard( new Board() );
+    	this.guiBoard = new GUIBoard( new Board(this.DEBUG) );
     	
     }
     

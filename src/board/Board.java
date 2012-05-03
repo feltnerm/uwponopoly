@@ -16,76 +16,79 @@ import player.Player;
 
 public class Board
 {
-   // defaults
-   private JSONBoard jsonboard = new JSONBoard(); // bug -- don't initialize here
+	// defaults
+	private JSONBoard jsonboard = new JSONBoard(); // bug -- don't initialize here
+	private boolean DEBUG;
 
-   private static int NUM_SPACES = 40; // standard monopoly board
-   public ArrayList<Space> spaces;
-   public ListIterator<Space> spaces_iter;
+	private static int NUM_SPACES = 40; // standard monopoly board
+	public ArrayList<Space> spaces;
+	public ListIterator<Space> spaces_iter;
 
-   private int selected_space; // index location of the currently selected space
-   
-   public Board()
-   {
-      this.spaces = jsonboard.getSpaces();
-      //this.spaces_iter = spaces.listIterator(0);
-   }
+	private int selected_space; // index location of the currently selected space
 
-   /**
-    * Move a player on the board.
-    * @param player A player to move.
-    * @param index The position on the board to move the player to.
-    */
-   public void movePlayer(Player player, int index)
-   {
-      if (this.isValidPosition(index))
-      {
-         player.setPosition(index);
-      }
-   }
+	public Board(boolean debug)
+	{
+		this.DEBUG = debug;
+		this.spaces = jsonboard.getSpaces();
+		//this.spaces_iter = spaces.listIterator(0);
+	}
 
-   /**
-    * Basic sanity-checking on position numbers
-    */
-   private boolean isValidPosition(int position)
-   {
-      return position >= 0 && position < this.NUM_SPACES;
-   }
+	/**
+	 * Move a player on the board.
+	 * @param player A player to move.
+	 * @param index The position on the board to move the player to.
+	 */
+	public void movePlayer(Player player, int index)
+	{
+		if (this.isValidPosition(index))
+		{
+			player.setPosition(index);
+			if (this.DEBUG) { System.out.println("MOVED PLAYER:"+player+"TO SPACE:"+index); }
+		}
+	}
 
-   /**
-    * Takes a position number and maps it onto the board.
-    */
-   private int returnValidPosition(int position_num)
-   {
-      return position_num % this.NUM_SPACES; // rollover
-   }
+	/**
+	 * Basic sanity-checking on position numbers
+	 */
+	private boolean isValidPosition(int position)
+	{
+		return position >= 0 && position < this.NUM_SPACES;
+	}
 
-   public Space getSpace(int index)
-   {
-      if(!isValidPosition(index))
-         return null;
-      return this.spaces.get(index);
-   }
+	/**
+	 * Takes a position number and maps it onto the board.
+	 */
+	private int returnValidPosition(int position_num)
+	{
+		return position_num % this.NUM_SPACES; // rollover
+	}
 
-   public int getNumSpaces()
-   {
-      return this.NUM_SPACES;
-   }
+	public Space getSpace(int index)
+	{
+		if(!isValidPosition(index))
+			return null;
+		return this.spaces.get(index);
+	}
 
-   public int getSelectedSpace()
-   {
-      return this.selected_space;
-   }
+	public int getNumSpaces()
+	{
+		return this.NUM_SPACES;
+	}
 
-   public void setSelectedSpace( int space )
-   {
-      selected_space = space;
-   }
-   
-   public String toString()
-   {
-	   return "";
-   }
+	public int getSelectedSpace()
+	{
+		return this.selected_space;
+	}
+
+	public void setSelectedSpace( int space )
+	{
+		selected_space = space;
+	}
+
+	public String toString()
+	{
+		return "";
+	}
 
 }
 

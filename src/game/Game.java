@@ -46,17 +46,18 @@ public class Game
 
 	public Game(boolean debug)
 	{
-		this(debug, new Config());
+		this(debug, new Config(debug));
 	}
 
 	public Game(boolean debug, Config config)
 	{
 		this.DEBUG = debug;
+		if (this.DEBUG) { System.out.println("DEBUG: ON"); }
 		this.running = false;
 		this.config = config;
 		this.initRules();
 
-		this.board = new Board();
+		this.board = new Board(this.DEBUG);
 		this.dice = new Dice(); 
 	}
 
@@ -76,6 +77,7 @@ public class Game
 		this.JAIL_FINE = Integer.parseInt(config.get("JAIL_FINE"));
 		this.JAIL_FEE = Integer.parseInt(config.get("JAIL_FEE"));
 		this.FREE_PARKING = Boolean.parseBoolean(config.get("FREE_PARKING"));
+		if (this.DEBUG) { System.out.println("RULES LOADED..."); this.config.print(); }
 	}
 
 	private void initPlayers()

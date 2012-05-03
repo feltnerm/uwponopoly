@@ -26,9 +26,11 @@ public class Config extends Properties
     private static String CONFIG_PATH = "etc/uwponopoly.conf";
     private static FileReader config_file_reader;
     private static FileOutputStream config_file_writer;
+    private boolean DEBUG;
 
-    public Config() {
+    public Config(boolean debug) {
         super();
+        this.DEBUG = debug;
     }
 
     public void load() {
@@ -79,7 +81,7 @@ public class Config extends Properties
     }
 
     public static void main(String[] args){
-        Config config = new Config();
+        Config config = new Config(true);
         config.load();
         config.print();
     }
