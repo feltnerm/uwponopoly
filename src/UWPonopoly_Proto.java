@@ -75,11 +75,6 @@ class UWPonopoly implements Runnable
    Player test_e;
    Player test_f;
 
-   public static void main(String[] args)
-   {
-      UWPonopoly uwponopoly = new UWPonopoly();
-   }
-
    UWPonopoly()//{{{
    {
       

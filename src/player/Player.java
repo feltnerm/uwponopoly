@@ -21,18 +21,39 @@ public class Player {
 								// the token_char is used for equals()
 
 	protected ArrayList<Space> properties = new ArrayList<Space>();
-
-	public Player(int playerNumber) {
+   
+      protected int lastTurn;
+   protected boolean active;
+   
+   public Player(int playerNumber) {
 		// Default money
 		this(200, playerNumber);
 	}
 
-	public Player(int money, int playerNumber) {
+   public Player(String name)
+   {
+      this(200, name);
+   }
+
+   public Player(int money, int playerNumber) {
 		this.money = money;
 		this.position = 0;
 		this.playerNumber = playerNumber;
+      this.active = false;
+      this.name = "Hello";
 	}
 
+   public Player(int money, String name)
+   {
+      this.money = money;
+      this.position = 0;
+      this.lastTurn = 0;
+      this.active = false;
+      this.name = name;
+   }
+
+   public String getName() { return this.name; }
+   
 	public int getMoney() {
 		return this.money;
 	}
@@ -91,9 +112,13 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "<Player:" + this.playerNumber + "|Name:" + this.name
+		return "<Player:" + this.playerNumber + "|Name:" + this.getName()
 				+ "|Wealth:" + this.getMoney() + "|Position:"
 				+ this.getPosition() + "|Token:" + this.getTokenChar();
 	}
 
+   public int getLastTurn()
+   {
+      return lastTurn;
+   }
 }

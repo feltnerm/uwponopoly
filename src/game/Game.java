@@ -13,6 +13,8 @@ import board.Space;
 import config.Config;
 import dice.Dice;
 
+import gui.GameOverSplash;
+
 public class Game {
 	private static boolean GUI = false;
 	private static boolean DEBUG = false;
@@ -90,16 +92,18 @@ public class Game {
 		this.running = true;
 	}
 
-	public void shutdownGame() {
-		// end game
-		this.running = false;
-	}
+	public void shutdownGame()
+   {
+      //end game
+      this.endGame();
+   }
 
 	public void updateGame() {
 		// RULES!
 		// update game state
 		if (this.players.size() == 1) {
 			// winner!
+         this.endGame();
 		}
 		Space current_space = this.board.getSpace(this.current_player
 				.getPosition());
@@ -117,5 +121,9 @@ public class Game {
 			this.current_player = players_iter.next();
 		}
 	}
-
+   
+   public void endGame()
+   {
+      this.running = false;
+   }
 }
