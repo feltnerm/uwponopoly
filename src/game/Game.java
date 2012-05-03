@@ -6,6 +6,7 @@ package game;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.io.IOException;
 
 import player.Player;
 import board.Board;
@@ -60,21 +61,27 @@ public class Game {
 		initPlayers();
 	}
 
-	private void initRules() {
-		this.config.load();
-		Game.NUM_PLAYERS = Integer.parseInt(config.get("NUM_PLAYERS"));
-		Game.STARTING_CASH = Integer.parseInt(config.get("STARTING_CASH"));
-		Game.GO_AMOUNT = Integer.parseInt(config.get("GO_AMOUNT"));
-		Game.INCOME_TAX_CASH = Integer.parseInt(config.get("INCOME_TAX_CASH"));
-		Game.INCOME_TAX_PERCENT = Float.parseFloat(config
-				.get("INCOME_TAX_PERCENT"));
-		Game.JAIL_FINE = Integer.parseInt(config.get("JAIL_FINE"));
-		Game.JAIL_FEE = Integer.parseInt(config.get("JAIL_FEE"));
-		Game.FREE_PARKING = Boolean.parseBoolean(config.get("FREE_PARKING"));
-		if (Game.DEBUG) {
-			System.out.println("RULES LOADED...");
-			this.config.print();
+	private void initRules() 
+    {
+        try 
+        {
+           this.config.load();
+           Game.NUM_PLAYERS = Integer.parseInt(config.get("NUM_PLAYERS"));
+           Game.STARTING_CASH = Integer.parseInt(config.get("STARTING_CASH"));
+           Game.GO_AMOUNT = Integer.parseInt(config.get("GO_AMOUNT"));
+           Game.INCOME_TAX_CASH = Integer.parseInt(config.get("INCOME_TAX_CASH"));
+           Game.INCOME_TAX_PERCENT = Float.parseFloat(config
+                 .get("INCOME_TAX_PERCENT"));
+           Game.JAIL_FINE = Integer.parseInt(config.get("JAIL_FINE"));
+           Game.JAIL_FEE = Integer.parseInt(config.get("JAIL_FEE"));
+           Game.FREE_PARKING = Boolean.parseBoolean(config.get("FREE_PARKING"));
+           if (Game.DEBUG) {
+              System.out.println("RULES LOADED...");
+              this.config.print();
+           }
 		}
+        catch (IOException e)
+        { }
 	}
 
 	private void initPlayers() {

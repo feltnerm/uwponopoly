@@ -29,7 +29,7 @@ public class Config extends Properties {
 		this.DEBUG = debug;
 	}
 
-	public void load() {
+	public void load() throws IOException{
 		// Default loader of a configuration file
 		try {
 			config_file_reader = new FileReader(CONFIG_PATH);
@@ -37,10 +37,11 @@ public class Config extends Properties {
 		} catch (IOException e) {
 			System.out.println("Configuration file at " + CONFIG_PATH
 					+ " not found");
+            throw e;
 		}
 	}
 
-	public void load(String path) {
+	public void load(String path) throws IOException{
 		CONFIG_PATH = path;
 		load();
 	}
@@ -80,7 +81,12 @@ public class Config extends Properties {
 
 	public static void main(String[] args) {
 		Config config = new Config(true);
-		config.load();
+        try
+        {
+           config.load();
+        }
+        catch( IOException e )
+        { }
 		config.print();
 	}
 }
