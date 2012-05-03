@@ -22,10 +22,10 @@ public class Player {
 
 	protected ArrayList<Space> properties = new ArrayList<Space>();
    
-      protected int lastTurn;
-   protected boolean active;
+    protected int lastTurn;
+    protected boolean active;
    
-   public Player(int playerNumber) {
+    public Player(int playerNumber) {
 		// Default money
 		this(200, playerNumber);
 	}

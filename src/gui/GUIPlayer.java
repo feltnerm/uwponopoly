@@ -25,10 +25,12 @@ public class GUIPlayer extends Player {
 								// red etc. during
 								// animation
 
-	public GUIPlayer() {
-	}
+	/*public GUIPlayer() {
+       super( 
+	}*/
 
 	public GUIPlayer(char token_char) {
+        super( Character.toString(token_char) );
 		this.token_char = token_char;
 		token = generateTokenFromChar(token_char, Color.BLACK);
 		animating_token = generateTokenFromChar(token_char, Color.RED);
