@@ -16,7 +16,7 @@ import dice.Dice;
 
 import player.Player;
 
-
+import gui.GameOverSplash;
 
 public class Game
 {
@@ -52,7 +52,7 @@ public class Game
 
    public Game(boolean debug, Config config)
    {
-	  this.running = false;
+      this.running = false;
       this.config = config;
       this.board = new Board();
       this.dice = new Dice(); 
@@ -60,7 +60,7 @@ public class Game
 
    public void initGame()
    {
-	  initRules();
+      initRules();
       initPlayers();
    }
 
@@ -85,7 +85,7 @@ public class Game
       this.players = new LinkedList<Player>();
       for (int p = 0; p < this.NUM_PLAYERS; p++)
       {
-         Player player = new Player();
+         Player player = new Player("Player " + ( p + 1 ) );
          players.add(player);
       }
       this.players_iter = players.listIterator(0);
@@ -96,21 +96,24 @@ public class Game
    {
       //start game; loop it
       this.running = true;
+
+      GameOverSplash stats = new GameOverSplash(players, this);
    }
 
    public void shutdownGame()
    {
       //end game
-      this.running = false;
+      this.endGame();
    }
 
    public void updateGame()
    {
       // RULES!
       //update game state
-      if (this.players.size() == 1)
+      if (this.players.size() <= 2)
       {
          // winner!
+         shutdownGame();
       }
       Space current_space = this.board.getSpace(this.current_player.getPosition());
          
@@ -129,5 +132,9 @@ public class Game
          this.current_player = players_iter.next();
       }
    }
-   
+
+   public void endGame()
+   {
+      this.running = false;
+   }
 }

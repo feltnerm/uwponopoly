@@ -21,18 +21,39 @@ public class Player
 
    protected ArrayList<Space> properties = new ArrayList<Space>();
 
+   protected int lastTurn;
+   protected boolean active;
+
    public Player()
    {
       // Default money
       this(200);
    }
 
+   public Player(String name)
+   {
+      this(200, name);
+   }
+
    public Player(int money)
    {
       this.money = money;
       this.position = 0;
+      this.lastTurn = 0;
+      this.active = true;
+      this.name = "Hello";
    }
 
+   public Player(int money, String name)
+   {
+      this.money = money;
+      this.position = 0;
+      this.lastTurn = 0;
+      this.active = true;
+      this.name = name;
+   }
+
+   public String getName() { return this.name; }
    public int getMoney(){ return this.money; }
    public void addMoney(int amount){ this.money += amount; }
    public void subtractMoney(int amount)
@@ -83,4 +104,8 @@ public class Player
     */
    public GameBuffer getToken(){ return null; }
 
+   public int getLastTurn()
+   {
+      return lastTurn;
+   }
 }

@@ -1,6 +1,6 @@
 // Copyright Aaron Decker
 
-import GUI.GamePanel;
+import gui.GamePanel;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +11,8 @@ import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.*;
 import java.util.*;
-import GUI.GameFrame;
+import gui.GameFrame;
+import gui.GUIDice;
 import javax.swing.*;
 
 import board.Board;
