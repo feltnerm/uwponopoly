@@ -82,7 +82,7 @@ public class Game
       this.players = new LinkedList<Player>();
       for (int p = 0; p < this.NUM_PLAYERS; p++)
       {
-         Player player = new Player();
+         Player player = new Player(p);
          players.add(player);
       }
       this.players_iter = players.listIterator(0);

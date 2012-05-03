@@ -81,6 +81,11 @@ public class Board
    {
       selected_space = space;
    }
+   
+   public String toString()
+   {
+	   return "";
+   }
 
 }
 

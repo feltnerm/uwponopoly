@@ -180,9 +180,32 @@ public class Space
          return this.level;
       }
    }
+   
+   public int getNumHotels()
+   {
+	   if (this.level == 6)
+	   {
+		   return 1;
+	   } else {
+		   return 0;
+	   }
+   }
 
    public String getTitle() { return this.title; }
    public String getPropertyColorString() { return property_color; }
    public Player getOwner() { return owner; }
    public LinkedList<Player> getPlayers() { return players; }
+   
+   public String toString()
+   {
+	   return  "_"+this.getTitle()+"_\n"+
+			   "Color:"+getPropertyColorString()+"\n"+
+			   "Position:"+getPosition()+"\n"+
+			   "Owner:"+getOwner()+"\n"+
+			   "Current Rent:"+getRent()+"\n"+
+			   "Current Level:"+this.level+"\n"+
+			   "	Houses:"+this.getNumHouses()+"\n"+
+			   "    Hotels:"+this.getNumHotels()+"\n";
+			   
+   }
 }

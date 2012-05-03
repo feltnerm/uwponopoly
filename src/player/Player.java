@@ -16,21 +16,23 @@ public class Player
    protected int money = 1500; // might be a bug, do you really want it constant? --Aaron
    protected int position;
    protected String name;
+   protected int playerNumber;
    protected char token_char; // even with a custom GameBuffer,
                             // the token_char is used for equals()
 
    protected ArrayList<Space> properties = new ArrayList<Space>();
 
-   public Player()
+   public Player(int playerNumber)
    {
       // Default money
-      this(200);
+      this(200, playerNumber);
    }
 
-   public Player(int money)
+   public Player(int money, int playerNumber)
    {
       this.money = money;
       this.position = 0;
+      this.playerNumber = playerNumber;
    }
 
    public int getMoney(){ return this.money; }
@@ -82,5 +84,14 @@ public class Player
     * --Aaron
     */
    public GameBuffer getToken(){ return null; }
+   
+   public String toString()
+   {
+	   return "<Player:"+this.playerNumber+
+			   "|Name:"+this.name+
+			   "|Wealth:"+this.getMoney()+
+			   "|Position:"+this.getPosition()+
+			   "|Token:"+this.getTokenChar();
+   }
 
 }
