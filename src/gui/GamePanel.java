@@ -3,174 +3,186 @@ package gui;
 // Copyright Aaron Decker 2012
 
 //import GUI.GameBuffer;
-import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import javax.swing.JPanel;
 
 /**
  * Extended JPanel to allow for drawing of graphics.
+ * 
  * @author Aaron Decker
  */
 
-public class GamePanel extends JPanel
-{
-   GameBuffer gbuffer;
-   //LinkedList <MouseEvent>mouse_events = new LinkedList<MouseEvent>();
-   private boolean is_static; // true if image is not redrawn i.e. do not clear on repaint()
-  
-   // Events
-   Queue<MouseEvent> mouseEvents;
-   Queue<KeyEvent> keyEvents;
-   MyMouseAdapter mouseAdapter;
-   MyKeyboardAdapter keyboardAdapter;
+public class GamePanel extends JPanel {
+	GameBuffer gbuffer;
+	// LinkedList <MouseEvent>mouse_events = new LinkedList<MouseEvent>();
+	private boolean is_static; // true if image is not redrawn i.e. do not clear
+								// on repaint()
 
-   public GamePanel(GameBuffer gbuffer)
-   {
-      this.gbuffer = gbuffer;
+	// Events
+	Queue<MouseEvent> mouseEvents;
+	Queue<KeyEvent> keyEvents;
+	MyMouseAdapter mouseAdapter;
+	MyKeyboardAdapter keyboardAdapter;
 
-      // mouse events
-      mouseEvents = new LinkedList<MouseEvent>();
+	public GamePanel(GameBuffer gbuffer) {
+		this.gbuffer = gbuffer;
 
-      mouseAdapter = new MyMouseAdapter();
-      addMouseListener(mouseAdapter);
-      addMouseMotionListener(mouseAdapter);
+		// mouse events
+		mouseEvents = new LinkedList<MouseEvent>();
 
-      // keyboard events
-      keyEvents = new LinkedList<KeyEvent>();
+		mouseAdapter = new MyMouseAdapter();
+		addMouseListener(mouseAdapter);
+		addMouseMotionListener(mouseAdapter);
 
-      keyboardAdapter = new MyKeyboardAdapter();
-      addKeyListener(keyboardAdapter);
-      is_static = false;
-   }
+		// keyboard events
+		keyEvents = new LinkedList<KeyEvent>();
 
-   public GamePanel(int width, int height, Color color )
-   {
-      gbuffer = new GameBuffer(width, height, color);
+		keyboardAdapter = new MyKeyboardAdapter();
+		addKeyListener(keyboardAdapter);
+		is_static = false;
+	}
 
-      // mouse events
-      mouseEvents = new LinkedList<MouseEvent>();
+	public GamePanel(int width, int height, Color color) {
+		gbuffer = new GameBuffer(width, height, color);
 
-      mouseAdapter = new MyMouseAdapter();
-      addMouseListener(mouseAdapter);
-      addMouseMotionListener(mouseAdapter);
+		// mouse events
+		mouseEvents = new LinkedList<MouseEvent>();
 
-      // keyboard events
-      keyEvents = new LinkedList<KeyEvent>();
+		mouseAdapter = new MyMouseAdapter();
+		addMouseListener(mouseAdapter);
+		addMouseMotionListener(mouseAdapter);
 
-      keyboardAdapter = new MyKeyboardAdapter();
-      addKeyListener(keyboardAdapter);
-      is_static = false;
-   }
+		// keyboard events
+		keyEvents = new LinkedList<KeyEvent>();
 
-   public void setGameBuffer( GameBuffer gbuffer ) 
-   { 
-	   this.gbuffer = gbuffer; 
-   }
+		keyboardAdapter = new MyKeyboardAdapter();
+		addKeyListener(keyboardAdapter);
+		is_static = false;
+	}
 
+	public void setGameBuffer(GameBuffer gbuffer) {
+		this.gbuffer = gbuffer;
+	}
 
-   /**
-    * Draws the GamePanel
-    */
-   public void paintComponent(Graphics g)
-   {
-      super.paintComponent(g);
-      if(!is_static)
-         gbuffer.clear();
-      g.drawImage(gbuffer.getBuffer(),0,0,this);
-   }
+	/**
+	 * Draws the GamePanel
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (!is_static)
+			gbuffer.clear();
+		g.drawImage(gbuffer.getBuffer(), 0, 0, this);
+	}
 
-   public MouseEvent getNextMouseEvent()
-   {
-      return mouseEvents.remove();
-   }
+	public MouseEvent getNextMouseEvent() {
+		return mouseEvents.remove();
+	}
 
-   public KeyEvent getNextKeyEvent()
-   {
-      return keyEvents.remove();
-   }
+	public KeyEvent getNextKeyEvent() {
+		return keyEvents.remove();
+	}
 
-   public boolean areMouseEventsLeft()
-   {
-      if( mouseEvents.size() > 0 )
-         return true;
-      return false;
-   }
+	public boolean areMouseEventsLeft() {
+		if (mouseEvents.size() > 0)
+			return true;
+		return false;
+	}
 
-   // The following classes are for overriding in subclasses
-   // to handle the events that are wanted.
-   // Return false from the method to have the event put on the queue.
+	// The following classes are for overriding in subclasses
+	// to handle the events that are wanted.
+	// Return false from the method to have the event put on the queue.
 
-   protected boolean handleMouseDragged(MouseEvent e) { return false; }
-   protected boolean handleMousePressed(MouseEvent e) { return false; }
-   protected boolean handleMouseReleased(MouseEvent e) { return false; }
-   protected boolean handleMouseEntered(MouseEvent e) { return false; }
-   protected boolean handleMouseExited(MouseEvent e) { return false; }
-   protected boolean handleMouseClicked(MouseEvent e) { return false; }
-   
-   class MyMouseAdapter extends MouseAdapter
-   {
-      public void mouseDragged(MouseEvent e)
-      {
-         if( !handleMouseDragged( e ) )
-               mouseEvents.offer(e);
-      }
+	protected boolean handleMouseDragged(MouseEvent e) {
+		return false;
+	}
 
-      public void mousePressed(MouseEvent e)
-      {
-         if( !handleMousePressed( e ) )
-            mouseEvents.offer(e);
-      }
+	protected boolean handleMousePressed(MouseEvent e) {
+		return false;
+	}
 
-      public void mouseReleased(MouseEvent e)
-      {
-         if( !handleMouseReleased( e ) )
-            mouseEvents.offer(e);
-      }
+	protected boolean handleMouseReleased(MouseEvent e) {
+		return false;
+	}
 
-      public void mouseEntered(MouseEvent e)
-      {
-         if( !handleMouseEntered( e ) )
-               mouseEvents.offer(e);
-      }
+	protected boolean handleMouseEntered(MouseEvent e) {
+		return false;
+	}
 
-      public void mouseExited(MouseEvent e)
-      {
-         if( !handleMouseExited( e ) )
-               mouseEvents.offer(e);
-      }
+	protected boolean handleMouseExited(MouseEvent e) {
+		return false;
+	}
 
-      public void mouseClicked(MouseEvent e)
-      {
-         if( !handleMouseClicked( e ) )
-               mouseEvents.offer(e);
-      }
+	protected boolean handleMouseClicked(MouseEvent e) {
+		return false;
+	}
 
-   };
+	class MyMouseAdapter extends MouseAdapter {
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			if (!handleMouseDragged(e))
+				mouseEvents.offer(e);
+		}
 
-   class MyKeyboardAdapter implements KeyListener
-   {
-      public void keyPressed(KeyEvent e)
-      {
-         keyEvents.offer(e);
-         System.out.println( e.getKeyCode() );
-      }
+		@Override
+		public void mousePressed(MouseEvent e) {
+			if (!handleMousePressed(e))
+				mouseEvents.offer(e);
+		}
 
-      public void keyReleased(KeyEvent e)  
-      {
-         keyEvents.offer(e);
-      }
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			if (!handleMouseReleased(e))
+				mouseEvents.offer(e);
+		}
 
-      public void keyTyped(KeyEvent e)
-      {
-         keyEvents.offer(e);
-      }
-   };
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			if (!handleMouseEntered(e))
+				mouseEvents.offer(e);
+		}
 
-   public void setStatic( boolean is_static )
-   {
-      this.is_static = is_static;
-   }
+		@Override
+		public void mouseExited(MouseEvent e) {
+			if (!handleMouseExited(e))
+				mouseEvents.offer(e);
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (!handleMouseClicked(e))
+				mouseEvents.offer(e);
+		}
+
+	};
+
+	class MyKeyboardAdapter implements KeyListener {
+		@Override
+		public void keyPressed(KeyEvent e) {
+			keyEvents.offer(e);
+			System.out.println(e.getKeyCode());
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			keyEvents.offer(e);
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			keyEvents.offer(e);
+		}
+	};
+
+	public void setStatic(boolean is_static) {
+		this.is_static = is_static;
+	}
 }
