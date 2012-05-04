@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.util.ListIterator;
 
 import board.Board;
@@ -186,7 +187,7 @@ class GUIBoard extends GamePanel implements Runnable {
 			if (casted_space != null) {
 				GameBuffer game_buffer = casted_space.paintOnBuffer();
 				if (game_buffer != null) {
-					// g.drawImage( casted_space.paintOnBuffer(),
+					/*// g.drawImage( casted_space.paintOnBuffer(),
 					// GUISpace.WIDTH, GUISpace.HEIGHT, g);
 					if (space_number < 1 * side) // top side
 						g.drawImage(game_buffer.getBuffer(), space_number
@@ -206,10 +207,31 @@ class GUIBoard extends GamePanel implements Runnable {
 								* space_number - 3)
 								* GUISpace.HEIGHT, this);
 					space_number++;
-				}
+				*/
+                Point p = getCoordinates( space_number );
+                g.drawImage(game_buffer.getBuffer(), (int)p.getX(), (int)p.getY(), this);
+                space_number++;
+                }
 			}
 		}
 	}// }}}
+
+    /**
+     * Takes an index and maps the Space at that index onto the board coordinates
+     * @author Aaron Decker
+     */
+    private Point getCoordinates( int index )
+    {
+       if(      index <= 1*board.getNumSpaces()/4 )
+          return new Point( 0,0 );
+       else if( index <= 2*board.getNumSpaces()/4 )
+          return new Point( 0,0 );
+       else if( index <= 3*board.getNumSpaces()/4 )
+          return new Point( 0,0 );
+       else if( index <= 4*board.getNumSpaces()/4 )
+          return new Point( 0,0 );
+       return new Point (0,0);
+    }
 
 	public void setSelectedSpace(int space) {
 		if (space >= 0 && space < board.getNumSpaces()) // check for validity
