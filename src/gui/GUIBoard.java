@@ -223,13 +223,13 @@ class GUIBoard extends GamePanel implements Runnable {
     private Point getCoordinates( int index )
     {
        if(      index <= 1*board.getNumSpaces()/4 )
-          return new Point( 0,0 );
+          return new Point( index * GUISpace.WIDTH, 0);
        else if( index <= 2*board.getNumSpaces()/4 )
-          return new Point( 0,0 );
+          return new Point( GUISpace.WIDTH * board.getNumSpaces()/4, (index - (1*board.getNumSpaces()/4))*GUISpace.HEIGHT );
        else if( index <= 3*board.getNumSpaces()/4 )
-          return new Point( 0,0 );
+          return new Point( ((3*board.getNumSpaces()/4) - index)*GUISpace.WIDTH, GUISpace.HEIGHT * board.getNumSpaces()/4 );
        else if( index <= 4*board.getNumSpaces()/4 )
-          return new Point( 0,0 );
+          return new Point( 0, ((4*board.getNumSpaces()/4) - index)*GUISpace.HEIGHT );
        return new Point (0,0);
     }
 
