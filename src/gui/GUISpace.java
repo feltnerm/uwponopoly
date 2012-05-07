@@ -378,4 +378,9 @@ public class GUISpace extends GamePanel {
 		return Color.PINK; // this way it can be noticed easily
 	}
 
+    public Space getSpace()
+    {
+       return space;
+    }
+
 }

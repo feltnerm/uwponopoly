@@ -178,7 +178,7 @@ class GUIBoard extends GamePanel implements Runnable {
 		// System.out.println("Side: " + side);
 		int side_empty = side - 2; // length, in Spaces, of a side of the
 									// "donut hole" of the board
-		int space_number = 0;
+		//int space_number = 0;
 		// int side_empty = side - 2; // length, in Spaces, of a side of the
 		// "donut hole" of the board
 		ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
@@ -188,9 +188,9 @@ class GUIBoard extends GamePanel implements Runnable {
 				GameBuffer game_buffer = casted_space.paintOnBuffer();
 				if (game_buffer != null) 
                 {
-                   Point p = getCoordinates( space_number );
+                   Point p = getCoordinates( casted_space.getSpace().getPosition() );
                    g.drawImage(game_buffer.getBuffer(), (int)p.getX(), (int)p.getY(), this);
-                   space_number++;
+                   //space_number++;
                 }
 			}
 		}

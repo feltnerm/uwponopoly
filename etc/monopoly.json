@@ -21,11 +21,11 @@
                 ],
                 "land_on" : [],
                 "house_cost": 50,
-                "hotel_cost": 100,
+                "hotel_cost": 100
         },
         {
                 "type":"Board",
-                "board_index":"2",
+                "board_index":2,
                 "title":"Community Chest",
                 "pass_over":[],
                 "land_on":[]
@@ -41,7 +41,7 @@
         },
         {
                 "type":"IncomeTax",
-                "board_index":"4",
+                "board_index":4,
                 "title":"Income Tax",
                 "percentage": 0.1,
                 "flat_fee": 200,
@@ -223,7 +223,7 @@
                 "board_index":25,
                 "title":"B&O Railroad",
                 "price":220,
-                "property_color":"red",
+                "property_color":"",
                 "pass_over" : [],
                 "land_on" : []
         },      
