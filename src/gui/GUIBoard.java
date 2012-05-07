@@ -71,11 +71,11 @@ class GUIBoard extends GamePanel implements Runnable {
 		// super(GUISpace.WIDTH * board.getNumSpaces(), GUISpace.HEIGHT *
 		// board.getNumSpaces(), DEFAULT_COLOR);
 		// setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-		super(800, 800, DEFAULT_COLOR);
-		setPreferredSize(new Dimension(800, 800));
+		super(11*GUISpace.WIDTH, 11*GUISpace.HEIGHT, DEFAULT_COLOR); //sensible default, 11 spaces on side of standard board
 
 		this.board = board;
 		this.num_spaces = board.getNumSpaces();
+		setPreferredSize(new Dimension((num_spaces/4 + 1) * GUISpace.WIDTH, (num_spaces/4 + 1) * GUISpace.HEIGHT));
 		drawSpaces();
 		// board.spaces = new Space[num_spaces];
 
@@ -153,7 +153,7 @@ class GUIBoard extends GamePanel implements Runnable {
 	{
 		super.paintComponent(g);
 		// draw spaces
-		for (int i = 0; i < board.getNumSpaces() - 1; i++) {
+		for (int i = 0; i < board.getNumSpaces(); i++) {
 			GUISpace gs = new GUISpace(board.spaces.get(board
 					.getSelectedSpace()));
 			gs.repaint();
@@ -186,31 +186,11 @@ class GUIBoard extends GamePanel implements Runnable {
 			GUISpace casted_space = new GUISpace(spaces_iter.next());
 			if (casted_space != null) {
 				GameBuffer game_buffer = casted_space.paintOnBuffer();
-				if (game_buffer != null) {
-					/*// g.drawImage( casted_space.paintOnBuffer(),
-					// GUISpace.WIDTH, GUISpace.HEIGHT, g);
-					if (space_number < 1 * side) // top side
-						g.drawImage(game_buffer.getBuffer(), space_number
-								* GUISpace.WIDTH, 0, this);
-					else if (space_number < 2 * side) // right side1
-						g.drawImage(game_buffer.getBuffer(), (side - 1)
-								* GUISpace.WIDTH, ((space_number - side))
-								* GUISpace.HEIGHT, this);
-					else if (space_number < 3 * side) // bottom side
-						g.drawImage(game_buffer.getBuffer(), (3 * side + -1
-								* space_number - 1)
-								* GUISpace.WIDTH, (side - 1) * GUISpace.HEIGHT,
-								this);
-					else
-						// left side
-						g.drawImage(game_buffer.getBuffer(), 0, (4 * side + -1
-								* space_number - 3)
-								* GUISpace.HEIGHT, this);
-					space_number++;
-				*/
-                Point p = getCoordinates( space_number );
-                g.drawImage(game_buffer.getBuffer(), (int)p.getX(), (int)p.getY(), this);
-                space_number++;
+				if (game_buffer != null) 
+                {
+                   Point p = getCoordinates( space_number );
+                   g.drawImage(game_buffer.getBuffer(), (int)p.getX(), (int)p.getY(), this);
+                   space_number++;
                 }
 			}
 		}
