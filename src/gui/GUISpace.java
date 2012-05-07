@@ -59,7 +59,7 @@ public class GUISpace extends GamePanel {
 		super(WIDTH, HEIGHT, BACKGROUND_COLOR);
 		this.space = space;
 
-		Color color;
+		/*Color color;
 		try {
 			Field field = Class.forName("java.awt.Color").getField(
 					this.space.getColor());
@@ -68,7 +68,8 @@ public class GUISpace extends GamePanel {
 			// TODO Auto-generated catch block
 			color = null;
 		}
-		this.spaceColor = color;
+		this.spaceColor = color;*/
+        spaceColor = getPropertyColor();
 		this.borderColor = BORDER_COLOR_DEFAULT;
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
@@ -359,18 +360,20 @@ public class GUISpace extends GamePanel {
 	 */
 
 	public Color getPropertyColor() {
-		String str_color = space.getPropertyColorString();
+		if(space  == null)
+           return Color.PINK;
+        String str_color = space.getPropertyColorString();
 		if (str_color == null)
 			return Color.PINK; // this way it can be noticed easily
-		if (str_color.equals("RED"))
+		if (str_color.equals("red"))
 			return Color.RED;
-		if (str_color.equals("YELLOW"))
+		if (str_color.equals("yellow"))
 			return Color.YELLOW;
-		if (str_color.equals("BLACK"))
+		if (str_color.equals("black"))
 			return Color.BLACK;
-		if (str_color.equals("WHITE"))
+		if (str_color.equals("white"))
 			return Color.WHITE;
-		if (str_color.equals("PURPLE"))
+		if (str_color.equals("purple"))
 			return Color.MAGENTA;
 		if (str_color.equals("orange"))
 			return Color.ORANGE;
