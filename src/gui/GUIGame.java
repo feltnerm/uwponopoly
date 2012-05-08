@@ -97,13 +97,6 @@ public class GUIGame implements Runnable {
 		dicePanel.add(guiDice, BorderLayout.NORTH);
 		JButton roll_button = new JButton("Roll!");
 		roll_button.setPreferredSize(new Dimension(25, 50));
-		/*
-		 * roll_button.addActionListener // make the roll button roll the dice (
-		 * new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) { doRoll(); } }
-		 * );
-		 */
 		dicePanel.add(roll_button, BorderLayout.SOUTH);
 	}
 
