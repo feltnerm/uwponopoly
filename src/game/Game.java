@@ -50,6 +50,7 @@ public class Game {
 			System.out.println("DEBUG: ON");
 		}
 		this.running = false;
+		if (Game.DEBUG) { System.out.println("Game running: False"); }
 		this.config = config;
 		this.initRules();
 
@@ -85,6 +86,9 @@ public class Game {
 	}
 
 	private void initPlayers() {
+		if (Game.DEBUG) {
+			System.out.println("Creating _"+this.NUM_PLAYERS+"_ Players");
+		}
 		this.players = new LinkedList<Player>();
 		for (int p = 0; p < Game.NUM_PLAYERS; p++) {
 			Player player = new Player(p);
@@ -98,6 +102,9 @@ public class Game {
 	public void startGame() {
 		// start game; loop it
 		this.running = true;
+		if (this.DEBUG) {
+			System.out.println("Game running: True");
+		}
 	}
 
 	public void shutdownGame()

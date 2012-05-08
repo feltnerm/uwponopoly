@@ -14,7 +14,7 @@ import com.google.gson.reflect.TypeToken;
 class JSONBoard {
 
 	// game /etc, system /etc, ~
-	private String PATH = "../etc/board.json";
+	private String PATH = "etc/board.json";
 	private File JSONBoardFile;
 
 	private Gson gson = new Gson();

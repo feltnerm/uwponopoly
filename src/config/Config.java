@@ -1,5 +1,7 @@
 package config;
 
+import game.Game;
+
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,7 +21,7 @@ import java.util.Properties;
 public class Config extends Properties {
 
 	// Path to default configuration file.
-	private static String CONFIG_PATH = "../etc/uwponopoly.conf";
+	private static String CONFIG_PATH = "etc/uwponopoly.conf";
 	private static FileReader config_file_reader;
 	private static FileOutputStream config_file_writer;
 	private boolean DEBUG;
@@ -27,6 +29,9 @@ public class Config extends Properties {
 	public Config(boolean debug) {
 		super();
 		this.DEBUG = debug;
+		if (this.DEBUG) {
+			System.out.println("Config Path: " + this.CONFIG_PATH);
+		}
 	}
 
 	public void load() throws IOException{
@@ -38,6 +43,7 @@ public class Config extends Properties {
 			System.out.println("Configuration file at " + CONFIG_PATH
 					+ " not found");
             throw e;
+            
 		}
 	}
 
