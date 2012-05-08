@@ -24,6 +24,7 @@ public class Player {
    
     protected int lastTurn;
     protected boolean active;
+    protected boolean jailed;
    
     public Player(int playerNumber) {
 		// Default money
@@ -39,7 +40,8 @@ public class Player {
 		this.money = money;
 		this.position = 0;
 		this.playerNumber = playerNumber;
-      this.active = false;
+      this.active = true;
+      this.jailed = false;
       this.name = "Hello";
 	}
 
@@ -48,8 +50,25 @@ public class Player {
       this.money = money;
       this.position = 0;
       this.lastTurn = 0;
-      this.active = false;
+      this.active = true;
+      this.jailed = false;
       this.name = name;
+   }
+
+   public boolean active(){
+    return this.active;
+   }
+
+   public void activate(){
+        this.active = true;
+   }
+
+   public void deactivate(){
+        this.active = false;
+   }
+
+   public boolean jailed(){
+        return this.jailed;
    }
 
    public String getName() { return this.name; }
@@ -120,5 +139,13 @@ public class Player {
    public int getLastTurn()
    {
       return lastTurn;
+   }
+
+   public boolean bankrupt()
+   {
+        if (this.money <= 0) {
+            return true;
+        }
+        return false;
    }
 }
