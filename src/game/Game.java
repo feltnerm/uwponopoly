@@ -88,7 +88,8 @@ public class Game {
 		this.players = new LinkedList<Player>();
 		for (int p = 0; p < Game.NUM_PLAYERS; p++) {
 			Player player = new Player(p);
-			players.add(player);
+			player.activate();
+            players.add(player);
 		}
 		this.players_iter = players.listIterator(0);
 		this.current_player = players_iter.next();
@@ -107,17 +108,41 @@ public class Game {
 
 	public void updateGame() {
 		// RULES!
-		// update game state
+		
+        // Check Massive Game Settings
 		if (this.players.size() == 1) {
 			// winner!
          this.endGame();
 		}
-		Space current_space = this.board.getSpace(this.current_player
-				.getPosition());
 
-		roll();
+        // Check state of current player
+        if (this.current_player.active())
+        {   
+            // Bankrupt?
+            if (this.current_player.bankrupt())
+            {
+                this.current_player.deactivate();
+            }
 
-	}
+            if (this.current_player.jailed())
+            {
+                // skip player; do something
+            } else {
+                Space current_space = this.board.getSpace(this.current_player
+                    .getPosition());
+
+                if (current_space.getOwner() != current_player)
+                {
+                    current_player.subtractMoney(current_space.getRent());
+                    current_space.getOwner().addMoney(current_space.getRent());
+                }
+            }
+        }
+
+        this.current_player = this.players_iter.next(); 
+    }
+
+        
 
 	public void roll() {
 		dice.roll();
