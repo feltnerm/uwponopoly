@@ -183,4 +183,5 @@ class GUIDice extends JPanel implements Runnable {
 		}
 
 	}
+
 }

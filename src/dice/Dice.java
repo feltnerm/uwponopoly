@@ -38,6 +38,11 @@ public class Dice {
 		return dice1 + dice2;
 	}
 
+	public int[] toArray() {
+		int[] dice = {dice1, dice2};
+		return dice;
+	}
+
 	/**
 	 * Copies the values of another dice to this dice.
 	 */
