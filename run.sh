@@ -30,8 +30,15 @@ then
    mkdir ./build
 fi
 
-make all
-
+make q
 echo 'Starting... '
 cd ./build
-java -cp .:com/google/gson/gson-2.1.jar UWPonopoly gui
+
+if [ "$1" == "g" ]
+then
+    java -cp .:com/google/gson/gson-2.1.jar UWPonopoly gui
+else
+    java -cp .:com/google/gson/gson-2.1.jar UWPonopoly debug
+fi
+
+

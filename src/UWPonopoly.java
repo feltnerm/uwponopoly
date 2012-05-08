@@ -38,15 +38,10 @@ public class UWPonopoly {
 		if (args.length > 0) {
 			if (args[0].equals("help")) {
 				System.out.println("% java UWPonopoly2 [gui] [debug]");
-			} else {
-				if (args[0].equals("gui")) {
+			} else if (args[0].equals("gui")) {
 					gui = true;
-				}
-				if (args.length > 1) {
-					if (args[1].equals("debug")) {
-						debug = true;
-					}
-				}
+			} else if (args[0].equals("debug")) {
+					debug = true;
 			}
 		}
 
