@@ -1,6 +1,4 @@
-/**  
-
- @author UWP_User 
+/**   
  */
 
 import game.Game;
@@ -9,13 +7,22 @@ import gui.GUIGame;
 public class UWPonopoly {
 	private boolean GUI;
 	private boolean DEBUG;
-
+        
+        /**
+         * The runner for the {@link gui.GUIGame} and {@link game.Game}
+         *
+         * @param   gui     Whether to run as a GUI app or not
+         * @param   debug   Output debug statements if true.
+         */
 	public UWPonopoly(boolean gui, boolean debug) {
 
 		this.GUI = gui;
 		this.DEBUG = debug;
 	}
 
+        /**
+         * Initializes and starts the game
+         */
 	public void play() {
 		if (this.GUI) {
 			GUIGame game = new GUIGame(this.DEBUG);

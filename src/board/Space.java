@@ -8,7 +8,6 @@ import player.Player;
 /**
  * Abstracts a Space in UWPonopoly.
  */
-
 public class Space {
 	// defaults
 	private String title;
@@ -59,20 +58,28 @@ public class Space {
 	 * } } }
 	 */
 
-	public void upgrade() {
+
+    /**
+     * Upgrade this space.
+     */
+    public void upgrade() {
 		if (this.level < 5) {
 			// add house
 		} else if (this.level == 5) {
 
 		}
-	}
+	 }
 
-	public void downgrade() {
-		if (this.level > 0) {
-			this.level -= 1;
-		}
-	}
+    /** Downgrade this space.
+     */
+   public void downgrade() {
+      if (this.level > 0) {
+         this.level -= 1;
+      }
+   }
 
+    /** Add a player to the space.
+     */
 	public void addPlayer(Player player) {
 		Iterator<Player> itr = players.iterator();
 		while (itr.hasNext()) {
@@ -82,6 +89,11 @@ public class Space {
 		players.add(player);
 	}
 
+    /**
+     * Remove a player from the space.
+     *
+     * @param   player  A {@link player.Player} to remove.
+     */
 	public void removePlayer(Player player) {
 		Iterator<Player> itr = players.iterator();
 		while (itr.hasNext()) {
@@ -94,6 +106,9 @@ public class Space {
 		// when the player lands on the space
 	}
 
+    /**
+     * Execute a special event when the player lands on a special space.
+     */
 	public void executeSpecialEvent(Player player) {
 		/**
 		 * switch(special_action) { case GO: break; case JAIL: break; case
@@ -103,14 +118,26 @@ public class Space {
 		 */
 	}
 
+    /** Set the owner of the space.
+     *
+     * @param   p   The new owner.
+     */
 	public void setOwner(Player p) {
 		this.owner = p;
 	}
 
+    /**
+     * Get the color of this property
+     *
+     * @return  A string representing the color.
+     */
 	public String getColor() {
 		return this.property_color;
 	}
 
+    /**
+     * Returns this property's rent.
+     */
 	public int getRent() {
 		return this.rents[this.level];
 	}
@@ -118,9 +145,8 @@ public class Space {
 	/**
 	 * Get the amount of rent for a particular improvement level
 	 * 
-	 * @param improvement_level
-	 *            , the level of improvement the property is at, "0" is the base
-	 *            improvement level, "1" is one house, etc.
+	 * @param    improvement_level   the level of improvement the property is 
+    * at, "0" is the base improvement level, "1" is one house, etc.
 	 * @return the amount of rent, -1 if the improvement_level passed is invalid
 	 */
 	public int getRentAtLevel(int improvement_level) {
@@ -130,10 +156,19 @@ public class Space {
 		return -1;
 	}
 
+    /** 
+     * Return the position this space occupies on the board.
+     *
+     * @return  The index of the Space's position on the {@link board.Board}.
+     */
 	public int getPosition() {
 		return this.position;
 	}
 
+    /**
+     *
+     * @return  The number of <b>Houses</b> on the space. Returns 0 if there are hotels.
+     */
 	public int getNumHouses() {
 		if (this.level == 6) {
 			return 0;
@@ -142,6 +177,10 @@ public class Space {
 		}
 	}
 
+    /** 
+     *
+     * @return  The number of <b>Hotels</b> on the space.
+     */
 	public int getNumHotels() {
 		if (this.level == 6) {
 			return 1;
@@ -150,18 +189,30 @@ public class Space {
 		}
 	}
 
+    /**
+     * @return  The title of this space.
+     */
 	public String getTitle() {
 		return this.title;
 	}
 
+    /**
+     * @return  A string representing the property color.
+     */
 	public String getPropertyColorString() {
 		return property_color;
 	}
 
+    /**
+     * @return  The current {@link player.Player} owner.
+     */
 	public Player getOwner() {
 		return owner;
 	}
 
+    /**
+     * @return  The linked list of {@link players}.
+     */
 	public LinkedList<Player> getPlayers() {
 		return players;
 	}
