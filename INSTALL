@@ -1,0 +1,10 @@
+INSTALL
+=======
+
+To "install" (actually it's more of a compile) UWPonopoly you should simply run:
+
+    $ make
+    $ ./run.sh [options]
+
+This should launch the UWPonopoly GUI.
+Note that run.sh takes command-line options.

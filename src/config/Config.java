@@ -26,7 +26,12 @@ public class Config extends Properties {
 	private static FileOutputStream config_file_writer;
 	private boolean DEBUG;
 
-	public Config(boolean debug) {
+	/**
+    * constructor
+    *
+    * @param    debug   Output debug statements or not.
+    */
+   public Config(boolean debug) {
 		super();
 		this.DEBUG = debug;
 		if (this.DEBUG) {
@@ -34,6 +39,9 @@ public class Config extends Properties {
 		}
 	}
 
+   /**
+    * Load a configuration file.
+    */
 	public void load() throws IOException{
 		// Default loader of a configuration file
 		try {
@@ -47,11 +55,19 @@ public class Config extends Properties {
 		}
 	}
 
+   /**
+    * Load a configuration file.
+    *
+    * @param    path    Absolute path to the configuration file.'
+    */
 	public void load(String path) throws IOException{
 		CONFIG_PATH = path;
 		load();
 	}
 
+   /**
+    * Save a file.
+    */
 	public void save() {
 		try {
 			config_file_writer = new FileOutputStream(CONFIG_PATH);
@@ -62,19 +78,41 @@ public class Config extends Properties {
 		}
 	}
 
+   /**
+    * Save a configuration file.
+    *
+    * @param    path    The absolute path to save the file to.
+    */
 	public void save(String path) {
 		CONFIG_PATH = path;
 		save();
 	}
 
+   /**
+    * Get a configuration value
+    *
+    * @param    key to lookup (see {@link game.Game}'s default settings.
+    * 
+    * @return   the value of key.
+    */
 	public String get(String key) {
 		return super.getProperty(key);
 	}
 
+   /**
+    * Set a configuration value
+    *
+    * @param    key     The option being set
+    * @param    value   The value of the option
+    * @return   The objec that was created.
+    */
 	public Object set(String key, String value) {
 		return super.setProperty(key, value);
 	}
 
+   /**
+    * Print the entire configuration.
+    */
 	public void print() {
 		Enumeration keys = this.keys();
 		while (keys.hasMoreElements()) {
@@ -85,14 +123,4 @@ public class Config extends Properties {
 
 	}
 
-	public static void main(String[] args) {
-		Config config = new Config(true);
-        try
-        {
-           config.load();
-        }
-        catch( IOException e )
-        { }
-		config.print();
-	}
 }

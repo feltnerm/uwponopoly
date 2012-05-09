@@ -11,10 +11,13 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * This class loads a Monopoly board represented in JSON.
+ */
 class JSONBoard {
 
 	// game /etc, system /etc, ~
-	private String PATH = "etc/board.json";
+	private String PATH = "../etc/board.json";
 	private File JSONBoardFile;
 
 	private Gson gson = new Gson();
@@ -22,6 +25,9 @@ class JSONBoard {
 
 	public ArrayList<Space> Spaces;
 
+   /**
+    * Constructor, reads file when instantiated.
+    */
 	public JSONBoard() {
 		try {
 			this.json = readFile();
@@ -30,6 +36,9 @@ class JSONBoard {
 		}
 	}
 
+   /**
+    * Read the config file.
+    */
 	private String readFile() throws IOException {
 		FileInputStream stream = new FileInputStream(new File(this.PATH));
 		try {
@@ -42,6 +51,9 @@ class JSONBoard {
 		}
 	}
 
+   /**
+    * deserialze JSON into classes.
+    */
 	public ArrayList<Space> getSpaces() {
 		ArrayList<Space> spaces = gson.fromJson(this.json,
 				new TypeToken<ArrayList<Space>>() {
