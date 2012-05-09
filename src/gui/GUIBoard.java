@@ -72,59 +72,14 @@ class GUIBoard extends GamePanel implements Runnable {
 		// board.getNumSpaces(), DEFAULT_COLOR);
 		// setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		super(11*GUISpace.WIDTH, 11*GUISpace.HEIGHT, DEFAULT_COLOR); //sensible default, 11 spaces on side of standard board
+        if( board == null )
+           System.out.println("Board passed to GUIBoard is null.");
 
 		this.board = board;
 		this.num_spaces = board.getNumSpaces();
 		setPreferredSize(new Dimension((num_spaces/4 + 1) * GUISpace.WIDTH, (num_spaces/4 + 1) * GUISpace.HEIGHT));
-		drawSpaces();
+		//drawSpaces();
 		// board.spaces = new Space[num_spaces];
-
-		/*
-		 * for(int i = 0; i < DEFAULT_NUMBER_SPACES; i++) { if( i == 4) { add(
-		 * new JLabel("") );// empty cell } spaces[i] = new Space();
-		 * spaces[i].setTitle("Property " + i); add( spaces[i] ); }
-		 */
-		// int side = (num_spaces/4) + 1; // length, in Spaces, of a side of the
-		// board
-		// int side_empty = side - 2; // length, in Spaces, of a side of the
-		// "donut hole" of the board
-		// setLayout(new GridLayout(side,side,1,1));
-
-		/*
-		 * ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
-		 * while( spaces_iter.hasNext() ) // add me back in { add( new GUISpace(
-		 * spaces_iter.next() ) ); }
-		 */
-
-		// construct the spaces
-		// ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
-		/*
-		 * for( int i = 0; i < num_spaces; i++) { board.spaces[i] = new
-		 * GUISpace(); board.spaces[i].setTitle("Space: " + i);
-		 * board.spaces[i].setBoard(this); board.spaces[i].setBoardIndex(i);
-		 * for( int j = 0; j < Space.MAX_NUM_IMPROVEMENTS; j++) // fill in some
-		 * random rents board.spaces[i].setRent( 1 + i*(j+1), j); }
-		 */
-		/*
-		 * for( int i = 0; i < num_spaces; i++) { board.spaces[i] = new
-		 * GUISpace(); board.spaces[i].setTitle("Space: " + i);
-		 * board.spaces[i].setBoard(this); board.spaces[i].setBoardIndex(i);
-		 * for( int j = 0; j < Space.MAX_NUM_IMPROVEMENTS; j++) // fill in some
-		 * random rents board.spaces[i].setRent( 1 + i*(j+1), j); }
-		 */
-		/*
-		 * for( int i = 0; i < side; i++) // draw the top row { add(
-		 * board.spaces[i] ); } for( int i = side; i < side + side_empty; i++)
-		 * // draw everything in the middle { add( board.spaces[ num_spaces - (i
-		 * - side) - 1 ] );
-		 * 
-		 * // fill in the gaps with empty JLabels for( int j = 0; j <
-		 * side_empty; j++) add( new JLabel("") );
-		 * 
-		 * // add Space to the other side //i++; add( board.spaces[i] ); } for(
-		 * int i = num_spaces - side_empty - 1; i >= side + side_empty; i--) //
-		 * draw bottom row { add( board.spaces[i] ); }
-		 */
 
 		setSelectedSpace(0);
 
@@ -216,8 +171,7 @@ class GUIBoard extends GamePanel implements Runnable {
 	public void setSelectedSpace(int space) {
 		if (space >= 0 && space < board.getNumSpaces()) // check for validity
 		{
-			GUISpace gs = new GUISpace(board.spaces.get(board
-					.getSelectedSpace()));
+			GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
 			gs.setSelected(false); // turn last selected space off
 			board.setSelectedSpace(space);
 			gs.setSelected(true); // turn new selection on
