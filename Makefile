@@ -1,10 +1,7 @@
-.PHONY: all clean doc q dev 
+.PHONY: dev 
 
-all: 	clean doc
-	javac -sourcepath ./src -classpath .:lib/gson/gson-2.1.jar -d ./build src/UWPonopoly.java
-	mkdir -p ./build/com/google/gson
-	cp ./lib/gson/gson-2.1.jar ./build/com/google/gson
-    
+all: 	clean doc q
+
 clean: 
 	rm -rf ./bin/*
 	rm -rf ./build/*
