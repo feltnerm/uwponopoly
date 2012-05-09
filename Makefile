@@ -1,4 +1,4 @@
-.PHONY: dev 
+.PHONY: all clean doc q qd dev 
 
 all: 	clean doc q
 
@@ -8,7 +8,7 @@ clean:
 	
 doc:
 	rm -rf ./doc/javadoc/*
-	javadoc -classpath ./lib/gson/gson-2.1.jar -sourcepath ./src/ -author -d ./doc/javadoc -doctitle UWPonopoly -author -version -subpackages board,gui,player,game,config,dice -source 1.6 src/UWPonopoly.java
+	javadoc -classpath ./lib/gson/gson-2.1.jar -sourcepath ./src/ -author -d ./doc/javadoc -doctitle UWPonopoly -author -version board gui player game config dice -linksource src/UWPonopoly.java
 
 q: 	clean
 	javac -sourcepath ./src -classpath .:lib/gson/gson-2.1.jar -d ./build src/UWPonopoly.java
