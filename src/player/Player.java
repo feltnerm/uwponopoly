@@ -94,6 +94,10 @@ public class Player {
 		return token_char;
 	}
 
+    public int getPlayerNum(){
+        return this.playerNumber;
+    }
+
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Player) {
