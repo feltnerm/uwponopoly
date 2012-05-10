@@ -176,6 +176,43 @@ class GUIBoard extends GamePanel implements Runnable {
        return new Point (0,0);
     }
 
+    /**
+     * Maps an point onto the Spaces of the board.
+     * @return the index of the space the point is over, -1 if over none.
+     * @author Aaron Decker
+     */
+    private int getIndexFromCoordinates( int x, int y )
+    {
+       if( 0 <= y && y <= GUISpace.HEIGHT )
+       {
+          return x / GUISpace.WIDTH ;
+       }
+       if( GUISpace.HEIGHT * ( board.getNumSpaces()/4) <= y && y <= GUISpace.HEIGHT * ( board.getNumSpaces()/4 + 1) )
+       {
+          return (int)((0.75)*board.getNumSpaces()) - ( x / GUISpace.WIDTH);
+       }
+       if( 0 <= x && x <= GUISpace.WIDTH )
+       {
+          return (4/4)*board.getNumSpaces() - ( y / GUISpace.HEIGHT );
+       }
+       if( GUISpace.WIDTH * ( board.getNumSpaces()/4) <= x && x <= GUISpace.WIDTH * ( board.getNumSpaces()/4 + 1) )
+       {
+          return (int)((0.25)*board.getNumSpaces()) + ( y / GUISpace.HEIGHT );
+       }
+       
+       return -1;
+    }
+
+    /**
+     * Maps an point onto the Spaces of the board.
+     * @return the index of the space the point is over, -1 if over none.
+     * @author Aaron Decker
+     */
+    private int getIndexFromCoordinates( Point p )
+    {
+       return getIndexFromCoordinates( (int)p.getX(), (int)p.getY() );
+    }
+
 	public void setSelectedSpace(int space) {
 		if (space >= 0 && space < board.getNumSpaces()) // check for validity
 		{
@@ -344,6 +381,8 @@ class GUIBoard extends GamePanel implements Runnable {
     @Override
     protected boolean handleMouseMoved(MouseEvent e)
     {
+        //System.out.println("(" + e.getX() + "," + e.getY() + ")");
+        System.out.println( getIndexFromCoordinates(e.getPoint()) );
 		return false;
 	}
 
