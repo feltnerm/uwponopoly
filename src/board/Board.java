@@ -71,6 +71,24 @@ public class Board {
     }
 
     /**
+     * Converts a position to the index in the array of Spaces
+     * @return -1 if invalid.
+     */
+    public int position2Index( int pos )
+    {
+       ListIterator<Space> itr = spaces.listIterator();
+       int position = 0;
+       while(itr.hasNext())
+       {
+          if( itr.next().getPosition() == pos)
+             return position;
+          position++;
+       }
+       return -1;
+
+    }
+
+    /**
      * Returns the space at index.
      *
      * @param   index   The index of the {@link Space}
