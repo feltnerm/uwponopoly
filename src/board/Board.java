@@ -135,6 +135,11 @@ public class Board {
        System.out.println("=============");
        Board b = new Board( true );
        System.out.println( b.toString() );
+       System.out.println("Spaces by index, not order");
+       for( int i = 0; i < b.spaces.size(); i++)
+       {
+          System.out.println(i + ": " + b.spaces.get(i).getTitle() );
+       }
     }
 
 }
