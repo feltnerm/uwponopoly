@@ -110,8 +110,14 @@ public class Board {
      * 
      * @param   space   The index of the space to set as currently selected.
      **/
-    public void setSelectedSpace(int space) {
-            selected_space = space;
+    public void setSelectedSpace(int space) 
+    {
+       if( isValidPosition( space ) )
+       {
+          spaces.get( selected_space ).setSelected(false);
+          selected_space = space;
+          spaces.get( selected_space ).setSelected(true);
+       }
     }
 
     private void printSpaces() 

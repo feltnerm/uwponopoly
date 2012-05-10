@@ -208,7 +208,7 @@ public class GUISpace extends GamePanel {
 		return gb;
 	}
 
-	private void drawDeed()// {{{
+	public void drawDeed()// {{{
 	{
 		if (this.deedBuffer == null)
 			return;
