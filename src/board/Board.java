@@ -34,18 +34,7 @@ public class Board {
         jsonboard = new JSONBoard();
         this.spaces = jsonboard.getSpaces();
 
-        if(debug)
-        {
-           System.out.println("Spaces in Board");
-           System.out.println("#--------------");
-           for(int i = 0; i < spaces.size(); i++)
-           {
-              if( spaces.get(i) == null )
-                 System.out.println(i+" is null");
-              System.out.println(i+": "+spaces.get(i));
-           }
-           System.out.println("");
-        }
+        
         // this.spaces_iter = spaces.listIterator(0);
     }
 
@@ -116,9 +105,36 @@ public class Board {
             selected_space = space;
     }
 
+    private void printSpaces() 
+    {
+       System.out.println("Spaces in Board");
+       System.out.println("#--------------");
+       for(int i = 0; i < spaces.size(); i++)
+       {
+          if( spaces.get(i) == null )
+             System.out.println(i+" is null");
+          System.out.println(i+": "+spaces.get(i));
+       }
+       System.out.println("");
+    }
+
     @Override
-    public String toString() {
-            return "";
+    public String toString() 
+    {
+            return ""
+            + "Number of Spaces:     " + spaces.size() + "\n"
+            + "Selected Space:       " + getSelectedSpace();
+    }
+
+    /**
+     * Testbed main
+     */
+    public static void main(String[] args)
+    {
+       System.out.println("Testing Board");
+       System.out.println("=============");
+       Board b = new Board( true );
+       System.out.println( b.toString() );
     }
 
 }
