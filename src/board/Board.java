@@ -3,8 +3,6 @@ package board;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import player.Player;
-
 /**
  * Board: Contains and displays Spaces in a board configuration.
  * Creates the Spaces from a file.
@@ -33,31 +31,49 @@ public class Board {
         this.DEBUG = debug;
         jsonboard = new JSONBoard();
         this.spaces = jsonboard.getSpaces();
-
-        // this.spaces_iter = spaces.listIterator(0);
+        this.spaces_iter = spaces.listIterator(0);
     }
 
     /**
-     * Move a player on the board.
-     * 
-     * @param   player  A player to move.
-     * @param   index   The position on the board to move the player to.
+     * Returns the space at index.
+     *
+     * @param   index   The index of the {@link Space}
+     **/
+    public Space getSpace(int index) {
+        if (!isValidPosition(index))
+            return null;
+        return this.spaces.get(index);
+    }
+
+    /** 
+     * Returns the index of space
+     *
+     * @param   space   The space to find the index of.
+     * @return  index   The integer index of the space.
      */
-    public void movePlayer(Player player, int index) 
+    public int getIndex(Space space)
     {
-        if (this.isValidPosition(index)) {
-            player.setPosition(index);
-            if (this.DEBUG) {
-                System.out.println("MOVED PLAYER:" + player + "TO SPACE:"
-                            + index);
-            }
-        }
+        return spaces.indexOf(space);
+    }
+
+    /**
+     * Returns the total number of spaces on the board.
+     **/
+    public int getNumSpaces() {
+        return spaces.size();
+    }
+
+    /**
+     * Return the index of the currently selected space.
+     **/
+    public int getSelectedSpace() {
+            return this.selected_space;
     }
 
     /**
      * Basic sanity-checking on position numbers
      */
-    private boolean isValidPosition(int position) {
+    public boolean isValidPosition(int position) {
         return position >= 0 && position < getNumSpaces();
     }
 
@@ -66,7 +82,7 @@ public class Board {
      *
      * @param   position_num    A position to look up
      */
-    private int returnValidPosition(int position_num) {
+    public int getValidPosition(int position_num) {
         return position_num % getNumSpaces(); // rollover
     }
 
@@ -88,30 +104,6 @@ public class Board {
 
     }
 
-    /**
-     * Returns the space at index.
-     *
-     * @param   index   The index of the {@link Space}
-     **/
-    public Space getSpace(int index) {
-        if (!isValidPosition(index))
-            return null;
-        return this.spaces.get(index);
-    }
-
-    /**
-     * Returns the total number of spaces on the board.
-     **/
-    public int getNumSpaces() {
-        return spaces.size();
-    }
-
-    /**
-     * Return the index of the currently selected space.
-     **/
-    public int getSelectedSpace() {
-            return this.selected_space;
-    }
 
     /**
      * Sets the currently selected space to the space at the provided index.
@@ -138,9 +130,17 @@ public class Board {
     @Override
     public String toString() 
     {
-            return ""
-            + "Number of Spaces:     " + spaces.size() + "\n"
-            + "Selected Space:       " + getSelectedSpace();
+       String s = "Spaces in Board\n"+
+                  "#--------------\n";
+       for(int i = 0; i < spaces.size(); i++)
+       {
+          if( spaces.get(i) == null )
+            s += i + " is null\n";
+          System.out.println(i+": "+spaces.get(i));
+          s += i + ": "+spaces.get(i) + "\n";
+       }
+       s += "";
+       return s;
     }
 
     /**

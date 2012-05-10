@@ -15,7 +15,6 @@ public class Player {
 	protected int money = 1500; // might be a bug, do you really want it
 								// constant? --Aaron
 	protected int position;
-	protected String name;
 	protected int playerNumber;
 	protected char token_char; // even with a custom GameBuffer,
 								// the token_char is used for equals()
@@ -31,29 +30,13 @@ public class Player {
 		this(200, playerNumber);
 	}
 
-   public Player(String name)
-   {
-      this(200, name);
-   }
-
    public Player(int money, int playerNumber) {
-		this.money = money;
+        this.money = money;
 		this.position = 0;
 		this.playerNumber = playerNumber;
-      this.active = true;
-      this.jailed = false;
-      this.name = "Hello";
+        this.active = true;
+        this.jailed = false;
 	}
-
-   public Player(int money, String name)
-   {
-      this.money = money;
-      this.position = 0;
-      this.lastTurn = 0;
-      this.active = true;
-      this.jailed = false;
-      this.name = name;
-   }
 
    public boolean active(){
     return this.active;
@@ -71,7 +54,7 @@ public class Player {
         return this.jailed;
    }
 
-   public String getName() { return this.name; }
+   //public String getName() { return this.name; }
    
 	public int getMoney() {
 		return this.money;
@@ -131,7 +114,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "<Player:" + this.playerNumber + "|Name:" + this.getName()
+		return "<Player:" + this.playerNumber
 				+ "|Wealth:" + this.getMoney() + "|Position:"
 				+ this.getPosition() + "|Token:" + this.getTokenChar();
 	}

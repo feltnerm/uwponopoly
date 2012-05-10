@@ -338,7 +338,7 @@ class GUIBoard extends GamePanel implements Runnable {
 						|| final_is_lesser_than_current) {
 
 					board.spaces.get(current_token_space).removePlayer(
-							current_animation_player);
+							current_animation_player.getPlayer());
 
 					current_token_space++;
 					current_token_space = returnValidPosition(current_token_space);
@@ -346,13 +346,13 @@ class GUIBoard extends GamePanel implements Runnable {
 						final_is_lesser_than_current = false;
 
 					board.spaces.get(current_token_space).addPlayer(
-							current_animation_player);
+							current_animation_player.getPlayer());
 				}
 				// if( current_token_space >= final_token_space &&
 				// !final_is_lesser_than_current)
 				else {
 					board.spaces.get(final_token_space).addPlayer(
-							current_animation_player);
+							current_animation_player.getPlayer());
 					// current_animation_player = null;
 					current_animation_player.setIsMoving(false);
 					move_player_thread = null;
