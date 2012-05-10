@@ -76,7 +76,8 @@ public class GUISpace extends GamePanel {
 		deedBuffer = new GameBuffer(DEED_WIDTH, DEED_HEIGHT, BACKGROUND_COLOR);
 	}
 
-	@Override
+    // These functions are no longer used with the new system of copying the GUISpace GameBuffer to the board
+	/*@Override
 	protected boolean handleMousePressed(MouseEvent e) {
 		setSelected(true);
 		// this.guiBoard.setSelectedSpace(this.space.getPosition());
@@ -97,7 +98,7 @@ public class GUISpace extends GamePanel {
 		if (!isSelected())
 			this.borderColor = BORDER_COLOR_DEFAULT;
 		return true;
-	}
+	}*/
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -347,9 +348,9 @@ public class GUISpace extends GamePanel {
 	/**
 	 * Set the amount of rent for a particular improvement level
 	 * 
-	 * @param rent_amount
+	 * param rent_amount
 	 *            , the monetary value of the rent
-	 * @param improvement_level
+	 * param improvement_level
 	 *            , the level of improvement the property is at, "0" is the base
 	 *            improvement level, "1" is one house, etc.
 	 */

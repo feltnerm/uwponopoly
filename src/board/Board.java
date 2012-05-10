@@ -13,7 +13,7 @@ public class Board {
 	
     // defaults
     private boolean DEBUG;
-    private static int NUM_SPACES = 40; // standard monopoly board
+    //private static int NUM_SPACES = 40; // standard monopoly board
     
     private JSONBoard jsonboard; 
 
@@ -58,7 +58,7 @@ public class Board {
      * Basic sanity-checking on position numbers
      */
     private boolean isValidPosition(int position) {
-        return position >= 0 && position < Board.NUM_SPACES;
+        return position >= 0 && position < getNumSpaces();
     }
 
     /**
@@ -67,7 +67,7 @@ public class Board {
      * @param   position_num    A position to look up
      */
     private int returnValidPosition(int position_num) {
-        return position_num % Board.NUM_SPACES; // rollover
+        return position_num % getNumSpaces(); // rollover
     }
 
     /**
@@ -85,7 +85,7 @@ public class Board {
      * Returns the total number of spaces on the board.
      **/
     public int getNumSpaces() {
-        return Board.NUM_SPACES;
+        return spaces.size();
     }
 
     /**

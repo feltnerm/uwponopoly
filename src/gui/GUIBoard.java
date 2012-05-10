@@ -10,6 +10,11 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.util.ListIterator;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 import board.Board;
 import board.Space;
@@ -313,6 +318,33 @@ class GUIBoard extends GamePanel implements Runnable {
 				}
 			}
 		}// }}}
+
+	}
+
+    @Override
+    protected boolean handleMousePressed(MouseEvent e) 
+    {
+       return true;
+	}
+
+	// Implements highlighting on mouse-over
+	@Override
+	protected boolean handleMouseEntered(MouseEvent e) 
+    {
+		return true;
+	}
+
+	// Implements highlighting on mouse-over
+	@Override
+	protected boolean handleMouseExited(MouseEvent e) 
+    {
+		return true;
+    }
+    
+    @Override
+    protected boolean handleMouseMoved(MouseEvent e)
+    {
+		return false;
 	}
 
 }

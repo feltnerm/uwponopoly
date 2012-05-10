@@ -125,41 +125,58 @@ public class GamePanel extends JPanel {
 		return false;
 	}
 
+    protected boolean handleMouseMoved(MouseEvent e) {
+		return false;
+	}
+
 	class MyMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseMoved(MouseEvent e)
+        {
+           handleMouseMoved(e);
+        }
+
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			if (!handleMouseDragged(e))
-				mouseEvents.offer(e);
+			///if (!handleMouseDragged(e))
+			//	mouseEvents.offer(e);
+			handleMouseDragged(e);
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			if (!handleMousePressed(e))
-				mouseEvents.offer(e);
+			//if (!handleMousePressed(e))
+			//	mouseEvents.offer(e);
+			handleMousePressed(e);
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			if (!handleMouseReleased(e))
-				mouseEvents.offer(e);
+			//if (!handleMouseReleased(e))
+			//	mouseEvents.offer(e);
+			handleMouseReleased(e);
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			if (!handleMouseEntered(e))
-				mouseEvents.offer(e);
+			//if (!handleMouseEntered(e))
+			//	mouseEvents.offer(e);
+			handleMouseEntered(e);
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			if (!handleMouseExited(e))
-				mouseEvents.offer(e);
+			//if (!handleMouseExited(e))
+				//mouseEvents.offer(e);
+			handleMouseExited(e);
 		}
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if (!handleMouseClicked(e))
-				mouseEvents.offer(e);
+			//if (!handleMouseClicked(e))
+				//mouseEvents.offer(e);
+			handleMouseClicked(e);
 		}
 
 	};
@@ -167,18 +184,18 @@ public class GamePanel extends JPanel {
 	class MyKeyboardAdapter implements KeyListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
-			keyEvents.offer(e);
-			System.out.println(e.getKeyCode());
+			//keyEvents.offer(e);
+			//System.out.println(e.getKeyCode());
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			keyEvents.offer(e);
+			//keyEvents.offer(e);
 		}
 
 		@Override
 		public void keyTyped(KeyEvent e) {
-			keyEvents.offer(e);
+			//keyEvents.offer(e);
 		}
 	};
 
