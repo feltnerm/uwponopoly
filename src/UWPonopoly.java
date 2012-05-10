@@ -32,6 +32,7 @@ public class UWPonopoly {
 			Game game = new Game(this.DEBUG);
 			game.initGame();
 			game.startGame();
+            game.loop();
 		}
 
 	}

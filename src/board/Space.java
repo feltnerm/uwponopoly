@@ -58,6 +58,13 @@ public class Space {
 	 * } } }
 	 */
 
+    public boolean isSpecial()
+    {
+        if (this.getPropertyColorString().equals("special"))
+            return true;
+        return false;
+    }
+
 
     /**
      * Upgrade this space.
@@ -217,7 +224,7 @@ public class Space {
 	}
 
     /**
-     * @return  The linked list of {@link player.Player}
+     * @return  The linked list of {@link players}.
      */
 	public LinkedList<Player> getPlayers() {
 		return players;

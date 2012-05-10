@@ -6,6 +6,7 @@ package game;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.io.IOException;
+import java.util.Scanner;
 
 import board.Board;
 import board.Space;
@@ -140,6 +141,19 @@ public class Game {
             }
     }
 
+    public void loop()
+    {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine())
+        {
+            String line = in.nextLine();
+            System.out.println(this.current_player);
+            System.out.println(this.board.getSpace(this.current_player.getPosition()));
+            this.updateGame();
+
+        }
+    }
+
     /**
      * Called when the game is over.
      **/
@@ -147,6 +161,7 @@ public class Game {
     {
         this.endGame();
     }
+
 
     /**
      * Updates the state of the game, looks for possible endgame
@@ -158,7 +173,6 @@ public class Game {
             
         // Check Massive Game Settings
         if (this.players.size() == 1) {
-                    // winner!
             this.endGame();
         }
 
@@ -180,18 +194,42 @@ public class Game {
 
                 if (current_space.getOwner() != current_player)
                 {
-                    current_player.subtractMoney(current_space.getRent());
-                    current_space.getOwner().addMoney(current_space.getRent());
+                    if (current_space.isSpecial())
+                    {
+
+                    } else {
+                        //current_player.subtractMoney(current_space.getRent());
+                        //current_space.getOwner().addMoney(current_space.getRent());
+                    }
                 }
             }
-        }
 
-        this.current_player = this.players_iter.next(); 
+            this.dice.roll();
+            System.out.println(this.dice.total);
+            int new_position = this.dice.total + this.current_player.getPosition();
+            this.board.movePlayer(this.current_player, new_position);
+
+            if (!dice.isDoubles())
+            {
+                this.nextPlayer();
+            }
+
+        } else {
+            this.nextPlayer();
+        }
+    
+    }
+
+    private void nextPlayer(){
+        if (!this.players_iter.hasNext())
+        {
+            this.current_player = this.players.getFirst();
+        } else {
+            this.current_player = this.players_iter.next();
+        }
     }
     /**
-     * Rolls the dice and moves the current player to that position 
-     * (iff it is valid). Does <b>NOT</b> change player when a
-     * doubles is rolled.
+     * Rolls the dice and returns a new, valid, position
      **/
     public void roll() {
             dice.roll();
