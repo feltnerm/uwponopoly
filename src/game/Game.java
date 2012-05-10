@@ -228,6 +228,11 @@ public class Game {
             if (cmd.equals("S")){
                 //sell
             }
+            if (cmd.equals("q"))
+            {
+                //quit!
+                System.exit(0);
+            }
             else {
 
                 this.dice.roll();
