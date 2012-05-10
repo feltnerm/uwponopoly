@@ -225,7 +225,7 @@ public class Space {
 	}
 
     /**
-     * @return  The linked list of {@link players}.
+     * @return  The linked list of {@link player.Player}.
      */
 	public LinkedList<Player> getPlayers() {
 		return players;

@@ -103,7 +103,12 @@ public class GUISpace extends GamePanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+           System.out.println("poing");
 		if (this.space != null) {
+            if( space.isSelected() )
+               borderColor = BORDER_COLOR_SELECTED;
+            else
+               borderColor = BORDER_COLOR_DEFAULT;
 			// draw outline
 			// drawOutline(g);
 			Graphics2D g2d = (Graphics2D) g;

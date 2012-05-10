@@ -251,8 +251,8 @@ public class Game {
     /**
      * Move a player on the board.
      * 
-     * @param   player  A player to move.
-     * @param   num_spaces   The number of spaces to move the player forward.
+     * @param p A player to move.
+     * @param num_spaces   The number of spaces to move the player forward.
      */
     public void move(Player p, int num_spaces) 
     {
