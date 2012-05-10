@@ -33,6 +33,19 @@ public class Board {
         this.DEBUG = debug;
         jsonboard = new JSONBoard();
         this.spaces = jsonboard.getSpaces();
+
+        if(debug)
+        {
+           System.out.println("Spaces in Board");
+           System.out.println("#--------------");
+           for(int i = 0; i < spaces.size(); i++)
+           {
+              if( spaces.get(i) == null )
+                 System.out.println(i+" is null");
+              System.out.println(i+": "+spaces.get(i));
+           }
+           System.out.println("");
+        }
         // this.spaces_iter = spaces.listIterator(0);
     }
 

@@ -138,7 +138,13 @@ public class Space {
     /**
      * Returns this property's rent.
      */
-	public int getRent() {
+	public int getRent() 
+    {
+        if(rents == null )
+        {
+           System.out.println("Space.getRent() has a null rents, level = " + level);
+           return 0;
+        }
 		return this.rents[this.level];
 	}
 
@@ -219,12 +225,14 @@ public class Space {
 
 	@Override
 	public String toString() {
-		return "_" + this.getTitle() + "_\n" + "Color:"
-				+ getPropertyColorString() + "\n" + "Position:" + getPosition()
-				+ "\n" + "Owner:" + getOwner() + "\n" + "Current Rent:"
-				+ getRent() + "\n" + "Current Level:" + this.level + "\n"
-				+ "	Houses:" + this.getNumHouses() + "\n" + "    Hotels:"
-				+ this.getNumHotels() + "\n";
+		return "_" + this.getTitle() + "_\n" 
+                + "Color:" + getPropertyColorString() + "\n"
+                + "Position:" + getPosition() + "\n" 
+				+ "Owner:" + getOwner() + "\n" 
+                + "Current Rent:" + getRent() + "\n" 
+                + "Current Level:" + this.level + "\n"
+				+ "	Houses:" + this.getNumHouses() + "\n"
+                + "    Hotels:" + this.getNumHotels() + "\n";
 
 	}
 }

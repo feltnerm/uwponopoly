@@ -2,22 +2,22 @@
     "title": "GO",
     "type": "GO",
     "position": 0,
-    "property_color": ""
+    "property_color": "special"
 }, {
     "title": "JAIL",
     "type": "JAIL",
     "position": 10,
-    "property_color": ""
+    "property_color": "special"
 }, {
     "title": "FREE PARKING",
     "type": "FREE_PARKING",
     "position": 20,
-    "property_color": ""
+    "property_color": "special"
 }, {
     "title": "GO TO JAIL",
     "type": "GO_TO_JAIL",
     "position": 30,
-    "property_color": ""
+    "property_color": "special"
 }, 
 
 {

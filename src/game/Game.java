@@ -123,7 +123,7 @@ public class Game {
             for (int p = 0; p < Game.NUM_PLAYERS; p++) {
                     Player player = new Player(p);
                     player.activate();
-        players.add(player);
+                    players.add(player);
             }
             this.players_iter = players.listIterator(0);
             this.current_player = players_iter.next();

@@ -377,6 +377,24 @@ public class GUISpace extends GamePanel {
 			return Color.MAGENTA;
 		if (str_color.equals("orange"))
 			return Color.ORANGE;
+        if (str_color.equals("lblue"))
+			return Color.CYAN;
+        if (str_color.equals("dblue"))
+			return Color.BLUE;
+        if (str_color.equals("railroad"))
+			return Color.WHITE;
+        if (str_color.equals("utility"))
+			return Color.WHITE;
+        if (str_color.equals("white"))
+			return Color.WHITE;
+        if (str_color.equals("special"))
+			return Color.WHITE;
+        if (str_color.equals("fuschia"))
+			return Color.MAGENTA;
+        if (str_color.equals("green"))
+			return Color.GREEN;
+
+
 
 		return Color.PINK; // this way it can be noticed easily
 	}

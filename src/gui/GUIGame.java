@@ -64,6 +64,7 @@ public class GUIGame implements Runnable {
 		this.game.initGame();
 
 		this.initGui();
+        System.out.println("initGame()");
 	}
 
 	private void initGui() {
