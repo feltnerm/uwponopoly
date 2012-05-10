@@ -34,7 +34,6 @@ public class Board {
         jsonboard = new JSONBoard();
         this.spaces = jsonboard.getSpaces();
 
-        
         // this.spaces_iter = spaces.listIterator(0);
     }
 
@@ -140,6 +139,7 @@ public class Board {
        {
           System.out.println(i + ": " + b.spaces.get(i).getTitle() );
        }
+       //System.out.println("All tests passed.");
     }
 
 }
