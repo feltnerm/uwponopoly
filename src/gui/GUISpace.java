@@ -101,10 +101,16 @@ public class GUISpace extends GamePanel {
 	}*/
 
 	@Override
-	public void paintComponent(Graphics g) {
+    /**
+     * WARNING: DEPRACATED
+     * Don't use this method anymore.
+     * Use paintOnBuffer() instead.
+     */
+	public void paintComponent(Graphics g) //{{{
+    {
 		super.paintComponent(g);
-           System.out.println("poing");
-		if (this.space != null) {
+		if (this.space != null)
+        {
             if( space.isSelected() )
                borderColor = BORDER_COLOR_SELECTED;
             else
@@ -157,7 +163,7 @@ public class GUISpace extends GamePanel {
 				}
 			}
 		}
-	}
+	}//}}}
 
 	public GameBuffer paintOnBuffer() {
 		if (this.space == null)

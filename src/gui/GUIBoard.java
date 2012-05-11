@@ -104,7 +104,8 @@ class GUIBoard extends GamePanel implements Runnable {
 	 */
 	@Override
 	public void run() {
-		while (animationThread != null) {
+		while (animationThread != null)
+        {
 			repaint();
 
 			try {
@@ -119,16 +120,17 @@ class GUIBoard extends GamePanel implements Runnable {
 	{
 		super.paintComponent(g);
 		// draw spaces
-		for (int i = 0; i < board.getNumSpaces(); i++) 
+		/*for (int i = 0; i < board.getNumSpaces(); i++) 
         {
 			GUISpace gs = new GUISpace(board.spaces.get(board
 					.getSelectedSpace()));
 			gs.repaint();
+            
 			/*
 			 * if( board.spaces[i] != null ) board.spaces[i].repaint(); else {
 			 * System.out.println("spaces[ " + i + "] in Board is null"); }
 			 */
-		}
+		//}
 
 		// draw strings in middle of board for testing
 		Font font = new Font("Helvetica", Font.PLAIN, 24);
@@ -151,6 +153,7 @@ class GUIBoard extends GamePanel implements Runnable {
 		ListIterator<Space> spaces_iter = board.spaces.listIterator(0);
 		while (spaces_iter.hasNext()) {
 			GUISpace casted_space = new GUISpace(spaces_iter.next());
+            casted_space.repaint();
 			if (casted_space != null) {
 				GameBuffer game_buffer = casted_space.paintOnBuffer();
 				if (game_buffer != null) 
@@ -227,6 +230,7 @@ class GUIBoard extends GamePanel implements Runnable {
 			board.setSelectedSpace(space);
             GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
             gs.repaint();
+            repaint();
 			if (deedPanel != null) 
             {
                 gs.drawDeed();
