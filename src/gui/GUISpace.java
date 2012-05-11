@@ -43,7 +43,7 @@ public class GUISpace extends GamePanel {
 	private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
 	private static Color BORDER_COLOR_SELECTED = Color.RED;
 	private Color borderColor;
-	private boolean selected;
+	//private boolean selected;
 
 	private Space space;
 	private Color spaceColor;
@@ -325,13 +325,15 @@ public class GUISpace extends GamePanel {
 		return y_coor;
 	}
 
-	public boolean isSelected() {
-		return selected;
+	public boolean isSelected() 
+    {
+		return space.isSelected();
 	}
 
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-		if (selected) {
+	public void setSelected(boolean selected) 
+    {
+        space.setSelected( selected );
+		if (space.isSelected()) {
 			drawDeed(); // regenerate the deed
 			borderColor = BORDER_COLOR_SELECTED;
 		} else

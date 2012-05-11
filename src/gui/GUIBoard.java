@@ -47,6 +47,8 @@ class GUIBoard extends GamePanel implements Runnable {
 	// Animation variables
 	private Thread animationThread;
 
+    private int highlighted_space;
+
 	// Token-moving animation
 	// private Thread move_player_thread;
 	// private int final_token_space;
@@ -90,6 +92,7 @@ class GUIBoard extends GamePanel implements Runnable {
 		// board.spaces = new Space[num_spaces];
 
 		setSelectedSpace(0);
+        setHighlightedSpace( highlighted_space );
 
 		animationThread = new Thread(this);
 		animationThread.start();
@@ -233,6 +236,12 @@ class GUIBoard extends GamePanel implements Runnable {
 		}
 	}
 
+    private void setHighlightedSpace( int hspace )
+    {
+       //board.spaces.get( highlighted_space ).
+       highlighted_space = hspace;
+    }
+
 	public void setDeedPanel(GamePanel panel) {
 		deedPanel = panel;
 		GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
@@ -361,6 +370,7 @@ class GUIBoard extends GamePanel implements Runnable {
     @Override
     protected boolean handleMousePressed(MouseEvent e) 
     {
+       setSelectedSpace( getIndexFromCoordinates(e.getPoint()) );
        return true;
 	}
 
@@ -382,7 +392,7 @@ class GUIBoard extends GamePanel implements Runnable {
     protected boolean handleMouseMoved(MouseEvent e)
     {
         //System.out.println("(" + e.getX() + "," + e.getY() + ")");
-        System.out.println( getIndexFromCoordinates(e.getPoint()) );
+       // System.out.println( getIndexFromCoordinates(e.getPoint()) );
 		return false;
 	}
 

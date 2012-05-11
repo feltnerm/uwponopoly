@@ -35,6 +35,8 @@ public class Space {
 	// Property states
 	private boolean mortaged;
 
+	private boolean selected;
+
 	/**
 	 * Constructor for Spaces
 	 */
@@ -234,5 +236,15 @@ public class Space {
 				+ "	Houses:" + this.getNumHouses() + "\n"
                 + "    Hotels:" + this.getNumHotels() + "\n";
 
+	}
+    
+    public boolean isSelected() 
+    {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) 
+    {
+		this.selected = selected;
 	}
 }
