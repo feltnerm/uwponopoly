@@ -100,7 +100,7 @@ public class Game {
 
     /**
      * Gets the current board.
-     * @return  the current {@ board.Board}
+     * @return  the current {@link board.Board}
      */
     public Board getBoard()
     {
@@ -119,7 +119,7 @@ public class Game {
 
     /**
      * Gets the current space
-     * @return  the current {@link space.Space}
+     * @return  the current {@link board.Space}
      */
     public Space getCurrentSpace()
     {
