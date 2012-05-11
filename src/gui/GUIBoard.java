@@ -40,7 +40,9 @@ class GUIBoard extends GamePanel implements Runnable {
 	private static int DEFAULT_HEIGHT = GUISpace.HEIGHT * 40;
 	private static int SCALED_UP_SPACE_X = GUISpace.WIDTH + 50;
 	private static int SCALED_UP_SPACE_Y = GUISpace.HEIGHT + 50;
+    private static int TOKEN_PADDING = 8;
 	private static Color DEFAULT_COLOR = Color.WHITE;
+
 
 	// animation constants
 	private static int FRAME_RATE = 15;
@@ -175,6 +177,7 @@ class GUIBoard extends GamePanel implements Runnable {
         while (guiPlayers_iter.hasNext()) {
             GUIPlayer p = guiPlayers_iter.next();
             Point coordinates = getCoordinates(p.getPosition());
+
             g.drawImage(p.getToken().getBuffer(), (int)coordinates.getX(), 
                 (int)coordinates.getY(), this);
         }

@@ -21,7 +21,7 @@ class GUIDice extends JPanel implements Runnable {
 	private static int DOT_RADIUS = 10; // radius of the dots on the dice in
 										// pixels
 
-	private Dice dice;
+	public Dice dice;
 
 	private Thread animation_thread;
 	private Dice animation_dice;
@@ -32,11 +32,11 @@ class GUIDice extends JPanel implements Runnable {
 	private static int FRAME_SLEEP_MS = 1000 / FRAME_RATE;
 	private int current_frame_number;
 
-	GUIDice() {
+	GUIDice(Dice d) {
 		super();
 		setPreferredSize(new Dimension(DICE_SIZE * 2 + DICE_PADDING + 2
 				* WIDGET_PADDING, DICE_SIZE + 2 * WIDGET_PADDING));
-		dice = new Dice();
+		dice = d;
 		animation_thread = null;
 		animation_dice = new Dice();
 	}
@@ -49,6 +49,7 @@ class GUIDice extends JPanel implements Runnable {
 			animation_thread.start();
 		}
 	}
+
 
 	// Threading for animation
 	@Override

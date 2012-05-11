@@ -6,6 +6,8 @@ import game.Game;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.EventQueue;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import javax.swing.JPanel;
 import board.Board;
 import config.Config;
 
-public class GUIGame implements Runnable {
+public class GUIGame implements Runnable, ActionListener {
 	private boolean DEBUG;
 
 	// Game Elements
@@ -92,12 +94,14 @@ public class GUIGame implements Runnable {
 	}
 
 	private void createDice() {
-		this.guiDice = new GUIDice();
+		this.guiDice = new GUIDice(this.game.getDice());
 		dicePanel = new JPanel();
 		dicePanel.setLayout(new BorderLayout());
 		dicePanel.add(guiDice, BorderLayout.NORTH);
 		JButton roll_button = new JButton("Roll!");
 		roll_button.setPreferredSize(new Dimension(25, 50));
+		roll_button.setActionCommand("R");
+		roll_button.addActionListener(this);
 		dicePanel.add(roll_button, BorderLayout.SOUTH);
 	}
 
@@ -141,12 +145,6 @@ public class GUIGame implements Runnable {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 
-			// do stuff...
-			String cmd = "";
-			System.out.println("Updategame");
-			this.game.updateGame(cmd);
-			//game.updateGame(cmd)
-
 			guiWindow.repaint();
 			try {
 				Thread.sleep(10);
@@ -155,5 +153,17 @@ public class GUIGame implements Runnable {
 			}
 		}
 
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		String cmd = e.getActionCommand();
+		if ("R".equals(cmd)) {
+			System.out.println("ROLL!");
+			this.game.updateGame("");
+			this.guiDice.roll();
+			//this.game.updateGame("");
+		} else {
+
+		}
 	}
 }

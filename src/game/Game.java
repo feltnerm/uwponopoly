@@ -126,6 +126,11 @@ public class Game {
         return this.current_space;
     }
 
+    public Dice getDice()
+    {
+        return this.dice;
+    }
+
 
     /**
      * Run <b>before</b> the game is started. Initalizes the starting
