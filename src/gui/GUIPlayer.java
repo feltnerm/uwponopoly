@@ -12,7 +12,7 @@ import java.awt.Graphics;
 
 import player.Player;
 
-public class GUIPlayer extends Player {
+public class GUIPlayer {
 	public static int TOKEN_SIZE = 10;
 	private static int TOKEN_FONT_SIZE = 10;
 	private int money;
@@ -24,17 +24,28 @@ public class GUIPlayer extends Player {
 								// this was needed so that the token could flash
 								// red etc. during
 								// animation
+	private Player player;
 
 	/*public GUIPlayer() {
        super( 
 	}*/
 
+	public GUIPlayer(Player p) {
+		this.player = p;
+	}
+
+	public Player getPlayer(){
+		return this.player;
+	}
+
+	/**
 	public GUIPlayer(char token_char) {
         super( Character.toString(token_char) );
 		this.token_char = token_char;
 		token = generateTokenFromChar(token_char, Color.BLACK);
 		animating_token = generateTokenFromChar(token_char, Color.RED);
 	}
+	*/
 
 	/*
 	 * I don't think that this method is appropriate -- Aaron public void
@@ -43,11 +54,11 @@ public class GUIPlayer extends Player {
 	 */
 
 	public int getAmountOfMoney() {
-		return money;
+		return this.player.getMoney();
 	}
 
 	public void creditMoney(int amount) {
-		money += amount;
+		this.player.addMoney(amount);
 	}
 
 	/**
@@ -55,12 +66,13 @@ public class GUIPlayer extends Player {
 	 * the full amount is not paid. Instead, all of the remaining money is paid.
 	 */
 	public int debitMoney(int amount) {
-		if (money - amount > 0)
-			return money;
+		if (this.player.getMoney() - amount > 0)
+			return this.player.getMoney();
 		else
-			return money - amount;
+			return this.player.getMoney() - amount;
 	}
 
+	/**
 	private GameBuffer generateTokenFromChar(char token_char, Color color) {
 		GameBuffer gbuffer = new GameBuffer(TOKEN_SIZE, TOKEN_SIZE, Color.WHITE);
 		gbuffer.clear();
@@ -78,15 +90,14 @@ public class GUIPlayer extends Player {
 				(int) (3 * rect.getHeight() / 4));
 		return gbuffer;
 	}
+	*/
 
-	@Override
 	public int getPosition() {
-		return position;
+		return this.player.getPosition();
 	}
 
-	@Override
 	public void setPosition(int new_position) {
-		position = new_position;
+		this.player.setPosition(new_position);
 	}
 
 	public boolean isMoving() {
@@ -97,7 +108,6 @@ public class GUIPlayer extends Player {
 		is_moving = moving;
 	}
 
-	@Override
 	public GameBuffer getToken() {
 		if (!is_moving)
 			return token;

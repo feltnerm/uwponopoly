@@ -6,6 +6,7 @@ package game;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.io.IOException;
+import java.util.Scanner;
 
 import board.Board;
 import board.Space;
@@ -30,14 +31,13 @@ public class Game {
     private boolean running = false;
 
     // Game Elements
+    private Config config;
     private Board board;
     private Dice dice;
-
+    private Player current_player;
     private LinkedList<Player> players;
     private ListIterator<Player> players_iter;
-    private Player current_player;
-
-    private Config config;
+    private Space current_space;
 
     // Default Game Rules
     private static int NUM_PLAYERS = 2;
@@ -75,6 +75,7 @@ public class Game {
 
             this.board = new Board(Game.DEBUG);
             this.dice = new Dice();
+
     }
 
     /**
@@ -125,8 +126,7 @@ public class Game {
                     player.activate();
                     players.add(player);
             }
-            this.players_iter = players.listIterator(0);
-            this.current_player = players_iter.next();
+       
     }
 
     /**
@@ -135,9 +135,27 @@ public class Game {
     public void startGame() {
             // start game; loop it
             this.running = true;
+            this.current_space = this.board.getSpace(0);
+            this.players_iter = players.listIterator(0);
+            this.current_player = players_iter.next();
             if (this.DEBUG) {
                     System.out.println("Game running: True");
             }
+    }
+
+    public void loop()
+    {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine())
+        {
+            System.out.println("**************************************");
+            System.out.println(this.current_player);
+            System.out.println(this.current_space);
+            System.out.println("");
+            this.updateGame();
+            System.out.println(this.current_space);
+            String line = in.nextLine();
+        }
     }
 
     /**
@@ -147,6 +165,7 @@ public class Game {
     {
         this.endGame();
     }
+
 
     /**
      * Updates the state of the game, looks for possible endgame
@@ -158,7 +177,6 @@ public class Game {
             
         // Check Massive Game Settings
         if (this.players.size() == 1) {
-                    // winner!
             this.endGame();
         }
 
@@ -175,33 +193,67 @@ public class Game {
             {
                 // skip player; do something
             } else {
-                Space current_space = this.board.getSpace(this.current_player
-                    .getPosition());
 
-                if (current_space.getOwner() != current_player)
+                this.dice.roll();
+                System.out.println("You rolled a: "+this.dice.getTotal());
+                int num_spaces = this.dice.getTotal();
+                this.move(current_player, num_spaces);
+
+                int index = this.board.position2Index(this.current_player.getPosition());
+                this.current_space = this.board.getSpace(index);
+
+                if (this.current_space.getOwner() != this.current_player)
                 {
-                    current_player.subtractMoney(current_space.getRent());
-                    current_space.getOwner().addMoney(current_space.getRent());
+                    if (this.current_space.isSpecial())
+                    {
+
+                    } else {
+                        //current_player.subtractMoney(current_space.getRent());
+                        //current_space.getOwner().addMoney(current_space.getRent());
+                    }
                 }
             }
-        }
 
-        this.current_player = this.players_iter.next(); 
-    }
-    /**
-     * Rolls the dice and moves the current player to that position 
-     * (iff it is valid). Does <b>NOT</b> change player when a
-     * doubles is rolled.
-     **/
-    public void roll() {
-            dice.roll();
-            int new_position = dice.total + this.current_player.getPosition();
-            board.movePlayer(this.current_player, new_position);
-
-            if (!dice.isDoubles()) {
-                    this.current_player = players_iter.next();
+            if (!dice.isDoubles())
+            { 
+                this.nextPlayer();
+            } else {
+                System.out.println(" DOUBLES!");
             }
+
+        } else {
+            this.nextPlayer();
+        }
+    
     }
+
+    /**
+     * Move a player on the board.
+     * 
+     * @param   player  A player to move.
+     * @param   num_spaces   The number of spaces to move the player forward.
+     */
+    public void move(Player p, int num_spaces) 
+    {
+        int current_position = p.getPosition();
+        int new_position = current_position + num_spaces;
+        if (new_position >= this.board.getNumSpaces())
+        {
+            new_position = new_position % this.board.getNumSpaces();
+        }
+        System.out.println("New Position: "+new_position);
+        p.setPosition(new_position);
+    }
+
+    private void nextPlayer(){
+        if (!this.players_iter.hasNext())
+        {
+            this.current_player = this.players.getFirst();
+        } else {
+            this.current_player = this.players_iter.next();
+        }
+    }
+
     
     /**
      * Sets the game running state to false.

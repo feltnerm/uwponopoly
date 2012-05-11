@@ -60,6 +60,13 @@ public class Space {
 	 * } } }
 	 */
 
+    public boolean isSpecial()
+    {
+        if (this.getPropertyColorString().equals("special"))
+            return true;
+        return false;
+    }
+
 
     /**
      * Upgrade this space.
@@ -144,8 +151,7 @@ public class Space {
     {
         if(rents == null )
         {
-           System.out.println("Space.getRent() has a null rents, level = " + level);
-           return 0;
+           return -1;
         }
 		return this.rents[this.level];
 	}
@@ -219,7 +225,7 @@ public class Space {
 	}
 
     /**
-     * @return  The linked list of {@link player.Player}
+     * @return  The linked list of {@link players}.
      */
 	public LinkedList<Player> getPlayers() {
 		return players;
@@ -233,8 +239,8 @@ public class Space {
 				+ "Owner:" + getOwner() + "\n" 
                 + "Current Rent:" + getRent() + "\n" 
                 + "Current Level:" + this.level + "\n"
-				+ "	Houses:" + this.getNumHouses() + "\n"
-                + "    Hotels:" + this.getNumHotels() + "\n";
+				+ "     Houses:" + this.getNumHouses() + "\n"
+                + "     Hotels:" + this.getNumHotels() + "\n";
 
 	}
     
