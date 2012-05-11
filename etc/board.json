@@ -10,6 +10,7 @@
     "property_color": "special"
 }, {
     "title": "FREE PARKING",
+    "wrap_title": "FREE~PARKING",
     "type": "FREE_PARKING",
     "position": 20,
     "property_color": "special"

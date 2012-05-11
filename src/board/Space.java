@@ -11,6 +11,7 @@ import player.Player;
 public class Space {
 	// defaults
 	private String title;
+    private String wrap_title;
 	private String type;
 	private int position;
 	public int price;
@@ -209,6 +210,18 @@ public class Space {
 	public String getTitle() {
 		return this.title;
 	}
+
+    /**
+     * @return  The word-wrapped title.
+     */
+    public String getWrappedTitle()
+    {
+       if( wrap_title == null )
+          return title;
+       if( !wrap_title.equals("") )
+          return wrap_title;
+       return title;
+    }
 
     /**
      * @return  A string representing the property color.
