@@ -119,7 +119,8 @@ class GUIBoard extends GamePanel implements Runnable {
 	{
 		super.paintComponent(g);
 		// draw spaces
-		for (int i = 0; i < board.getNumSpaces(); i++) {
+		for (int i = 0; i < board.getNumSpaces(); i++) 
+        {
 			GUISpace gs = new GUISpace(board.spaces.get(board
 					.getSelectedSpace()));
 			gs.repaint();
@@ -223,9 +224,11 @@ class GUIBoard extends GamePanel implements Runnable {
 	public void setSelectedSpace(int space) {
 		if (space >= 0 && space < board.getNumSpaces()) // check for validity
 		{
+            GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
 			//GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
 			//gs.setSelected(false); // turn last selected space off
 			board.setSelectedSpace(space);
+            gs.repaint();
 			//gs.setSelected(true); // turn new selection on
 			if (deedPanel != null) {
 				// if( board.spaces.get( board.getSelectedSpace() ) instanceof
@@ -233,7 +236,6 @@ class GUIBoard extends GamePanel implements Runnable {
 				// {
 				// deedPanel.setGameBuffer(
 				// board.spaces.get(board.getSelectedSpace()).getDeedBuffer() );
-                GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
                 gs.drawDeed();
 				deedPanel.setGameBuffer(gs.getDeedBuffer());
 				deedPanel.repaint();
