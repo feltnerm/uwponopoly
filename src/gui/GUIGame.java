@@ -142,8 +142,9 @@ public class GUIGame implements Runnable {
 			lastLoopTime = System.currentTimeMillis();
 
 			// do stuff...
+			this.guiBoard.update(this.game.getBoard(), this.game.getPlayers());
 			String cmd = "";
-			game.updateGame(cmd);
+			this.game.updateGame(cmd);
 			//game.updateGame(cmd)
 
 			guiWindow.repaint();

@@ -3,6 +3,7 @@ package gui;
 //import GamePanel;
 
 // Import Java Packages
+import java.util.LinkedList;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,6 +19,7 @@ import java.awt.event.MouseEvent;
 
 import board.Board;
 import board.Space;
+import player.Player;
 
 /**
  * @author UWP_User
@@ -31,6 +33,8 @@ class GUIBoard extends GamePanel implements Runnable {
 	// GUI Elements
 	private GUISpace guiSpace;
 	private GamePanel deedPanel;
+    private LinkedList<Player> players;
+    private LinkedList<GUIPlayer> guiPlayers;
 
 	private int num_spaces;
 	private static int DEFAULT_WIDTH = GUISpace.WIDTH * 40;
@@ -86,6 +90,7 @@ class GUIBoard extends GamePanel implements Runnable {
            System.out.println("Spaces in Board is null.");
 
 		this.board = board;
+
 		this.num_spaces = board.getNumSpaces();
 		setPreferredSize(new Dimension((num_spaces/4 + 1) * GUISpace.WIDTH, (num_spaces/4 + 1) * GUISpace.HEIGHT));
 		//drawSpaces();
@@ -97,6 +102,12 @@ class GUIBoard extends GamePanel implements Runnable {
 		animationThread = new Thread(this);
 		animationThread.start();
 	}// }}}
+
+    public void update(Board b, LinkedList<Player> p)
+    {
+        this.board = b;
+        this.players = p;
+    }
 
 	/**
 	 * run() is from the Runnable interface. animation_thread calls this
@@ -164,6 +175,18 @@ class GUIBoard extends GamePanel implements Runnable {
                 }
 			}
 		}
+
+        // Draw Players
+        /**
+        ListIterator<Player> players_iter = this.players.listIterator(0);
+        while (players_iter.hasNext()) {
+            GUIPlayer casted_player = new GUIPlayer(players_iter.next());
+            casted_player.repaint();
+            if (casted_player != null) {
+                
+            }
+        }
+        */
 	}// }}}
 
     /**
