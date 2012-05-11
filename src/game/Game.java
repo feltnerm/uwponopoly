@@ -79,8 +79,58 @@ public class Game {
     }
 
     /**
+     * Gets a player by the order the player was in
+     * @param   i   the order of the player you want
+     * @return  A {@link player.Player}
+     */
+    public Player getPlayerByOrder(int i)
+    {
+        if (i>=1 && i<this.NUM_PLAYERS+1)
+            return this.players.get(i-1);
+        return null;
+    }
+
+    /**
+     * Returns a collection of the current players
+     * @return  A Collection<> of {@link player.Player}'s
+     */
+    public LinkedList<Player> getPlayers(){
+        return this.players;
+    }
+
+    /**
+     * Gets the current board.
+     * @return  the current {@ board.Board}
+     */
+    public Board getBoard()
+    {
+        return this.board;
+    }
+
+    /**
+     * Gets the current player
+     * @return  the current {@link player.Player}
+     */
+    public Player getCurrentPlayer()
+    {
+        return this.current_player;
+    }
+
+
+    /**
+     * Gets the current space
+     * @return  the current {@link space.Space}
+     */
+    public Space getCurrentSpace()
+    {
+        return this.current_space;
+    }
+
+
+    /**
      * Run <b>before</b> the game is started. Initalizes the starting
-     * players.
+     * players and anything else that needs to be set before the first roll.
+     * @TODO: ...
      **/
     public void initGame() {
             initPlayers();
