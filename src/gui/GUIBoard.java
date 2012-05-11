@@ -55,7 +55,7 @@ class GUIBoard extends GamePanel implements Runnable {
 	// private int current_token_space;
 	// private Player current_animation_player;
 
-	private void drawSpaces() {
+	/*private void drawSpaces() {
 		// Length, in GUISpaces, of a side of the board;
 		int outerside_length = (this.num_spaces / 4) + 1;
 		// Lenght, in GUISpaces, of the inner side
@@ -67,7 +67,7 @@ class GUIBoard extends GamePanel implements Runnable {
 			GUISpace guiSpace = new GUISpace(space);
 
 		}
-	}
+	}*/
 
 	/**
 	 * Testing constructor. Generates a standard board where each Space is
@@ -216,19 +216,25 @@ class GUIBoard extends GamePanel implements Runnable {
        return getIndexFromCoordinates( (int)p.getX(), (int)p.getY() );
     }
 
+    /**
+     * Sets a selected space
+     * @param space , the index of the space
+     */
 	public void setSelectedSpace(int space) {
 		if (space >= 0 && space < board.getNumSpaces()) // check for validity
 		{
-			GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
-			gs.setSelected(false); // turn last selected space off
+			//GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
+			//gs.setSelected(false); // turn last selected space off
 			board.setSelectedSpace(space);
-			gs.setSelected(true); // turn new selection on
+			//gs.setSelected(true); // turn new selection on
 			if (deedPanel != null) {
 				// if( board.spaces.get( board.getSelectedSpace() ) instanceof
 				// GUISpace )
 				// {
 				// deedPanel.setGameBuffer(
 				// board.spaces.get(board.getSelectedSpace()).getDeedBuffer() );
+                GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
+                gs.drawDeed();
 				deedPanel.setGameBuffer(gs.getDeedBuffer());
 				deedPanel.repaint();
 				// }
@@ -245,6 +251,7 @@ class GUIBoard extends GamePanel implements Runnable {
 	public void setDeedPanel(GamePanel panel) {
 		deedPanel = panel;
 		GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
+        gs.drawDeed();
 		deedPanel.setGameBuffer(gs.getDeedBuffer());
 	}
 
@@ -370,7 +377,7 @@ class GUIBoard extends GamePanel implements Runnable {
     @Override
     protected boolean handleMousePressed(MouseEvent e) 
     {
-       setSelectedSpace( getIndexFromCoordinates(e.getPoint()) );
+       setSelectedSpace( board.position2Index( getIndexFromCoordinates(e.getPoint()) ));
        return true;
 	}
 
