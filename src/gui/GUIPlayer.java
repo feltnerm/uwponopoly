@@ -6,8 +6,8 @@ package gui;
  */
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
+//import java.awt.Font;
+//import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import player.Player;
@@ -15,8 +15,7 @@ import player.Player;
 public class GUIPlayer {
 	public static int TOKEN_SIZE = 10;
 	private static int TOKEN_FONT_SIZE = 10;
-	private int money;
-	private int position;
+
 	private GameBuffer token;
 	private GameBuffer animating_token;
 	private boolean is_moving; // true if the player's token is currently in
@@ -112,6 +111,15 @@ public class GUIPlayer {
 		if (!is_moving)
 			return token;
 		return animating_token;
+	}
+
+	public void paint(Graphics g)
+	{
+
+		/**
+		g.fillOval(x,y,d,d);
+		g.drawOval(x,y,d,d);
+		*/
 	}
 
 }
