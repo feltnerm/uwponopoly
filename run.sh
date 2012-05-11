@@ -3,15 +3,9 @@
 # Usage:
 #   ./run.sh
 
-if [ -e UWPonopoly.class ]
-then
-    echo 'Cleaning .class files.'
-    make clean
-fi
-
 if [ ! -d ./build ]
 then
-    make
+    make q
 fi
 
 echo 'Starting... '

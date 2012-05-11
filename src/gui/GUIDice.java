@@ -41,8 +41,7 @@ class GUIDice extends JPanel implements Runnable {
 		animation_dice = new Dice();
 	}
 
-	public void roll() {
-		dice.roll();
+	public void simulateRoll() {
 		if (animation_thread == null) {
 			current_frame_number = 0;
 			animation_thread = new Thread(this);

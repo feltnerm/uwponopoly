@@ -160,7 +160,7 @@ public class GUIGame implements Runnable, ActionListener {
 		if ("R".equals(cmd)) {
 			System.out.println("ROLL!");
 			this.game.updateGame("");
-			this.guiDice.roll();
+			this.guiDice.simulateRoll();
 			//this.game.updateGame("");
 		} else {
 
