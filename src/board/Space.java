@@ -240,7 +240,7 @@ public class Space {
                 + "Current Rent:" + getRent() + "\n" 
                 + "Current Level:" + this.level + "\n"
 				+ "     Houses:" + this.getNumHouses() + "\n"
-                + "     Hotels:" + this.getNumHotels() + "\n";
+                + "     Hotels:" + this.getNumHotels();
 
 	}
     

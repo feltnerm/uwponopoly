@@ -146,16 +146,22 @@ public class Game {
     public void loop()
     {
         Scanner in = new Scanner(System.in);
+        System.out.println("**************************************");
+        System.out.println("CURRENT PLAYER: "+this.current_player);
+        System.out.println("CURRENT SPACE: \n"+this.current_space);
+        System.out.println("");
+        System.out.println("\nB/S/U/D/[enter]/q :");
         while (in.hasNextLine())
         {
+            String cmd = in.nextLine();
+            this.updateGame(cmd);
             System.out.println("**************************************");
-            System.out.println(this.current_player);
-            System.out.println(this.current_space);
+            System.out.println("CURRENT PLAYER: "+this.current_player);
+            System.out.println("CURRENT SPACE: \n"+this.current_space);
             System.out.println("");
-            this.updateGame();
-            System.out.println(this.current_space);
-            String line = in.nextLine();
+            System.out.println("B/S/U/D/[enter]/q :");
         }
+        in.close();
     }
 
     /**
@@ -171,7 +177,7 @@ public class Game {
      * Updates the state of the game, looks for possible endgame
      * scenarios.
      **/
-    public void updateGame() 
+    public void updateGame(String cmd) 
     {
         // RULES!
             
@@ -192,33 +198,53 @@ public class Game {
             if (this.current_player.jailed())
             {
                 // skip player; do something
-            } else {
+                this.current_player.deactivate();
+            } 
+            else {
 
-                this.dice.roll();
-                System.out.println("You rolled a: "+this.dice.getTotal());
-                int num_spaces = this.dice.getTotal();
-                this.move(current_player, num_spaces);
-
-                int index = this.board.position2Index(this.current_player.getPosition());
-                this.current_space = this.board.getSpace(index);
-
-                if (this.current_space.getOwner() != this.current_player)
+                if (this.current_space.isSpecial())
                 {
-                    if (this.current_space.isSpecial())
-                    {
+                    //handle special spaces
+                }                
 
-                    } else {
-                        //current_player.subtractMoney(current_space.getRent());
-                        //current_space.getOwner().addMoney(current_space.getRent());
+                else if (this.current_space.getOwner() != this.current_player)
+                {
+                    if (this.current_space.getOwner() != null) {
+                        current_player.subtractMoney(current_space.getRent());
+                        current_space.getOwner().addMoney(current_space.getRent());
                     }
                 }
             }
 
-            if (!dice.isDoubles())
-            { 
-                this.nextPlayer();
-            } else {
-                System.out.println(" DOUBLES!");
+            if (cmd.equals("U")){
+                //upgrade
+            }
+            if (cmd.equals("D")){
+                //downgrade
+            }    
+            if (cmd.equals("B")){
+                //buy
+            }
+            if (cmd.equals("S")){
+                //sell
+            }
+            if (cmd.equals("q"))
+            {
+                //quit!
+                System.exit(0);
+            }
+            else {
+
+                this.dice.roll();
+                System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
+                this.move(this.current_player, this.dice.getTotal());
+
+                if (!dice.isDoubles())
+                {
+                    this.nextPlayer();
+                } else {
+                    System.out.println("DOUBLES");
+                }
             }
 
         } else {
@@ -248,10 +274,14 @@ public class Game {
     private void nextPlayer(){
         if (!this.players_iter.hasNext())
         {
-            this.current_player = this.players.getFirst();
+            System.out.println("Last player");
+            this.players_iter = players.listIterator(0);
+            this.current_player = this.players_iter.next();
         } else {
             this.current_player = this.players_iter.next();
         }
+        int index = this.board.position2Index(this.current_player.getPosition());
+        this.current_space = this.board.getSpace(index);
     }
 
     
