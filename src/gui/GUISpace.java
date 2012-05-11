@@ -22,14 +22,14 @@ import board.Space;
 
 public class GUISpace extends GamePanel {
 	// Sizing
-	public static int WIDTH = 55; // GUIBoard uses this
-	public static int HEIGHT = 55; // GUIBoard uses this
+	public static int WIDTH = 60; // GUIBoard uses this
+	public static int HEIGHT = 60; // GUIBoard uses this
 	public static int DEED_WIDTH = 250;
 	public static int DEED_HEIGHT = 250;
 
 	// Fonts
 	private static int DEED_FONT_SIZE = 12;
-	private static int TITLE_FONT_SIZE = 10;
+	private static int TITLE_FONT_SIZE = 9;
 	private static int DEED_TEXT_Y_INCREMENT = (int) (DEED_FONT_SIZE * 1.2);
 
 	public static int SCALED_UP_SCALE = 2;

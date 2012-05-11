@@ -16,6 +16,7 @@
     "property_color": "special"
 }, {
     "title": "GO TO JAIL",
+    "wrap_title": "GO TO~JAIL",
     "type": "GO_TO_JAIL",
     "position": 30,
     "property_color": "special"
@@ -31,6 +32,7 @@
     "rents": [
     40, 80, 120, 160, 200, 240],
     "title": "Mediterranean Avenue",
+    "wrap_title": "Mediter-~ranean~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 180,
@@ -42,6 +44,7 @@
     "rents": [
     90, 180, 270, 360, 450, 540],
     "title": "Community Chest 1",
+    "wrap_title": "Community~Chest 1",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 280,
@@ -53,6 +56,7 @@
     "rents": [
     140, 280, 420, 560, 700, 840],
     "title": "Baltic Avenue",
+    "title": "Baltic~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 380,
@@ -63,6 +67,7 @@
     "property_color": "white",
     "rents": [190, 380, 570, 760, 950, 1140],
     "title": "Income Tax 1",
+    "wrap_title": "Income~Tax 1",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 480,
@@ -73,6 +78,7 @@
     "property_color": "railroad",
     "rents": [240, 480, 720, 960, 1200, 1440],
     "title": "Reading Railroad",
+    "wrap_title": "Reading~Railroad",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 580,
@@ -83,6 +89,7 @@
     "property_color": "lblue",
     "rents": [290, 580, 870, 1160, 1450, 1740],
     "title": "Oriental Avenue",
+    "wrap_title": "Oriental~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 680,
@@ -103,6 +110,7 @@
     "property_color": "lblue",
     "rents": [390, 780, 1170, 1560, 1950, 2340],
     "title": "Vermont Avenue",
+    "wrap_title": "Vermont~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 880,
@@ -113,6 +121,7 @@
     "property_color": "lblue",
     "rents": [440, 880, 1320, 1760, 2200, 2640],
     "title": "Connecticut Avenue",
+    "wrap_title": "Connecticut~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1080,
@@ -123,6 +132,7 @@
     "property_color": "fuschia",
     "rents": [540, 1080, 1620, 2160, 2700, 3240],
     "title": "St.Charles Place",
+    "wrap_title": "St.Charles~Place",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1180,
@@ -133,6 +143,7 @@
     "property_color": "utility",
     "rents": [590, 1180, 1770, 2360, 2950, 3540],
     "title": "Electric Company",
+    "wrap_title": "Electric~Company",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1280,
@@ -143,6 +154,7 @@
     "property_color": "fuschia",
     "rents": [640, 1280, 1920, 2560, 3200, 3840],
     "title": "States Avenue",
+    "wrap_title": "States~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1380,
@@ -153,6 +165,7 @@
     "property_color": "fuschia",
     "rents": [690, 1380, 2070, 2760, 3450, 4140],
     "title": "Virginia Place",
+    "wrap_title": "Virginia~Place",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1480,
@@ -163,6 +176,7 @@
     "property_color": "railroad",
     "rents": [740, 1480, 2220, 2960, 3700, 4440],
     "title": "Pennsylvania Railroad",
+    "wrap_title": "Pennsyl-~vania~Railroad",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1580,
@@ -173,6 +187,7 @@
     "property_color": "orange",
     "rents": [790, 1580, 2370, 3160, 3950, 4740],
     "title": "St.James Place",
+    "wrap_title": "St.James~Place",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1680,
@@ -183,6 +198,7 @@
     "property_color": "white" ,
     "rents": [840, 1680, 2520, 3360, 4200, 5040],
     "title": "Community Chest 2",
+    "wrap_title": "Community~Chest 2",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1780,
@@ -193,6 +209,7 @@
     "property_color": "orange",
     "rents": [890, 1780, 2670, 3560, 4450, 5340],
     "title": "Tennessee Avenue",
+    "wrap_title": "Tennessee~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 1880,
@@ -203,6 +220,7 @@
     "property_color": "orange",
     "rents": [940, 1880, 2820, 3760, 4700, 5640],
     "title": "New York Avenue",
+    "wrap_title": "New York~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 2080,
@@ -213,6 +231,7 @@
     "property_color": "red",
     "rents": [1040, 2080, 3120, 4160, 5200, 6240],
     "title": "Kentucky Avenue",
+    "wrap_title": "Kentucky~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 2180,
@@ -233,6 +252,7 @@
     "property_color": "red",
     "rents": [1140, 2280, 3420, 4560, 5700, 6840],
     "title": "Indiana Avenue",
+    "wrap_title": "Indiana~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 2380,
@@ -243,6 +263,7 @@
     "property_color": "red",
     "rents": [1190, 2380, 3570, 4760, 5950, 7140],
     "title": "Illinois Avenue",
+    "wrap_title": "Illinois~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 480,
@@ -253,6 +274,7 @@
     "property_color": "railroad",
     "rents": [240, 480, 720, 960, 1200, 1440],
     "title": "BO Railroad",
+    "wrap_title": "BO~Railroad",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 2580,
@@ -263,6 +285,7 @@
     "property_color": "yellow",
     "rents": [1290, 2580, 3870, 5160, 6450, 7740],
     "title": "Atlantic Avenue",
+    "wrap_title": "Atlantic~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 2680,
@@ -273,6 +296,7 @@
     "property_color": "yellow",
     "rents": [1340, 2680, 4020, 5360, 6700, 8040],
     "title": "Ventnor Avenue",
+    "wrap_title": "Ventnor~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 2780,
@@ -293,6 +317,7 @@
     "property_color": "yellow",
     "rents": [1440, 2880, 4320, 5760, 7200, 8640],
     "title": "Marvin Gardens",
+    "wrap_title": "Marvin~Gardens",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 3080,
@@ -303,6 +328,7 @@
     "property_color": "green",
     "rents": [1540, 3080, 4620, 6160, 7700, 9240],
     "title": "Pacific Avenue",
+    "wrap_title": "Pacific~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 3080,
@@ -313,6 +339,7 @@
     "property_color": "green",
     "rents": [1540, 3080, 4620, 6160, 7700, 9240],
     "title": "North Carolina Avenue",
+    "wrap_title": "North~Carolina~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 3080,
@@ -323,6 +350,7 @@
     "property_color": "white",
     "rents": [1540, 3080, 4620, 6160, 7700, 9240],
     "title": "Community Chest",
+    "wrap_title": "Community~Chest",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 3380,
@@ -334,6 +362,7 @@
     "rents": [
     1690, 3380, 5070, 6760, 8450, 10140],
     "title": "Pennsylvania Avenue",
+    "wrap_title": "Pennsylvania~Avenue",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 3480,
@@ -345,6 +374,7 @@
     "rents": [
     1740, 3480, 5220, 6960, 8700, 10440],
     "title": "Short Line Railroad",
+    "wrap_title": "Short Line~Railroad",
     "type": "PROPERTY"
 }, {
     "hotel_cost": 3580,
