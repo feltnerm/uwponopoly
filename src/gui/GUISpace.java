@@ -397,6 +397,10 @@ public class GUISpace extends GamePanel {
 		return y_coor;
 	}
 
+    public int getPosition() {
+        return this.space.getPosition();
+    }
+
 	public boolean isSelected() 
     {
 		return space.isSelected();

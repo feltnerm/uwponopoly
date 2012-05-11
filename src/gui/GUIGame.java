@@ -87,7 +87,7 @@ public class GUIGame implements Runnable {
 	}
 
 	private void createBoard() {
-		this.guiBoard = new GUIBoard(new Board(this.DEBUG));
+		this.guiBoard = new GUIBoard(new Board(this.DEBUG), this.game.getPlayers());
 
 	}
 
@@ -142,8 +142,8 @@ public class GUIGame implements Runnable {
 			lastLoopTime = System.currentTimeMillis();
 
 			// do stuff...
-			this.guiBoard.update(this.game.getBoard(), this.game.getPlayers());
 			String cmd = "";
+			System.out.println("Updategame");
 			this.game.updateGame(cmd);
 			//game.updateGame(cmd)
 

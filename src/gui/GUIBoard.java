@@ -33,7 +33,6 @@ class GUIBoard extends GamePanel implements Runnable {
 	// GUI Elements
 	private GUISpace guiSpace;
 	private GamePanel deedPanel;
-    private LinkedList<Player> players;
     private LinkedList<GUIPlayer> guiPlayers;
 
 	private int num_spaces;
@@ -51,13 +50,7 @@ class GUIBoard extends GamePanel implements Runnable {
 	// Animation variables
 	private Thread animationThread;
 
-    private int highlighted_space;
-
-	// Token-moving animation
-	// private Thread move_player_thread;
-	// private int final_token_space;
-	// private int current_token_space;
-	// private Player current_animation_player;
+    private int highlighted_space;	
 
 	/*private void drawSpaces() {
 		// Length, in GUISpaces, of a side of the board;
@@ -77,7 +70,7 @@ class GUIBoard extends GamePanel implements Runnable {
 	 * Testing constructor. Generates a standard board where each Space is
 	 * individually numbered.
 	 */
-	public GUIBoard(Board board) // {{{
+	public GUIBoard(Board board, LinkedList<Player> players) // {{{
 	{
 		// super(GUISpace.WIDTH * board.getNumSpaces(), GUISpace.HEIGHT *
 		// board.getNumSpaces(), DEFAULT_COLOR);
@@ -91,6 +84,13 @@ class GUIBoard extends GamePanel implements Runnable {
 
 		this.board = board;
 
+        this.guiPlayers = new LinkedList();
+        for (Player p : players)
+        {
+            GUIPlayer gp = new GUIPlayer(p);
+            this.guiPlayers.add(gp);
+        }
+
 		this.num_spaces = board.getNumSpaces();
 		setPreferredSize(new Dimension((num_spaces/4 + 1) * GUISpace.WIDTH, (num_spaces/4 + 1) * GUISpace.HEIGHT));
 		//drawSpaces();
@@ -102,12 +102,6 @@ class GUIBoard extends GamePanel implements Runnable {
 		animationThread = new Thread(this);
 		animationThread.start();
 	}// }}}
-
-    public void update(Board b, LinkedList<Player> p)
-    {
-        this.board = b;
-        this.players = p;
-    }
 
 	/**
 	 * run() is from the Runnable interface. animation_thread calls this
@@ -177,16 +171,13 @@ class GUIBoard extends GamePanel implements Runnable {
 		}
 
         // Draw Players
-        /**
-        ListIterator<Player> players_iter = this.players.listIterator(0);
-        while (players_iter.hasNext()) {
-            GUIPlayer casted_player = new GUIPlayer(players_iter.next());
-            casted_player.repaint();
-            if (casted_player != null) {
-                
-            }
+        ListIterator<GUIPlayer> guiPlayers_iter = this.guiPlayers.listIterator(0);
+        while (guiPlayers_iter.hasNext()) {
+            GUIPlayer p = guiPlayers_iter.next();
+            Point coordinates = getCoordinates(p.getPosition());
+            g.drawImage(p.getToken().getBuffer(), (int)coordinates.getX(), 
+                (int)coordinates.getY(), this);
         }
-        */
 	}// }}}
 
     /**
@@ -231,7 +222,7 @@ class GUIBoard extends GamePanel implements Runnable {
        }
        
        return -1;
-    }//}}}
+    }
 
     /**
      * Maps an point onto the Spaces of the board.
@@ -261,7 +252,7 @@ class GUIBoard extends GamePanel implements Runnable {
 				deedPanel.repaint();
 			}
 		}
-	}//}}}
+	}
 
     private void setHighlightedSpace( int hspace )
     {
@@ -274,33 +265,6 @@ class GUIBoard extends GamePanel implements Runnable {
 		GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
         gs.drawDeed();
 		deedPanel.setGameBuffer(gs.getDeedBuffer());
-	}
-
-	/**
-	 * WARNING! SIDE EFFECT: the player's position is set to the position of the
-	 * space. This means that the position may get rolled over.
-	 */
-	public void addPlayerToSpace(int space, GUIPlayer player) {//{{{
-		if (space < 0)
-			return;
-		space = returnValidPosition(space);
-		int current_token_space = player.getPosition();
-		int final_token_space = space;
-		player.setPosition(space); // SIDE EFFECT
-		// spaces[current_token_space].removePlayer( player );
-		// spaces[final_token_space].addPlayer( player );
-		/*
-		 * current_animation_player = player; final_token_space = space;
-		 * move_player_thread = new Thread( this ); move_player_thread.start();
-		 */
-		BoardAnimation b = new BoardAnimation(current_token_space,
-				final_token_space, player);
-	}//}}}
-
-	public void removePlayerFromSpace(int space) {
-		if (space < 0 || space >= board.getNumSpaces())
-			return;
-		// board.spaces[space].removePlayer();
 	}
 
 	/**
@@ -328,50 +292,56 @@ class GUIBoard extends GamePanel implements Runnable {
 		return board.spaces.get(position_num);
 	}
 
+    /**
 	class BoardAnimation implements Runnable //{{{
     {
-		private Thread move_player_thread;
+		private Thread animation_thread;
 		private int final_token_space;
 		private int current_token_space;
-		private GUIPlayer current_animation_player;
 		private boolean final_is_lesser_than_current; // used for situations
 														// when moving past the
 														// zeroth space.
 
-		BoardAnimation(int current_token_space, int final_token_space,
-				GUIPlayer current_animation_player)
+        private GUIPlayer current_animation_player;
+        private GUISpace current_space;
+        private GUISpace fromSpace;
+        private GUISpace toSpace;
+
+        BoardAnimation()
         {
-			this.current_token_space = current_token_space;
-			this.final_token_space = final_token_space;
-			this.current_animation_player = current_animation_player;
-			final_is_lesser_than_current = (final_token_space < current_token_space);
+        }
 
-			current_animation_player.setIsMoving(true);
-
-			// System.out.println("Animate: " + current_token_space + " " +
-			// final_token_space);
-
-			move_player_thread = new Thread(this);
-			move_player_thread.start();
-		}
+        void movePlayer(GUIPlayer p, GUISpace fromSpace, GUISpace toSpace)
+        {
+            this.fromSpace = fromSpace;
+            this.toSpace = toSpace;
+            this.currentSpace = p.;
+            this.current_animation_player.setIsMoving(true);
+            this.animation_thread = new Thread(this);
+            this.animation_thread.start();
+        }
 
 		@Override
 		public void run()// {{{
 		{
-			while (move_player_thread != null) {
+			while (animation_thread != null) {
 				if (current_animation_player == null)
-					move_player_thread = null;
+					animation_thread = null;
 
-				// System.out.println("current: " + current_token_space +
+                int start_position = this.fromSpace.getPosition();
+                int current_position = this.currentSpace.getPosition();
+                int final_position = this.toSpace.getPosition();
+
+				// System.out.println("current: " + start_position +
 				// "  final: " + final_token_space );
-				if (current_token_space < final_token_space
+				if (current_position < final_token_space
 						|| final_is_lesser_than_current) {
 
-					board.spaces.get(current_token_space).removePlayer(
+					board.spaces.get(start_position).removePlayer(
 							current_animation_player.getPlayer());
 
-					current_token_space++;
-					current_token_space = returnValidPosition(current_token_space);
+					start_position++;
+					start_position = returnValidPosition(current_token_space);
 					if (current_token_space == 0)
 						final_is_lesser_than_current = false;
 
@@ -385,17 +355,18 @@ class GUIBoard extends GamePanel implements Runnable {
 							current_animation_player.getPlayer());
 					// current_animation_player = null;
 					current_animation_player.setIsMoving(false);
-					move_player_thread = null;
+					animation_thread = null;
 				}
 
 				try {
 					Thread.sleep(ANIMATION_DELAY_MS);
-				} catch (InterruptedException e) { /* do nothing */
+				} catch (InterruptedException e) { // do nothing
 				}
 			}
-		}// }}}
+		}
 
-	}//}}}
+	}
+    */
 
     @Override
     protected boolean handleMousePressed(MouseEvent e) 
