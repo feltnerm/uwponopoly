@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 import java.util.Iterator;
+import java.util.Scanner;
 
 import player.Player;
 import board.Space;
@@ -209,16 +210,24 @@ public class GUISpace extends GamePanel {
 	
 		// Draw Property title
 		// drawTitle(g);
-		Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
-		FontMetrics fm = g.getFontMetrics(font);
-		java.awt.geom.Rectangle2D rect = fm.getStringBounds(
-				this.space.getTitle(), g);
-		g.setColor(Color.BLACK);
-		g.setFont(font);
-		g.drawString(this.space.getTitle(), (gbuffer.getWidth() / 2)
-				- (int) (rect.getWidth() / 2),
-				(int) (gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO)
-						+ (int) (rect.getHeight()));
+        Scanner sc = new Scanner( space.getWrappedTitle() );
+        sc.useDelimiter("~");
+        g.setColor(Color.BLACK);
+
+        for( int i = 0; i < 3 && sc.hasNext(); i++)
+        {
+           Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
+           FontMetrics fm = g.getFontMetrics(font);
+           g.setFont(font);
+           String title_part = sc.next();
+           //System.out.println(title_part);
+           java.awt.geom.Rectangle2D rect = fm.getStringBounds(
+                 title_part, g);
+           g.drawString(title_part, (gbuffer.getWidth() / 2)
+                 - (int) (rect.getWidth() / 2),
+                 (int) (gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO)
+                 + (int) (rect.getHeight()*i ));
+        }
 
 		// Draw Player tokens
 		// drawTokens();
@@ -343,19 +352,27 @@ public class GUISpace extends GamePanel {
 		g.fillRect(border_thickness / 2, border_thickness / 2, WIDTH
 				* SCALED_UP_SCALE - border_thickness, (int) (HEIGHT
 				* SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO));
-
+                
 		// Draw Property title
-		Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE
-				* SCALED_UP_SCALE);
-		FontMetrics fm = g.getFontMetrics(font);
-		java.awt.geom.Rectangle2D rect = fm
-				.getStringBounds(space.getTitle(), g);
-		g.setColor(Color.BLACK);
-		g.setFont(font);
-		g.drawString(space.getTitle(), (WIDTH * SCALED_UP_SCALE / 2)
-				- (int) (rect.getWidth() / 2),
-				(int) (HEIGHT * SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO)
-						+ (int) (rect.getHeight()));
+        Scanner sc = new Scanner( space.getWrappedTitle() );
+        sc.useDelimiter("~");
+        g.setColor(Color.BLACK);
+
+        for( int i = 0; i < 3 && sc.hasNext(); i++)
+        {
+           Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE
+                 * SCALED_UP_SCALE);
+           FontMetrics fm = g.getFontMetrics(font);
+           String title_part = sc.next();
+           java.awt.geom.Rectangle2D rect = fm
+              .getStringBounds(title_part, g);
+           g.setColor(Color.BLACK);
+           g.setFont(font);
+           g.drawString(title_part, (WIDTH * SCALED_UP_SCALE / 2)
+                 - (int) (rect.getWidth() / 2),
+                 (int) (HEIGHT * SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO)
+                 + (int) (rect.getHeight()*i));
+        }
 
 		return scaledUpBuffer;
 	}// }}}
