@@ -38,11 +38,14 @@ public class GUISpace extends GamePanel {
 	private static Color BACKGROUND_COLOR = Color.WHITE;
 
 	// Border
-	protected static int BORDER_THICKNESS = 2;
+	protected static int BORDER_THICKNESS_DEFAULT = 2;
+	protected static int BORDER_THICKNESS_HIGHLIGHT= 4;
+	protected static int BORDER_THICKNESS_SELECTED = 4;
 	private static Color BORDER_COLOR_DEFAULT = Color.BLACK;
 	private static Color BORDER_COLOR_HIGHLIGHT = Color.YELLOW;
 	private static Color BORDER_COLOR_SELECTED = Color.RED;
 	private Color borderColor;
+    private int border_thickness;
 	//private boolean selected;
 
 	private Space space;
@@ -119,15 +122,15 @@ public class GUISpace extends GamePanel {
 			// drawOutline(g);
 			Graphics2D g2d = (Graphics2D) g;
 			g2d.setColor(this.borderColor);
-			BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
+			BasicStroke bs1 = new BasicStroke(border_thickness);
 			g2d.setStroke(bs1);
 			g2d.drawRect(0, 0, gbuffer.getWidth(), gbuffer.getHeight());
 
 			// draw color strip
 			// drawColor(g);
 			g.setColor(this.spaceColor);
-			g.fillRect(BORDER_THICKNESS / 2, BORDER_THICKNESS / 2,
-					gbuffer.getWidth() - BORDER_THICKNESS,
+			g.fillRect(border_thickness / 2, border_thickness / 2,
+					gbuffer.getWidth() - border_thickness,
 					(int) (gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
 			// Draw Property title
@@ -165,26 +168,45 @@ public class GUISpace extends GamePanel {
 		}
 	}//}}}
 
-	public GameBuffer paintOnBuffer() {
+	public GameBuffer paintOnBuffer() {//{{{
 		if (this.space == null)
 			return null; // how do we deal with a GUISpace with no space? We
 							// can't.
-		GameBuffer gb = new GameBuffer(WIDTH, HEIGHT, Color.WHITE);
+		if( space.isSelected() )
+        {
+           borderColor = BORDER_COLOR_SELECTED;
+           border_thickness = BORDER_THICKNESS_SELECTED;
+        }
+        else if( space.isHighlighted() )
+        {
+           borderColor = BORDER_COLOR_HIGHLIGHT;
+           border_thickness = BORDER_THICKNESS_HIGHLIGHT;
+        }
+        else
+        {
+           borderColor = BORDER_COLOR_DEFAULT;
+           border_thickness = BORDER_THICKNESS_DEFAULT;
+        }
+        GameBuffer gb = new GameBuffer(WIDTH, HEIGHT, Color.WHITE);
 		gb.clear();
 		Graphics g = gb.getGraphics();
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(this.borderColor);
-		BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
-		g2d.setStroke(bs1);
-		g2d.drawRect(0, 0, gbuffer.getWidth(), gbuffer.getHeight());
 
-		// draw color strip
+        // draw color strip
 		// drawColor(g);
 		g.setColor(this.spaceColor);
-		g.fillRect(BORDER_THICKNESS / 2, BORDER_THICKNESS / 2,
-				gbuffer.getWidth() - BORDER_THICKNESS,
+		g.fillRect(border_thickness / 2, border_thickness / 2,
+				gbuffer.getWidth() - border_thickness,
 				(int) (gbuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
+        // draw outline
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(this.borderColor);
+		BasicStroke bs1 = new BasicStroke(border_thickness);
+		g2d.setStroke(bs1);
+		g2d.drawRect(0, 0, gbuffer.getWidth(), gbuffer.getHeight());
+        //g2d.fillRect(0,0,100,100);
+
+	
 		// Draw Property title
 		// drawTitle(g);
 		Font font = new Font("Helvetica", Font.PLAIN, TITLE_FONT_SIZE);
@@ -217,14 +239,21 @@ public class GUISpace extends GamePanel {
 			}
 		}
 		return gb;
-	}
+	}//}}}
 
 	public void drawDeed()// {{{
 	{
 		if (this.deedBuffer == null)
 			return;
 		Graphics g = this.deedBuffer.getGraphics();
-
+        if( space.isSelected() )
+        {
+           border_thickness = BORDER_THICKNESS_SELECTED;
+        }
+        else
+        {
+           border_thickness = BORDER_THICKNESS_DEFAULT;
+        }
 		// dummy testing code
 		// clear the buffer
 		this.deedBuffer.clear();
@@ -232,15 +261,15 @@ public class GUISpace extends GamePanel {
 		// draw outline
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(BORDER_COLOR_DEFAULT);
-		BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
+		BasicStroke bs1 = new BasicStroke(border_thickness);
 		g2d.setStroke(bs1);
 		g2d.drawRect(0, 0, this.deedBuffer.getWidth(),
 				this.deedBuffer.getHeight());
 
 		// draw color strip
 		g.setColor(this.spaceColor);
-		g.fillRect(BORDER_THICKNESS / 2, BORDER_THICKNESS / 2,
-				this.deedBuffer.getWidth() - BORDER_THICKNESS,
+		g.fillRect(border_thickness / 2, border_thickness / 2,
+				this.deedBuffer.getWidth() - border_thickness,
 				(int) (this.deedBuffer.getHeight() * COLOR_STRIP_HEIGHT_RATIO));
 
 		// draw Property title
@@ -287,17 +316,32 @@ public class GUISpace extends GamePanel {
 		scaledUpBuffer.clear();
 		Graphics g = scaledUpBuffer.getGraphics();
 
+        if( space.isSelected() )
+        {
+           borderColor = BORDER_COLOR_SELECTED;
+           border_thickness = BORDER_THICKNESS_SELECTED;
+        }
+        else if( space.isHighlighted() )
+        {
+           borderColor = BORDER_COLOR_HIGHLIGHT;
+           border_thickness = BORDER_THICKNESS_HIGHLIGHT;
+        }
+        else
+        {
+           borderColor = BORDER_COLOR_DEFAULT;
+           border_thickness = BORDER_THICKNESS_DEFAULT;
+        }
 		// draw outline
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(BORDER_COLOR_DEFAULT);
-		BasicStroke bs1 = new BasicStroke(BORDER_THICKNESS);
+		BasicStroke bs1 = new BasicStroke(border_thickness);
 		g2d.setStroke(bs1);
 		g2d.drawRect(0, 0, WIDTH * SCALED_UP_SCALE, HEIGHT * SCALED_UP_SCALE);
 
 		// draw color strip
 		g.setColor(getPropertyColor());
-		g.fillRect(BORDER_THICKNESS / 2, BORDER_THICKNESS / 2, WIDTH
-				* SCALED_UP_SCALE - BORDER_THICKNESS, (int) (HEIGHT
+		g.fillRect(border_thickness / 2, border_thickness / 2, WIDTH
+				* SCALED_UP_SCALE - border_thickness, (int) (HEIGHT
 				* SCALED_UP_SCALE * COLOR_STRIP_HEIGHT_RATIO));
 
 		// Draw Property title

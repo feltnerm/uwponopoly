@@ -253,4 +253,12 @@ public class Space {
     {
 		this.selected = selected;
 	}
+    
+    // whether or not the Space is highlighted.
+    // This sould really be in GUISpace, but that would be difficult since
+    // we don't keep track of GUISpaces
+    private boolean highlighted;
+    public boolean isHighlighted() { return highlighted; }
+    public void setHighlighted( boolean high ) { highlighted = high; }
+
 }

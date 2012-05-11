@@ -188,7 +188,7 @@ class GUIBoard extends GamePanel implements Runnable {
      * @return the index of the space the point is over, -1 if over none.
      * @author Aaron Decker
      */
-    private int getIndexFromCoordinates( int x, int y )
+    private int getIndexFromCoordinates( int x, int y )//{{{
     {
        if( 0 <= y && y <= GUISpace.HEIGHT )
        {
@@ -208,7 +208,7 @@ class GUIBoard extends GamePanel implements Runnable {
        }
        
        return -1;
-    }
+    }//}}}
 
     /**
      * Maps an point onto the Spaces of the board.
@@ -224,7 +224,7 @@ class GUIBoard extends GamePanel implements Runnable {
      * Sets a selected space
      * @param space , the index of the space
      */
-	public void setSelectedSpace(int space) {
+	public void setSelectedSpace(int space) {//{{{
 		if (space >= 0 && space < board.getNumSpaces()) // check for validity
 		{
 			board.setSelectedSpace(space);
@@ -238,7 +238,7 @@ class GUIBoard extends GamePanel implements Runnable {
 				deedPanel.repaint();
 			}
 		}
-	}
+	}//}}}
 
     private void setHighlightedSpace( int hspace )
     {
@@ -257,7 +257,7 @@ class GUIBoard extends GamePanel implements Runnable {
 	 * WARNING! SIDE EFFECT: the player's position is set to the position of the
 	 * space. This means that the position may get rolled over.
 	 */
-	public void addPlayerToSpace(int space, GUIPlayer player) {
+	public void addPlayerToSpace(int space, GUIPlayer player) {//{{{
 		if (space < 0)
 			return;
 		space = returnValidPosition(space);
@@ -272,7 +272,7 @@ class GUIBoard extends GamePanel implements Runnable {
 		 */
 		BoardAnimation b = new BoardAnimation(current_token_space,
 				final_token_space, player);
-	}
+	}//}}}
 
 	public void removePlayerFromSpace(int space) {
 		if (space < 0 || space >= board.getNumSpaces())
@@ -305,7 +305,8 @@ class GUIBoard extends GamePanel implements Runnable {
 		return board.spaces.get(position_num);
 	}
 
-	class BoardAnimation implements Runnable {
+	class BoardAnimation implements Runnable //{{{
+    {
 		private Thread move_player_thread;
 		private int final_token_space;
 		private int current_token_space;
@@ -315,7 +316,8 @@ class GUIBoard extends GamePanel implements Runnable {
 														// zeroth space.
 
 		BoardAnimation(int current_token_space, int final_token_space,
-				GUIPlayer current_animation_player) {
+				GUIPlayer current_animation_player)
+        {
 			this.current_token_space = current_token_space;
 			this.final_token_space = final_token_space;
 			this.current_animation_player = current_animation_player;
@@ -370,7 +372,7 @@ class GUIBoard extends GamePanel implements Runnable {
 			}
 		}// }}}
 
-	}
+	}//}}}
 
     @Override
     protected boolean handleMousePressed(MouseEvent e) 
@@ -396,6 +398,12 @@ class GUIBoard extends GamePanel implements Runnable {
     @Override
     protected boolean handleMouseMoved(MouseEvent e)
     {
+       if( board.isValidPosition(board.position2Index( getIndexFromCoordinates(e.getPoint()))) )
+       {
+          board.spaces.get( highlighted_space ).setHighlighted( false );
+          highlighted_space = board.position2Index( getIndexFromCoordinates(e.getPoint()) );
+          board.spaces.get( highlighted_space ).setHighlighted( true );
+       }
         //System.out.println("(" + e.getX() + "," + e.getY() + ")");
        // System.out.println( getIndexFromCoordinates(e.getPoint()) );
 		return false;
