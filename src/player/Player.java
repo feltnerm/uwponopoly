@@ -135,4 +135,9 @@ public class Player {
         }
         return false;
    }
+
+   public int getPlayerNumber()
+   {
+        return this.playerNumber;
+   }
 }
