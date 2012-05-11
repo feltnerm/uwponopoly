@@ -224,22 +224,14 @@ class GUIBoard extends GamePanel implements Runnable {
 	public void setSelectedSpace(int space) {
 		if (space >= 0 && space < board.getNumSpaces()) // check for validity
 		{
-            GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
-			//GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
-			//gs.setSelected(false); // turn last selected space off
 			board.setSelectedSpace(space);
+            GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
             gs.repaint();
-			//gs.setSelected(true); // turn new selection on
-			if (deedPanel != null) {
-				// if( board.spaces.get( board.getSelectedSpace() ) instanceof
-				// GUISpace )
-				// {
-				// deedPanel.setGameBuffer(
-				// board.spaces.get(board.getSelectedSpace()).getDeedBuffer() );
+			if (deedPanel != null) 
+            {
                 gs.drawDeed();
 				deedPanel.setGameBuffer(gs.getDeedBuffer());
 				deedPanel.repaint();
-				// }
 			}
 		}
 	}
