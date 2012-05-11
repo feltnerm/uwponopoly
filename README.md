@@ -15,5 +15,8 @@ In the shell, simply run:
     To compile:
         $ make
 
-    To run:
-        $ ./run.sh
+    To run as GUI:
+        $ ./run.sh g
+        
+    To run as command-line:
+        $ ./run.sh d
