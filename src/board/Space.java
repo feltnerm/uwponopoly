@@ -61,6 +61,11 @@ public class Space {
 	 * } } }
 	 */
 
+    /**
+     * Checks spaces for special actions
+     * @return          True if space is special.
+     *
+     */
     public boolean isSpecial()
     {
         if (this.getPropertyColorString().equals("special"))
@@ -80,7 +85,8 @@ public class Space {
 		}
 	 }
 
-    /** Downgrade this space.
+    /** 
+     * Downgrade this space.
      */
    public void downgrade() {
       if (this.level > 0) {
@@ -88,7 +94,10 @@ public class Space {
       }
    }
 
-    /** Add a player to the space.
+    /** 
+     * Add a player to the space.
+     *
+     * @param    player      The player to add.
      */
 	public void addPlayer(Player player) {
 		Iterator<Player> itr = players.iterator();
@@ -112,12 +121,17 @@ public class Space {
 		}
 	}
 
+    /**
+     * Executed when the player lands on a space.
+     * @TODO: Probably not needed.
+     * @param   player          The player that has landed on the space.
 	public void landsOn(Player player) {
 		// when the player lands on the space
 	}
 
     /**
      * Execute a special event when the player lands on a special space.
+     * @param   player          The player that is acted upon ,or that acts.
      */
 	public void executeSpecialEvent(Player player) {
 		/**
@@ -147,6 +161,8 @@ public class Space {
 
     /**
      * Returns this property's rent.
+     *
+     * @return  the rent fo the property. -1 if no rent.
      */
 	public int getRent() 
     {
@@ -161,7 +177,8 @@ public class Space {
 	 * Get the amount of rent for a particular improvement level
 	 * 
 	 * @param    improvement_level   the level of improvement the property is 
-    * at, "0" is the base improvement level, "1" is one house, etc.
+     * at, "0" is the base improvement level, "1" is one house, etc.
+     *
 	 * @return the amount of rent, -1 if the improvement_level passed is invalid
 	 */
 	public int getRentAtLevel(int improvement_level) {
@@ -180,9 +197,10 @@ public class Space {
 		return this.position;
 	}
 
-    /**
+    /*
      *
-     * @return  The number of <b>Houses</b> on the space. Returns 0 if there are hotels.
+     * @return  The number of <b>Houses</b> on the space. 
+     *          Returns 0 if there are hotels.
      */
 	public int getNumHouses() {
 		if (this.level == 6) {

@@ -22,7 +22,8 @@ public class Board {
                                                             // space
 
     /**
-     * Generate a Board (loaded from a JSON file)
+     * Generate a Board (loaded from a JSON file).
+     * Sets the this Board's spaces up.
      *
      * @param   debug Output debug statements if true.
      **/
@@ -36,8 +37,10 @@ public class Board {
 
     /**
      * Returns the space at index.
+     * If index is not valid, returns null.
      *
-     * @param   index   The index of the {@link Space}
+     * @param   index   An index on the list of spaces.
+     * @return          The (@link board.Space} returned at this index.
      **/
     public Space getSpace(int index) {
         if (!isValidPosition(index))
@@ -49,7 +52,7 @@ public class Board {
      * Returns the index of space
      *
      * @param   space   The space to find the index of.
-     * @return  index   The integer index of the space.
+     * @return          The integer index of the space.
      */
     public int getIndex(Space space)
     {
@@ -58,6 +61,8 @@ public class Board {
 
     /**
      * Returns the total number of spaces on the board.
+     *
+     * @return          The number of spaces.
      **/
     public int getNumSpaces() {
         return spaces.size();
@@ -65,6 +70,8 @@ public class Board {
 
     /**
      * Return the index of the currently selected space.
+     *
+     * @return          The currently selected space.
      **/
     public int getSelectedSpace() {
             return this.selected_space;
@@ -72,6 +79,10 @@ public class Board {
 
     /**
      * Basic sanity-checking on position numbers
+     *
+     * @param   position  A position on the board to check.
+     * @return            True if is within the bounds of the board. False
+     *                    otherwise.
      */
     public boolean isValidPosition(int position) {
         return position >= 0 && position < getNumSpaces();
@@ -81,6 +92,9 @@ public class Board {
      * Takes a position number and maps it onto the board.
      *
      * @param   position_num    A position to look up
+     * @return                  0 if the position is within the board's spaces.
+     *                          >0 if the position is greater than the board's
+     *                          spaces.
      */
     public int getValidPosition(int position_num) {
         return position_num % getNumSpaces(); // rollover
@@ -88,7 +102,8 @@ public class Board {
 
     /**
      * Converts a position to the index in the array of Spaces
-     * @return -1 if invalid.
+     * @param   pos             The position
+     * @return                  The position of the index. -1 if invalid.
      */
     public int position2Index( int pos )
     {

@@ -38,46 +38,104 @@ public class Player {
         this.jailed = false;
 	}
 
-   public boolean active(){
-    return this.active;
-   }
+    /**
+     * Check if this player is active (e.g., not bankrupt or jailed.)
+     * @return True if is active.
+     */
+    public boolean active(){
+        return this.active;
+    }
 
-   public void activate(){
+    /**
+     * Activate the player so they can perform actions.
+     */
+    public void activate(){
         this.active = true;
-   }
+    }
 
-   public void deactivate(){
+    /**
+     * Deactivate the player's ability to perform actions.
+     */
+    public void deactivate(){
         this.active = false;
-   }
+    }
 
-   public boolean jailed(){
+    /**
+     * Is this player jailed?
+     */
+    public boolean jailed(){
         return this.jailed;
-   }
+    }
 
-   //public String getName() { return this.name; }
+    /**
+     * Set this player as jailed or not.
+     * @param j     True sets to jailed.
+     */
+    public void setJailed(boolean j)
+    {
+        this.jailed = j;
+    }
+
+
+    /**
+     * @return  True if player has <=0 wealth.
+     */
+    public boolean bankrupt()
+    {    
+        if (this.money <= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    //public String getName() { return this.name; }
    
+    /**
+     * Get the player's wealth
+     * @return  This player's money.
+     */
 	public int getMoney() {
 		return this.money;
 	}
 
+    /**
+     * Credit player with money.
+     * @param   amount  the amount to credit them with.
+     */
 	public void addMoney(int amount) {
 		this.money += amount;
 	}
 
+    /**
+     * Debit money from player's account.
+     * @param   amount  The amount to subtract.
+     */
 	public void subtractMoney(int amount) {
 		if (this.money - amount > 0) {
 			this.money -= amount;
 		}
 	}
 
+    /**
+     * Get this player's position on the board.
+     * @return  this player's positon on the board.
+     */
 	public int getPosition() {
 		return this.position;
 	}
 
+    /**
+     * Set this player's board positon.
+     * @param   value   The position to set.
+     */
 	public void setPosition(int value) {
 		position = value;
 	}
 
+    /**
+     * Purchase a {@link board.Space} if the player can afford it.
+     * @param   s   A space to purchase.
+     */
 	public void buyProperty(Space s) {
 		if (s.price <= this.money) {
 			s.setOwner(this);
@@ -86,17 +144,46 @@ public class Player {
 		}
 	}
 
+    /**
+     * Remove a property from this player's properties.
+     * @param   s   The space to remove.
+     */
 	public void removeProperty(Space s) {
 		this.properties.remove(s);
 	}
 
+    /**
+     * Get this player's token as a char.
+     * @return  the player's token_char.
+     */
+    /**
+     * @DEPRECATED: Token is now an int.
 	public char getTokenChar() {
 		return token_char;
 	}
+    */
 
+    /**
+     * Get the player's number (order in the game: Player1, Player2, etc.)
+     * @return  This player's number.
+     */
     public int getPlayerNum(){
         return this.playerNumber;
     }
+
+    /**
+    * Get the player's number (order in the game: Player1, Player2, etc.)
+    * @return  This player's number.
+    */
+    public int getPlayerNumber()
+    {
+        return this.playerNumber;
+    }
+
+    public int getLastTurn()
+    {
+      return lastTurn;
+    } 
 
 	@Override
 	public boolean equals(Object o) {
@@ -123,21 +210,5 @@ public class Player {
 				+ this.getPosition() + "|Token:" + this.getTokenChar();
 	}
 
-   public int getLastTurn()
-   {
-      return lastTurn;
-   }
 
-   public boolean bankrupt()
-   {
-        if (this.money <= 0) {
-            return true;
-        }
-        return false;
-   }
-
-   public int getPlayerNumber()
-   {
-        return this.playerNumber;
-   }
 }

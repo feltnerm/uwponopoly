@@ -198,6 +198,9 @@ public class Game {
             }
     }
 
+    /**
+     * The main game loop for a non-GUI game.
+     */
     public void loop()
     {
         Scanner in = new Scanner(System.in);
@@ -220,6 +223,14 @@ public class Game {
     }
 
     /**
+    * Sets the game running state to false.
+    **/
+    public void endGame()
+    {
+        this.running = false;
+    }
+
+    /**
      * Called when the game is over.
      **/
     public void shutdownGame()
@@ -231,6 +242,10 @@ public class Game {
     /**
      * Updates the state of the game, looks for possible endgame
      * scenarios.
+     * @param   cmd     One of a list of commands that could
+     *                  potentially be performed each turn.
+     *
+     * @TODO: list of commands.
      **/
     public void updateGame(String cmd) 
     {
@@ -249,7 +264,7 @@ public class Game {
             {
                 this.current_player.deactivate();
             }
-
+            // Jailed?
             if (this.current_player.jailed())
             {
                 // skip player; do something
@@ -257,11 +272,13 @@ public class Game {
             } 
             else {
 
+                //handle special spaces
                 if (this.current_space.isSpecial())
                 {
-                    //handle special spaces
+                    
                 }                
 
+                // pay the owner of the space, if you need to...
                 else if (this.current_space.getOwner() != this.current_player)
                 {
                     if (this.current_space.getOwner() != null) {
@@ -290,12 +307,17 @@ public class Game {
             }
             else {
 
+                // Only option left is to roll the dice
+                // and move the player.
+
                 this.dice.roll();
                 System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
                 this.move(this.current_player, this.dice.getTotal());
 
                 if (!dice.isDoubles())
                 {
+                    // if the dice is not a doubles, we move on to the next
+                    // player's turn.
                     this.nextPlayer();
                 } else {
                     System.out.println("DOUBLES");
@@ -303,6 +325,7 @@ public class Game {
             }
 
         } else {
+            // Next player's turn.
             this.nextPlayer();
         }
     
@@ -326,6 +349,10 @@ public class Game {
         p.setPosition(new_position);
     }
 
+    /**
+     * Change to the next player's turn.
+     * Kind of a bastardized, one-directional circular linked-list
+     */
     private void nextPlayer(){
         if (!this.players_iter.hasNext())
         {
@@ -339,12 +366,4 @@ public class Game {
         this.current_space = this.board.getSpace(index);
     }
 
-    
-    /**
-     * Sets the game running state to false.
-     **/
-    public void endGame()
-    {
-        this.running = false;
-    }
 }

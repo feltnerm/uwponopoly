@@ -13,31 +13,45 @@ public class Dice {
 	public int total;
 	public boolean doubles;
 
+	/**
+	 * Dice constructor. Rolls once to ensure first two die are not both 0.
+	 */
 	public Dice() {
 		random = new Random();
 		roll(); // otherwise both die would be zeroes.
 	}
 
+	/**
+	 * Roll this dice.
+	 *
+	 * 	A note on the method used:
+	 *	According to
+	 *	http://docs.oracle.com/javase/6/docs/api/java/util/Random.html,
+ 	 *	nextInt( n ) "returns a pseudorandom, uniformly distributed int value
+	 *	between 0 (inclusive)
+	 *	and the specified value (exclusive), drawn from this random number
+	 *	generator's sequence."
+	 *	Thus we add one to nextInt( 6 ) ( for a six-sided die ) to get a
+	 *	random number 1-6.
+	 */
 	public void roll() {
-		// A note on the method used:
-		// According to
-		// http://docs.oracle.com/javase/6/docs/api/java/util/Random.html,
-		// nextInt( n ) "returns a pseudorandom, uniformly distributed int value
-		// between 0 (inclusive)
-		// and the specified value (exclusive), drawn from this random number
-		// generator's sequence."
-		// Thus we add one to nextInt( 6 ) ( for a six-sided die ) to get a
-		// random number 1-6.
+
 		dice1 = random.nextInt(HIGH_NUMBER) + 1;
 		dice2 = random.nextInt(HIGH_NUMBER) + 1;
 		this.total = this.getTotal();
 		this.doubles = this.isDoubles();
 	}
 
+	/**
+	 * @return The sum of the two dice.
+	 */
 	public int getTotal() {
 		return dice1 + dice2;
 	}
 
+	/**
+	 * @return the values of each dice.
+	 */
 	public int[] toArray() {
 		int[] dice = {dice1, dice2};
 		return dice;
@@ -51,21 +65,31 @@ public class Dice {
 		this.dice2 = dice.dice2;
 	}
 
-	// formats the dice as a Cartesian coordinate (x,y)
+	/**
+	 * formats the dice as a Cartesian coordinate (x,y)
+	 */
 	@Override
 	public String toString() {
 		return "(" + dice1 + "," + dice2 + ")";
 	}
 
-	// returns true if the roll is doubles
+	/**
+	 * @return true if the roll is doubles
+	 */
 	public boolean isDoubles() {
 		return dice1 == dice2;
 	}
 
+	/**
+	 * @return 	the value of the first die.
+	 */
 	public int getFirstDie() {
 		return dice1;
 	}
 
+	/**
+	 * @return 	the value of the second die.
+	 */
 	public int getSecondDie() {
 		return dice2;
 	}
