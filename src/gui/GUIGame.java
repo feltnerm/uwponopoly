@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import board.Board;
 import config.Config;
@@ -143,13 +144,25 @@ public class GUIGame implements Runnable, ActionListener {
        {
           player_names.add( new JLabel( "Player " + (i+1) ) );
           playerStatsPanel.add( player_names.get(i) );
-          player_cash.add( new JLabel( "$" + game.getPlayers().get(i).getMoney() ) );
-          playerStatsPanel.add( player_cash.get(i) );
+          JLabel temp = new JLabel( "$" + game.getPlayers().get(i).getMoney() );
+          player_cash.add( temp );
+          playerStatsPanel.add( temp );
        }
 	}
 
+    // updates the player stat JLabels
+    private void recalculatePlayerStats()
+    {
+       for( int i = 0; i < player_cash.size(); i++ )
+       {
+          player_cash.get(i).setText("$" + game.getPlayers().get(i).getMoney() );
+          player_cash.get(i).repaint();
+       }
+    }
+
 	public void startGame() {
 		// start the game!
+        running = true;
 		this.game.startGame();
 		gamethread = new Thread(this);
 		gamethread.start();
@@ -164,7 +177,9 @@ public class GUIGame implements Runnable, ActionListener {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 
-			guiWindow.repaint();
+			recalculatePlayerStats();
+            //playerStatsPanel.repaint();
+            guiWindow.repaint();
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
