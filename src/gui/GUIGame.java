@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -153,10 +154,25 @@ public class GUIGame implements Runnable, ActionListener {
     // updates the player stat JLabels
     private void recalculatePlayerStats()
     {
+       for( int i = 0; i < player_names.size(); i++ )
+       {
+          if( game.getCurrentPlayer().getPlayerNumber() == i )
+             player_names.get(i).setText("--> Player " + (i+1) );
+          else
+             player_names.get(i).setText("Player " + (i+1) );
+
+       }
+
        for( int i = 0; i < player_cash.size(); i++ )
        {
-          player_cash.get(i).setText("$" + game.getPlayers().get(i).getMoney() );
-          player_cash.get(i).repaint();
+          JLabel label = player_cash.get(i);
+          //Font f = label.getFont();
+          //if( game.getCurrentPlayer().getPlayerNumber() == i )
+           //  label.setFont(f.deriveFont(f.getStyle() ^ Font.BOLD)); //bold
+          //else
+           //  label.setFont(f.deriveFont(f.getStyle() | Font.BOLD)); //unbold
+          label.setText("$" + game.getPlayers().get(i).getMoney() );
+          label.repaint();
        }
     }
 
