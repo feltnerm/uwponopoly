@@ -11,3 +11,7 @@ doc/javadoc/*
 .project
 .classpath
 *.externalToolBuilders/*
+
+# Some of my personal time-tracking and scheduling programs that don't need included
+*.mm
+*.gnumeric
