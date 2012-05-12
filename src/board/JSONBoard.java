@@ -46,19 +46,22 @@ class JSONBoard {
 			MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0,
 					fc.size());
 			return Charset.defaultCharset().decode(bb).toString();
-		} finally {
+		} catch (IOException e) {
+            throw e;
+        } 
+        finally {
 			stream.close();
 		}
 	}
 
-    private String readFile(String path)
+    public String readFile(String path) throws IOException
     {
         File f = new File(path);
         if (f.canRead())
         {
             this.PATH = path;
         }
-        this.readFile();
+        return this.readFile();
     }
 
    /**
