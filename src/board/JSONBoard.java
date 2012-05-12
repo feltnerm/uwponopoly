@@ -51,6 +51,16 @@ class JSONBoard {
 		}
 	}
 
+    private String readFile(String path)
+    {
+        File f = new File(path);
+        if (f.canRead())
+        {
+            this.PATH = path;
+        }
+        this.readFile();
+    }
+
    /**
     * deserialze JSON into classes.
     */
