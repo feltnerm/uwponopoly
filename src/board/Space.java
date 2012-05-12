@@ -95,31 +95,33 @@ public class Space {
    }
 
     /** 
+     * Removed: Space no longer tracks players.
      * Add a player to the space.
      *
      * @param    player      The player to add.
      */
-	public void addPlayer(Player player) {
+	/*public void addPlayer(Player player) {
 		Iterator<Player> itr = players.iterator();
 		while (itr.hasNext()) {
 			if (itr.next().getTokenChar() == player.getTokenChar())
 				return; // player is already on space, get out of here
 		}
 		players.add(player);
-	}
+	}*/
 
     /**
+     * Removed: Space no longer tracks players.
      * Remove a player from the space.
      *
      * @param   player  A {@link player.Player} to remove.
      */
-	public void removePlayer(Player player) {
+	/*public void removePlayer(Player player) {
 		Iterator<Player> itr = players.iterator();
 		while (itr.hasNext()) {
 			if (itr.next().getTokenChar() == player.getTokenChar())
 				itr.remove();
 		}
-	}
+	}*/
 
     /**
      * Executed when the player lands on a space.

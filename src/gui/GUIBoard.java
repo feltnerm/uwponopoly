@@ -4,6 +4,7 @@ package gui;
 
 // Import Java Packages
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -174,12 +175,19 @@ class GUIBoard extends GamePanel implements Runnable {
 
         // Draw Players
         ListIterator<GUIPlayer> guiPlayers_iter = this.guiPlayers.listIterator(0);
-        while (guiPlayers_iter.hasNext()) {
+        ArrayList<Point> used_positions = new ArrayList<Point>();
+        while (guiPlayers_iter.hasNext()) 
+        {
             GUIPlayer p = guiPlayers_iter.next();
             Point coordinates = getCoordinates(p.getPosition());
-
-            g.drawImage(p.getToken().getBuffer(), (int)coordinates.getX(), 
+            if( !used_positions.contains(coordinates) )
+            {
+               used_positions.add( coordinates );
+               g.drawImage(p.getToken().getBuffer(), (int)coordinates.getX(), 
                 (int)coordinates.getY(), this);
+
+            }
+
         }
 	}// }}}
 
