@@ -32,7 +32,7 @@ public class Config extends Properties {
                                     new File("../etc/uwponopoly.conf"),
                                     new File("~/uwponopoly.conf")
                                  };
-	private static FileOutputStream config_file_writer;
+	private static String CONFIG_PATH = "../etc/uwponopoly.conf";
 	private boolean DEBUG;
 
 	/**

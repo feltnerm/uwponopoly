@@ -150,6 +150,7 @@ public class Game {
      **/
     public void initGame() {
             initPlayers();
+            initRules();
     }
 
     /**
@@ -321,9 +322,17 @@ public class Game {
                 // Only option left is to roll the dice
                 // and move the player.
 
+                int last_position = current_player.getPosition();
+
                 this.dice.roll();
                 System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
                 this.move(this.current_player, this.dice.getTotal());
+
+                // Passed GO?
+                if( current_player.getPosition() < last_position)
+                {
+                   current_player.addMoney( GO_AMOUNT );
+                }
 
                 if (!dice.isDoubles())
                 {

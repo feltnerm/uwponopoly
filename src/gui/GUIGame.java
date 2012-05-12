@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import board.Board;
 import config.Config;
@@ -143,13 +145,40 @@ public class GUIGame implements Runnable, ActionListener {
        {
           player_names.add( new JLabel( "Player " + (i+1) ) );
           playerStatsPanel.add( player_names.get(i) );
-          player_cash.add( new JLabel( "$" + game.getPlayers().get(i).getMoney() ) );
-          playerStatsPanel.add( player_cash.get(i) );
+          JLabel temp = new JLabel( "$" + game.getPlayers().get(i).getMoney() );
+          player_cash.add( temp );
+          playerStatsPanel.add( temp );
        }
 	}
 
+    // updates the player stat JLabels
+    private void recalculatePlayerStats()
+    {
+       for( int i = 0; i < player_names.size(); i++ )
+       {
+          if( game.getCurrentPlayer().getPlayerNumber() == i )
+             player_names.get(i).setText("--> Player " + (i+1) );
+          else
+             player_names.get(i).setText("Player " + (i+1) );
+
+       }
+
+       for( int i = 0; i < player_cash.size(); i++ )
+       {
+          JLabel label = player_cash.get(i);
+          //Font f = label.getFont();
+          //if( game.getCurrentPlayer().getPlayerNumber() == i )
+           //  label.setFont(f.deriveFont(f.getStyle() ^ Font.BOLD)); //bold
+          //else
+           //  label.setFont(f.deriveFont(f.getStyle() | Font.BOLD)); //unbold
+          label.setText("$" + game.getPlayers().get(i).getMoney() );
+          label.repaint();
+       }
+    }
+
 	public void startGame() {
 		// start the game!
+        running = true;
 		this.game.startGame();
 		gamethread = new Thread(this);
 		gamethread.start();
@@ -164,7 +193,9 @@ public class GUIGame implements Runnable, ActionListener {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 
-			guiWindow.repaint();
+			recalculatePlayerStats();
+            //playerStatsPanel.repaint();
+            guiWindow.repaint();
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {

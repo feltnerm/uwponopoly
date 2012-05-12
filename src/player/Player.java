@@ -164,7 +164,7 @@ public class Player {
     */
 
     /**
-     * Get the player's number (order in the game: Player1, Player2, etc.)
+     * Get the player's number (order in the game: Player1, Player2, etc.) (0-indexed)
      * @return  This player's number.
      */
     public int getPlayerNum(){
@@ -172,7 +172,7 @@ public class Player {
     }
 
     /**
-    * Get the player's number (order in the game: Player1, Player2, etc.)
+    * Get the player's number (order in the game: Player1, Player2, etc.) (0-indexed)
     * @return  This player's number.
     */
     public int getPlayerNumber()
