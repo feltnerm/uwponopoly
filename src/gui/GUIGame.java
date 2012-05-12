@@ -89,7 +89,7 @@ public class GUIGame implements Runnable, ActionListener {
 	}
 
 	private void createWindow() {
-		this.guiWindow = new GUIWindow();
+		this.guiWindow = new GUIWindow(this.game);
 		guiWindow.getContentPane().add(guiBoard);
 		guiWindow.getContentPane().add(dashboardPanel);
 		//guiWindow.getContentPane().add(deedPanel);

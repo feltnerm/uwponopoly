@@ -142,6 +142,11 @@ public class Game {
         return this.dice;
     }
 
+    public Config getConfig()
+    {
+        return this.config;
+    }
+
 
     /**
      * Run <b>before</b> the game is started. Initalizes the starting

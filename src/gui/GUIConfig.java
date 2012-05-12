@@ -37,7 +37,8 @@ public class GUIConfig extends JFrame {
 			@Override
 			public void run() {
 				try {
-					GUIConfig frame = new GUIConfig();
+					Config c = new Config(false);
+					GUIConfig frame = new GUIConfig(c);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +50,8 @@ public class GUIConfig extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUIConfig() {
+	public GUIConfig(Config c) {
+		this.config = c;
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,6 +69,9 @@ public class GUIConfig extends JFrame {
 		menuItem = new JMenuItem("Load Defaults");
 		menuItem.setActionCommand("load_defaults");
 		fileMenu.add(menuItem);
+		menuItem = new JMenuItem("Load");
+		menuItem.setActionCommand("load");
+		fileMenu.add(menuItem);
 		menuItem = new JMenuItem("Save");
 		menuItem.setActionCommand("save");
 		fileMenu.add(menuItem);
@@ -80,6 +85,16 @@ public class GUIConfig extends JFrame {
 		this.menuBar.add(fileMenu);
 
 		return this.menuBar;
+	}
+
+	private Object get(String value)
+	{
+		return this.config.get(value);
+	}
+
+	private void set(String value, String key)
+	{
+		this.config.set(value, key);
 	}
 
 	private void setContent() {
@@ -110,6 +125,23 @@ public class GUIConfig extends JFrame {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if ("load_defaults".equals(e.getActionCommand()))
+		{
+			this.config.loadDefaults();
+		}
+		if ("save".equals(e.getActionCommand()))
+		{
+			this.config.save();
+		}
+		if ("save_as".equals(e.getActionCommand()))
+		{
+			//this.config.save(path)
+		}
+		if ("load".equals(e.getActionCommand()))
+		{
+			//this.config.load(path);
+		}
+
 
 	}
 

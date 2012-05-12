@@ -15,6 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import game.Game;
+
 public class GUIWindow extends GameFrame implements ActionListener {
 	private static String TITLE = "UWPonopoly";
 	private JMenuBar menuBar;
@@ -25,11 +27,14 @@ public class GUIWindow extends GameFrame implements ActionListener {
 	final int WINDOW_WIDTH = 550;
 	final int WINDOW_HEIGHT = 350;
 
+	private Game game;
+
 	// final FlowLayout layout = new FlowLayout();
 
-	public GUIWindow() {
+	public GUIWindow(Game g) {
 		super(TITLE);
-		this.guiConfig = new GUIConfig();
+		this.game = g;
+		this.guiConfig = new GUIConfig(this.game.getConfig());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(this.WINDOW_HEIGHT, this.WINDOW_WIDTH);
 		this.setLayout(new FlowLayout());
