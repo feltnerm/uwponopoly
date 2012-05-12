@@ -10,10 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.EventQueue;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 import board.Board;
 import config.Config;
@@ -52,6 +54,10 @@ public class GUIGame implements Runnable, ActionListener {
 	private JButton endTurnButton;
 	private JButton improveButton;
 
+    // Player Stats Labels
+    private ArrayList<JLabel> player_names;
+    private ArrayList<JLabel> player_cash;
+
 	public GUIGame(boolean debug) {
 		this(debug, new Config(debug));
 	}
@@ -84,7 +90,7 @@ public class GUIGame implements Runnable, ActionListener {
 		this.guiWindow = new GUIWindow();
 		guiWindow.getContentPane().add(guiBoard);
 		guiWindow.getContentPane().add(dashboardPanel);
-		guiWindow.getContentPane().add(deedPanel);
+		//guiWindow.getContentPane().add(deedPanel);
 		guiWindow.pack();
 	}
 
@@ -109,6 +115,8 @@ public class GUIGame implements Runnable, ActionListener {
 		dashboardPanel = new JPanel();
 		dashboardPanel
 				.setLayout(new BoxLayout(dashboardPanel, BoxLayout.Y_AXIS));
+		dashboardPanel.add(playerStatsPanel);
+		dashboardPanel.add(deedPanel);
 		dashboardPanel.add(dicePanel);
 		dashboardPanel.add(propertyContextPanel);
 	}
@@ -125,8 +133,19 @@ public class GUIGame implements Runnable, ActionListener {
 		this.guiBoard.setDeedPanel(deedPanel);
 	}
 
-	private void createPlayerStats() {
-
+	private void createPlayerStats() 
+    {
+       playerStatsPanel = new JPanel();
+       playerStatsPanel.setLayout(new BoxLayout(playerStatsPanel, BoxLayout.Y_AXIS));
+       player_names = new ArrayList<JLabel>();
+       player_cash = new ArrayList<JLabel>();
+       for( int i = 0; i < game.getNumPlayers(); i++ )
+       {
+          player_names.add( new JLabel( "Player " + (i+1) ) );
+          playerStatsPanel.add( player_names.get(i) );
+          player_cash.add( new JLabel( "$" + game.getPlayers().get(i).getMoney() ) );
+          playerStatsPanel.add( player_cash.get(i) );
+       }
 	}
 
 	public void startGame() {

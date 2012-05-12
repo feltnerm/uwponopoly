@@ -80,6 +80,7 @@ public class Game {
 
     /**
      * Gets a player by the order the player was in
+     * ( 1-indexed )
      * @param   i   the order of the player you want
      * @return  A {@link player.Player}
      */
@@ -88,6 +89,16 @@ public class Game {
         if (i>=1 && i<this.NUM_PLAYERS+1)
             return this.players.get(i-1);
         return null;
+    }
+
+    /**
+     * Returns the number of players
+     * @return the number of players
+     * @author Aaron Decker
+     */
+    public int getNumPlayers()
+    {
+       return players.size();
     }
 
     /**
