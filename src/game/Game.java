@@ -40,7 +40,7 @@ public class Game {
     private Space current_space;
 
     // Default Game Rules
-    private static int NUM_PLAYERS = 2;
+    private static int NUM_PLAYERS = 4;
     private static int STARTING_CASH = 200;
     private static int JAIL_FINE = 200;
     private static int JAIL_FEE = 50;

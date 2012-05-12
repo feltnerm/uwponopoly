@@ -180,13 +180,14 @@ class GUIBoard extends GamePanel implements Runnable {
         {
             GUIPlayer p = guiPlayers_iter.next();
             Point coordinates = getCoordinates(p.getPosition());
-            if( !used_positions.contains(coordinates) )
+            coordinates.translate( (int)(GUISpace.WIDTH*(0.1)), GUISpace.HEIGHT/2 ); // put it in a nicer position
+            while( used_positions.contains(coordinates) )
             {
-               used_positions.add( coordinates );
-               g.drawImage(p.getToken().getBuffer(), (int)coordinates.getX(), 
-                (int)coordinates.getY(), this);
-
+               coordinates.translate( GUIPlayer.TOKEN_SIZE,0 ); // bump it over
             }
+            used_positions.add( coordinates );
+            g.drawImage(p.getToken().getBuffer(), (int)coordinates.getX(), 
+                  (int)coordinates.getY(), this);
 
         }
 	}// }}}
