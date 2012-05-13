@@ -123,34 +123,36 @@ public class GUIGame implements Runnable, ActionListener {
 	private void createDashboard() 
    {
       dashboardPanel = new JPanel();
-      // dashboardPanel.setLayout(new BoxLayout(dashboardPanel, BoxLayout.Y_AXIS));
-      dashboardPanel.setLayout(new GridBagLayout());
+      dashboardPanel.setLayout(new BoxLayout(dashboardPanel, BoxLayout.Y_AXIS));
+      /*dashboardPanel.setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
 
       c.fill = GridBagConstraints.HORIZONTAL;
       c.gridx = 0;
-      c.gridy = 0;
+      c.gridy = 0;*/
 
       dashboardPanel.add(playerStatsPanel);
       dashboardPanel.add(deedPanel);
       dashboardPanel.add(dicePanel);
 
-      dashboardPanel.add(dicePanel, c);
+      //dashboardPanel.add(dicePanel, c);
 
-      c.fill = GridBagConstraints.HORIZONTAL;
+      /*c.fill = GridBagConstraints.HORIZONTAL;
       c.gridx = 1;
-      c.gridy = 0;
+      c.gridy = 0;*/
 
-      dashboardPanel.add(propertyContextPanel, c);
+      //dashboardPanel.add(propertyContextPanel, c);
+      dashboardPanel.add(propertyContextPanel);
 
-      c.fill = GridBagConstraints.HORIZONTAL;
+      /*c.fill = GridBagConstraints.HORIZONTAL;
       c.gridwidth = 3;
       c.ipady = 110;
       c.weightx = 0.0;
       c.gridx = 0;
-      c.gridy = 1;
+      c.gridy = 1;*/
 
-      dashboardPanel.add(commandPanel, c);
+      //dashboardPanel.add(commandPanel, c);
+      dashboardPanel.add(commandPanel);
    }
 
 	private void createContextPanel() {
@@ -175,6 +177,9 @@ public class GUIGame implements Runnable, ActionListener {
       endTurnButton = new JButton("End Turn!");
       upgradeButton = new JButton("Upgrade!");
       downgradeButton = new JButton("Downgrade!");
+
+      // Dumb value to get it sized right
+      commandPanel.setPreferredSize( new Dimension( 100, 100 ) );
 
       buyButton.setActionCommand("B");
       buyButton.addActionListener(this);
