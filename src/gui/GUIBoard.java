@@ -39,8 +39,8 @@ class GUIBoard extends GamePanel implements Runnable {
 	private int num_spaces;
 	private static int DEFAULT_WIDTH = GUISpace.WIDTH * 40;
 	private static int DEFAULT_HEIGHT = GUISpace.HEIGHT * 40;
-	private static int SCALED_UP_SPACE_X = GUISpace.WIDTH + 50;
-	private static int SCALED_UP_SPACE_Y = GUISpace.HEIGHT + 50;
+	private static int SCALED_UP_SPACE_X = GUISpace.WIDTH + 100;
+	private static int SCALED_UP_SPACE_Y = GUISpace.HEIGHT + 100;
     private static int TOKEN_PADDING = 8;
 	private static Color DEFAULT_COLOR = Color.WHITE;
 
@@ -141,8 +141,8 @@ class GUIBoard extends GamePanel implements Runnable {
 		//}
 
 		// draw strings in middle of board for testing
-		Font font = new Font("Helvetica", Font.PLAIN, 24);
-		g.drawString(Integer.toString(board.getSelectedSpace()), 250, 250);
+		//Font font = new Font("Helvetica", Font.PLAIN, 24);
+		//g.drawString(Integer.toString(board.getSelectedSpace()), 250, 250);
 
 		// draw the blown-up version of the space that is currently highlighted
 		GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));

@@ -183,11 +183,13 @@ public class Space {
      *
 	 * @return the amount of rent, -1 if the improvement_level passed is invalid
 	 */
-	public int getRentAtLevel(int improvement_level) {
-		if (0 <= improvement_level
-				&& improvement_level < this.rents[this.rents.length - 1])
+	public int getRentAtLevel(int improvement_level) 
+    {
+        if( rents == null )
+           return 0;
+		if (0 <= improvement_level && improvement_level < (rents.length-1) )
 			return rents[improvement_level];
-		return -1;
+		return 0;
 	}
 
     /** 
