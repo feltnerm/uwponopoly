@@ -291,25 +291,30 @@ public class Game {
             if (cmd.equals("U")){
                 //upgrade
             }
-            if (cmd.equals("D")){
+            else if(cmd.equals("D"))
+            {
                 //downgrade
             }    
-            if (cmd.equals("B")){
+            else if(cmd.equals("B"))
+            {
                 //buy
             }
-            if (cmd.equals("S")){
+            else if(cmd.equals("S"))
+            {
                 //sell
             }
-            if (cmd.equals("q"))
+            else if(cmd.equals("q"))
             {
                 //quit!
                 System.exit(0);
             }
-            else {
-
-                // Only option left is to roll the dice
-                // and move the player.
-
+            else if(cmd.equals("E"))
+            {
+                // End Turn
+                this.nextPlayer();
+            }
+            else
+            {
                 this.dice.roll();
                 System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
                 this.move(this.current_player, this.dice.getTotal());

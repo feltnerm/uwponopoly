@@ -11,14 +11,16 @@ import java.awt.event.ActionListener;
 import java.awt.EventQueue;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import board.Board;
 import config.Config;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 public class GUIGame implements Runnable, ActionListener {
+<<<<<<< HEAD
 	private boolean DEBUG;
 
 	// Game Elements
@@ -47,10 +49,12 @@ public class GUIGame implements Runnable, ActionListener {
 	private GamePanel deedPanel;
 
 	// Buttons
-	private JButton sellButton;
-	private JButton rollButton;
-	private JButton endTurnButton;
-	private JButton improveButton;
+    private JButton buyButton;
+    private JButton sellButton;
+    private JButton endTurnButton;
+    private JButton upgradeButton;
+    private JButton downgradeButton;
+    private JButton rollButton;
 
 	public GUIGame(boolean debug) {
 		this(debug, new Config(debug));
@@ -69,16 +73,18 @@ public class GUIGame implements Runnable, ActionListener {
         System.out.println("initGame()");
 	}
 
-	private void initGui() {
-		this.createBoard();
-		this.createDice();
-		this.createContextPanel();
-		this.createPlayerStats();
-		this.createDashboard();
-		this.createWindow();
+	private void initGui() 
+   {
+      this.createBoard();
+      this.createDice();
+      this.createContextPanel();
+      this.createCommandPanel();
+      this.createPlayerStats();
+      this.createDashboard();
+      this.createWindow();
 
-		this.guiWindow.setVisible(true);
-	}
+      this.guiWindow.setVisible(true);
+   }
 
 	private void createWindow() {
 		this.guiWindow = new GUIWindow();
@@ -105,13 +111,34 @@ public class GUIGame implements Runnable, ActionListener {
 		dicePanel.add(roll_button, BorderLayout.SOUTH);
 	}
 
-	private void createDashboard() {
-		dashboardPanel = new JPanel();
-		dashboardPanel
-				.setLayout(new BoxLayout(dashboardPanel, BoxLayout.Y_AXIS));
-		dashboardPanel.add(dicePanel);
-		dashboardPanel.add(propertyContextPanel);
-	}
+	private void createDashboard() 
+   {
+      dashboardPanel = new JPanel();
+      // dashboardPanel.setLayout(new BoxLayout(dashboardPanel, BoxLayout.Y_AXIS));
+      dashboardPanel.setLayout(new GridBagLayout());
+      GridBagConstraints c = new GridBagConstraints();
+
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.gridx = 0;
+      c.gridy = 0;
+
+      dashboardPanel.add(dicePanel, c);
+
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.gridx = 1;
+      c.gridy = 0;
+
+      dashboardPanel.add(propertyContextPanel, c);
+
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.gridwidth = 3;
+      c.ipady = 110;
+      c.weightx = 0.0;
+      c.gridx = 0;
+      c.gridy = 1;
+
+      dashboardPanel.add(commandPanel, c);
+   }
 
 	private void createContextPanel() {
 		propertyContextPanel = new JPanel();
@@ -124,7 +151,64 @@ public class GUIGame implements Runnable, ActionListener {
 
 		this.guiBoard.setDeedPanel(deedPanel);
 	}
+   
+   private void createCommandPanel()
+   {
+      commandPanel = new JPanel();
+      commandPanel.setLayout(null);
 
+      buyButton = new JButton("Buy!");
+      sellButton = new JButton("Sell!");
+      endTurnButton = new JButton("End Turn!");
+      upgradeButton = new JButton("Upgrade!");
+      downgradeButton = new JButton("Downgrade!");
+
+      buyButton.setActionCommand("B");
+      buyButton.addActionListener(this);
+
+      commandPanel.add(buyButton);
+      buyButton.setBounds( 0,
+             0,
+             buyButton.getPreferredSize().width,
+             buyButton.getPreferredSize().height);
+
+      sellButton.setActionCommand("S");
+      sellButton.addActionListener(this);
+
+      commandPanel.add(sellButton);
+      sellButton.setBounds( buyButton.getPreferredSize().width,
+             0,
+             sellButton.getPreferredSize().width,
+             sellButton.getPreferredSize().height);
+
+      upgradeButton.setActionCommand("U");
+      upgradeButton.addActionListener(this);
+
+      commandPanel.add(upgradeButton);
+      upgradeButton.setBounds( 0,
+             buyButton.getY() + buyButton.getPreferredSize().height,
+             upgradeButton.getPreferredSize().width,
+             upgradeButton.getPreferredSize().height);
+
+      downgradeButton.setActionCommand("D");
+      downgradeButton.addActionListener(this);
+
+      commandPanel.add(downgradeButton);
+      downgradeButton.setBounds( 0,
+             upgradeButton.getY() + upgradeButton.getPreferredSize().height,
+             downgradeButton.getPreferredSize().width,
+             downgradeButton.getPreferredSize().height);
+
+      endTurnButton.setActionCommand("E");
+      endTurnButton.addActionListener(this);
+
+      commandPanel.add(endTurnButton);
+      endTurnButton.setBounds(0,
+             downgradeButton.getY() + downgradeButton.getPreferredSize().height,
+             endTurnButton.getPreferredSize().width,
+             endTurnButton.getPreferredSize().height);
+   }
+   
 	private void createPlayerStats() {
 
 	}
@@ -155,15 +239,48 @@ public class GUIGame implements Runnable, ActionListener {
 
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		String cmd = e.getActionCommand();
-		if ("R".equals(cmd)) {
-			System.out.println("ROLL!");
-			this.game.updateGame("");
-			this.guiDice.simulateRoll();
-			//this.game.updateGame("");
-		} else {
+	public void actionPerformed(ActionEvent e) 
+   {
+      String cmd = e.getActionCommand();
+      if ("R".equals(cmd)) {
+             System.out.println("ROLL!");
+             this.guiDice.roll();
+             this.game.updateGame("");
+             //this.game.updateGame("");
+      }
+      else if ("B".equals(cmd))
+      {
+         System.out.println("BUY!");
+         this.game.updateGame("B");
+      }
+      else if("S".equals(cmd))
+      {
+         System.out.println("SELL!");
+         this.game.updateGame("S");
+      }
+      else if("U".equals(cmd))
+      {
+         System.out.println("UPGRADE!");
+         this.game.updateGame("U");
+      }
+      else if("D".equals(cmd))
+      {
+         System.out.println("DOWNGRADE!");
+         this.game.updateGame("D");
+      }
+      else if("E".equals(cmd))
+      {
+         System.out.println("END TURN!");
+         this.game.updateGame("E");
+      }
+      else
+      {
 
-		}
-	}
+      }
+   }
+   
+   public void disableButton(String button)
+   {
+
+   }
 }
