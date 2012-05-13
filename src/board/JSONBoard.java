@@ -17,7 +17,7 @@ import com.google.gson.reflect.TypeToken;
 class JSONBoard {
 
 	// game /etc, system /etc, ~
-	private String PATH = "../etc/uwp_board.json";
+	private String PATH = "../etc/board.json";
 	private File JSONBoardFile;
 
 	private Gson gson = new Gson();
@@ -29,6 +29,16 @@ class JSONBoard {
     * Constructor, reads file when instantiated.
     */
 	public JSONBoard() {
+		try {
+			this.json = readFile();
+		} catch (IOException e) {
+			System.out.println("JSONBoard file not found.");
+		}
+	}
+
+    public JSONBoard( String path )
+    {
+        PATH = path;
 		try {
 			this.json = readFile();
 		} catch (IOException e) {
