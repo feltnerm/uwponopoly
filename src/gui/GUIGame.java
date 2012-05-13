@@ -74,7 +74,6 @@ public class GUIGame implements Runnable, ActionListener {
 		this.game.initGame();
 
 		this.initGui();
-        System.out.println("initGame()");
 	}
 
 	private void initGui() {
@@ -208,7 +207,6 @@ public class GUIGame implements Runnable, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		if ("R".equals(cmd)) {
-			System.out.println("ROLL!");
 			this.game.updateGame("");
 			this.guiDice.simulateRoll();
 			//this.game.updateGame("");

@@ -78,19 +78,19 @@ public class GUIWindow extends GameFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if ("new".equals(e.getActionCommand())) {
-			System.out.print("New");
+			//System.out.print("New");
 		} else if ("quit".equals(e.getActionCommand())) {
 			System.exit(0);
 		} else if ("edit_board".equals(e.getActionCommand())) {
-			System.out.print("Edit Board");
+			//System.out.print("Edit Board");
 		} else if ("edit_rules".equals(e.getActionCommand())) {
-			System.out.print("Edit Rules");
+			//System.out.print("Edit Rules");
 			this.guiConfig.setVisible(true);
 
 		} else if ("about".equals(e.getActionCommand())) {
-			System.out.print("About");
+			//System.out.print("About");
 		} else if ("credits".equals(e.getActionCommand())) {
-			System.out.print("Credits");
+			//System.out.print("Credits");
 		} else {
 
 		}

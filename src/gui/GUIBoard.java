@@ -79,7 +79,6 @@ class GUIBoard extends GamePanel implements Runnable {
 		// board.getNumSpaces(), DEFAULT_COLOR);
 		// setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		super(11*GUISpace.WIDTH, 11*GUISpace.HEIGHT, DEFAULT_COLOR); //sensible default, 11 spaces on side of standard board
-        System.out.println("Constructing GUIBoard");
         if( board == null )
            System.out.println("Board passed to GUIBoard is null.");
         if( board.spaces == null )

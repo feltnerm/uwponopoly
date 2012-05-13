@@ -330,7 +330,7 @@ public class Game {
                 int last_position = current_player.getPosition();
 
                 this.dice.roll();
-                System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
+                //System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
                 this.move(this.current_player, this.dice.getTotal());
 
                 // Passed GO?
@@ -345,7 +345,7 @@ public class Game {
                     // player's turn.
                     this.nextPlayer();
                 } else {
-                    System.out.println("DOUBLES");
+                    //System.out.println("DOUBLES");
                 }
             }
 
@@ -370,7 +370,7 @@ public class Game {
         {
             new_position = new_position % this.board.getNumSpaces();
         }
-        System.out.println("New Position: "+new_position);
+        //System.out.println("New Position: "+new_position);
         p.setPosition(new_position);
     }
 
@@ -381,7 +381,7 @@ public class Game {
     private void nextPlayer(){
         if (!this.players_iter.hasNext())
         {
-            System.out.println("Last player");
+           //System.out.println("Last player");
             this.players_iter = players.listIterator(0);
             this.current_player = this.players_iter.next();
         } else {
