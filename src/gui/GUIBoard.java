@@ -4,6 +4,7 @@ package gui;
 
 // Import Java Packages
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -38,8 +39,8 @@ class GUIBoard extends GamePanel implements Runnable {
 	private int num_spaces;
 	private static int DEFAULT_WIDTH = GUISpace.WIDTH * 40;
 	private static int DEFAULT_HEIGHT = GUISpace.HEIGHT * 40;
-	private static int SCALED_UP_SPACE_X = GUISpace.WIDTH + 50;
-	private static int SCALED_UP_SPACE_Y = GUISpace.HEIGHT + 50;
+	private static int SCALED_UP_SPACE_X = GUISpace.WIDTH + 100;
+	private static int SCALED_UP_SPACE_Y = GUISpace.HEIGHT + 100;
     private static int TOKEN_PADDING = 8;
 	private static Color DEFAULT_COLOR = Color.WHITE;
 
@@ -78,7 +79,6 @@ class GUIBoard extends GamePanel implements Runnable {
 		// board.getNumSpaces(), DEFAULT_COLOR);
 		// setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		super(11*GUISpace.WIDTH, 11*GUISpace.HEIGHT, DEFAULT_COLOR); //sensible default, 11 spaces on side of standard board
-        System.out.println("Constructing GUIBoard");
         if( board == null )
            System.out.println("Board passed to GUIBoard is null.");
         if( board.spaces == null )
@@ -140,8 +140,8 @@ class GUIBoard extends GamePanel implements Runnable {
 		//}
 
 		// draw strings in middle of board for testing
-		Font font = new Font("Helvetica", Font.PLAIN, 24);
-		g.drawString(Integer.toString(board.getSelectedSpace()), 250, 250);
+		//Font font = new Font("Helvetica", Font.PLAIN, 24);
+		//g.drawString(Integer.toString(board.getSelectedSpace()), 250, 250);
 
 		// draw the blown-up version of the space that is currently highlighted
 		GUISpace gs = new GUISpace(board.spaces.get(board.getSelectedSpace()));
@@ -174,12 +174,20 @@ class GUIBoard extends GamePanel implements Runnable {
 
         // Draw Players
         ListIterator<GUIPlayer> guiPlayers_iter = this.guiPlayers.listIterator(0);
-        while (guiPlayers_iter.hasNext()) {
+        ArrayList<Point> used_positions = new ArrayList<Point>();
+        while (guiPlayers_iter.hasNext()) 
+        {
             GUIPlayer p = guiPlayers_iter.next();
             Point coordinates = getCoordinates(p.getPosition());
-
+            coordinates.translate( (int)(GUISpace.WIDTH*(0.1)), GUISpace.HEIGHT/2 ); // put it in a nicer position
+            while( used_positions.contains(coordinates) )
+            {
+               coordinates.translate( GUIPlayer.TOKEN_SIZE,0 ); // bump it over
+            }
+            used_positions.add( coordinates );
             g.drawImage(p.getToken().getBuffer(), (int)coordinates.getX(), 
-                (int)coordinates.getY(), this);
+                  (int)coordinates.getY(), this);
+
         }
 	}// }}}
 

@@ -40,7 +40,7 @@ public class Game {
     private Space current_space;
 
     // Default Game Rules
-    private static int NUM_PLAYERS = 2;
+    private static int NUM_PLAYERS = 4;
     private static int STARTING_CASH = 200;
     private static int JAIL_FINE = 200;
     private static int JAIL_FEE = 50;
@@ -80,6 +80,7 @@ public class Game {
 
     /**
      * Gets a player by the order the player was in
+     * ( 1-indexed )
      * @param   i   the order of the player you want
      * @return  A {@link player.Player}
      */
@@ -88,6 +89,16 @@ public class Game {
         if (i>=1 && i<this.NUM_PLAYERS+1)
             return this.players.get(i-1);
         return null;
+    }
+
+    /**
+     * Returns the number of players
+     * @return the number of players
+     * @author Aaron Decker
+     */
+    public int getNumPlayers()
+    {
+       return players.size();
     }
 
     /**
@@ -131,6 +142,11 @@ public class Game {
         return this.dice;
     }
 
+    public Config getConfig()
+    {
+        return this.config;
+    }
+
 
     /**
      * Run <b>before</b> the game is started. Initalizes the starting
@@ -139,6 +155,7 @@ public class Game {
      **/
     public void initGame() {
             initPlayers();
+            initRules();
     }
 
     /**
@@ -313,11 +330,22 @@ public class Game {
                 // End Turn
                 this.nextPlayer();
             }
-            else
-            {
+            else {
+
+                // Only option left is to roll the dice
+                // and move the player.
+
+                int last_position = current_player.getPosition();
+
                 this.dice.roll();
-                System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
+                //System.out.println(this.current_player.getPlayerNum()+" rolled a: "+this.dice.getTotal());
                 this.move(this.current_player, this.dice.getTotal());
+
+                // Passed GO?
+                if( current_player.getPosition() < last_position)
+                {
+                   current_player.addMoney( GO_AMOUNT );
+                }
 
                 if (!dice.isDoubles())
                 {
@@ -325,7 +353,7 @@ public class Game {
                     // player's turn.
                     this.nextPlayer();
                 } else {
-                    System.out.println("DOUBLES");
+                    //System.out.println("DOUBLES");
                 }
             }
 
@@ -350,7 +378,7 @@ public class Game {
         {
             new_position = new_position % this.board.getNumSpaces();
         }
-        System.out.println("New Position: "+new_position);
+        //System.out.println("New Position: "+new_position);
         p.setPosition(new_position);
     }
 
@@ -361,7 +389,7 @@ public class Game {
     private void nextPlayer(){
         if (!this.players_iter.hasNext())
         {
-            System.out.println("Last player");
+           //System.out.println("Last player");
             this.players_iter = players.listIterator(0);
             this.current_player = this.players_iter.next();
         } else {

@@ -9,18 +9,22 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import board.Board;
 import config.Config;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.BoxLayout;
 
 public class GUIGame implements Runnable, ActionListener {
-<<<<<<< HEAD
 	private boolean DEBUG;
 
 	// Game Elements
@@ -46,6 +50,7 @@ public class GUIGame implements Runnable, ActionListener {
 	private JPanel dicePanel;
 	private JPanel playerStatsPanel;
 	private JPanel propertyContextPanel;
+    private JPanel commandPanel;
 	private GamePanel deedPanel;
 
 	// Buttons
@@ -55,6 +60,10 @@ public class GUIGame implements Runnable, ActionListener {
     private JButton upgradeButton;
     private JButton downgradeButton;
     private JButton rollButton;
+
+    // Player Stats Labels
+    private ArrayList<JLabel> player_names;
+    private ArrayList<JLabel> player_cash;
 
 	public GUIGame(boolean debug) {
 		this(debug, new Config(debug));
@@ -70,7 +79,6 @@ public class GUIGame implements Runnable, ActionListener {
 		this.game.initGame();
 
 		this.initGui();
-        System.out.println("initGame()");
 	}
 
 	private void initGui() 
@@ -87,10 +95,11 @@ public class GUIGame implements Runnable, ActionListener {
    }
 
 	private void createWindow() {
-		this.guiWindow = new GUIWindow();
+		this.guiWindow = new GUIWindow(this.game);
 		guiWindow.getContentPane().add(guiBoard);
+		//guiWindow.getContentPane().add(playerStatsPanel);
 		guiWindow.getContentPane().add(dashboardPanel);
-		guiWindow.getContentPane().add(deedPanel);
+		//guiWindow.getContentPane().add(deedPanel);
 		guiWindow.pack();
 	}
 
@@ -121,6 +130,10 @@ public class GUIGame implements Runnable, ActionListener {
       c.fill = GridBagConstraints.HORIZONTAL;
       c.gridx = 0;
       c.gridy = 0;
+
+      dashboardPanel.add(playerStatsPanel);
+      dashboardPanel.add(deedPanel);
+      dashboardPanel.add(dicePanel);
 
       dashboardPanel.add(dicePanel, c);
 
@@ -209,12 +222,50 @@ public class GUIGame implements Runnable, ActionListener {
              endTurnButton.getPreferredSize().height);
    }
    
-	private void createPlayerStats() {
-
+	private void createPlayerStats() 
+    {
+       playerStatsPanel = new JPanel();
+       playerStatsPanel.setLayout(new BoxLayout(playerStatsPanel, BoxLayout.Y_AXIS));
+       player_names = new ArrayList<JLabel>();
+       player_cash = new ArrayList<JLabel>();
+       for( int i = 0; i < game.getNumPlayers(); i++ )
+       {
+          player_names.add( new JLabel( "Player " + (i+1) ) );
+          playerStatsPanel.add( player_names.get(i) );
+          JLabel temp = new JLabel( "$" + game.getPlayers().get(i).getMoney() );
+          player_cash.add( temp );
+          playerStatsPanel.add( temp );
+       }
 	}
+
+    // updates the player stat JLabels
+    private void recalculatePlayerStats()
+    {
+       for( int i = 0; i < player_names.size(); i++ )
+       {
+          if( game.getCurrentPlayer().getPlayerNumber() == i )
+             player_names.get(i).setText("--> Player " + (i+1) );
+          else
+             player_names.get(i).setText("Player " + (i+1) );
+
+       }
+
+       for( int i = 0; i < player_cash.size(); i++ )
+       {
+          JLabel label = player_cash.get(i);
+          //Font f = label.getFont();
+          //if( game.getCurrentPlayer().getPlayerNumber() == i )
+           //  label.setFont(f.deriveFont(f.getStyle() ^ Font.BOLD)); //bold
+          //else
+           //  label.setFont(f.deriveFont(f.getStyle() | Font.BOLD)); //unbold
+          label.setText("$" + game.getPlayers().get(i).getMoney() );
+          label.repaint();
+       }
+    }
 
 	public void startGame() {
 		// start the game!
+        running = true;
 		this.game.startGame();
 		gamethread = new Thread(this);
 		gamethread.start();
@@ -229,7 +280,9 @@ public class GUIGame implements Runnable, ActionListener {
 			long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 
-			guiWindow.repaint();
+			recalculatePlayerStats();
+            //playerStatsPanel.repaint();
+            guiWindow.repaint();
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
@@ -240,11 +293,11 @@ public class GUIGame implements Runnable, ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) 
-   {
+    {
       String cmd = e.getActionCommand();
       if ("R".equals(cmd)) {
              System.out.println("ROLL!");
-             this.guiDice.roll();
+             guiDice.simulateRoll();
              this.game.updateGame("");
              //this.game.updateGame("");
       }

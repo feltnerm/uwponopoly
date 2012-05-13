@@ -15,6 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import game.Game;
+
 public class GUIWindow extends GameFrame implements ActionListener {
 	private static String TITLE = "UWPonopoly";
 	private JMenuBar menuBar;
@@ -25,11 +27,14 @@ public class GUIWindow extends GameFrame implements ActionListener {
 	final int WINDOW_WIDTH = 550;
 	final int WINDOW_HEIGHT = 350;
 
+	private Game game;
+
 	// final FlowLayout layout = new FlowLayout();
 
-	public GUIWindow() {
+	public GUIWindow(Game g) {
 		super(TITLE);
-		this.guiConfig = new GUIConfig();
+		this.game = g;
+		this.guiConfig = new GUIConfig(this.game.getConfig());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(this.WINDOW_HEIGHT, this.WINDOW_WIDTH);
 		this.setLayout(new FlowLayout());
@@ -73,19 +78,19 @@ public class GUIWindow extends GameFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if ("new".equals(e.getActionCommand())) {
-			System.out.print("New");
+			//System.out.print("New");
 		} else if ("quit".equals(e.getActionCommand())) {
 			System.exit(0);
 		} else if ("edit_board".equals(e.getActionCommand())) {
-			System.out.print("Edit Board");
+			//System.out.print("Edit Board");
 		} else if ("edit_rules".equals(e.getActionCommand())) {
-			System.out.print("Edit Rules");
+			//System.out.print("Edit Rules");
 			this.guiConfig.setVisible(true);
 
 		} else if ("about".equals(e.getActionCommand())) {
-			System.out.print("About");
+			//System.out.print("About");
 		} else if ("credits".equals(e.getActionCommand())) {
-			System.out.print("Credits");
+			//System.out.print("Credits");
 		} else {
 
 		}

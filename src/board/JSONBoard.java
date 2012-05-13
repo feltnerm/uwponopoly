@@ -36,6 +36,16 @@ class JSONBoard {
 		}
 	}
 
+    public JSONBoard( String path )
+    {
+        PATH = path;
+		try {
+			this.json = readFile();
+		} catch (IOException e) {
+			System.out.println("JSONBoard file not found.");
+		}
+	}
+
    /**
     * Read the config file.
     */
@@ -46,10 +56,23 @@ class JSONBoard {
 			MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0,
 					fc.size());
 			return Charset.defaultCharset().decode(bb).toString();
-		} finally {
+		} catch (IOException e) {
+            throw e;
+        } 
+        finally {
 			stream.close();
 		}
 	}
+
+    public String readFile(String path) throws IOException
+    {
+        File f = new File(path);
+        if (f.canRead())
+        {
+            this.PATH = path;
+        }
+        return this.readFile();
+    }
 
    /**
     * deserialze JSON into classes.

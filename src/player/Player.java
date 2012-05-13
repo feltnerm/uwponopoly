@@ -16,7 +16,7 @@ public class Player {
 								// constant? --Aaron
 	protected int position;
 	protected int playerNumber;
-	protected char token_char; // even with a custom GameBuffer,
+	//protected char token_char; // even with a custom GameBuffer,
 								// the token_char is used for equals()
 
 	protected ArrayList<Space> properties = new ArrayList<Space>();
@@ -164,7 +164,7 @@ public class Player {
     */
 
     /**
-     * Get the player's number (order in the game: Player1, Player2, etc.)
+     * Get the player's number (order in the game: Player1, Player2, etc.) (0-indexed)
      * @return  This player's number.
      */
     public int getPlayerNum(){
@@ -172,7 +172,7 @@ public class Player {
     }
 
     /**
-    * Get the player's number (order in the game: Player1, Player2, etc.)
+    * Get the player's number (order in the game: Player1, Player2, etc.) (0-indexed)
     * @return  This player's number.
     */
     public int getPlayerNumber()
@@ -189,7 +189,7 @@ public class Player {
 	public boolean equals(Object o) {
 		if (o instanceof Player) {
 			Player p = (Player) o;
-			return p.token_char == token_char;
+			return p.getPlayerNumber() == playerNumber;
 		}
 		return false;
 	}
@@ -207,7 +207,7 @@ public class Player {
 	public String toString() {
 		return "<Player:" + this.playerNumber
 				+ "|Wealth:" + this.getMoney() + "|Position:"
-				+ this.getPosition() + "|Token:" + this.getTokenChar();
+				+ this.getPosition();
 	}
 
 

@@ -95,36 +95,37 @@ public class Space {
    }
 
     /** 
+     * Removed: Space no longer tracks players.
      * Add a player to the space.
      *
      * @param    player      The player to add.
      */
-	public void addPlayer(Player player) {
+	/*public void addPlayer(Player player) {
 		Iterator<Player> itr = players.iterator();
 		while (itr.hasNext()) {
 			if (itr.next().getTokenChar() == player.getTokenChar())
 				return; // player is already on space, get out of here
 		}
 		players.add(player);
-	}
+	}*/
 
     /**
+     * Removed: Space no longer tracks players.
      * Remove a player from the space.
      *
      * @param   player  A {@link player.Player} to remove.
      */
-	public void removePlayer(Player player) {
+	/*public void removePlayer(Player player) {
 		Iterator<Player> itr = players.iterator();
 		while (itr.hasNext()) {
 			if (itr.next().getTokenChar() == player.getTokenChar())
 				itr.remove();
 		}
-	}
+	}*/
 
     /**
      * Executed when the player lands on a space.
-     * @TODO: Probably not needed.
-     * @param   player          The player that has landed on the space.
+     * param   player          The player that has landed on the space.
 	public void landsOn(Player player) {
 		// when the player lands on the space
 	}
@@ -181,11 +182,13 @@ public class Space {
      *
 	 * @return the amount of rent, -1 if the improvement_level passed is invalid
 	 */
-	public int getRentAtLevel(int improvement_level) {
-		if (0 <= improvement_level
-				&& improvement_level < this.rents[this.rents.length - 1])
+	public int getRentAtLevel(int improvement_level) 
+    {
+        if( rents == null )
+           return 0;
+		if (0 <= improvement_level && improvement_level < (rents.length-1) )
 			return rents[improvement_level];
-		return -1;
+		return 0;
 	}
 
     /** 

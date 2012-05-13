@@ -2,11 +2,14 @@ package config;
 
 import game.Game;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Config
@@ -21,9 +24,15 @@ import java.util.Properties;
 public class Config extends Properties {
 
 	// Path to default configuration file.
-	private static String CONFIG_PATH = "etc/uwponopoly.conf";
-	private static FileReader config_file_reader;
-	private static FileOutputStream config_file_writer;
+	private static String DEFAULT_CONFIG_PATH = "etc/uwponopoly.conf";
+    private File configFile;
+    private File[] configPaths = new File[] {
+                                    new File("etc/uwponpoly.conf"),
+                                    new File("/etc/uwponopoly.conf"),
+                                    new File("../etc/uwponopoly.conf"),
+                                    new File("~/uwponopoly.conf")
+                                 };
+	private static String CONFIG_PATH = "../etc/uwponopoly.conf";
 	private boolean DEBUG;
 
 	/**
@@ -34,47 +43,67 @@ public class Config extends Properties {
    public Config(boolean debug) {
 		super();
 		this.DEBUG = debug;
-		if (this.DEBUG) {
-			System.out.println("Config Path: " + this.CONFIG_PATH);
-		}
+        this.chooseConfig();
 	}
 
-   /**
+    public void setFile(String path)
+    {
+        this.configFile = new File(path);
+    }
+
+    private void chooseConfig()
+    {
+        for (File f : this.configPaths)
+        {
+            if (f.canRead())
+            {
+                this.configFile = f;
+            }
+        }
+
+        if (this.configFile == null || !this.configFile.canRead())
+        {
+            this.loadDefaults();
+        }
+    }
+
+
+    /**
     * Load a configuration file.
     */
-	public void load() throws IOException{
-		// Default loader of a configuration file
-		try {
-			config_file_reader = new FileReader(CONFIG_PATH);
-			super.load(config_file_reader);
-		} catch (IOException e) {
-			System.out.println("Configuration file at " + CONFIG_PATH
-					+ " not found");
+    public void load() throws IOException
+    {
+        try
+        {
+            FileReader config_file_reader = new FileReader(this.configFile.getAbsolutePath());
+            super.load(config_file_reader);
+        } catch (IOException e)
+        {
+            System.out.println("Config file could not be loaded at:"+
+                this.configFile.getAbsolutePath());
             throw e;
-            
-		}
-	}
+        }
+    }
 
-   /**
-    * Load a configuration file.
-    *
-    * @param    path    Absolute path to the configuration file.'
-    */
-	public void load(String path) throws IOException{
-		CONFIG_PATH = path;
-		load();
-	}
+    public void loadDefaults()
+    {
+
+    }
 
    /**
     * Save a file.
     */
-	public void save() {
-		try {
-			config_file_writer = new FileOutputStream(CONFIG_PATH);
+	public void save() 
+    {
+		try 
+        {
+			FileOutputStream config_file_writer = 
+                new FileOutputStream(this.configFile.getAbsolutePath());
 			super.store(config_file_writer, "");
-		} catch (IOException e) {
+		} 
+        catch (IOException e) {
 			System.out.println("Could not write to config file at "
-					+ CONFIG_PATH);
+					+ this.configFile.getAbsolutePath());
 		}
 	}
 
@@ -84,8 +113,13 @@ public class Config extends Properties {
     * @param    path    The absolute path to save the file to.
     */
 	public void save(String path) {
-		CONFIG_PATH = path;
-		save();
+        File f = new File(path);
+        if (f.canWrite())
+        {
+            this.configFile = f;
+            save();    
+        }
+		
 	}
 
    /**
