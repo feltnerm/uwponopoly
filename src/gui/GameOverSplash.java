@@ -63,7 +63,7 @@ public class GameOverSplash extends JFrame
       {
          Player temp = players.poll();
 
-         this.names[i] = new JLabel(temp.getName());
+         this.names[i] = new JLabel("Player " + temp.getPlayerNum());
          this.numTurns[i] = new JLabel(temp.getLastTurn() + "");
          this.endingMoney[i] = new JLabel(temp.getMoney() + "");
 
