@@ -113,7 +113,7 @@ public class GUIGame implements Runnable, ActionListener {
 		dicePanel = new JPanel();
 		dicePanel.setLayout(new BorderLayout());
 		dicePanel.add(guiDice, BorderLayout.NORTH);
-		JButton roll_button = new JButton("Roll!");
+		JButton roll_button = new JButton("Roll");
 		roll_button.setPreferredSize(new Dimension(25, 50));
 		roll_button.setActionCommand("R");
 		roll_button.addActionListener(this);
@@ -172,11 +172,11 @@ public class GUIGame implements Runnable, ActionListener {
       commandPanel = new JPanel();
       commandPanel.setLayout(null);
 
-      buyButton = new JButton("Buy!");
-      sellButton = new JButton("Sell!");
-      endTurnButton = new JButton("End Turn!");
-      upgradeButton = new JButton("Upgrade!");
-      downgradeButton = new JButton("Downgrade!");
+      buyButton = new JButton("Buy");
+      sellButton = new JButton("Sell");
+      endTurnButton = new JButton("End Turn");
+      upgradeButton = new JButton("Upgrade");
+      downgradeButton = new JButton("Downgrade");
 
       // Dumb value to get it sized right
       commandPanel.setPreferredSize( new Dimension( 100, 100 ) );
@@ -300,35 +300,30 @@ public class GUIGame implements Runnable, ActionListener {
 	public void actionPerformed(ActionEvent e) 
     {
       String cmd = e.getActionCommand();
-      if ("R".equals(cmd)) {
-             System.out.println("ROLL!");
+      if ("R".equals(cmd)) 
+      {
              guiDice.simulateRoll();
              this.game.updateGame("");
              //this.game.updateGame("");
       }
       else if ("B".equals(cmd))
       {
-         System.out.println("BUY!");
          this.game.updateGame("B");
       }
       else if("S".equals(cmd))
       {
-         System.out.println("SELL!");
          this.game.updateGame("S");
       }
       else if("U".equals(cmd))
       {
-         System.out.println("UPGRADE!");
          this.game.updateGame("U");
       }
       else if("D".equals(cmd))
       {
-         System.out.println("DOWNGRADE!");
          this.game.updateGame("D");
       }
       else if("E".equals(cmd))
       {
-         System.out.println("END TURN!");
          this.game.updateGame("E");
       }
       else
